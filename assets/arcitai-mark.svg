@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160">
+  <defs>
+    <filter id="dissolve-a" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" />
+    </filter>
+    <filter id="dissolve-b" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="6" />
+    </filter>
+  </defs>
+  <rect x="24" y="24" width="112" height="112" rx="29" fill="#fbfaf7" />
+  <circle cx="88" cy="70" r="31" fill="#7ed9cf" opacity="0.78" filter="url(#dissolve-a)" />
+  <circle cx="66" cy="88" r="22" fill="#16796f" opacity="0.86" filter="url(#dissolve-b)" />
+  <path d="M54 105 70 56h14l-16 49H54Zm30-49h14l17 49h-15L84 56Z" fill="#061b20" />
+</svg>
