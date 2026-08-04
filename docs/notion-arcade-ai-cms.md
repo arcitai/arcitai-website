@@ -1,71 +1,88 @@
-# Arcade AI Notion CMS
+# Project inquiry contract
 
-This file records the Notion setup for `arcitai.com`.
+The landing page consumes the existing Gustav Online Cloudflare Worker. This
+repository owns the browser caller and UI states; the Worker owns authoritative
+validation, the Notion credential, and record creation.
 
-## Project inquiries
+## Endpoint
 
-Database: `Arcitai Project Inquiries`
+```text
+POST https://gustavonline-api.gustavonline.workers.dev/project-inquiry
+Content-Type: application/json
+Origin: https://arcitai.com
+```
 
-URL:
-`https://app.notion.com/p/145c4bea0b134057abf57fcc03d4545a`
+The server contract was inspected at Gustav Online commit
+[`05a81997c8b34eb4c97b181626d93de8be7b15ce`](https://github.com/gustavonline/gustavonline/tree/05a81997c8b34eb4c97b181626d93de8be7b15ce)
+and checked against the live Worker on 2026-08-03.
 
-Data source:
-`a156e7e9-8a3a-47bb-93ef-734bfa24361d`
+## Request
 
-Form view:
-`3852e04d-50d1-81ef-9757-000c2aa62940`
+| Field             | Required                     | Browser source                     |
+| ----------------- | ---------------------------- | ---------------------------------- |
+| `firstName`       | yes                          | text input                         |
+| `lastName`        | yes                          | text input                         |
+| `email`           | yes, valid email             | email input                        |
+| `company`         | yes                          | text input                         |
+| `website`         | no, HTTP(S) URL when present | URL input                          |
+| `role`            | yes                          | approved select                    |
+| `companySize`     | yes                          | approved select                    |
+| `businessRevenue` | yes, approved value          | radio group                        |
+| `project`         | yes                          | textarea, maximum 2,000 characters |
+| `source`          | yes                          | fixed browser value `Website`      |
 
-Fields:
+Approved business-revenue values are:
 
-- `Project` title
-- `Name` text
-- `Email` email
-- `Company` text
-- `Website` URL
-- `Project Type` select: Internal tool, Automation or agent, Prototype, Architecture review, Not sure yet
-- `Timeline` text
-- `Role` select: Founder / owner, Leadership, Operations, Product / technology, Other
-- `Company Size` select: 1–5, 6–15, 16–50, 51–150, 150+
-- `Business Revenue` select: Pre-revenue, Under DKK 50k / month, DKK 50–100k / month, DKK 100–500k / month, DKK 500k–1m / month, DKK 1m+ / month
-- `Context` text
-- `Status` select: New, Reviewing, Qualified, Archived
-- `Source` select: Website, Referral, Manual
-- `Created` created time
+- `Pre-revenue`
+- `Under DKK 50k / month`
+- `DKK 50–100k / month`
+- `DKK 100–500k / month`
+- `DKK 500k–1m / month`
+- `DKK 1m+ / month`
 
-## Website submission
+## Response
 
-The form view accepts anonymous submissions. The Arc’It landing preview keeps the branded native form and posts validated JSON to:
+- `200 { "ok": true }`: record was acknowledged; the browser may reset.
+- `400 { "error": "..." }`: required or allowed input failed validation.
+- `502 { "error": "..." }`: the Notion write failed.
+- timeout, network failure, non-JSON, another non-2xx status, or a 2xx response
+  without `{ "ok": true }`: unconfirmed failure.
 
-`https://gustavonline-api.gustavonline.workers.dev/project-inquiry`
+The browser maps these to its own safe messages and never renders arbitrary
+server detail. It keeps input on failure, disables duplicate submission only
+while pending, and never opens a mail client automatically.
 
-The existing `gustavonline-api` Cloudflare Worker writes the inquiry into this data source using its Notion integration secret. `Email`, `Role`, `Company Size`, `Business Revenue`, and project context are required at the website boundary. Status defaults to `New` and Source to `Website`.
+## CORS
 
-`siteData.inquiry.formUrl` remains available only if a hosted Notion form should replace the branded form later.
+The live preflight for `Origin: https://arcitai.com` returns:
 
-## Project testimonials
+```text
+Access-Control-Allow-Origin: https://arcitai.com
+Access-Control-Allow-Methods: GET,POST,OPTIONS
+Access-Control-Allow-Headers: Content-Type
+Vary: Origin
+```
 
-Database: `Arcitai Project Testimonials`
+The Worker configuration also lists `https://www.arcitai.com` and local preview
+origins `http://127.0.0.1:4173` and `:4174`. The Cloudflare Pages `pages.dev`
+origin is not listed, so live pages.dev verification uses mocked form requests
+and an intentionally invalid preflight; production form verification waits for
+the custom domain or a separately authorized Worker CORS change.
 
-URL:
-`https://app.notion.com/p/fa36f9886cf7421fb2b10c429aba5797`
+## Data authority
 
-Data source:
-`03dc0cc0-a390-4b3a-8158-21646b7794d0`
+Notion data source `a156e7e9-8a3a-47bb-93ef-734bfa24361d` owns durable inquiry
+records. The Worker sets title, name, email, company, optional website, role,
+company size, revenue, context, Source=`Website`, and Status=`New`.
 
-Fields:
+The browser does not persist or log inquiry content. Release tests use mocked
+success/failure plus an intentionally incomplete live payload. Do not create a
+real inquiry record without separate authorization.
 
-- `Project` title
-- `Client` text
-- `Quote` text
-- `Outcome` text
-- `Type` select: Internal tool, Automation, Prototype, Architecture
-- `Published` checkbox
-- `Display Order` number
-- `Source URL` URL
-- `Created` created time
+## Known boundary risk
 
-## Future CMS path
-
-For the first public version, testimonials are static fallback copy in `src/site-data.ts`.
-
-When there are approved quotes, the clean next step is a tiny API route or Cloudflare Worker that queries `Arcitai Project Testimonials` where `Published = true`, sorts by `Display Order`, and returns cards to the React page.
+The current server checks required fields, email, HTTP(S) website, and the
+revenue allowlist. Role and company-size allowlists, abuse controls, and request
+size limits remain responsibilities of the external Worker owner. The landing
+page constrains ordinary input but cannot turn client validation into server
+trust.

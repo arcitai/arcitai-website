@@ -1,0 +1,14 @@
+node_modules/
+dist/
+coverage/
+.playwright-cli/
+output/
+assets/
+backups/
+docs/2025*
+docs/25df0edf-a2d4-414b-94cb-799a3c30bfd0_Logo__graphic_designs__brand_identity.pdf
+docs/Businessmodel - 3 forretningsben 1dd2e04d50d180f28bfcd207b58d0b9f.md
+docs/digitalcoffeemedium article.md
+docs/do-it-yourself-automation-plan.md
+docs/fredcopy.md
+docs/gustavonlinedevconversation.md

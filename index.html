@@ -1,21 +1,57 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Arcade AI | AI-native software, done for you</title>
     <meta
       name="description"
-      content="Arcade AI is the done-for-you agency lane for AI-native software, automations, internal tools, and systems people can understand and AI can safely extend."
+      content="Business understanding carried into useful AI-first software, from first question to launch."
     />
-    <meta name="theme-color" content="#061b20" />
-    <meta property="og:title" content="Arcade AI - AI-native software, done for you" />
+    <meta name="theme-color" content="#f8f2e8" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:title" content="Arc'IT AI | Build what matters" />
     <meta
       property="og:description"
-      content="Project-based software and automation work built for AI-assisted iteration, human ownership, documentation, and handover."
+      content="Start with the business, cut through what does not matter, and turn the useful part into software that holds up in real work."
     />
-    <meta property="og:image" content="/assets/arcitai-mark.svg" />
-    <link rel="icon" type="image/svg+xml" href="/assets/arcitai-mark.svg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://arcitai.com/" />
+    <meta
+      property="og:image"
+      content="https://arcitai.com/assets/arcitai-panorama-evening-v1.jpg"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Arc'IT AI | Build what matters" />
+    <meta
+      name="twitter:description"
+      content="Business understanding carried into useful AI-first software, from first question to launch."
+    />
+    <title>Arc'IT AI | Build what matters</title>
+    <link rel="canonical" href="https://arcitai.com/" />
+    <link rel="icon" type="image/svg+xml" href="/assets/arcitai-mark-final.svg" />
+    <script>
+      (() => {
+        if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+
+        const navigation = performance.getEntriesByType("navigation")[0];
+        const isReload = navigation?.type === "reload" || performance.navigation?.type === 1;
+        if (!isReload) return;
+
+        try {
+          const cleanUrl = new URL(window.location.href);
+          cleanUrl.hash = "";
+          history.replaceState(history.state, "", cleanUrl.href);
+        } catch {
+          // A scroll reset still provides the intended recovery if URL parsing is unavailable.
+        }
+
+        const resetScroll = () => window.scrollTo(0, 0);
+        resetScroll();
+        window.addEventListener("DOMContentLoaded", resetScroll, { once: true });
+        window.addEventListener("load", resetScroll, { once: true });
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
