@@ -1,0 +1,21 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "arcitai-api",
+  "main": "worker/index.ts",
+  "compatibility_date": "2026-08-24",
+  "workers_dev": true,
+  "preview_urls": false,
+  "observability": {
+    "enabled": true,
+  },
+  "routes": [
+    {
+      "pattern": "api.arcitai.com",
+      "custom_domain": true,
+    },
+  ],
+  "vars": {
+    "ALLOWED_ORIGINS": "https://arcitai.com,https://www.arcitai.com,http://127.0.0.1:4173,http://127.0.0.1:4174",
+    "NOTION_PROJECT_INQUIRIES_DATA_SOURCE_ID": "6dddc32e-df5a-4da8-8cfd-1b3dd68861f4",
+  },
+}

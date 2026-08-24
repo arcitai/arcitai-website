@@ -1,0 +1,58 @@
+name: Deploy Arc'IT inquiry Worker
+
+on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: Commit, tag, or branch to build (use a known-good SHA for recovery)
+        required: false
+        default: main
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: arcitai-api-worker
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Build and deploy arcitai-api
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+    steps:
+      - name: Check out release ref
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          ref: ${{ inputs.ref || github.sha }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
+        with:
+          node-version-file: .node-version
+          cache: npm
+
+      - name: Install from lockfile
+        run: npm ci --ignore-scripts
+
+      - name: Run Pages gates
+        run: npm run check && npm run audit
+
+      - name: Run Worker checks and dry-run bundle
+        run: npm run worker:build
+
+      - name: Verify Cloudflare credentials are configured
+        run: test -n "$CLOUDFLARE_API_TOKEN" && test -n "$CLOUDFLARE_ACCOUNT_ID"
+
+      - name: Verify NOTION_TOKEN secret name is configured
+        shell: bash
+        run: |
+          secret_names="$(npx --no-install wrangler secret list --config wrangler.jsonc --format json)"
+          node -e 'const secrets = JSON.parse(process.argv[1]); if (!secrets.some((secret) => secret.name === "NOTION_TOKEN")) process.exit(1)' "$secret_names"
+
+      - name: Deploy arcitai-api
+        run: npx --no-install wrangler deploy --config wrangler.jsonc
