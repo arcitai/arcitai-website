@@ -1,37 +1,73 @@
-# Project inquiry contract
+# Arc'IT Project Inquiry contract
 
-The landing page consumes the existing Gustav Online Cloudflare Worker. This
-repository owns the browser caller and UI states; the Worker owns authoritative
-validation, the Notion credential, and record creation.
+Contract revision 1 for the Arc'IT-owned `arcitai-api` Worker. The Worker is
+the authoritative validation and Notion write boundary; the browser sends no
+secret and does not write to Notion.
 
-## Endpoint
+## Ownership and endpoints
+
+The intended custom-domain endpoint is:
 
 ```text
-POST https://gustavonline-api.gustavonline.workers.dev/project-inquiry
+POST https://api.arcitai.com/project-inquiry
+```
+
+Wrangler also keeps a `workers.dev` deployment path for recovery. Its exact
+account hostname is established by the first authorized deployment and must be
+recorded in the release evidence; it is not the primary frontend endpoint.
+
+The current shared
+`https://gustavonline-api.gustavonline.workers.dev/project-inquiry` remains
+live during Build and is not called with a valid inquiry. Gustav Online remains
+the owner of newsletter/posts, and `onlinesourdough-resources` remains the
+owner of Resources. Testimonials are an Arc'IT-owned future data concern with
+no runtime endpoint while unused.
+
+Worker linkage identity: `arcitai-inquiry-boundary-2026-08-24`.
+
+## Request
+
+```http
+POST /project-inquiry
 Content-Type: application/json
 Origin: https://arcitai.com
 ```
 
-The server contract was inspected at Gustav Online commit
-[`05a81997c8b34eb4c97b181626d93de8be7b15ce`](https://github.com/gustavonline/gustavonline/tree/05a81997c8b34eb4c97b181626d93de8be7b15ce)
-and checked against the live Worker on 2026-08-03.
+The browser payload is:
 
-## Request
+| Field             | Required                | Server rule                                     |
+| ----------------- | ----------------------- | ----------------------------------------------- |
+| `firstName`       | yes                     | trimmed string, maximum 80 characters           |
+| `lastName`        | yes                     | trimmed string, maximum 80 characters           |
+| `email`           | yes                     | trimmed, lowercased, valid email, max 254       |
+| `company`         | yes                     | trimmed string, maximum 120 characters          |
+| `website`         | no                      | empty or an HTTP(S) URL, maximum 300 characters |
+| `role`            | yes                     | exact approved value                            |
+| `companySize`     | yes                     | exact approved value                            |
+| `businessRevenue` | yes                     | exact approved value                            |
+| `project`         | yes                     | trimmed string, maximum 2,000 characters        |
+| `source`          | ignored from the client | always written server-side as `Website`         |
 
-| Field             | Required                     | Browser source                     |
-| ----------------- | ---------------------------- | ---------------------------------- |
-| `firstName`       | yes                          | text input                         |
-| `lastName`        | yes                          | text input                         |
-| `email`           | yes, valid email             | email input                        |
-| `company`         | yes                          | text input                         |
-| `website`         | no, HTTP(S) URL when present | URL input                          |
-| `role`            | yes                          | approved select                    |
-| `companySize`     | yes                          | approved select                    |
-| `businessRevenue` | yes, approved value          | radio group                        |
-| `project`         | yes                          | textarea, maximum 2,000 characters |
-| `source`          | yes                          | fixed browser value `Website`      |
+The total request body is limited to 16,384 bytes. Missing, non-string,
+overlong, malformed, or disallowed values are rejected before a Notion call.
 
-Approved business-revenue values are:
+Approved roles:
+
+- `Founder / owner`
+- `Leadership`
+- `Operations`
+- `Product / technology`
+- `Other`
+
+Approved company sizes:
+
+- `1–5`
+- `6–15`
+- `16–50`
+- `51–150`
+- `150+`
+
+Approved business-revenue values:
 
 - `Pre-revenue`
 - `Under DKK 50k / month`
@@ -42,47 +78,68 @@ Approved business-revenue values are:
 
 ## Response
 
-- `200 { "ok": true }`: record was acknowledged; the browser may reset.
-- `400 { "error": "..." }`: required or allowed input failed validation.
-- `502 { "error": "..." }`: the Notion write failed.
-- timeout, network failure, non-JSON, another non-2xx status, or a 2xx response
-  without `{ "ok": true }`: unconfirmed failure.
+- `200 { "ok": true }`: the Notion write was acknowledged; the browser may
+  reset the form.
+- `400 { "error": "..." }`: body, required, bounded, format, or allowlist
+  validation failed.
+- `403 { "error": "Origin not allowed" }`: a request supplied a foreign
+  browser origin.
+- `405 { "error": "Method not allowed" }`: the route method is not supported.
+- `415 { "error": "Content-Type must be application/json" }`: the request is
+  not JSON.
+- `502 { "error": "The inquiry could not be saved. Please try again." }`: the
+  Notion write failed; provider detail is never returned.
 
-The browser maps these to its own safe messages and never renders arbitrary
-server detail. It keeps input on failure, disables duplicate submission only
-while pending, and never opens a mail client automatically.
+The browser accepts success only when the response is a 2xx JSON object with
+`{ "ok": true }`. Timeout, network, invalid JSON, another non-2xx status, or a
+2xx response without that acknowledgement remains a failure. Form values stay
+present on failure and reset only after acknowledgement.
 
-## CORS
+## Notion mapping
 
-The live preflight for `Origin: https://arcitai.com` returns:
+The Worker uses the current Arc'IT Project Inquiries data source:
 
 ```text
-Access-Control-Allow-Origin: https://arcitai.com
-Access-Control-Allow-Methods: GET,POST,OPTIONS
-Access-Control-Allow-Headers: Content-Type
-Vary: Origin
+6dddc32e-df5a-4da8-8cfd-1b3dd68861f4
 ```
 
-The Worker configuration also lists `https://www.arcitai.com` and local preview
-origins `http://127.0.0.1:4173` and `:4174`. The Cloudflare Pages `pages.dev`
-origin is not listed, so live pages.dev verification uses mocked form requests
-and an intentionally invalid preflight; production form verification waits for
-the custom domain or a separately authorized Worker CORS change.
+It creates a page with this mapping:
 
-## Data authority
+| Notion property    | Value                                                          |
+| ------------------ | -------------------------------------------------------------- |
+| `Project`          | `{company} — {firstName} {lastName}`, capped at 120 characters |
+| `Name`             | `{firstName} {lastName}`                                       |
+| `Email`            | `email`                                                        |
+| `Company`          | `company`                                                      |
+| `Website`          | `website` or null                                              |
+| `Role`             | `role`                                                         |
+| `Company Size`     | `companySize`                                                  |
+| `Business Revenue` | `businessRevenue`                                              |
+| `Context`          | `project`, capped at 2,000 characters                          |
+| `Source`           | fixed `Website`                                                |
+| `Status`           | fixed `New`                                                    |
 
-Notion data source `a156e7e9-8a3a-47bb-93ef-734bfa24361d` owns durable inquiry
-records. The Worker sets title, name, email, company, optional website, role,
-company size, revenue, context, Source=`Website`, and Status=`New`.
+The only Worker secret is a dedicated Cloudflare secret named
+`NOTION_TOKEN`. It must be set on `arcitai-api` with the interactive
+`npm run worker:secret:put` command. It is never committed, printed, sent to
+Pages, or exposed to the browser.
 
-The browser does not persist or log inquiry content. Release tests use mocked
-success/failure plus an intentionally incomplete live payload. Do not create a
-real inquiry record without separate authorization.
+## CORS and abuse boundary
 
-## Known boundary risk
+Production CORS allows exactly:
 
-The current server checks required fields, email, HTTP(S) website, and the
-revenue allowlist. Role and company-size allowlists, abuse controls, and request
-size limits remain responsibilities of the external Worker owner. The landing
-page constrains ordinary input but cannot turn client validation into server
-trust.
+- `https://arcitai.com`
+- `https://www.arcitai.com`
+
+Local development additionally allows only `http://127.0.0.1:4173` and
+`http://127.0.0.1:4174`. The Pages `pages.dev` origin, Gustav Online origins,
+and wildcard CORS are excluded. CORS is browser isolation, not authentication;
+direct clients can still attempt requests. Residual abuse and rate-limit risk
+is documented and intentionally has no speculative infrastructure until real
+traffic demonstrates the need.
+
+The Worker code does not log inquiry content. Tests inject a fake Notion adapter
+or fetcher and never create a real row. Build proof is therefore limited to
+local validation, routing/CORS, mapping, safe success/failure mocks, and a
+Wrangler dry-run. Live custom-domain, secret, DNS, and browser proof require an
+authorized deployment and remain unavailable during this Build.

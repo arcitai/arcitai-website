@@ -34,5 +34,8 @@ jobs:
       - name: Run repository checks
         run: npm run check
 
+      - name: Run Worker checks and dry-run bundle
+        run: npm run worker:build
+
       - name: Audit dependencies
         run: npm run audit

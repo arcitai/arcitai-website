@@ -9,9 +9,7 @@ export const siteData = {
     email: "mailto:hello@arcitai.com",
   },
   inquiry: {
-    endpoint:
-      import.meta.env.VITE_INQUIRY_ENDPOINT ??
-      "https://gustavonline-api.gustavonline.workers.dev/project-inquiry",
+    endpoint: import.meta.env.VITE_INQUIRY_ENDPOINT ?? "https://api.arcitai.com/project-inquiry",
     roles: ["Founder / owner", "Leadership", "Operations", "Product / technology", "Other"],
     companySizes: ["1–5", "6–15", "16–50", "51–150", "150+"],
     revenue: [

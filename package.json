@@ -3,6 +3,9 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
+  "overrides": {
+    "nanoid": "3.3.18"
+  },
   "engines": {
     "node": ">=20.19.0"
   },
@@ -13,6 +16,15 @@
     "lint": "eslint . --max-warnings 0",
     "typecheck": "tsc -b --pretty false",
     "test": "vitest run",
+    "worker:typecheck": "tsc -p tsconfig.worker.json --pretty false",
+    "worker:test": "vitest run worker",
+    "worker:check": "npm run worker:typecheck && npm run worker:test",
+    "worker:dry-run": "wrangler deploy --dry-run --config wrangler.jsonc",
+    "worker:build": "npm run worker:check && npm run worker:dry-run",
+    "worker:dev": "wrangler dev --config wrangler.jsonc",
+    "worker:deploy": "wrangler deploy --config wrangler.jsonc",
+    "worker:deploy:recovery": "wrangler deploy --config wrangler.jsonc",
+    "worker:secret:put": "wrangler secret put NOTION_TOKEN --config wrangler.jsonc",
     "build": "tsc -b --pretty false && vite build",
     "check": "npm run format && npm run lint && npm run test && npm run build",
     "audit": "npm audit --audit-level=high",
@@ -26,6 +38,7 @@
     "@eslint/js": "10.0.1",
     "@types/react": "18.3.18",
     "@types/react-dom": "18.3.5",
+    "@cloudflare/workers-types": "5.20260823.1",
     "@vitejs/plugin-react": "6.0.2",
     "eslint": "10.8.0",
     "eslint-plugin-react-hooks": "7.1.1",
@@ -35,6 +48,7 @@
     "typescript": "5.9.3",
     "typescript-eslint": "8.66.0",
     "vite": "8.0.16",
-    "vitest": "4.1.10"
+    "vitest": "4.1.10",
+    "wrangler": "4.125.0"
   }
 }
