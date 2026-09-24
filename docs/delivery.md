@@ -37,20 +37,20 @@ typechecking, tests, build, and audit on pull requests and `main`.
 `.github/workflows/deploy-pages.yml` is a manual Cloudflare Pages release path.
 It repeats the release gates, builds from the selected immutable ref, verifies
 that `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` exist without printing
-them, and uploads only `dist/` with Wrangler `4.103.0`. It accepts a `ref` for
+them, and uploads only `dist/` with the lockfile-pinned Wrangler. It accepts a `ref` for
 recovery and does not deploy every push automatically.
 
 The equivalent local release command, after the exact artifact has been built,
 is:
 
 ```bash
-npx --yes wrangler@4.103.0 pages deploy dist --project-name arcitai --branch main
+npx --no-install wrangler pages deploy dist --project-name arcitai --branch main
 ```
 
 `.github/workflows/deploy-worker.yml` is a separate manual `arcitai-api`
 release and recovery path. It accepts the same kind of `ref` input, checks out
 that immutable ref, runs the Pages and Worker gates, validates Cloudflare
-credentials, and deploys only the Worker with the pinned Wrangler `4.125.0`
+credentials, and deploys only the Worker with the lockfile-pinned Wrangler
 dependency.
 The Worker workflow requires the `NOTION_TOKEN` secret to already exist on the
 `arcitai-api` Worker; it never places that secret in Pages or the repository.
@@ -120,8 +120,12 @@ an inquiry origin; use it for static and interaction smoke testing only and do
 not submit a real inquiry there. See [Cloudflare custom
 domains](https://developers.cloudflare.com/pages/configuration/custom-domains/).
 
-The latest verified production artifact (2026-08-04) is deployment
-`https://aaf4f039.arcitai.pages.dev`, built from commit `7e3e2d8`.
+Cloudflare deployment readback on 2026-09-24 identifies the current production
+artifact as `https://838a5464.arcitai.pages.dev`, source `46cc260`.
+`https://aaf4f039.arcitai.pages.dev` (`7e3e2d8`) remains the older deployment.
+The September landing-page candidate is tracked in `release-2026-09-24.md`;
+it is not deployed until that record says so. Use the current production
+artifact/source as its recovery reference.
 
 ## Verification
 

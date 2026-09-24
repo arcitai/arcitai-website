@@ -1,8 +1,26 @@
 import { describe, expect, it } from "vitest";
 
-import { copenhagenScene, forcedScene, formatCopenhagenClock, sceneForHour } from "./scene";
+import {
+  copenhagenScene,
+  forcedScene,
+  formatCopenhagenClock,
+  sceneForHour,
+  sceneForTheme,
+} from "./scene";
 
 describe("scene selection", () => {
+  it("uses night in dark theme and a daylight scene in light theme", () => {
+    const morning = new Date("2026-09-24T05:00:00Z");
+    expect(sceneForTheme(morning, "", "light")).toBe("morning");
+    expect(sceneForTheme(morning, "", "dark")).toBe("night");
+    expect(sceneForTheme(new Date("2026-09-24T22:00:00Z"), "", "light")).toBe("day");
+  });
+
+  it("keeps explicit review scenes independent of theme", () => {
+    for (const scene of ["morning", "day", "evening", "night"] as const) {
+      expect(sceneForTheme(new Date(), `?scene=${scene}`, "dark")).toBe(scene);
+    }
+  });
   it.each([
     [0, "night"],
     [4, "night"],

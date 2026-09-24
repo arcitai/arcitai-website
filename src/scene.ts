@@ -32,6 +32,15 @@ export function copenhagenScene(now: Date, search = "") {
   return forcedScene(search) ?? sceneForHour(hour);
 }
 
+// A forced review scene wins; otherwise dark uses night and light follows daylight scenes.
+export function sceneForTheme(now: Date, search: string, theme: "light" | "dark"): Scene {
+  const requested = forcedScene(search);
+  if (requested) return requested;
+  if (theme === "dark") return "night";
+  const scene = copenhagenScene(now);
+  return scene === "night" ? "day" : scene;
+}
+
 export function formatCopenhagenClock(now: Date) {
   return `DENMARK / ${copenhagenClock.format(now)}`;
 }
