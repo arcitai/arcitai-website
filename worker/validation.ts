@@ -49,7 +49,8 @@ export function normalizeProjectInquiryPayload(
   const company = readRequiredField(record, "company", FIELD_LIMITS.company);
   const role = readRequiredField(record, "role");
   const companySize = readRequiredField(record, "companySize");
-  const businessRevenue = readRequiredField(record, "businessRevenue");
+  // Older deployed forms still send revenue; the current form no longer asks for it.
+  const businessRevenue = readOptionalField(record, "businessRevenue", 100);
   const project = readRequiredField(record, "project", FIELD_LIMITS.project);
   const website = readOptionalField(record, "website", FIELD_LIMITS.website);
 
@@ -70,7 +71,6 @@ export function normalizeProjectInquiryPayload(
     !company.value ||
     !role.value ||
     !companySize.value ||
-    !businessRevenue.value ||
     !project.value
   ) {
     return { ok: false, error: COMPLETE_FIELDS_ERROR };
@@ -94,6 +94,7 @@ export function normalizeProjectInquiryPayload(
   }
 
   if (
+    businessRevenue.value &&
     !BUSINESS_REVENUE_OPTIONS.includes(
       businessRevenue.value as (typeof BUSINESS_REVENUE_OPTIONS)[number],
     )

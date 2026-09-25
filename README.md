@@ -4,9 +4,9 @@ Production source for the Arc'IT AI landing page and its dedicated Project
 Inquiries Worker at `arcitai.com`.
 
 Arc'IT AI is the done-for-you implementation offer in the same business family
-as [onlinesourdough](https://onlinesourdough.com). The page starts with the
-business constraint, explains the Spec → Build → Review → Ship path, and sends
-qualified project inquiries to the Arc'IT-owned `arcitai-api` Worker.
+as [onlinesourdough](https://onlinesourdough.com). The page offers focused AI
+consultation, prototype-to-production delivery and agent factory setup. It
+sends qualified project inquiries to the Arc'IT-owned `arcitai-api` Worker.
 
 ## Status
 
@@ -70,7 +70,17 @@ Only these assets are shipped from `public/assets/`:
 
 - `arcitai-mark-final.svg`
 - `arcitai-panorama-{morning,day,evening,night}-v1.jpg`
+- Received `arcitai-{day,evening}-{loop,poster}-v6` MP4/JPEG scene pairs; see
+  `src/media.ts` for the exact manifest and the release record for pending scenes.
 - Geist Sans, Mono, and Pixel WOFF2 files plus their license
+
+The hero and introduction-video cover share the selected scene. The Play video
+action plays the landscape clip, not a recorded founder VSL. Reduced motion,
+data saving and media errors retain a usable still image.
+
+The September 2026 release candidate and outstanding media are tracked in
+[the release record](docs/release-2026-09-24.md). Production is unchanged until
+that record confirms an actual deployment.
 
 The root `assets/`, `backups/`, and older documents preserve pre-release work
 from the baseline commit. Nothing there is imported into the runtime build.

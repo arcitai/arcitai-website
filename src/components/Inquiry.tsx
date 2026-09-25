@@ -7,6 +7,7 @@ import {
   type InquiryFailure,
 } from "../inquiry";
 import { siteData } from "../site-data";
+import { isLocalReview, localReview, previewSubmission } from "../family/preview";
 
 type SubmissionState =
   | { kind: "idle" | "pending" | "success"; message: string }
@@ -34,15 +35,22 @@ export function Inquiry() {
     setSubmission({ kind: "pending", message: "Sending your inquiry…" });
 
     try {
+      if (isLocalReview(true, window.location.hostname) && !localReview) {
+        throw new InquirySubmissionError("configuration");
+      }
       const payload = inquiryPayloadFromForm(new FormData(form));
-      await submitProjectInquiry(payload, {
-        endpoint: siteData.inquiry.endpoint,
-        signal: controller.signal,
-      });
+      if (localReview) await previewSubmission();
+      else
+        await submitProjectInquiry(payload, {
+          endpoint: siteData.inquiry.endpoint,
+          signal: controller.signal,
+        });
       form.reset();
       setSubmission({
         kind: "success",
-        message: "Inquiry received. You will hear back at the email you provided.",
+        message: localReview
+          ? "Preview complete — no inquiry was sent."
+          : "Inquiry received. You will hear back at the email you provided.",
       });
     } catch (error) {
       const failure = error instanceof InquirySubmissionError ? error.kind : "network";
@@ -53,34 +61,62 @@ export function Inquiry() {
   };
 
   return (
-    <section className="inquiry-section paper-section" id="project" aria-labelledby="project-title">
-      <div className="inquiry-layout">
-        <p className="section-kicker inquiry-kicker">START</p>
-        <header className="inquiry-intro">
-          <h2 id="project-title">Start with the problem. Not the prompt</h2>
-          <p>
-            Describe what should work better, who it affects, and what a useful result looks like.
-            No prompt engineering. No proposed technical spec. No polished pitch.
-          </p>
-          <dl className="inquiry-expectations">
-            <div>
-              <dt>Problem</dt>
-              <dd>What should work better</dd>
-            </div>
-            <div>
-              <dt>Context</dt>
-              <dd>Who, where, and what the work depends on</dd>
-            </div>
-            <div>
-              <dt>Result</dt>
-              <dd>What success looks like and how it will be judged</dd>
-            </div>
-          </dl>
-        </header>
+    <section className="inquiry" id="project" aria-labelledby="project-title">
+      <div className="section-shell inquiry-grid">
+        <div className="inquiry-copy">
+          <div className="inquiry-intro">
+            <h1 id="project-title">Project inquiry</h1>
+            {localReview && (
+              <p className="review-notice">Local preview — the form does not send data.</p>
+            )}
+            <p className="inquiry-description">
+              Describe the software, who uses it and the work you need help with. I’ll review the
+              context and respond with a proposed next step.
+            </p>
+          </div>
+          <div className="faqs">
+            <details className="faq" open>
+              <summary>Do I need another platform?</summary>
+              <p>
+                Usually we can work with the tools you already use. I add new ones only when they
+                solve a specific need in your project.
+              </p>
+            </details>
+            <details className="faq" open>
+              <summary>What do you check?</summary>
+              <p>
+                We agree what production-ready means for your use case, then review the code, data
+                access, integrations and deployment. I fix the agreed issues and test the changes.
+                Instructions don’t enforce permissions, and a review can’t guarantee that nothing
+                will go wrong.
+              </p>
+            </details>
+            <details className="faq" open>
+              <summary>Can you keep looking after it?</summary>
+              <p>
+                Yes. I can handle agreed updates, fixes and ongoing development. We define my
+                responsibilities, the review process and response times. You keep control of
+                business decisions and approvals.
+              </p>
+            </details>
+            <details className="faq" open>
+              <summary>Prefer to build it yourself?</summary>
+              <p>
+                <a href={siteData.links.onlinesourdough} target="_blank" rel="noopener noreferrer">
+                  onlinesourdough
+                </a>{" "}
+                offers the method, resources and hands-on guidance. With Arc’IT AI, I take care of
+                the agreed delivery and ongoing work.
+              </p>
+            </details>
+          </div>
+        </div>
 
         <form
           className="inquiry-form"
           id="project-form"
+          aria-label="Project inquiry"
+          aria-describedby="privacy-note"
           aria-busy={submission.kind === "pending"}
           onSubmit={submit}
         >
@@ -144,34 +180,20 @@ export function Inquiry() {
             </label>
           </div>
 
-          <fieldset className="budget-fieldset">
-            <legend>Monthly business revenue</legend>
-            <div className="budget-options">
-              {siteData.inquiry.revenue.map((range, index) => (
-                <label key={range.value}>
-                  <input
-                    type="radio"
-                    name="businessRevenue"
-                    value={range.value}
-                    required={index === 0}
-                  />
-                  <span>{range.label}</span>
-                </label>
-              ))}
-            </div>
-          </fieldset>
-
           <label className="field field-wide project-field">
-            <span>Describe the problem and result</span>
+            <span>What have you built, and what would you like help with?</span>
             <textarea
               name="project"
               rows={4}
               maxLength={2000}
-              placeholder="What should work better? Who does it affect? What happens today? What would a useful result look like?"
+              aria-describedby="privacy-note"
               required
             />
           </label>
 
+          <p className="privacy-note" id="privacy-note">
+            Please don’t include passwords or confidential business or customer data.
+          </p>
           <button
             className="button submit-action"
             type="submit"

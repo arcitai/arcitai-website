@@ -35,18 +35,18 @@ Origin: https://arcitai.com
 
 The browser payload is:
 
-| Field             | Required                | Server rule                                     |
-| ----------------- | ----------------------- | ----------------------------------------------- |
-| `firstName`       | yes                     | trimmed string, maximum 80 characters           |
-| `lastName`        | yes                     | trimmed string, maximum 80 characters           |
-| `email`           | yes                     | trimmed, lowercased, valid email, max 254       |
-| `company`         | yes                     | trimmed string, maximum 120 characters          |
-| `website`         | no                      | empty or an HTTP(S) URL, maximum 300 characters |
-| `role`            | yes                     | exact approved value                            |
-| `companySize`     | yes                     | exact approved value                            |
-| `businessRevenue` | yes                     | exact approved value                            |
-| `project`         | yes                     | trimmed string, maximum 2,000 characters        |
-| `source`          | ignored from the client | always written server-side as `Website`         |
+| Field             | Required                | Server rule                                            |
+| ----------------- | ----------------------- | ------------------------------------------------------ |
+| `firstName`       | yes                     | trimmed string, maximum 80 characters                  |
+| `lastName`        | yes                     | trimmed string, maximum 80 characters                  |
+| `email`           | yes                     | trimmed, lowercased, valid email, max 254              |
+| `company`         | yes                     | trimmed string, maximum 120 characters                 |
+| `website`         | no                      | empty or an HTTP(S) URL, maximum 300 characters        |
+| `role`            | yes                     | exact approved value                                   |
+| `companySize`     | yes                     | exact approved value                                   |
+| `businessRevenue` | no; legacy clients only | omitted/empty or an approved value, max 100 characters |
+| `project`         | yes                     | trimmed string, maximum 2,000 characters               |
+| `source`          | ignored from the client | always written server-side as `Website`                |
 
 The total request body is limited to 16,384 bytes. Missing, non-string,
 overlong, malformed, or disallowed values are rejected before a Notion call.
@@ -67,7 +67,8 @@ Approved company sizes:
 - `51–150`
 - `150+`
 
-Approved business-revenue values:
+The current browser form does not collect or send revenue. Older deployed
+forms remain compatible with these business-revenue values:
 
 - `Pre-revenue`
 - `Under DKK 50k / month`
@@ -114,7 +115,7 @@ It creates a page with this mapping:
 | `Website`          | `website` or null                                              |
 | `Role`             | `role`                                                         |
 | `Company Size`     | `companySize`                                                  |
-| `Business Revenue` | `businessRevenue`                                              |
+| `Business Revenue` | only included when a legacy client supplies `businessRevenue`  |
 | `Context`          | `project`, capped at 2,000 characters                          |
 | `Source`           | fixed `Website`                                                |
 | `Status`           | fixed `New`                                                    |

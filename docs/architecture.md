@@ -59,6 +59,11 @@ the form on failure and resets only after acknowledgement.
 - `src/routes/App.tsx`: page composition only.
 - `src/components/`: cohesive visual/interaction sections.
 - `src/scene.ts`: scene selection and Copenhagen clock formatting.
+- `src/media.ts` and `SceneMedia.tsx`: received scene manifest, matching stills,
+  visibility/reduced-motion-aware playback and shared loop phase.
+- `src/factory-motion.ts`: deterministic reversible pipeline and particle queues.
+- `src/factory-interaction.ts`: scoped DOM/scroll/pointer lifecycle for that illustration.
+- `src/theme.ts`: saved/system theme selection and accessible toggle state.
 - `src/inquiry.ts`: payload and HTTP response contract.
 - `src/site-data.ts`: stable public copy, links, choices, and endpoint.
 - `src/styles.css`: approved responsive visual system.

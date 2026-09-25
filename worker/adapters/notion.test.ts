@@ -23,6 +23,15 @@ const env: Env = {
 };
 
 describe("Notion project inquiry adapter", () => {
+  it("leaves the Notion revenue property unset when the form did not ask for it", () => {
+    const page = buildProjectInquiryPage(
+      { ...payload, businessRevenue: "" },
+      env.NOTION_PROJECT_INQUIRIES_DATA_SOURCE_ID,
+    );
+    expect(page.properties).not.toHaveProperty("Business Revenue");
+    expect(page.properties.Company).toBeDefined();
+  });
+
   it("maps the contract to the Arc'IT data-source properties", () => {
     expect(buildProjectInquiryPage(payload, env.NOTION_PROJECT_INQUIRIES_DATA_SOURCE_ID)).toEqual({
       parent: {

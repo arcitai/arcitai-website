@@ -1,83 +1,134 @@
 # Operative design
 
-## Direction
+## September 25 local-review candidate
 
-Arc'IT AI is the technical sibling of onlinesourdough: warm paper, Geist
-Sans/Mono/Pixel, fine rules, compact editorial rhythm, and direct writing. The
-Danish landscape, Cut Six mark, deep green, and implementation scope keep it
-distinct.
+The owner approved the three-brand canvas for **local implementation**, not
+production release. This candidate supersedes the previous composition and
+palette below. Canonical family brief: `design/customer-journey-2026-09-25/DESIGN.md`;
+implementation/readback: `docs/local-review-2026-09-25.md`.
 
-The canonical page journey is:
+- Shared simple header: brand, Offers, Newsletter, crescent/sun theme control.
+- September 25 follow-up: Offers is centered; Newsletter/theme are right-aligned.
+  Theme hover has no background shape. A small steel-blue interaction accent
+  (#4265a0 light / #93b4e9 dark) is under local owner review; the mark remains
+  monochrome. Shared footer links now include each sibling’s own identity mark.
+- Arc’IT is monochrome: #fafafa / #202020, dark #171717 / #f5f5f5.
+  An 80px light grid belongs in the hero (40px mobile); no green brand wash.
+- Hero: “AI and software, done for you”, without a terminal period.
+  Heading and supporting text are centered over the video. Supporting text
+  connects a promising demo to real team use and agreed delivery.
+- One 16:9 scene with original animated monochrome mark; no separate landscape hero.
+  The scene clip is honestly labelled as a landscape video, not a recorded walkthrough.
+- Primary action “Discuss your project” leads to `/project`, retaining the existing
+  form, FAQs and validation. The homepage keeps two offers plus the full-width
+  **AI Agent Factory**, with the established reversible pipe animation.
+- Footer: other two sites left, four personal social profiles right, small Gustav
+  portrait only on sibling sites. No copyright, large scene or repeated slogan.
+  Both sibling marks stay monochrome on hover; text uses the interaction accent.
+  A viewport-height flex shell keeps the footer at the bottom on short routes,
+  including `/project`, without fixed positioning or hard-coded content heights.
+- Offers dropdown follows Sourdough’s compact scale and header spacing, with
+  Arc’IT’s sharper corners and neutral surfaces. Keyboard order and Escape remain.
+- `/newsletter` and `/newsletter/thank-you` share the family’s copy and controls.
+  These are local mock flows pending real integration/release review. No bookshelf
+  here: Gustav Online alone owns the bookshelf and newsletter service.
+- Red/orange remains a semantic waiting signal in the pipe. Ready/brand forms
+  use neutral graphite rather than mint. Keep scope and provider limits explicit.
 
-```text
-Offers header → landscape hero → founder walkthrough → Scope ledger
-→ project inquiry → landscape footer
-```
+The existing scene selection, reduced-motion behavior, media error fallback,
+inquiry contract and pipeline interactions below remain applicable. Prior
+composition text is retained as historical context, not current preview guidance.
 
-## Composition
+## Previous September 24 direction
 
-- Sticky header: 68 px desktop and 62 px mobile, with brand left, centered
-  navigation, and theme control right.
-- Desktop structural shell: 1240 px within a 1440 px viewport; narrower reading
-  measures sit inside it.
-- Hero: viewport minus header, one complete pixel-font headline, two compact
-  actions, and a landscape selected from Copenhagen time.
-- Process: one continuous 02:15 founder-film treatment with four timecoded
-  chapters inside a compact landscape browser window.
-- Scope: centered introduction and four full-width Spec, Build, Review, and
-  Ship rows with exactly three inset dividers.
-- Start: two-column introduction and inquiry form above 980 px, one column
-  below it. The START kicker sits on the form axis.
-- Footer: centered mark/wordmark, navigation, contact, metadata, and landscape
-  horizon; approximately 500 px desktop and 440 px mobile.
+Arc’IT AI is the done-for-you sibling of onlinesourdough. Keep the Danish
+landscapes, original monochrome Cut Six mark, Geist Sans/Mono/Pixel, warm paper,
+charcoal and restrained green. Start with a working demo, MVP or prototype and
+the work needed for production use. The factories are methods configured around
+a client's software, not a claimed proprietary platform.
 
-## Content contract
+The September 2026 candidate replaces the old Spec/Build/Review/Ship ledger:
+plain header → landscape hero → introduction and scene video → two compact
+offers → full-width factory setup → inquiry and FAQs → landscape footer.
 
-- Status: `Q3 2026 / LIMITED BUILD CAPACITY`.
-- Hero: `Better software begins with better business questions`.
-- Process: `AI-first companies are built by people, not tool stacks`.
-- Scope: `From first conversation to software that earns its place in the work`.
-- Start: `Start with the problem. Not the prompt`.
-- Rail: `BUSINESS > SOFTWARE`.
+## Composition and copy
 
-Use neutral, direct English. Start from the business problem, never a model,
-tool, prompt, or stack. Do not add testimonials, logos, fake metrics, extra
-sales sections, baking metaphors, or public links to private foundations.
+- Opaque navigation: Offers / Process / Scope / Start. Text-only wordmark left;
+  moon/sun control right, matching Resources. No glass or mascot.
+- Hero: “From prototype to production-ready software.” Original animated mark,
+  direct supporting copy, Discuss a project and Meet Gustav actions.
+- Introduction: “Start with what you’ve built.” One paragraph, then a 16:9
+  landscape video with 8px corners. Play video appears on hover or keyboard
+  focus and is always visible on touch. Activation plays the real scene clip
+  with native controls. No fabricated founder film, timeline or recorded-VSL claim.
+- Offers: One-off AI consultation and Software review & delivery side-by-side;
+  AI agent factory setup spans the full width below them. Keep their distinct,
+  abstract animations.
+- Factory scope: Agent Software Factory, Agent Defense Factory, Local AI where
+  it fits, Data access & retention. Keep access, review, provider limits and
+  human release approvals explicit, without blanket security/compliance claims.
+- Inquiry keeps honest pending/error/success states and the remaining required
+  fields. It no longer asks for revenue; the API accepts older forms with it.
+  Desktop aligns the introduction to the form top and places the FAQ group
+  directly below it, without bottom pinning or a large empty spacer. All four
+  answers start open and can be collapsed independently; compact disclosure
+  spacing balances the fully expanded group against the form without fixed
+  heights or filler copy.
+  Mobile keeps introduction → form → FAQs. Give the privacy note its own
+  readable space below the textarea.
+- Footer: “Business first. Security built in.” External links only. Show the
+  same scene poster as the hero through a restrained dark overlay, not a
+  near-opaque green wash.
 
-## Visual tokens
+Remove redundant section kickers, numbered offer labels, placeholder status
+and repeated taglines. Necessary explanatory/status text is readable, not tiny.
+The live form must not retain the local mock's preview message or disabled CTA.
 
-| Role         | Light     | Dark      |
-| ------------ | --------- | --------- |
-| Paper        | `#f8f2e8` | `#171814` |
-| Surface      | `#fffaf1` | `#20231e` |
-| Soft surface | `#f1eadf` | `#292d26` |
-| Text         | `#18211d` | `#fff6e7` |
-| Muted        | `#6f6a61` | `#c4beb2` |
-| Primary      | `#14211d` | `#fff6e7` |
-| Accent/focus | `#236b59` | `#78cbb3` |
+## Rhythm and color
 
-Hero and major headings use Geist Pixel; body and form use Geist Sans;
-navigation, labels, timestamps, and metadata use Geist Mono. The mark is always
-the real Cut Six SVG beside the literal `Arc'IT AI` wordmark.
+A 1120px content shell at 1440px; 96px between major desktop sections, 72px on
+mobile. Use 24px heading-to-copy gaps and 36–56px to the main visual. First two
+offers use a 64px desktop gutter; mobile stacks them. Keep content-group spacing
+smaller than section spacing. Kastanje's grouping and compact FAQs inform this
+rhythm; its glass navigation, orange palette and identity are not adopted.
 
-## Interaction and accessibility
+Light: paper #f8f2e8, ink #18211d, muted #615f56, green #236b59.
+Dark: paper #171814, ink #f5f1e8, muted #bbb9ae, green #a1b99c.
+The inquiry stays on the page surface, not a mint panel. Inputs have subtle
+surfaces and explicit focus. The logo stays black/white.
 
-- Offers opens two offer cards only and closes on selection, outside click, or
-  Escape; closed content is inert.
-- Theme has an explicit accessible label and preserves unmistakable focus.
-- Normal hash navigation and active section state remain intact. Reloading a
-  section URL clears stale hash/scroll restoration and returns to the hero.
-- `?scene=morning|day|evening|night` forces a review scene; otherwise the scene
-  follows Europe/Copenhagen (05–10 morning, 10–18 day, 18–22 evening, else
-  night).
-- VSL state maintains `aria-expanded`/`aria-hidden` and returns focus.
-- The form uses visible labels, native validation, `aria-busy`, a live status
-  region, and a disabled pending button.
-- Atmospheric imagery carries no information. Motion respects
-  `prefers-reduced-motion`.
+## Media and motion
 
-## Review viewports
+One shared scene selection drives hero, video cover and footer. A forced
+?scene=morning|day|evening|night wins for review. Otherwise dark uses night;
+light follows Copenhagen morning/day/evening, with day as the late-night
+light-theme scene. The theme follows a saved choice or system preference;
+?theme=light|dark is an explicit review override.
 
-The release gate is 1440×1000 and 390×844 in Chromium, plus all four forced
-scenes. Review light/dark, Offers, anchors, VSL open/return, inquiry pending,
-success/error, footer crop, overflow, console errors, and runtime asset loads.
+The received v6 clips are silent, 1280×720, 10-second scene loops, with matching
+first-frame posters. They are not a spoken VSL. The runtime manifest names only
+received exports; unavailable scenes retain the original JPEG and have no fake
+play action. Current delivery status is recorded in release-2026-09-24.md.
+
+Decorative videos load/play only when visible, stop offscreen/document-hidden
+and stay as stills for reduced motion or data-saving mode. Visible ambient loops
+use a shared clock. Explicit user video playback has native controls. The
+owner requested removal of the separate global Pause motion controls.
+
+The factory uses a continuous pipe squeezed at four stages: Scope & access,
+Code & tests, Review & defence, Approval & handoff. Squares enter gradually
+from outside the left edge. Closed stages hold them. Red-orange marks waiting,
+amber opening and green readiness. Scroll position controls progress in both
+directions: center at 55% of viewport starts opening; at 30% it is fully open.
+Mouse movement temporarily previews progress; exit restores the scroll baseline.
+Scrolling clears pointer/tap overrides. Enter/Space toggles preview, Escape or
+blur clears it. Focus alone never opens it. Reduced motion shows a static
+completed workflow. This is an illustration, not live project/security data.
+
+## Review
+
+Verify the built page at 1440×1000, 390×844 and a 320px overflow check in both
+themes. Exercise forced scenes, poster/video failures, actual playback,
+offscreen/reduced-motion behavior, reversible scroll/pointer controls, Offers
+and FAQ keyboard access, anchors, form pending/error/success and safe error
+text. Mock valid form requests; never create a real inquiry for release proof.

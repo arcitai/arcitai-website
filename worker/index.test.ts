@@ -2,6 +2,7 @@ import { describe, expect, it, vi } from "vitest";
 
 import { handleRequest } from "./index";
 import type { Env, ProjectInquiryPayload } from "./types";
+import { inquiryPayloadFromForm } from "../src/inquiry";
 
 const env: Env = {
   ALLOWED_ORIGINS:
@@ -34,6 +35,22 @@ const request = (body: unknown, origin = "https://arcitai.com") =>
   });
 
 describe("project inquiry Worker route", () => {
+  it("accepts the current browser payload without asking for revenue", async () => {
+    const data = new FormData();
+    Object.entries(validPayload).forEach(([key, value]) => data.set(key, value));
+    data.delete("businessRevenue");
+    const payload = inquiryPayloadFromForm(data);
+    const createProjectInquiry = vi
+      .fn<(payload: ProjectInquiryPayload, env: Env) => Promise<void>>()
+      .mockResolvedValue(undefined);
+
+    expect(payload).not.toHaveProperty("businessRevenue");
+    const response = await handleRequest(request(payload), env, { createProjectInquiry });
+    expect(response.status).toBe(200);
+    expect(await response.json()).toEqual({ ok: true });
+    expect(createProjectInquiry).toHaveBeenCalledWith({ ...payload, businessRevenue: "" }, env);
+  });
+
   it("answers an allowed preflight without exposing a write path", async () => {
     const response = await handleRequest(
       new Request("https://api.arcitai.com/project-inquiry", {

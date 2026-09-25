@@ -30,7 +30,9 @@ export function buildProjectInquiryPage(
       Website: { url: payload.website || null },
       Role: { select: { name: payload.role } },
       "Company Size": { select: { name: payload.companySize } },
-      "Business Revenue": { select: { name: payload.businessRevenue } },
+      ...(payload.businessRevenue
+        ? { "Business Revenue": { select: { name: payload.businessRevenue } } }
+        : {}),
       Context: textProperty(payload.project),
       Source: { select: { name: payload.source } },
       Status: { select: { name: "New" } },

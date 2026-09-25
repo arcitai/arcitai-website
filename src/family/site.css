@@ -1,0 +1,342 @@
+:root {
+  --paper: #fafafa;
+  --cream: #f5f5f5;
+  --ink: #202020;
+  --muted: #626262;
+  --green: #404040;
+  --sage: #dedede;
+  --line: #ddd;
+  --inquiry: #f3f3f3;
+  --field: #fafafa;
+  --field-line: #aaa;
+  --grid: #ededed;
+  --flow-wait: #ad4d35;
+  --flow-active: #956324;
+  --family-accent: #4265a0;
+}
+:root[data-theme="dark"] {
+  --paper: #171717;
+  --cream: #202020;
+  --ink: #f5f5f5;
+  --muted: #b8b8b8;
+  --green: #ddd;
+  --sage: #555;
+  --line: #373737;
+  --inquiry: #202020;
+  --field: #202020;
+  --field-line: #777;
+  --grid: #222;
+  --flow-wait: #da8c68;
+  --flow-active: #d5b06c;
+  --family-accent: #93b4e9;
+}
+#root {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+#root > main {
+  flex: 1;
+}
+#root > .site-header,
+#root > footer {
+  flex-shrink: 0;
+}
+.header-inner {
+  max-width: 1120px;
+  width: calc(100% - 80px);
+  padding-inline: 0;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 28px;
+  height: 72px;
+}
+.wordmark {
+  font-size: 24px;
+}
+.site-header nav {
+  justify-self: center;
+  gap: 28px;
+  font:
+    14px Geist,
+    sans-serif;
+}
+.offers-trigger {
+  color: var(--muted);
+}
+.offers-trigger::after {
+  content: "";
+  width: 5px;
+  height: 5px;
+  margin-left: 2px;
+  border-right: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+  transform: rotate(45deg) translateY(-2px);
+}
+.offers-trigger[aria-expanded="true"]::after {
+  transform: rotate(225deg) translate(-1px, -1px);
+}
+.offers-menu {
+  top: calc(100% + 10px);
+  left: 50%;
+  right: auto;
+  width: 620px;
+  max-width: calc(100vw - 40px);
+  gap: 8px;
+  padding: 8px;
+  border-radius: 4px;
+  transform: translateX(-50%);
+}
+.offers-menu a {
+  gap: 10px;
+  padding: 20px;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.offers-menu a + a {
+  border: 1px solid transparent;
+}
+.offers-menu a[aria-current="page"] {
+  background: var(--inquiry);
+  border-color: var(--line);
+}
+.site-header .offers-menu a:hover,
+.site-header .offers-menu a:focus-visible {
+  background: var(--inquiry);
+}
+.offers-menu strong {
+  font-size: 21px;
+  line-height: 1.2;
+}
+.offers-menu a > span:last-child {
+  color: var(--muted);
+}
+.offers-menu .eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.5px;
+  color: var(--muted);
+}
+.walkthrough-hero {
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 80px 80px;
+  padding: 84px 0 44px;
+}
+.walkthrough-shell {
+  width: min(100% - 96px, 960px);
+  margin: 0 auto;
+}
+.walkthrough-hero h1 {
+  font-size: clamp(40px, 4.6vw, 64px);
+  line-height: 1.1;
+  text-wrap: initial;
+  letter-spacing: -1px;
+  text-align: center;
+}
+.walkthrough-description {
+  max-width: 670px;
+  font-size: 19px;
+  line-height: 1.65;
+  color: var(--muted);
+  margin: 28px auto 44px;
+  text-align: center;
+}
+.walkthrough-media {
+  position: relative;
+}
+.walkthrough-media .scene-player {
+  margin: 0;
+  aspect-ratio: 16/9;
+  border-radius: 4px;
+  width: 100%;
+}
+.walkthrough-mark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -65%);
+  width: 110px;
+  height: 110px;
+  fill: white;
+  color: white;
+  pointer-events: none;
+}
+.walkthrough-media:has(.scene-player[data-started="true"]) .walkthrough-mark {
+  display: none;
+}
+.walkthrough-media .walkthrough-mark {
+  filter: none;
+}
+.walkthrough-mark > * {
+  fill: #fff;
+}
+.button,
+.submit-action {
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 2px;
+}
+.button:hover,
+.submit-action:hover {
+  background: var(--muted);
+  color: var(--paper);
+}
+.walkthrough-media .scene-play-badge {
+  border-radius: 2px;
+  background: #fafafa;
+  color: #202020;
+}
+.walkthrough-media .scene-play {
+  align-items: end;
+  padding-bottom: 28px;
+}
+.walkthrough-action {
+  text-align: center;
+  margin-top: 28px;
+}
+.scope.section-shell {
+  max-width: 960px;
+  padding: 80px 0 104px;
+}
+.scope h2 {
+  font-size: clamp(30px, 3.2vw, 40px);
+  margin: 0 0 44px;
+}
+.scope .offers-grid {
+  margin-top: 0;
+  gap: 88px;
+}
+.motif {
+  background: transparent;
+}
+.factory-offer {
+  margin-top: 88px;
+  padding-top: 56px;
+}
+.factory-intro h3 {
+  font-size: 32px;
+  line-height: 1.15;
+}
+.factory-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px 40px;
+  margin-top: 32px;
+}
+.factory-details > div {
+  display: block;
+  padding: 0;
+  border: 0;
+}
+.factory-details dt {
+  font-size: 17px;
+  margin-bottom: 12px;
+}
+.factory-details dd {
+  font-size: 15px;
+  margin: 0;
+  max-width: 44ch;
+}
+.factory-bottom {
+  gap: 40px;
+  margin-top: 32px;
+}
+.offer-action {
+  font-size: 14px;
+}
+.offer-action:hover,
+.offer-action:focus-visible {
+  color: var(--family-accent);
+}
+.inquiry {
+  background: var(--paper);
+  padding-top: 80px;
+}
+.inquiry h1 {
+  font-size: 44px;
+  margin-bottom: 24px;
+}
+@media (max-width: 360px) {
+  .site-header .header-inner {
+    gap: 8px;
+  }
+  .site-header .wordmark {
+    font-size: 18px;
+  }
+  .site-header .header-inner nav {
+    gap: 10px;
+  }
+}
+.review-notice {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 20px 0;
+}
+body:has(.family-newsletter) main {
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+@media (max-width: 620px) {
+  .header-inner {
+    width: calc(100% - 40px);
+    padding: 0;
+    gap: 14px;
+    grid-template-columns: 1fr auto auto;
+  }
+  .wordmark {
+    font-size: 21px;
+  }
+  .site-header nav {
+    gap: 16px;
+  }
+  .walkthrough-hero {
+    padding: 56px 0 32px;
+    background-size: 40px 40px;
+  }
+  .walkthrough-shell {
+    width: calc(100% - 40px);
+  }
+  .walkthrough-hero h1 {
+    font-size: 38px;
+    letter-spacing: -0.8px;
+  }
+  .walkthrough-description {
+    font-size: 17px;
+    margin: 24px auto 32px;
+  }
+  .walkthrough-mark {
+    width: 64px;
+    height: 64px;
+  }
+  .scope.section-shell {
+    width: calc(100% - 40px);
+    padding-top: 56px;
+  }
+  .scope .offers-grid {
+    gap: 48px;
+  }
+  .scope h2 {
+    margin-bottom: 28px;
+  }
+  .factory-offer {
+    margin-top: 56px;
+    padding-top: 40px;
+  }
+  .factory-details {
+    grid-template-columns: 1fr;
+  }
+  .factory-intro h3 {
+    font-size: 30px;
+  }
+  .inquiry {
+    padding-top: 52px;
+  }
+  .inquiry .section-shell {
+    width: calc(100% - 40px);
+  }
+}

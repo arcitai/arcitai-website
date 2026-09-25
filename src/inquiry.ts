@@ -6,7 +6,6 @@ export type ProjectInquiryPayload = {
   website: string;
   role: string;
   companySize: string;
-  businessRevenue: string;
   project: string;
   source: "Website";
 };
@@ -44,7 +43,6 @@ export function inquiryPayloadFromForm(data: FormData): ProjectInquiryPayload {
     website: read("website"),
     role: read("role"),
     companySize: read("companySize"),
-    businessRevenue: read("businessRevenue"),
     project: read("project"),
     source: "Website",
   };

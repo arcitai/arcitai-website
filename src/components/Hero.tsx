@@ -1,38 +1,40 @@
 import type { Scene } from "../scene";
-
-type HeroProps = {
-  clock: string;
-  scene: Scene;
-};
-
-export function Hero({ clock, scene }: HeroProps) {
+import { ScenePlayer } from "./Process";
+export function Hero({ scene, epoch }: { scene: Scene; epoch: number }) {
   return (
-    <section className="hero" id="top" aria-labelledby="hero-title" data-scene={scene}>
-      <div className="hero-content">
-        <p className="hero-status">
-          <span aria-hidden="true" />
-          Q3 2026 / LIMITED BUILD CAPACITY
+    <section className="walkthrough-hero" id="top" aria-labelledby="hero-title">
+      <div className="walkthrough-shell">
+        <h1 id="hero-title">
+          AI and software,
+          <br />
+          done for you
+        </h1>
+        <p className="walkthrough-description">
+          From a promising demo to software your team can use. I review what you have, handle the
+          agreed work, and set up the agents and checks around it.
         </p>
-        <h1 id="hero-title">Better software begins with better business questions</h1>
-        <p className="hero-lead">
-          AI lets smaller teams build what once required far more time, money, and people. The
-          opportunity is real. So is the noise. Start with the business, cut through what does not
-          matter, and turn the useful part into software that holds up in real work.
-        </p>
-        <div className="hero-actions">
-          <a className="button button-primary" href="#project-form">
-            <span>Start a project</span>
-            <i aria-hidden="true">↘</i>
-          </a>
-          <a className="button button-secondary" href="#process">
-            <span>See how it works</span>
-            <i aria-hidden="true">↓</i>
+        <div className="walkthrough-media">
+          <ScenePlayer key={scene} scene={scene} epoch={epoch} />
+          <svg
+            className="brand-mark walkthrough-mark motion-scene hero-mark"
+            viewBox="4 -4 60 60"
+            width="88"
+            height="88"
+            aria-hidden="true"
+          >
+            <path d="M26 2h14l-6 14H20Z" />
+            <path d="M19 18h14l-6 14H13Z" />
+            <path d="M12 34h14l-6 14H6Z" />
+            <rect x="42" y="2" width="14" height="14" />
+            <rect x="36" y="18" width="14" height="14" />
+            <rect x="48" y="34" width="14" height="14" />
+          </svg>
+        </div>
+        <div className="walkthrough-action">
+          <a className="family-button" href="/project">
+            Discuss your project <span aria-hidden="true">↗</span>
           </a>
         </div>
-      </div>
-      <div className="hero-rail" aria-hidden="true">
-        <span>BUSINESS &gt; SOFTWARE</span>
-        <span>{clock}</span>
       </div>
     </section>
   );
