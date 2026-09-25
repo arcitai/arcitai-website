@@ -203,9 +203,9 @@ walkthrough or fake playback for missing clips.
   The form test was rerun with native select selectors after an overly exact
   label lookup. Neither timeout is presented as a passed run.
 
-Evidence: output/playwright/family-*-desktop.png, family-*-dark-*.png,
-newsletter-*-*.png, thanks-*-mobile.png, factory-open-review.png,
-final-*-320.png, final-arcit-mobile.png and final-project-*.png in this repository.
+Evidence: output/playwright/family-_-desktop.png, family-_-dark-_.png,
+newsletter-_-_.png, thanks-_-mobile.png, factory-open-review.png,
+final-_-320.png, final-arcit-mobile.png and final-project-_.png in this repository.
 Full-page screenshots can precede below-fold lazy images; actual image load
 checks and visible scroll journeys are separate evidence.
 
