@@ -1,6 +1,45 @@
 # Operative design
 
-## Direction
+## September 25 local-review candidate
+
+The owner approved the three-brand canvas for **local implementation**, not
+production release. This candidate supersedes the previous composition and
+palette below. Canonical family brief: `design/customer-journey-2026-09-25/DESIGN.md`;
+implementation/readback: `docs/local-review-2026-09-25.md`.
+
+- Shared simple header: brand, Offers, Newsletter, crescent/sun theme control.
+- September 25 follow-up: Offers is centered; Newsletter/theme are right-aligned.
+  Theme hover has no background shape. A small steel-blue interaction accent
+  (#4265a0 light / #93b4e9 dark) is under local owner review; the mark remains
+  monochrome. Shared footer links now include each sibling’s own identity mark.
+- Arc’IT is monochrome: #fafafa / #202020, dark #171717 / #f5f5f5.
+  An 80px light grid belongs in the hero (40px mobile); no green brand wash.
+- Hero: “AI and software, done for you”, without a terminal period.
+  Heading and supporting text are centered over the video. Supporting text
+  connects a promising demo to real team use and agreed delivery.
+- One 16:9 scene with original animated monochrome mark; no separate landscape hero.
+  The scene clip is honestly labelled as a landscape video, not a recorded walkthrough.
+- Primary action “Discuss your project” leads to `/project`, retaining the existing
+  form, FAQs and validation. The homepage keeps two offers plus the full-width
+  **AI Agent Factory**, with the established reversible pipe animation.
+- Footer: other two sites left, four personal social profiles right, small Gustav
+  portrait only on sibling sites. No copyright, large scene or repeated slogan.
+  Both sibling marks stay monochrome on hover; text uses the interaction accent.
+  A viewport-height flex shell keeps the footer at the bottom on short routes,
+  including `/project`, without fixed positioning or hard-coded content heights.
+- Offers dropdown follows Sourdough’s compact scale and header spacing, with
+  Arc’IT’s sharper corners and neutral surfaces. Keyboard order and Escape remain.
+- `/newsletter` and `/newsletter/thank-you` share the family’s copy and controls.
+  These are local mock flows pending real integration/release review. No bookshelf
+  here: Gustav Online alone owns the bookshelf and newsletter service.
+- Red/orange remains a semantic waiting signal in the pipe. Ready/brand forms
+  use neutral graphite rather than mint. Keep scope and provider limits explicit.
+
+The existing scene selection, reduced-motion behavior, media error fallback,
+inquiry contract and pipeline interactions below remain applicable. Prior
+composition text is retained as historical context, not current preview guidance.
+
+## Previous September 24 direction
 
 Arc’IT AI is the done-for-you sibling of onlinesourdough. Keep the Danish
 landscapes, original monochrome Cut Six mark, Geist Sans/Mono/Pixel, warm paper,
@@ -28,9 +67,18 @@ offers → full-width factory setup → inquiry and FAQs → landscape footer.
 - Factory scope: Agent Software Factory, Agent Defense Factory, Local AI where
   it fits, Data access & retention. Keep access, review, provider limits and
   human release approvals explicit, without blanket security/compliance claims.
-- Inquiry retains the existing real API schema, required fields and honest
-  pending/error/success states. FAQs use native disclosure controls.
-- Footer: “Business first. Security built in.” External links only.
+- Inquiry keeps honest pending/error/success states and the remaining required
+  fields. It no longer asks for revenue; the API accepts older forms with it.
+  Desktop aligns the introduction to the form top and places the FAQ group
+  directly below it, without bottom pinning or a large empty spacer. All four
+  answers start open and can be collapsed independently; compact disclosure
+  spacing balances the fully expanded group against the form without fixed
+  heights or filler copy.
+  Mobile keeps introduction → form → FAQs. Give the privacy note its own
+  readable space below the textarea.
+- Footer: “Business first. Security built in.” External links only. Show the
+  same scene poster as the hero through a restrained dark overlay, not a
+  near-opaque green wash.
 
 Remove redundant section kickers, numbered offer labels, placeholder status
 and repeated taglines. Necessary explanatory/status text is readable, not tiny.

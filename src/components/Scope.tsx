@@ -3,10 +3,7 @@ import { FactoryFlow } from "./FactoryFlow";
 export function Scope() {
   return (
     <section className="scope section-shell" id="scope" aria-labelledby="scope-title">
-      <h2 id="scope-title">The work I take care of.</h2>
-      <p className="section-description">
-        Solve a specific problem, get ready for production, or put a repeatable setup in place.
-      </p>
+      <h2 id="scope-title">The work I take care of</h2>
       <div className="offers-grid">
         <article className="offer">
           <div className="motif motion-scene" aria-hidden="true">
@@ -24,13 +21,13 @@ export function Scope() {
             </svg>
           </div>
           <div className="offer-body">
-            <h3>One-off AI consultation.</h3>
+            <h3>One-off AI consultation</h3>
             <p className="offer-benefit">A clear next step for a specific problem.</p>
             <ul className="offer-details">
               <li>Bring a question, a blocker or a setup you’re unsure about.</li>
               <li>We work through it together and decide what’s worth doing next.</li>
             </ul>
-            <a className="offer-action" href="#project">
+            <a className="offer-action" href="/project">
               Discuss a consultation <span aria-hidden="true">↗</span>
             </a>
           </div>
@@ -51,13 +48,13 @@ export function Scope() {
             </svg>
           </div>
           <div className="offer-body">
-            <h3>Software review &amp; delivery.</h3>
+            <h3>Software review &amp; delivery</h3>
             <p className="offer-benefit">Take a working prototype into day-to-day use.</p>
             <ul className="offer-details">
               <li>I review the code, permissions and integrations in what you’ve built.</li>
               <li>Then I fix the agreed issues, test the changes and help get it released.</li>
             </ul>
-            <a className="offer-action" href="#project">
+            <a className="offer-action" href="/project">
               Discuss a review <span aria-hidden="true">↗</span>
             </a>
           </div>
@@ -65,10 +62,7 @@ export function Scope() {
       </div>
       <article className="factory-offer" aria-labelledby="factory-title">
         <div className="factory-intro">
-          <h3 id="factory-title">
-            AI agent
-            <br className="desktop-break" /> factory setup.
-          </h3>
+          <h3 id="factory-title">AI Agent Factory</h3>
           <div>
             <p className="factory-lead">
               A repeatable way to develop and look after your software.
@@ -116,8 +110,8 @@ export function Scope() {
             I handle the setup and agreed ongoing work. You keep control of scope, access and
             release approvals.
           </p>
-          <a className="offer-action" href="#project">
-            Discuss a setup <span aria-hidden="true">↗</span>
+          <a className="offer-action" href="/project">
+            Discuss your factory <span aria-hidden="true">↗</span>
           </a>
         </div>
       </article>

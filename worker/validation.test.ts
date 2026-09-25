@@ -21,6 +21,25 @@ const validPayload = {
 };
 
 describe("project inquiry validation", () => {
+  it("accepts the current form without revenue and normalizes it to an empty value", () => {
+    const currentPayload = { ...validPayload } as Partial<typeof validPayload>;
+    delete currentPayload.businessRevenue;
+
+    expect(normalizeProjectInquiryPayload(currentPayload)).toEqual({
+      ok: true,
+      value: {
+        ...validPayload,
+        businessRevenue: "",
+        email: "hello@arcitai.com",
+        source: "Website",
+      },
+    });
+    expect(normalizeProjectInquiryPayload({ ...validPayload, businessRevenue: " " }).ok).toBe(true);
+    expect(normalizeProjectInquiryPayload({ ...validPayload, businessRevenue: null }).ok).toBe(
+      false,
+    );
+  });
+
   it("normalizes a valid payload and fixes Source server-side", () => {
     expect(normalizeProjectInquiryPayload(validPayload)).toEqual({
       ok: true,

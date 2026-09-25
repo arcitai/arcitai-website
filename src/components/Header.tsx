@@ -2,37 +2,11 @@ import { useEffect, useRef, useState } from "react";
 import { siteData } from "../site-data";
 import type { Theme } from "../theme";
 
-const sections = [
-  { id: "process", label: "Process" },
-  { id: "scope", label: "Scope" },
-  { id: "project", label: "Start" },
-] as const;
-
 export function Header({ theme, onThemeChange }: { theme: Theme; onThemeChange: () => void }) {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("");
   const triggerRef = useRef<HTMLButtonElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
-  const navRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const update = () => {
-      const marker = Math.min(innerHeight * 0.32, 260);
-      let next = "";
-      for (const { id } of sections) {
-        if ((document.getElementById(id)?.getBoundingClientRect().top ?? Infinity) <= marker)
-          next = id;
-      }
-      setActiveSection(next);
-    };
-    update();
-    window.addEventListener("scroll", update, { passive: true });
-    window.addEventListener("resize", update);
-    return () => {
-      window.removeEventListener("scroll", update);
-      window.removeEventListener("resize", update);
-    };
-  }, []);
+  const newsletterRef = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -59,10 +33,10 @@ export function Header({ theme, onThemeChange }: { theme: Theme; onThemeChange: 
   return (
     <header className="site-header">
       <div className="header-inner">
-        <a className="wordmark" href="#top" aria-label="Arc’IT AI home">
+        <a className="wordmark" href="/" aria-label="Arc’IT AI home">
           Arc’IT AI
         </a>
-        <nav aria-label="Primary navigation" ref={navRef}>
+        <nav aria-label="Primary navigation">
           <button
             className="offers-trigger"
             type="button"
@@ -77,29 +51,24 @@ export function Header({ theme, onThemeChange }: { theme: Theme; onThemeChange: 
               }
             }}
           >
-            Offers <span aria-hidden="true">⌄</span>
+            Offers
           </button>
-          {sections.map(({ id, label }) => (
-            <a
-              key={id}
-              className={id === "project" ? undefined : "desktop-link"}
-              href={`#${id}`}
-              aria-current={activeSection === id ? "location" : undefined}
-            >
-              {label}
-            </a>
-          ))}
         </nav>
-        <button
-          className="theme-toggle"
-          type="button"
-          aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
-          title={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
-          aria-pressed={theme === "dark"}
-          onClick={onThemeChange}
-        >
-          <span className="theme-toggle-icon" aria-hidden="true" />
-        </button>
+        <div className="header-utilities">
+          <a ref={newsletterRef} href="/newsletter">
+            Newsletter
+          </a>
+          <button
+            className="theme-toggle"
+            type="button"
+            aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+            title={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
+            aria-pressed={theme === "dark"}
+            onClick={onThemeChange}
+          >
+            <span className="theme-toggle-icon" aria-hidden="true" />
+          </button>
+        </div>
         <div
           className="offers-menu"
           id="offers-menu"
@@ -114,13 +83,11 @@ export function Header({ theme, onThemeChange }: { theme: Theme; onThemeChange: 
               triggerRef.current?.focus();
             } else if (!event.shiftKey && event.target === links[links.length - 1]) {
               event.preventDefault();
-              [...(navRef.current?.querySelectorAll("a") ?? [])]
-                .find((link) => link.getClientRects().length > 0)
-                ?.focus();
+              newsletterRef.current?.focus();
             }
           }}
         >
-          <a href="#scope" aria-current="page">
+          <a href="/#scope" aria-current="page">
             <span className="eyebrow">Done for you</span>
             <strong>Arc’IT AI</strong>
             <span>Business understanding carried into working software.</span>

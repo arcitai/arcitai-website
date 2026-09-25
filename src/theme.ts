@@ -20,7 +20,7 @@ export function useTheme() {
     document.documentElement.dataset.theme = theme;
     document
       .querySelector('meta[name="theme-color"]')
-      ?.setAttribute("content", theme === "dark" ? "#171814" : "#f8f2e8");
+      ?.setAttribute("content", theme === "dark" ? "#171717" : "#fafafa");
     try {
       localStorage.setItem("arcitai-theme", theme);
     } catch {

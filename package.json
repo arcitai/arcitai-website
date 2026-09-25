@@ -10,6 +10,8 @@
     "node": ">=20.19.0"
   },
   "scripts": {
+    "review:build": "VITE_REVIEW_PREVIEW=true vite build --outDir output/family-preview",
+    "review:preview": "vite preview --outDir output/family-preview --host 127.0.0.1 --port 4183 --strictPort",
     "dev": "vite --host 127.0.0.1",
     "format": "prettier --check .",
     "format:write": "prettier --write .",
@@ -25,7 +27,7 @@
     "worker:deploy": "wrangler deploy --config wrangler.jsonc",
     "worker:deploy:recovery": "wrangler deploy --config wrangler.jsonc",
     "worker:secret:put": "wrangler secret put NOTION_TOKEN --config wrangler.jsonc",
-    "build": "tsc -b --pretty false && vite build",
+    "build": "tsc -b --pretty false && vite build && node scripts/prepare-pages.mjs",
     "check": "npm run format && npm run lint && npm run test && npm run build",
     "audit": "npm audit --audit-level=high",
     "preview": "vite preview --host 127.0.0.1"

@@ -31,6 +31,14 @@ and mocked inquiry outcomes.
 
 ## Automated delivery
 
+The September 25 inquiry simplification removes revenue from the browser form.
+Deploy and verify the backwards-compatible Worker update before releasing
+that Pages artifact. The old Worker requires revenue and would reject the new
+form. The updated Worker accepts both form versions and omits the Notion revenue
+property when absent; no Notion schema migration or synthetic revenue value is
+needed. Pages may be rolled back independently; roll back the Worker only after
+restoring a compatible older form.
+
 `.github/workflows/ci.yml` runs lockfile install, formatting, linting,
 typechecking, tests, build, and audit on pull requests and `main`.
 

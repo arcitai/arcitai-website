@@ -15,7 +15,6 @@ const payload: ProjectInquiryPayload = {
   website: "https://arcitai.com",
   role: "Founder / owner",
   companySize: "1–5",
-  businessRevenue: "DKK 50–100k / month",
   project: "Make the operating workflow easier to run.",
   source: "Website",
 };
@@ -31,7 +30,6 @@ describe("project inquiry client", () => {
       website: " https://arcitai.com ",
       role: "Founder / owner",
       companySize: "1–5",
-      businessRevenue: "DKK 50–100k / month",
       project: " Make the operating workflow easier to run. ",
     }).forEach(([key, value]) => data.set(key, value));
 

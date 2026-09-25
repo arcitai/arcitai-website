@@ -3,7 +3,7 @@ import type { Scene } from "../scene";
 import { scenePoster, sceneVideo } from "../media";
 import { SceneMedia } from "./SceneMedia";
 
-function ScenePlayer({ scene, epoch }: { scene: Scene; epoch: number }) {
+export function ScenePlayer({ scene, epoch }: { scene: Scene; epoch: number }) {
   const [started, setStarted] = useState(false);
   const [failed, setFailed] = useState(false);
   const playerRef = useRef<HTMLVideoElement>(null);
@@ -72,7 +72,7 @@ function ScenePlayer({ scene, epoch }: { scene: Scene; epoch: number }) {
           ref={buttonRef}
           className="scene-play"
           type="button"
-          aria-label={failed ? "Retry video" : "Play video"}
+          aria-label={failed ? "Retry video" : "Play landscape video"}
           onClick={play}
         >
           <span className="scene-play-badge" aria-hidden="true">

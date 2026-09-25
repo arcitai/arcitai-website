@@ -755,6 +755,7 @@ textarea {
 }
 .faqs {
   grid-area: faqs;
+  align-self: start;
 }
 .faq {
   border-top: 1px solid var(--line);
@@ -767,8 +768,8 @@ textarea {
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  min-height: 64px;
-  padding-block: 20px;
+  min-height: 60px;
+  padding-block: 16px;
   font-size: 17px;
   list-style: none;
   cursor: pointer;
@@ -787,7 +788,7 @@ textarea {
   content: "−";
 }
 .faq p {
-  padding-bottom: 24px;
+  padding-bottom: 20px;
   color: var(--muted);
   font-size: 17px;
   line-height: 1.5;
@@ -801,6 +802,7 @@ textarea {
   padding: 0;
 }
 .field {
+  display: block;
   margin-bottom: 28px;
 }
 .field label {
@@ -826,9 +828,9 @@ textarea {
 }
 .privacy-note {
   color: var(--muted);
-  font-size: 14px;
-  line-height: 1.45;
-  margin-top: -6px;
+  font-size: 15px;
+  line-height: 1.6;
+  max-width: 48ch;
 }
 .submit-preview {
   width: 100%;
@@ -848,9 +850,10 @@ textarea {
   font-size: 13px;
 }
 .site-footer {
-  background:
-    linear-gradient(#102f27db, #102f27db),
-    var(--scene) center 55% / cover;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: #18211d;
   color: #fffaf1;
   text-align: center;
   min-height: 380px;
@@ -858,6 +861,24 @@ textarea {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.footer-landscape,
+.site-footer::before {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.footer-landscape {
+  object-fit: cover;
+  object-position: center 55%;
+  z-index: -2;
+}
+.site-footer::before {
+  content: "";
+  background: linear-gradient(180deg, #10191470, #101914a6);
+  z-index: -1;
 }
 .site-footer h2 {
   font-size: 48px;
@@ -1221,7 +1242,7 @@ textarea {
     font-size: 36px;
   }
   .privacy-note {
-    font-size: 14px;
+    font-size: 15px;
   }
   .site-footer {
     min-height: 340px;
@@ -1447,32 +1468,6 @@ textarea {
   font-size: 16px;
   min-height: 54px;
   border-radius: 0;
-}
-.budget-fieldset {
-  margin: 0 0 28px;
-  padding: 0;
-  border: 0;
-}
-.budget-fieldset legend {
-  font-size: 16px;
-  margin-bottom: 12px;
-}
-.budget-options {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-}
-.budget-options label {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 12px;
-  background: var(--field);
-  font-size: 14px;
-  cursor: pointer;
-}
-.budget-options input {
-  accent-color: var(--green);
 }
 .submit-action {
   margin-top: 32px;
