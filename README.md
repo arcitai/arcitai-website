@@ -70,12 +70,14 @@ Only these assets are shipped from `public/assets/`:
 
 - `arcitai-mark-final.svg`
 - `arcitai-panorama-{morning,day,evening,night}-v1.jpg`
-- Received `arcitai-{day,evening}-{loop,poster}-v6` MP4/JPEG scene pairs; see
-  `src/media.ts` for the exact manifest and the release record for pending scenes.
+- Received `arcitai-{morning,day,evening,night}-{loop,poster}-v6` MP4/JPEG pairs;
+  all four scenes are present in `src/media.ts` and checked in the build.
 - Geist Sans, Mono, and Pixel WOFF2 files plus their license
 
 The hero and introduction-video cover share the selected scene. The Play video
-action plays the landscape clip, not a recorded founder VSL. Reduced motion,
+action plays the landscape clip with controls until a recorded founder VSL is
+supplied. Set the public build variable `VITE_VSL_VIDEO_URL` to that MP4 URL
+later; it replaces click playback, never the ambient cover. Reduced motion,
 data saving and media errors retain a usable still image.
 
 The September 2026 release candidate and outstanding media are tracked in

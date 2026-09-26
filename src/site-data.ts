@@ -5,6 +5,9 @@ export const runtimeAsset = (path: string) =>
 
 export const siteData = {
   brand: "Arc'IT AI",
+  video: {
+    walkthrough: import.meta.env.VITE_VSL_VIDEO_URL?.trim() || undefined,
+  },
   links: {
     onlinesourdough: familyHref("onlinesourdough"),
     gustavOnline: familyHref("gustavonline"),

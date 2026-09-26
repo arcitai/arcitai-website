@@ -1,6 +1,10 @@
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { access, mkdir, readFile, writeFile } from "node:fs/promises";
 
 const dist = new URL("../dist/", import.meta.url);
+for (const scene of ["morning", "day", "evening", "night"]) {
+  await access(new URL(`assets/arcitai-${scene}-loop-v6.mp4`, dist));
+  await access(new URL(`assets/arcitai-${scene}-poster-v6.jpg`, dist));
+}
 const html = await readFile(new URL("index.html", dist), "utf8");
 const brand = "Arc’IT AI";
 const origin = "https://arcitai.com";
