@@ -1,18 +1,24 @@
 import { describe, expect, it } from "vitest";
-import { ambientPhase, scenePoster, sceneVideo } from "./media";
+import { ambientPhase, playbackVideo, scenePoster, sceneVideo } from "./media";
 
 describe("shared scene media", () => {
   it("uses matching poster and clip revisions for received scenes", () => {
-    for (const scene of ["day", "evening"] as const) {
+    for (const scene of ["morning", "day", "evening", "night"] as const) {
       expect(scenePoster(scene)).toContain(`arcitai-${scene}-poster-v6.jpg`);
       expect(sceneVideo(scene)).toContain(`arcitai-${scene}-loop-v6.mp4`);
     }
   });
-  it("does not request exports that have not been delivered", () => {
-    for (const scene of ["morning", "night"] as const) {
-      expect(sceneVideo(scene)).toBeUndefined();
-      expect(scenePoster(scene)).toContain(`arcitai-panorama-${scene}-v1.jpg`);
-    }
+  it("plays the landscape until a separate walkthrough is supplied", () => {
+    expect(playbackVideo("night")).toEqual({
+      source: sceneVideo("night"),
+      title: "Arc’IT AI landscape video",
+    });
+    expect(playbackVideo("morning", "   ").source).toBe(sceneVideo("morning"));
+    expect(playbackVideo("night", " /assets/gustav-walkthrough.mp4 ")).toEqual({
+      source: "/assets/gustav-walkthrough.mp4",
+      title: "Arc’IT AI walkthrough",
+    });
+    expect(sceneVideo("night")).toContain("arcitai-night-loop-v6.mp4");
   });
   it("synchronises visible loops to a shared clock and handles unknown duration", () => {
     expect(ambientPhase(12500, 1000, 10)).toBe(1.5);

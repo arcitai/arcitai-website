@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import type { Scene } from "../scene";
-import { scenePoster, sceneVideo } from "../media";
+import { playbackVideo, scenePoster } from "../media";
+import { siteData } from "../site-data";
 import { SceneMedia } from "./SceneMedia";
 
 export function ScenePlayer({ scene, epoch }: { scene: Scene; epoch: number }) {
@@ -8,6 +9,15 @@ export function ScenePlayer({ scene, epoch }: { scene: Scene; epoch: number }) {
   const [failed, setFailed] = useState(false);
   const playerRef = useRef<HTMLVideoElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const returnFocus = useRef(false);
+  const playback = playbackVideo(scene, siteData.video.walkthrough);
+
+  useEffect(() => {
+    if (!started && returnFocus.current) {
+      buttonRef.current?.focus({ preventScroll: true });
+      returnFocus.current = false;
+    }
+  }, [started]);
 
   useEffect(() => {
     const video = playerRef.current;
@@ -29,8 +39,8 @@ export function ScenePlayer({ scene, epoch }: { scene: Scene; epoch: number }) {
 
   const play = () => {
     const video = playerRef.current;
-    const source = sceneVideo(scene);
-    if (!video || !source) return;
+    const source = playback.source;
+    if (!video) return;
     setFailed(false);
     setStarted(true);
     if (!video.getAttribute("src") || failed) {
@@ -43,9 +53,10 @@ export function ScenePlayer({ scene, epoch }: { scene: Scene; epoch: number }) {
       .play()
       .then(() => video.focus())
       .catch(() => {
+        if (!video.isConnected) return;
+        returnFocus.current = true;
         setFailed(true);
         setStarted(false);
-        buttonRef.current?.focus();
       });
   };
 
@@ -59,20 +70,26 @@ export function ScenePlayer({ scene, epoch }: { scene: Scene; epoch: number }) {
         preload="none"
         poster={scenePoster(scene)}
         controls={started}
-        aria-label="Arc’IT AI landscape video"
+        aria-label={playback.title}
         aria-hidden={!started}
         tabIndex={started ? 0 : -1}
         onError={() => {
+          returnFocus.current = document.activeElement === playerRef.current;
           setFailed(true);
           setStarted(false);
         }}
+        onEnded={(event) => {
+          returnFocus.current = document.activeElement === event.currentTarget;
+          event.currentTarget.currentTime = 0;
+          setStarted(false);
+        }}
       />
-      {!started && sceneVideo(scene) && (
+      {!started && (
         <button
           ref={buttonRef}
           className="scene-play"
           type="button"
-          aria-label={failed ? "Retry video" : "Play landscape video"}
+          aria-label={failed ? "Retry video" : "Play video"}
           onClick={play}
         >
           <span className="scene-play-badge" aria-hidden="true">

@@ -1,5 +1,20 @@
 # Operative design
 
+## September 26 media completion
+
+All four v6 scene clips are now received. Keep the corresponding first-frame
+poster per scene. The overlay mark is black in light theme and white in dark.
+The centered rounded Play video badge follows Resources: reveal on hover or
+keyboard focus, always visible on touch. The mark yields to the badge on desktop;
+on touch it sits above the badge. The media frame has 8px corners.
+
+Click plays the current landscape with controls, as explicitly requested while
+the VSL is not recorded. A separate optional `VITE_VSL_VIDEO_URL` switches only
+this playback source to the future VSL; ambient animation stays scene-based.
+Finishing returns to the animated cover and restores keyboard focus. Missing
+or failed playback gives a retry state; reduced motion retains still covers.
+This supersedes the older missing morning/night and static-cover notes below.
+
 ## September 25 local-review candidate
 
 The owner approved the three-brand canvas for **local implementation**, not
