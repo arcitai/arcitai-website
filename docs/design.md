@@ -39,6 +39,9 @@ implementation/readback: `docs/local-review-2026-09-25.md`.
   **AI Agent Factory**, with the established reversible pipe animation.
 - Footer: other two sites left, four personal social profiles right, small Gustav
   portrait only on sibling sites. No copyright, large scene or repeated slogan.
+  “Part of Gustav Online” sits below the social profiles and links to Gustav Online.
+  Family marks use a shared 32px slot (28px portrait/Arc’IT, 30×21px sourdough),
+  the canonical large-pixel-v3 sourdough geometry, and 19px social icons.
   Both sibling marks stay monochrome on hover; text uses the interaction accent.
   A viewport-height flex shell keeps the footer at the bottom on short routes,
   including `/project`, without fixed positioning or hard-coded content heights.

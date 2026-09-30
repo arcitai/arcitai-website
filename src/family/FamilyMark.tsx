@@ -1,6 +1,6 @@
 import type { FamilyBrand } from "./preview";
 
-// Original pixel-boule silhouette and score cuts; even gutters remain visible at small sizes.
+// Matches the canonical onlinesourdough large-pixel-v3 mark, using currentColor for each site.
 const boule = [
   "0001111000",
   "0111111110",
@@ -28,7 +28,7 @@ export function FamilyMark({ brand }: { brand: FamilyBrand }) {
         {boule.flatMap((row, y) =>
           [...row].map((cell, x) =>
             cell === "1" ? (
-              <rect key={y * 10 + x} x={x + 0.125} y={y + 0.125} width=".75" height=".75" />
+              <rect key={y * 10 + x} x={x + 0.09} y={y + 0.09} width=".82" height=".82" />
             ) : null,
           ),
         )}
