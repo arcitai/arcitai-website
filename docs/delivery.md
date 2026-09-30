@@ -75,7 +75,8 @@ npm run worker:deploy
 reviewed known-good ref. Build and review do not run either deploy command.
 
 The Pages project is deliberately separate from GitHub repository visibility;
-the repository remains private and GitHub Pages is not used.
+the source repository is public as `arcitai/arcitai-website`. GitHub Pages is
+not used; the Cloudflare Pages project remains `arcitai`.
 
 ## Worker ownership and configuration
 

@@ -108,3 +108,10 @@ The manual deployment workflow accepts a known-good ref for recovery, and
 `git revert` remains the normal forward-recovery path. The active custom
 domains are `arcitai.com` and `www.arcitai.com`; DNS is maintained in the
 Cloudflare zone, while Simply remains the domain provider/account.
+
+## License
+
+Original code and documentation are available under the [MIT License](LICENSE).
+Third-party code, fonts, copied reference material, and other third-party assets
+retain their own licenses and attribution. Brand names, logos, portraits, and
+editorial media are not licensed for reuse by this software license.
