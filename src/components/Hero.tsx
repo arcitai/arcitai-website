@@ -5,13 +5,14 @@ export function Hero({ scene, epoch }: { scene: Scene; epoch: number }) {
     <section className="walkthrough-hero" id="top" aria-labelledby="hero-title">
       <div className="walkthrough-shell">
         <h1 id="hero-title">
-          AI and software,
+          From business need
           <br />
-          done for you
+          to working software
         </h1>
         <p className="walkthrough-description">
-          From a promising demo to software your team can use. I review what you have, handle the
-          agreed work, and set up the agents and checks around it.
+          I help teams design, build, and maintain software that fits how their business works. I
+          take care of the architecture, integrations, delivery workflow, and security checks around
+          it, with agreed scope and responsibility from the first decision to ongoing care.
         </p>
         <div className="walkthrough-media">
           <ScenePlayer key={scene} scene={scene} epoch={epoch} />

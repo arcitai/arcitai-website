@@ -3,7 +3,7 @@ import { FactoryFlow } from "./FactoryFlow";
 export function Scope() {
   return (
     <section className="scope section-shell" id="scope" aria-labelledby="scope-title">
-      <h2 id="scope-title">The work I take care of</h2>
+      <h2 id="scope-title">I take care of your project</h2>
       <div className="offers-grid">
         <article className="offer">
           <div className="motif motion-scene" aria-hidden="true">
@@ -21,14 +21,16 @@ export function Scope() {
             </svg>
           </div>
           <div className="offer-body">
-            <h3>One-off AI consultation</h3>
-            <p className="offer-benefit">A clear next step for a specific problem.</p>
+            <h3>One-off consultation</h3>
+            <p className="offer-benefit">
+              Work through a business, software, or architecture decision with me.
+            </p>
             <ul className="offer-details">
-              <li>Bring a question, a blocker or a setup you’re unsure about.</li>
-              <li>We work through it together and decide what’s worth doing next.</li>
+              <li>Bring a business need, technical blocker, or decision about your software.</li>
+              <li>I help you decide what to improve and where software is worth building.</li>
             </ul>
             <a className="offer-action" href="/project">
-              Discuss a consultation <span aria-hidden="true">↗</span>
+              Plan a consultation with me <span aria-hidden="true">↗</span>
             </a>
           </div>
         </article>
@@ -48,14 +50,22 @@ export function Scope() {
             </svg>
           </div>
           <div className="offer-body">
-            <h3>Software review &amp; delivery</h3>
-            <p className="offer-benefit">Take a working prototype into day-to-day use.</p>
+            <h3>Software delivery &amp; ongoing care</h3>
+            <p className="offer-benefit">
+              I design, build, and maintain software around your business.
+            </p>
             <ul className="offer-details">
-              <li>I review the code, permissions and integrations in what you’ve built.</li>
-              <li>Then I fix the agreed issues, test the changes and help get it released.</li>
+              <li>
+                I work through the business need, architecture, and integrations with you, then
+                handle the agreed development and delivery.
+              </li>
+              <li>
+                I build in security checks, testing, and review. I agree handover and ongoing
+                maintenance with you.
+              </li>
             </ul>
             <a className="offer-action" href="/project">
-              Discuss a review <span aria-hidden="true">↗</span>
+              Discuss your project <span aria-hidden="true">↗</span>
             </a>
           </div>
         </article>
@@ -65,11 +75,11 @@ export function Scope() {
           <h3 id="factory-title">AI Agent Factory</h3>
           <div>
             <p className="factory-lead">
-              A repeatable way to develop and look after your software.
+              I set up a repeatable way to develop and maintain your software.
             </p>
             <p>
-              I set up the agents, instructions and checks around your code, so the next change has
-              a clear path from a scoped task to a reviewed release.
+              I use agentic engineering practices to turn scoped work into tested, reviewed changes.
+              I configure the agents, context, tools, and checks around your codebase.
             </p>
           </div>
         </div>
@@ -78,40 +88,40 @@ export function Scope() {
           <div>
             <dt>Agent Software Factory</dt>
             <dd>
-              Agents work through scoped tasks, tests and code review in your codebase. I set up the
-              instructions and checks before changes move on.
+              I set up the development workflow around your codebase: scoped tasks, implementation,
+              tests, and independent review before release approval.
             </dd>
           </div>
           <div>
             <dt>Agent Defense Factory</dt>
             <dd>
-              A separately scoped workflow to assess security findings around your software,
-              prioritise them and work through agreed fixes.
+              I assess security findings, agree priorities with you, and work through scoped fixes.
+              Ongoing defence work has its own agreed responsibilities.
             </dd>
           </div>
           <div>
             <dt>Local AI, where it fits</dt>
             <dd>
-              Use local models where your hardware and the work suit them. We decide what stays
-              local and what uses a cloud model.
+              I help you decide where local models suit your hardware and work, and where a cloud
+              model is more useful.
             </dd>
           </div>
           <div>
             <dt>Data access &amp; retention</dt>
             <dd>
-              Decide what agents can access, where data is processed and how long prompts, outputs
-              and logs are kept. I configure the available controls and document the limits of the
-              tools and providers we choose.
+              I agree data access and retention needs with you, configure the available controls,
+              and document provider limits. That includes where prompts, outputs, and logs are
+              processed and kept.
             </dd>
           </div>
         </dl>
         <div className="factory-bottom">
           <p>
-            I handle the setup and agreed ongoing work. You keep control of scope, access and
+            I handle the agreed setup and ongoing work. You keep control of scope, access, and
             release approvals.
           </p>
           <a className="offer-action" href="/project">
-            Discuss your factory <span aria-hidden="true">↗</span>
+            Discuss your factory with me <span aria-hidden="true">↗</span>
           </a>
         </div>
       </article>

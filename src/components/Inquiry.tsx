@@ -14,7 +14,7 @@ type SubmissionState =
   | { kind: "error"; message: string; failure: InquiryFailure };
 
 const failureMessages: Record<InquiryFailure, string> = {
-  configuration: "The inquiry connection is unavailable.",
+  configuration: "The form is unavailable right now. Please email me or try again later.",
   network: "Your inquiry was not sent. Check your connection and try again.",
   protocol: "The inquiry service returned an unexpected response. Please try again.",
   server: "Your inquiry was not saved. Please try again.",
@@ -50,7 +50,7 @@ export function Inquiry() {
         kind: "success",
         message: localReview
           ? "Preview complete — no inquiry was sent."
-          : "Inquiry received. You will hear back at the email you provided.",
+          : "Inquiry received. I’ll reply at the email you provided.",
       });
     } catch (error) {
       const failure = error instanceof InquirySubmissionError ? error.kind : "network";
@@ -70,43 +70,46 @@ export function Inquiry() {
               <p className="review-notice">Local preview — the form does not send data.</p>
             )}
             <p className="inquiry-description">
-              Describe the software, who uses it and the work you need help with. I’ll review the
-              context and respond with a proposed next step.
+              Tell me about the work you want to improve, your existing systems, and the result
+              you’re aiming for. You can bring a business need, a prototype, or a larger software
+              project. I’ll help you work out a useful starting point and the scope I can take care
+              of.
             </p>
           </div>
           <div className="faqs">
             <details className="faq" open>
-              <summary>Do I need another platform?</summary>
+              <summary>Can you work with my existing setup?</summary>
               <p>
-                Usually we can work with the tools you already use. I add new ones only when they
-                solve a specific need in your project.
+                I start with your existing workflows, software, tools, and team. I add a new tool or
+                service only when the agreed work calls for it.
               </p>
             </details>
             <details className="faq" open>
-              <summary>What do you check?</summary>
+              <summary>How do you scope and check the work?</summary>
               <p>
-                We agree what production-ready means for your use case, then review the code, data
-                access, integrations and deployment. I fix the agreed issues and test the changes.
-                Instructions don’t enforce permissions, and a review can’t guarantee that nothing
-                will go wrong.
+                I agree the work, access, and acceptance criteria with you. I review the
+                architecture, code, integrations, and security within that scope, then test the
+                changes. I make the checks, remaining risks, and release decision clear before
+                handover.
               </p>
             </details>
             <details className="faq" open>
               <summary>Can you keep looking after it?</summary>
               <p>
-                Yes. I can handle agreed updates, fixes and ongoing development. We define my
-                responsibilities, the review process and response times. You keep control of
-                business decisions and approvals.
+                I can handle agreed maintenance, fixes, and ongoing development. I agree
+                responsibilities, review points, and response times with you separately. You keep
+                control of business decisions and release approvals.
               </p>
             </details>
             <details className="faq" open>
-              <summary>Prefer to build it yourself?</summary>
+              <summary>Would you rather build alongside me?</summary>
               <p>
+                Through{" "}
                 <a href={siteData.links.onlinesourdough} target="_blank" rel="noopener noreferrer">
                   onlinesourdough
                 </a>{" "}
-                offers the method, resources and hands-on guidance. With Arc’IT AI, I take care of
-                the agreed delivery and ongoing work.
+                I offer free resources and one-to-one pair engineering, with AIOS as a starter.
+                Through Arc’IT AI, I take responsibility for agreed delivery and ongoing work.
               </p>
             </details>
           </div>
@@ -181,7 +184,7 @@ export function Inquiry() {
           </div>
 
           <label className="field field-wide project-field">
-            <span>What have you built, and what would you like help with?</span>
+            <span>What would you like me to build, improve, or maintain?</span>
             <textarea
               name="project"
               rows={4}
@@ -213,7 +216,8 @@ export function Inquiry() {
             {submission.kind === "error" && (
               <>
                 {" "}
-                <a href={siteData.links.email}>Email hello@arcitai.com</a> if the problem continues.
+                <a href={siteData.links.email}>Email me at hello@arcitai.com</a> if the problem
+                continues.
               </>
             )}
           </p>
