@@ -90,12 +90,12 @@ export function Header({ theme, onThemeChange }: { theme: Theme; onThemeChange: 
           <a href="/#scope" aria-current="page">
             <span className="eyebrow">Done for you</span>
             <strong>Arc’IT AI</strong>
-            <span>Business understanding carried into working software.</span>
+            <span>I handle agreed architecture, software delivery, and ongoing care.</span>
           </a>
           <a href={siteData.links.onlinesourdough} target="_blank" rel="noopener noreferrer">
             <span className="eyebrow">DIY + done with you</span>
             <strong>onlinesourdough</strong>
-            <span>Learn the method, use the resources, or build with direct guidance.</span>
+            <span>I share free resources and AIOS, and offer one-to-one pair engineering.</span>
           </a>
         </div>
       </div>

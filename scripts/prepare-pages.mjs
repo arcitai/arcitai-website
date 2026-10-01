@@ -12,7 +12,7 @@ const routes = [
   {
     path: "newsletter",
     title: `Newsletter | ${brand}`,
-    description: "Notes from the work. A newsletter by Gustav Anderson.",
+    description: "My notes on business architecture, software, and agentic engineering.",
   },
   {
     path: "newsletter/thank-you",
@@ -23,7 +23,8 @@ const routes = [
   {
     path: "project",
     title: "Project inquiry | Arc’IT AI",
-    description: "Discuss your AI and software project with Gustav.",
+    description:
+      "Tell me about the work you want to improve, your existing systems, and the project I can take care of.",
   },
 ];
 for (const route of routes) {
@@ -35,6 +36,8 @@ for (const route of routes) {
     .replace(/(<meta\s+name="description"\s+content=")[^"]*(")/, `$1${route.description}$2`)
     .replace(/(<meta\s+property="og:title"\s+content=")[^"]*(")/, `$1${route.title}$2`)
     .replace(/(<meta\s+property="og:description"\s+content=")[^"]*(")/, `$1${route.description}$2`)
+    .replace(/(<meta\s+name="twitter:title"\s+content=")[^"]*(")/, `$1${route.title}$2`)
+    .replace(/(<meta\s+name="twitter:description"\s+content=")[^"]*(")/, `$1${route.description}$2`)
     .replace(/(<meta\s+property="og:url"\s+content=")[^"]*(")/, `$1${url}$2`)
     .replace(/(<link\s+rel="canonical"\s+href=")[^"]*(")/, `$1${url}$2`);
   if (!page.includes('rel="canonical"'))

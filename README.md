@@ -4,8 +4,10 @@ Production source for the Arc'IT AI landing page and its dedicated Project
 Inquiries Worker at `arcitai.com`.
 
 Arc'IT AI is the done-for-you implementation offer in the same business family
-as [onlinesourdough](https://onlinesourdough.com). The page offers focused AI
-consultation, prototype-to-production delivery and agent factory setup. It
+as [onlinesourdough](https://onlinesourdough.com). The page offers focused
+consultation, software delivery and ongoing care, and agent factory setup
+for teams. Agreed work includes business needs, architecture, integrations,
+development, security checks, and the delivery workflow. It
 sends qualified project inquiries to the Arc'IT-owned `arcitai-api` Worker.
 
 ## Status

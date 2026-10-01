@@ -1,5 +1,28 @@
 # Operative design
 
+## October 1 copy revision
+
+The owner requested a local copy revision after reviewing the restored page.
+This supersedes earlier wording requirements while preserving the composition,
+media, interactions, and inquiry contract.
+
+- Hero: “From business need to working software”, with the audience simplified
+  to teams. Describe design, build, and maintenance together with architecture,
+  integrations, delivery workflow, and security checks under agreed responsibility.
+  Agentic engineering is explained through the factory's practical workflow.
+- Section: “I take care of your project”. Use I/me/my and you/your throughout
+  the public copy; make Gustav's contribution and the customer's control clear.
+- Offers: One-off consultation, Software delivery & ongoing care, and the existing
+  AI Agent Factory with software and separately scoped defence work.
+- Project inquiry accepts a business need, an existing system, or a new project.
+  Its copy follows the offer; form fields, validation, payload, and backend stay
+  unchanged. Keep scope, access controls, review limits, and release approvals
+  explicit. Security checks are part of delivery, not a blanket guarantee.
+
+The final local iteration uses Gradient Work's focus on business workflows as
+positioning inspiration. The copy connects software to the surrounding work;
+it makes no competitive, ownership, capacity, or availability claims from that site.
+
 ## September 26 media completion
 
 All four v6 scene clips are now received. Keep the corresponding first-frame
