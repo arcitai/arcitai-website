@@ -1,0 +1,3 @@
+**Blocked at the native app boundary.** The documented CUA interface supports `cua.getApp(...)` and, on an `App` handle, `getAXState()`, `getScreenshot()`, and `getAXStateAndScreenshot()`; it also documents visible UI actions such as click, scroll, and keypress. But `cua.getApp("com.openai.codex")` was explicitly denied: “Computer Use is not allowed to use the app.” No accessibility tree or screenshot was returned, so I observed no Flow tab or page content and have no usable app handle. I stopped there without trying another route.
+
+The requested model choice is gpt-6-luna with max; the runtime does not expose metadata to verify that independently. No generation, upload, download, or file edits occurred.

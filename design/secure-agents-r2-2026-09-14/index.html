@@ -1,0 +1,1984 @@
+<!doctype html>
+<html lang="en" data-theme="light" data-scene="day" data-motion="on">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; font-src 'self'; connect-src 'self' ws://127.0.0.1:4175; form-action 'none'; base-uri 'none'"
+    />
+    <meta
+      name="description"
+      content="I help you put AI to work in your business, from an early prototype to a setup I build, review and look after."
+    />
+    <title>Arc’IT AI | Secure Agents, done for you · Draft 02</title>
+    <link rel="icon" href="/assets/arcitai-mark-final.svg" type="image/svg+xml" />
+    <style>
+      @font-face {
+        font-family: "Geist Sans";
+        src: url("/assets/fonts/geist-sans-variable.woff2") format("woff2");
+        font-weight: 100 900;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: "Geist Mono";
+        src: url("/assets/fonts/geist-mono-variable.woff2") format("woff2");
+        font-weight: 100 900;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: "Geist Pixel";
+        src: url("/assets/fonts/geist-pixel-square.woff2") format("woff2");
+        font-weight: 400;
+        font-display: swap;
+      }
+      :root {
+        color-scheme: light;
+        --paper: #f8f2e8;
+        --surface: #fffaf1;
+        --soft: #eee9de;
+        --ink: #18211d;
+        --muted: #615f56;
+        --line: #cecfc2;
+        --green: #14211d;
+        --accent: #236b59;
+        --sage: #b9d9c8;
+        --cream: #fffaf1;
+        --scene: url("/assets/arcitai-panorama-day-v1.jpg");
+        --font: "Geist Sans", sans-serif;
+      }
+      :root[data-theme="dark"] {
+        color-scheme: dark;
+        --paper: #171e1a;
+        --surface: #202c25;
+        --soft: #25382d;
+        --ink: #fff6e7;
+        --muted: #c4cec5;
+        --line: #47594b;
+        --accent: #92cbb0;
+      }
+      :root[data-scene="morning"] {
+        --scene: url("/assets/arcitai-panorama-morning-v1.jpg");
+      }
+      :root[data-scene="evening"] {
+        --scene: url("/assets/arcitai-panorama-evening-v1.jpg");
+      }
+      :root[data-scene="night"] {
+        --scene: url("/assets/arcitai-panorama-night-v1.jpg");
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 100px;
+      }
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: var(--font);
+        font-size: 17px;
+        line-height: 1.65;
+      }
+      button,
+      input,
+      textarea,
+      select {
+        font: inherit;
+      }
+      button,
+      a,
+      input,
+      textarea,
+      summary,
+      select {
+        -webkit-tap-highlight-color: transparent;
+      }
+      button,
+      summary,
+      select {
+        cursor: pointer;
+      }
+      button,
+      a {
+        touch-action: manipulation;
+      }
+      button {
+        color: inherit;
+      }
+      a {
+        color: inherit;
+        text-underline-offset: 5px;
+      }
+      button:focus-visible,
+      a:focus-visible,
+      summary:focus-visible,
+      input:focus-visible,
+      textarea:focus-visible,
+      select:focus-visible {
+        outline: 3px solid var(--accent);
+        outline-offset: 5px;
+      }
+      .hero :focus-visible,
+      .factory :focus-visible,
+      footer :focus-visible,
+      .film :focus-visible {
+        outline-color: var(--sage);
+      }
+      [hidden] {
+        display: none !important;
+      }
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+      }
+      h1,
+      h2 {
+        font-family: "Geist Pixel", monospace;
+        font-weight: 400;
+        line-height: 1.12;
+        letter-spacing: -0.035em;
+        text-wrap: balance;
+      }
+      h2 {
+        font-size: clamp(34px, 3.5vw, 48px);
+      }
+      h3 {
+        font-size: 24px;
+        font-weight: 500;
+        line-height: 1.3;
+        letter-spacing: -0.025em;
+      }
+      p {
+        text-wrap: pretty;
+      }
+      .shell {
+        width: min(1240px, calc(100% - 80px));
+        margin-inline: auto;
+      }
+      .mono,
+      .eyebrow {
+        font:
+          11px/1.5 "Geist Mono",
+          monospace;
+        letter-spacing: 0.06em;
+      }
+      .eyebrow {
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 22px;
+      }
+      .muted {
+        color: var(--muted);
+      }
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip-path: inset(50%);
+        white-space: nowrap;
+        border: 0;
+      }
+      .skip {
+        position: fixed;
+        top: 8px;
+        left: 8px;
+        z-index: 20;
+        padding: 12px;
+        background: var(--paper);
+        transform: translateY(-200%);
+      }
+      .skip:focus {
+        transform: none;
+      }
+      .draft-bar {
+        background: var(--soft);
+        border-bottom: 1px solid var(--line);
+      }
+      .draft-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 8px 24px;
+        padding-block: 10px;
+        font-size: 11px;
+      }
+      .draft-controls {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+      .draft-controls select {
+        padding: 4px 22px 4px 5px;
+        border: 1px solid var(--line);
+        border-radius: 2px;
+        color: var(--ink);
+        background: var(--surface);
+        font-size: 11px;
+      }
+      .text-button {
+        border: 0;
+        padding: 7px 0;
+        background: none;
+        font: inherit;
+        text-decoration: underline;
+        text-underline-offset: 4px;
+      }
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background: var(--paper);
+        border-bottom: 1px solid var(--line);
+      }
+      .header-inner {
+        min-height: 72px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+      .brand {
+        display: inline-flex;
+        gap: 11px;
+        align-items: center;
+        text-decoration: none;
+        font:
+          21px/1 "Geist Pixel",
+          monospace;
+        white-space: nowrap;
+      }
+      .brand img {
+        width: 30px;
+        height: 30px;
+        filter: brightness(0);
+      }
+      [data-theme="dark"] .brand img {
+        filter: none;
+      }
+      .nav {
+        display: flex;
+        align-items: center;
+        gap: 32px;
+      }
+      .nav > a {
+        text-decoration: none;
+      }
+      .nav > a:hover {
+        text-decoration: underline;
+      }
+      .offers-menu {
+        position: relative;
+      }
+      .offers-menu > summary {
+        list-style: none;
+        padding-block: 14px;
+      }
+      .offers-menu > summary::-webkit-details-marker {
+        display: none;
+      }
+      .offers-menu > summary::after {
+        content: "⌄";
+        padding-left: 7px;
+      }
+      .offer-menu-panel {
+        position: absolute;
+        top: 52px;
+        right: -140px;
+        width: min(470px, calc(100vw - 36px));
+        padding: 12px;
+        border: 1px solid var(--line);
+        background: var(--surface);
+        box-shadow: 0 14px 35px #08170f20;
+      }
+      .offer-menu-panel a {
+        display: block;
+        padding: 18px;
+        text-decoration: none;
+        font-family: var(--font);
+        letter-spacing: 0;
+      }
+      .offer-menu-panel a + a {
+        border-top: 1px solid var(--line);
+      }
+      .offer-menu-panel a:hover {
+        background: var(--soft);
+      }
+      .offer-menu-panel strong {
+        display: block;
+        font-size: 17px;
+        margin-bottom: 6px;
+      }
+      .offer-menu-panel span {
+        display: block;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.6;
+      }
+      .theme-button {
+        min-width: 40px;
+        min-height: 40px;
+        border: 1px solid var(--line);
+        border-radius: 50%;
+        background: transparent;
+        font-size: 18px;
+      }
+      .header-controls {
+        display: flex;
+        gap: 10px;
+      }
+      .motion-button {
+        font:
+          16px/1 "Geist Mono",
+          monospace;
+      }
+      .hero {
+        position: relative;
+        isolation: isolate;
+        overflow: hidden;
+        color: var(--cream);
+        background: #10211d;
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        z-index: -2;
+        inset: 0;
+        background: var(--scene) center 54% / cover;
+      }
+      .hero::after {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        inset: 0;
+        background: linear-gradient(180deg, #102a249c 0%, #102a24bd 54%, #0b211be8 100%);
+      }
+      .hero-inner {
+        min-height: 760px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding-block: 30px 92px;
+        text-align: center;
+      }
+      .hero .eyebrow {
+        color: var(--sage);
+        margin-bottom: 20px;
+      }
+      .hero h1 {
+        font-size: clamp(46px, 5.3vw, 76px);
+        max-width: 1020px;
+      }
+      .hero h1 span {
+        display: block;
+      }
+      .hero-lead {
+        max-width: 690px;
+        margin-top: 25px;
+        font-size: 18px;
+        color: #f2f3e8;
+      }
+      .actions {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        margin-top: 30px;
+      }
+      .button {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        gap: 28px;
+        min-height: 48px;
+        padding: 12px 18px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        font-size: 14px;
+        font-weight: 500;
+        text-decoration: none;
+        background: var(--green);
+        color: var(--cream);
+      }
+      .button:hover {
+        filter: brightness(1.1);
+      }
+      .hero .button {
+        background: var(--cream);
+        color: #18211d;
+      }
+      .hero .button.secondary {
+        background: #213e36d9;
+        color: var(--cream);
+        border-color: #aec4ae6b;
+      }
+      .hero-rail {
+        position: absolute;
+        bottom: 25px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: min(1120px, calc(100% - 80px));
+        text-align: center;
+        border-top: 1px solid #d5e2c645;
+        padding-top: 19px;
+        color: #e0e9d8;
+      }
+      .hero-mark {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 32px;
+        flex-shrink: 0;
+        pointer-events: none;
+      }
+      .hero-mark svg {
+        display: block;
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+      }
+      .mark-part {
+        animation: mark-settle 720ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+        animation-delay: calc(var(--part) * 60ms);
+      }
+      @keyframes mark-settle {
+        from {
+          opacity: 0.35;
+          transform: translate(var(--entry-x), 4px);
+        }
+        to {
+          opacity: 1;
+          transform: translate(0, 0);
+        }
+      }
+      .section {
+        padding-block: 90px;
+      }
+      .section-heading {
+        max-width: 710px;
+        margin-inline: auto;
+        text-align: center;
+        margin-bottom: 38px;
+      }
+      .section-heading p:not(.eyebrow) {
+        color: var(--muted);
+        margin-top: 22px;
+      }
+      .film {
+        position: relative;
+        isolation: isolate;
+        width: min(960px, 100%);
+        margin-inline: auto;
+        aspect-ratio: 16 / 8.8;
+        min-height: 300px;
+        display: grid;
+        place-items: center;
+        padding: 42px;
+        color: var(--cream);
+        background: var(--green);
+        border-radius: 7px;
+        overflow: hidden;
+        box-shadow: 0 15px 45px #14211d12;
+      }
+      .film::before {
+        content: "";
+        z-index: -1;
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(180deg, #14211dbc, #14211de8),
+          var(--scene) center 62% / cover;
+      }
+      .film-label {
+        position: absolute;
+        top: 24px;
+        left: 28px;
+        color: #d2dfca;
+      }
+      .film-centre {
+        max-width: 500px;
+        text-align: center;
+        padding-block: 20px;
+      }
+      .film-mark {
+        width: 56px;
+        height: 56px;
+        margin-bottom: 22px;
+        opacity: 0.85;
+      }
+      .film h3 {
+        font-family: "Geist Pixel", monospace;
+        font-size: clamp(27px, 3vw, 40px);
+        font-weight: 400;
+      }
+      .film-centre > p {
+        color: #d2dfca;
+        font-size: 14px;
+        margin-top: 18px;
+      }
+      .film-bottom {
+        position: absolute;
+        inset: auto 28px 24px;
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        color: #d2dfca;
+      }
+      .film-outline {
+        width: min(960px, 100%);
+        margin: 18px auto 0;
+      }
+      .film-outline summary {
+        font-size: 13px;
+        color: var(--muted);
+        padding-block: 10px;
+      }
+      .film-outline ol {
+        max-width: 760px;
+        font-size: 15px;
+        padding-left: 24px;
+        color: var(--muted);
+      }
+      .film-outline li {
+        margin-block: 12px;
+        padding-left: 8px;
+      }
+      .offers-section {
+        padding-top: 20px;
+      }
+      .offer-row {
+        display: grid;
+        grid-template-columns: 180px 1fr 1.1fr;
+        align-items: center;
+        gap: 48px;
+        padding: 42px 20px;
+        border-top: 1px solid var(--line);
+      }
+      .offer-row:last-child {
+        border-bottom: 1px solid var(--line);
+      }
+      .offer-art {
+        color: var(--accent);
+        width: 170px;
+        height: 115px;
+        overflow: visible;
+      }
+      .offer-art .moving {
+        animation: offer-flow 4s ease-in-out infinite;
+      }
+      .offer-art .delay {
+        animation-delay: -0.9s;
+      }
+      .offer-art .drawn {
+        stroke-dasharray: 7 5;
+        animation: dash 7s linear infinite;
+      }
+      @keyframes offer-flow {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-7px);
+        }
+      }
+      @keyframes dash {
+        to {
+          stroke-dashoffset: -96;
+        }
+      }
+      .offer-name .mono {
+        color: var(--muted);
+        display: block;
+        margin-bottom: 12px;
+      }
+      .offer-name h3 {
+        max-width: 300px;
+      }
+      .offer-description p {
+        font-size: 16px;
+        color: var(--muted);
+        margin-bottom: 17px;
+      }
+      .offer-description a {
+        font-size: 14px;
+        color: var(--accent);
+      }
+      .responsibility-note {
+        max-width: 770px;
+        margin: 30px auto 0;
+        text-align: center;
+        font-size: 15px;
+        color: var(--muted);
+      }
+      .factory {
+        background: var(--green);
+        color: var(--cream);
+        --accent: #b9d9c8;
+      }
+      .factory-heading {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: end;
+      }
+      .factory-heading h2 {
+        max-width: 560px;
+      }
+      .factory-heading > p {
+        color: #d2dfca;
+        max-width: 530px;
+      }
+      .factory-diagram {
+        margin-top: 48px;
+        padding-top: 24px;
+        border-top: 1px solid #d5e2c638;
+      }
+      .factory-parts {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        margin-top: 40px;
+      }
+      .factory-part {
+        padding-top: 24px;
+        border-top: 1px solid #d5e2c638;
+      }
+      .factory-part h3 {
+        font-size: 20px;
+        margin-bottom: 12px;
+      }
+      .factory-part p {
+        font-size: 15px;
+        color: #d2dfca;
+        max-width: 510px;
+      }
+      .factory-modes {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .factory-mode {
+        padding: 10px 15px;
+        font:
+          12px/1.5 "Geist Mono",
+          monospace;
+        border: 1px solid #a9c2ae66;
+        color: #d2dfca;
+        background: transparent;
+        border-radius: 3px;
+      }
+      .factory-mode[aria-pressed="true"] {
+        background: #b9d9c8;
+        color: #14211d;
+      }
+      .dashboard-preview-link {
+        display: inline-block;
+        margin-top: 27px;
+        color: #d2dfca;
+        font-size: 14px;
+      }
+      @media (max-width: 540px) {
+        .factory-parts {
+          grid-template-columns: 1fr;
+          gap: 20px;
+          margin-top: 25px;
+        }
+        .factory-mode {
+          font-size: 11px;
+        }
+      }
+      .loop-drawing {
+        display: block;
+        width: 100%;
+        height: 155px;
+        overflow: visible;
+      }
+      .loop-drawing .flow {
+        stroke-dasharray: 4 11;
+        animation: dash 8s linear infinite;
+      }
+      .loop-marker {
+        transition: transform 0.65s cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+      .stage-controls {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 12px;
+      }
+      .stage {
+        text-align: left;
+        background: transparent;
+        color: #d2dfca;
+        border: 1px solid #a9c2ae55;
+        border-radius: 3px;
+        padding: 15px 14px;
+        font:
+          13px/1.5 "Geist Mono",
+          monospace;
+      }
+      .stage span {
+        display: block;
+        font-size: 10px;
+        margin-bottom: 9px;
+        opacity: 0.85;
+      }
+      .stage[aria-pressed="true"] {
+        background: #b9d9c8;
+        color: #14211d;
+        border-color: #b9d9c8;
+      }
+      .stage:last-child {
+        border-style: dashed;
+      }
+      .stage:hover:not([aria-pressed="true"]) {
+        background: #ffffff09;
+      }
+      .stage-explanation {
+        display: grid;
+        grid-template-columns: 1fr 1.55fr;
+        gap: 48px;
+        padding-block: 30px;
+        min-height: 148px;
+      }
+      .stage-explanation h3 {
+        font-size: 21px;
+      }
+      .stage-explanation p {
+        color: #d2dfca;
+        font-size: 16px;
+      }
+      .factory-note {
+        display: flex;
+        justify-content: space-between;
+        gap: 35px;
+        border-top: 1px solid #d5e2c638;
+        padding-top: 22px;
+        color: #d2dfca;
+      }
+      .factory-note p {
+        max-width: 690px;
+        font-size: 13px;
+      }
+      .factory-note .mono {
+        font-size: 10px;
+      }
+      .inquiry-layout {
+        display: grid;
+        grid-template-columns: 1fr 1.05fr;
+        gap: 110px;
+        align-items: start;
+      }
+      .inquiry-intro h2 {
+        max-width: 430px;
+        margin-bottom: 26px;
+      }
+      .inquiry-intro > p:not(.eyebrow) {
+        color: var(--muted);
+        margin-bottom: 24px;
+      }
+      .questions {
+        margin-top: 35px;
+      }
+      .questions details {
+        border-top: 1px solid var(--line);
+        padding-block: 14px;
+        font-size: 15px;
+      }
+      .questions summary {
+        font-weight: 500;
+      }
+      .questions p {
+        color: var(--muted);
+        margin-top: 14px;
+        font-size: 14px;
+      }
+      .form-notice {
+        background: var(--soft);
+        border-left: 2px solid var(--accent);
+        padding: 14px 18px;
+        font-size: 13px;
+        color: var(--muted);
+        margin-bottom: 25px;
+      }
+      .form-notice strong {
+        color: var(--ink);
+        display: block;
+        margin-bottom: 4px;
+      }
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+      .field {
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+        margin-bottom: 22px;
+        min-width: 0;
+      }
+      label {
+        font-size: 14px;
+        font-weight: 500;
+      }
+      input,
+      textarea {
+        width: 100%;
+        min-height: 46px;
+        border: 1px solid var(--line);
+        border-radius: 3px;
+        padding: 11px 13px;
+        color: var(--ink);
+        background: var(--surface);
+        font-size: 16px;
+      }
+      textarea {
+        resize: vertical;
+        min-height: 128px;
+      }
+      input::placeholder,
+      textarea::placeholder {
+        color: var(--muted);
+        opacity: 1;
+      }
+      .privacy-note {
+        font-size: 12px;
+        color: var(--muted);
+        margin-bottom: 22px;
+      }
+      .form-status {
+        min-height: 25px;
+        font-size: 14px;
+        color: var(--accent);
+        margin-top: 15px;
+      }
+      [data-theme="dark"] .inquiry .button {
+        background: var(--sage);
+        color: #14211d;
+      }
+      footer {
+        position: relative;
+        isolation: isolate;
+        color: var(--cream);
+        background: var(--green);
+        min-height: 370px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 65px 24px 35px;
+        text-align: center;
+      }
+      footer::before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        inset: 0;
+        background:
+          linear-gradient(180deg, #14211ddd, #14211d80),
+          var(--scene) center 61% / cover;
+      }
+      footer .brand {
+        font-size: 32px;
+      }
+      footer .brand img {
+        filter: none;
+        width: 44px;
+        height: 44px;
+      }
+      footer p {
+        color: #e0e9d8;
+        margin-top: 17px;
+      }
+      .footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 14px 26px;
+        margin-top: 30px;
+      }
+      footer .footer-rail {
+        color: #e0e9d8;
+        margin-top: 50px;
+      }
+      [data-motion="off"] *,
+      [data-page-hidden="true"] *,
+      [data-in-view="false"] * {
+        animation-play-state: paused !important;
+      }
+      [data-motion="off"] *,
+      [data-page-hidden="true"] * {
+        transition: none !important;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        *,
+        *::before,
+        *::after {
+          animation: none !important;
+          transition: none !important;
+        }
+      }
+      @media (max-width: 1000px) {
+        .nav {
+          gap: 22px;
+        }
+        .shell {
+          width: calc(100% - 48px);
+        }
+        .offer-row {
+          grid-template-columns: 135px 1fr 1.1fr;
+          gap: 28px;
+          padding-inline: 0;
+        }
+        .offer-art {
+          width: 125px;
+        }
+        .inquiry-layout {
+          gap: 55px;
+        }
+        .factory-heading {
+          gap: 40px;
+        }
+        .hero-inner {
+          min-height: 740px;
+        }
+      }
+      @media (max-width: 800px) {
+        .nav .desktop-link {
+          display: none;
+        }
+        .header-inner {
+          gap: 12px;
+        }
+        .nav {
+          margin-left: auto;
+        }
+        .section {
+          padding-block: 65px;
+        }
+        .offers-section {
+          padding-top: 15px;
+        }
+        .hero-inner {
+          min-height: 730px;
+          padding-block: 32px 96px;
+        }
+        .offer-row {
+          grid-template-columns: 115px 1fr;
+          gap: 12px 26px;
+          padding-block: 34px;
+        }
+        .offer-description {
+          grid-column: 2;
+        }
+        .offer-art {
+          width: 115px;
+          grid-row: 1 / 3;
+          align-self: start;
+          margin-top: 15px;
+        }
+        .offer-name h3 {
+          max-width: none;
+        }
+        .factory-heading,
+        .inquiry-layout {
+          grid-template-columns: 1fr;
+          gap: 28px;
+        }
+        .factory-heading h2 {
+          max-width: 620px;
+        }
+        .factory-heading > p {
+          max-width: 620px;
+        }
+        .inquiry-layout {
+          gap: 45px;
+        }
+        .inquiry-intro h2 {
+          max-width: 620px;
+        }
+        .film {
+          padding: 35px;
+        }
+        .stage-explanation {
+          gap: 25px;
+        }
+      }
+      @media (max-width: 540px) {
+        .shell {
+          width: calc(100% - 36px);
+        }
+        .draft-inner {
+          padding-block: 10px;
+        }
+        .draft-controls {
+          gap: 12px;
+          width: 100%;
+        }
+        .draft-inner > span {
+          font-size: 10px;
+        }
+        .draft-controls label {
+          font-size: 10px;
+        }
+        .header-inner {
+          min-height: 64px;
+        }
+        .brand {
+          font-size: 18px;
+          gap: 7px;
+        }
+        .brand img {
+          width: 25px;
+          height: 25px;
+        }
+        .nav {
+          gap: 16px;
+        }
+        .theme-button {
+          min-width: 34px;
+          min-height: 34px;
+        }
+        .nav > a {
+          display: none;
+        }
+        .offer-menu-panel {
+          position: absolute;
+          top: 100%;
+          left: 18px;
+          right: 18px;
+        }
+        .offers-menu {
+          position: static;
+        }
+        .header-controls {
+          gap: 7px;
+        }
+        .hero-inner {
+          min-height: 700px;
+          padding-block: 32px 99px;
+        }
+        .hero h1 {
+          font-size: clamp(37px, 9.8vw, 53px);
+        }
+        .hero h1 span {
+          display: inline;
+        }
+        .hero h1 span + span::before {
+          content: " ";
+        }
+        .hero-lead {
+          font-size: 16px;
+          margin-top: 22px;
+          max-width: 365px;
+        }
+        .hero .eyebrow {
+          font-size: 10px;
+          letter-spacing: 0.025em;
+        }
+        .hero-mark {
+          width: 60px;
+          height: 60px;
+          margin-bottom: 28px;
+        }
+        .actions {
+          flex-direction: column;
+          width: min(285px, 100%);
+          gap: 12px;
+          margin-top: 25px;
+        }
+        .actions .button {
+          width: 100%;
+        }
+        .hero-rail {
+          width: calc(100% - 36px);
+          font-size: 9px;
+          letter-spacing: 0.025em;
+        }
+        body {
+          font-size: 16px;
+        }
+        .section {
+          padding-block: 60px;
+        }
+        .section-heading {
+          margin-bottom: 28px;
+        }
+        .eyebrow {
+          margin-bottom: 17px;
+        }
+        .film {
+          min-height: 330px;
+          aspect-ratio: auto;
+          padding: 60px 25px;
+        }
+        .film-label {
+          top: 19px;
+          left: 19px;
+          font-size: 9px;
+        }
+        .film-bottom {
+          left: 19px;
+          right: 19px;
+          bottom: 17px;
+          font-size: 9px;
+        }
+        .film-centre > p {
+          font-size: 12px;
+        }
+        .film-mark {
+          width: 43px;
+          height: 43px;
+          margin-bottom: 17px;
+        }
+        .offers-section {
+          padding-top: 5px;
+        }
+        .offer-row {
+          grid-template-columns: 1fr;
+          gap: 12px;
+          padding-block: 32px;
+        }
+        .offer-art {
+          grid-row: auto;
+          width: 120px;
+          height: 85px;
+          margin: 0 0 10px;
+        }
+        .offer-name {
+          margin-bottom: 4px;
+        }
+        .offer-description {
+          grid-column: 1;
+        }
+        .offer-name h3 {
+          font-size: 25px;
+        }
+        .responsibility-note {
+          text-align: left;
+        }
+        .factory-diagram {
+          margin-top: 30px;
+          padding-top: 10px;
+        }
+        .loop-drawing {
+          height: 95px;
+        }
+        .stage-controls {
+          grid-template-columns: 1fr 1fr;
+          gap: 9px;
+        }
+        .stage:last-child {
+          grid-column: 1 / -1;
+        }
+        .stage {
+          padding: 13px 12px;
+          min-height: 76px;
+        }
+        .stage:last-child span {
+          display: inline;
+          margin-right: 15px;
+        }
+        .stage-explanation {
+          grid-template-columns: 1fr;
+          gap: 13px;
+          padding-block: 26px;
+          min-height: 210px;
+        }
+        .factory-note {
+          display: block;
+        }
+        .factory-note .mono {
+          margin-top: 20px;
+        }
+        .form-grid {
+          grid-template-columns: 1fr;
+          gap: 0;
+        }
+        footer {
+          min-height: 350px;
+        }
+        .footer-links {
+          font-size: 10px;
+        }
+      }
+      @media (max-width: 350px) {
+        .draft-controls {
+          gap: 9px;
+        }
+        .draft-controls select {
+          max-width: 73px;
+        }
+        .hero-inner {
+          min-height: 760px;
+        }
+        .hero h1 {
+          font-size: 38px;
+        }
+        .header-inner {
+          gap: 8px;
+        }
+        .nav {
+          gap: 8px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <aside class="draft-bar" aria-label="Draft review controls">
+      <div class="shell draft-inner mono">
+        <span>DRAFT 02.1 · Local preview · Nothing is sent</span>
+        <div class="draft-controls">
+          <a href="../secure-agents-2026-09-14/">Draft 01</a>
+          <label for="scene"
+            >Scene
+            <select id="scene">
+              <option value="day">Day</option>
+              <option value="morning">Morning</option>
+              <option value="evening">Evening</option>
+              <option value="night">Night</option>
+            </select></label
+          >
+          <button class="text-button" id="mark-toggle" type="button" aria-controls="hero-mark">
+            Hide hero logo
+          </button>
+        </div>
+      </div>
+    </aside>
+    <header class="site-header">
+      <div class="shell header-inner">
+        <a class="brand" href="#top"
+          ><img src="/assets/arcitai-mark-final.svg" alt="" />Arc’IT AI</a
+        >
+        <nav class="nav mono" aria-label="Main navigation">
+          <details class="offers-menu" id="offers-menu">
+            <summary>Offers</summary>
+            <div class="offer-menu-panel">
+              <a href="#offers"
+                ><strong>Arc’IT AI · Done for you</strong
+                ><span
+                  >I take care of the setup and delivery, with security built into the work.</span
+                ></a
+              >
+              <a href="https://onlinesourdough.com/"
+                ><strong>onlinesourdough · DIY + done with you</strong
+                ><span
+                  >Understand the business problem, use the resources and build yourself, or work
+                  through it with me.</span
+                ></a
+              >
+            </div>
+          </details>
+          <a class="desktop-link" href="#walkthrough">The walkthrough</a>
+          <a class="desktop-link" href="#factory">The factories</a>
+          <a href="#start">Let’s talk ↗</a>
+        </nav>
+        <div class="header-controls">
+          <button
+            class="theme-button"
+            id="theme-toggle"
+            type="button"
+            aria-label="Switch to dark theme"
+            aria-pressed="false"
+          >
+            ◐</button
+          ><button
+            class="theme-button motion-button"
+            id="motion-toggle"
+            type="button"
+            aria-label="Pause motion"
+            title="Pause motion"
+            aria-pressed="false"
+          >
+            Ⅱ
+          </button>
+        </div>
+      </div>
+    </header>
+    <main id="main">
+      <section class="hero motion-region" id="top" aria-labelledby="hero-title">
+        <div class="shell hero-inner">
+          <div class="hero-mark" id="hero-mark" aria-hidden="true">
+            <!-- Original Cut Six geometry; only the entry motion is added. -->
+            <svg viewBox="4 -4 60 60" aria-hidden="true" focusable="false">
+              <g fill="#fffaf0">
+                <path class="mark-part" style="--part: 0; --entry-x: -4px" d="M26 2h14l-6 14H20Z" />
+                <path
+                  class="mark-part"
+                  style="--part: 1; --entry-x: -4px"
+                  d="M19 18h14l-6 14H13Z"
+                />
+                <path class="mark-part" style="--part: 2; --entry-x: -4px" d="M12 34h14l-6 14H6Z" />
+                <rect
+                  class="mark-part"
+                  style="--part: 3; --entry-x: 4px"
+                  x="42"
+                  y="2"
+                  width="14"
+                  height="14"
+                />
+                <rect
+                  class="mark-part"
+                  style="--part: 4; --entry-x: 4px"
+                  x="36"
+                  y="18"
+                  width="14"
+                  height="14"
+                />
+                <rect
+                  class="mark-part"
+                  style="--part: 5; --entry-x: 4px"
+                  x="48"
+                  y="34"
+                  width="14"
+                  height="14"
+                />
+              </g>
+            </svg>
+          </div>
+          <p class="eyebrow">Secure Agents / Done for you</p>
+          <h1 id="hero-title"><span>Put AI to work.</span><span>Keep control.</span></h1>
+          <p class="hero-lead">
+            I help you take time-consuming work off your team’s plate. I build and look after the AI
+            tools, agents and workflows behind it, with clear limits on what they can access and do.
+          </p>
+          <div class="actions">
+            <a class="button" href="#start"
+              >Talk about your setup <span aria-hidden="true">↗</span></a
+            ><a class="button secondary" href="#walkthrough"
+              >See the approach <span aria-hidden="true">↓</span></a
+            >
+          </div>
+        </div>
+        <div class="hero-rail mono">BUSINESS FIRST / SECURITY BUILT IN</div>
+      </section>
+      <section class="section walkthrough" id="walkthrough" aria-labelledby="walkthrough-title">
+        <div class="shell">
+          <div class="section-heading">
+            <p class="eyebrow">A quick walkthrough</p>
+            <h2 id="walkthrough-title">Let’s make it work in the business.</h2>
+            <p>
+              Maybe you’ve vibe-coded a prototype. Maybe someone’s built something for you. Or
+              you’ve spotted work that AI could help with. I’ll help you work out what comes next,
+              and take care of getting it there.
+            </p>
+          </div>
+          <div class="film" role="group" aria-label="Founder VSL placement, film not yet recorded">
+            <span class="film-label mono">GUSTAV / THE APPROACH</span>
+            <div class="film-centre">
+              <img class="film-mark" src="/assets/arcitai-mark-final.svg" alt="" />
+              <h3>From a promising demo<br />to everyday use.</h3>
+              <p>Founder video · Placement preview</p>
+            </div>
+            <div class="film-bottom mono">
+              <span>VSL TO BE RECORDED</span><span>NO FILM LOADED</span>
+            </div>
+          </div>
+          <details class="film-outline">
+            <summary>Read the planned film outline</summary>
+            <ol>
+              <li>Start with the work: what would actually make the business easier to run?</li>
+              <li>
+                Meet you where you are: an idea, a vibe-coded prototype, or something a developer
+                handed over.
+              </li>
+              <li>
+                Explain what I take care of: the process, technical delivery, access, testing and
+                ongoing operation within our agreed scope.
+              </li>
+              <li>
+                Show how the software and defense loops connect: build a focused change, review the
+                evidence, and keep release approval with a person.
+              </li>
+              <li>
+                Invite one useful next step: tell me about the work and what you already have.
+              </li>
+            </ol>
+          </details>
+        </div>
+      </section>
+      <section class="section offers-section" id="offers" aria-labelledby="offers-title">
+        <div class="shell">
+          <div class="section-heading">
+            <p class="eyebrow">The offers</p>
+            <h2 id="offers-title">Start where you are.</h2>
+            <p>
+              A specific question, a half-finished build, or a system that needs someone to take
+              care of it.
+            </p>
+          </div>
+          <article class="offer-row motion-region">
+            <svg
+              class="offer-art"
+              viewBox="0 0 180 115"
+              aria-hidden="true"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M16 23 Q14 14 26 14 H102 Q115 14 115 27 V60 Q115 69 103 69 H54 L35 84 V69 H25 Q15 69 15 60Z"
+              />
+              <path d="M76 78 H133 L148 92 V78 H157 Q166 78 166 68 V44 Q166 33 155 33 H126" />
+              <g class="moving">
+                <circle cx="44" cy="42" r="3" fill="currentColor" />
+                <circle cx="65" cy="42" r="3" fill="currentColor" />
+                <circle cx="86" cy="42" r="3" fill="currentColor" />
+              </g>
+              <path d="M43 102 Q86 106 145 103" opacity=".3" />
+            </svg>
+            <div class="offer-name">
+              <span class="mono">01 / ONE SESSION</span>
+              <h3>One-off AI Consultation</h3>
+            </div>
+            <div class="offer-description">
+              <p>
+                Bring a question, a blocker or something you’ve already built. We’ll work through it
+                together, so you leave knowing what to do next and why.
+              </p>
+              <a href="#start">Talk through your question ↗</a>
+            </div>
+          </article>
+          <article class="offer-row motion-region">
+            <svg
+              class="offer-art"
+              viewBox="0 0 180 115"
+              aria-hidden="true"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <g class="moving">
+                <rect x="13" y="35" width="48" height="57" rx="3" stroke-dasharray="4 4" />
+                <path d="M24 51h20m-20 10h12m-12 10h24" />
+              </g>
+              <path d="M72 61 Q84 55 100 61m-5-6 6 6-7 5" />
+              <rect x="115" y="23" width="51" height="69" rx="3" />
+              <path d="M127 39h24m-24 10h16m-16 20 8 8 17-18" />
+              <path d="M14 103 Q85 100 166 103" opacity=".3" />
+              <path class="drawn" d="M42 25 Q94-9 143 15" opacity=".55" />
+            </svg>
+            <div class="offer-name">
+              <span class="mono">02 / DELIVERY + CARE</span>
+              <h3>Prototype to Production</h3>
+            </div>
+            <div class="offer-description">
+              <p>
+                Got an MVP, a vibe-coded tool or a developer handover? I review what’s there, work
+                out what needs to change, and take care of the build, testing and rollout. We agree
+                what I’ll keep running, too.
+              </p>
+              <a href="#start">Tell me what you’ve built ↗</a>
+            </div>
+          </article>
+          <article class="offer-row motion-region">
+            <svg
+              class="offer-art"
+              viewBox="0 0 180 115"
+              aria-hidden="true"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                class="drawn"
+                d="M44 25 Q91-5 140 29 Q177 66 137 88 Q89 114 45 83 Q9 57 44 25Z"
+              />
+              <rect x="35" y="22" width="17" height="17" rx="2" fill="var(--paper)" />
+              <rect x="132" y="23" width="17" height="17" rx="2" fill="var(--paper)" />
+              <rect x="132" y="79" width="17" height="17" rx="2" fill="var(--paper)" />
+              <rect x="33" y="77" width="17" height="17" rx="2" fill="var(--paper)" />
+              <g class="moving delay"><path d="m73 57 10 10 20-24" stroke-width="2" /></g>
+            </svg>
+            <div class="offer-name">
+              <span class="mono">03 / SOFTWARE + DEFENSE</span>
+              <h3>AI Agent Factories</h3>
+            </div>
+            <div class="offer-description">
+              <p>
+                I set up a Software Factory and a connected Defense Factory around your code and
+                delivery process. Agents work through agreed tasks and checks. You can follow the
+                work, see the evidence, and make the decisions that need a person.
+              </p>
+              <a href="#factory">See how the two work together ↓</a>
+            </div>
+          </article>
+          <p class="responsibility-note">
+            For delivery work, I take care of the agreed setup from the first decision through to
+            operation. You stay involved where the business knowledge and approvals belong with you.
+          </p>
+        </div>
+      </section>
+      <section class="section factory motion-region" id="factory" aria-labelledby="factory-title">
+        <div class="shell">
+          <div class="factory-heading">
+            <div>
+              <p class="eyebrow">Two systems / One delivery process</p>
+              <h2 id="factory-title">From agreed work to reviewed changes.</h2>
+            </div>
+            <p>
+              I put the workflow in place and look after the parts we agree I’ll run. You get a
+              clear view of what’s moving, what’s been checked, and what needs your attention. The
+              setup can use the tools that fit your business.
+            </p>
+          </div>
+          <div class="factory-parts">
+            <div class="factory-part">
+              <h3>AI Software Factory</h3>
+              <p>
+                Turn agreed tasks into focused changes, tests and reviewable pull requests. Keep the
+                work tied to the result the business needs.
+              </p>
+            </div>
+            <div class="factory-part">
+              <h3>AI Agent Defense Factory</h3>
+              <p>
+                Review the system and its boundaries, investigate findings, and verify focused
+                fixes. Keep security checks connected to the work as it changes.
+              </p>
+            </div>
+          </div>
+          <div class="factory-diagram">
+            <div class="factory-modes" role="group" aria-label="Choose a factory to explore">
+              <button
+                class="factory-mode"
+                type="button"
+                data-factory="software"
+                aria-pressed="true"
+              >
+                Software loop
+              </button>
+              <button
+                class="factory-mode"
+                type="button"
+                data-factory="defense"
+                aria-pressed="false"
+              >
+                Defense loop
+              </button>
+            </div>
+            <svg
+              class="loop-drawing"
+              viewBox="0 0 1100 155"
+              preserveAspectRatio="none"
+              aria-hidden="true"
+              fill="none"
+            >
+              <path
+                d="M110 62H770Q825 62 825 108Q825 140 770 140H110Q55 140 55 108Q55 62 110 62Z"
+                stroke="#b9d9c8"
+                stroke-opacity=".3"
+              />
+              <path
+                class="flow"
+                d="M110 62H770Q825 62 825 108Q825 140 770 140H110Q55 140 55 108Q55 62 110 62Z"
+                stroke="#b9d9c8"
+                stroke-width="2"
+              />
+              <path d="M785 62H970" stroke="#b9d9c8" stroke-dasharray="5 7" stroke-opacity=".65" />
+              <path d="m959 55 11 7-11 7" stroke="#b9d9c8" />
+              <g fill="#14211d" stroke="#b9d9c8">
+                <rect x="98" y="50" width="24" height="24" rx="3" />
+                <rect x="318" y="50" width="24" height="24" rx="3" />
+                <rect x="538" y="50" width="24" height="24" rx="3" />
+                <rect x="758" y="50" width="24" height="24" rx="3" />
+                <circle cx="990" cy="62" r="17" />
+              </g>
+              <path d="M990 36v-8m-11 10-5-6m27 6 5-6" stroke="#b9d9c8" stroke-opacity=".7" />
+              <g class="loop-marker" id="loop-marker">
+                <rect x="104" y="56" width="12" height="12" rx="1" fill="#dbe8bd" />
+              </g>
+            </svg>
+            <div
+              class="stage-controls"
+              role="group"
+              aria-label="Explore the illustrative review loop"
+            >
+              <button
+                class="stage"
+                type="button"
+                data-stage="0"
+                aria-pressed="true"
+                aria-controls="stage-explanation"
+              >
+                <span>01 / TRIAGE</span>Choose the work
+              </button>
+              <button
+                class="stage"
+                type="button"
+                data-stage="1"
+                aria-pressed="false"
+                aria-controls="stage-explanation"
+              >
+                <span>02 / SPECIFY</span>Agree the result
+              </button>
+              <button
+                class="stage"
+                type="button"
+                data-stage="2"
+                aria-pressed="false"
+                aria-controls="stage-explanation"
+              >
+                <span>03 / BUILD</span>Make the change
+              </button>
+              <button
+                class="stage"
+                type="button"
+                data-stage="3"
+                aria-pressed="false"
+                aria-controls="stage-explanation"
+              >
+                <span>04 / REVIEW</span>Check the evidence
+              </button>
+              <button
+                class="stage"
+                type="button"
+                data-stage="4"
+                aria-pressed="false"
+                aria-controls="stage-explanation"
+              >
+                <span>05 / HUMAN APPROVAL</span>Decide what ships
+              </button>
+            </div>
+            <div
+              class="stage-explanation"
+              id="stage-explanation"
+              aria-live="polite"
+              aria-atomic="true"
+            >
+              <h3 id="stage-title">Start with an authorised task.</h3>
+              <p id="stage-copy">
+                Bring in a task from the agreed backlog. Check that its business purpose, repository
+                and permitted actions are clear before an agent starts changing anything.
+              </p>
+            </div>
+            <div class="factory-note">
+              <p>
+                Both systems work on the same change. Missing or inconclusive checks stay visible;
+                neither system approves its own release. Access limits and a way to stop or recover
+                belong in the setup, too.
+              </p>
+              <p class="mono">ILLUSTRATION / NOT A LIVE RUN</p>
+            </div>
+            <a class="dashboard-preview-link" href="../agent-factories-r1-2026-09-14/"
+              >Explore the dashboard concept ↗ <span class="mono">/ DEMO DATA</span></a
+            >
+          </div>
+        </div>
+      </section>
+      <section class="section inquiry" id="start" aria-labelledby="start-title">
+        <div class="shell inquiry-layout">
+          <div class="inquiry-intro">
+            <p class="eyebrow">Let’s talk</p>
+            <h2 id="start-title">What would you like to take off your plate?</h2>
+            <p>
+              Tell me about the work, what you already have and where you’re stuck. I’ll help you
+              work out whether Arc’IT is a fit and what a sensible first step could be.
+            </p>
+            <div class="questions">
+              <details>
+                <summary>Can you take over something we already have?</summary>
+                <p>
+                  Yes, that can be the starting point. I first review the setup and its
+                  dependencies, then we agree what needs work and what I’ll be responsible for. A
+                  useful prototype is worth building on when the foundations make sense.
+                </p>
+              </details>
+              <details>
+                <summary>What does “secure” mean here?</summary>
+                <p>
+                  Clear access limits, appropriate approvals, tests for relevant failures and a way
+                  to pause or recover. I build these into the setup and maintain the agreed parts.
+                  Risk doesn’t disappear, and an independent audit or round-the-clock incident
+                  response needs its own specialist scope.
+                </p>
+              </details>
+              <details>
+                <summary>Do the factories need another platform?</summary>
+                <p>
+                  They’re workflows I help you set up around your systems and delivery process. We
+                  choose the agent tools and hosting to fit your requirements. The useful part is a
+                  repeatable process, a clear overview and someone responsible for keeping it
+                  working.
+                </p>
+              </details>
+              <details>
+                <summary>What if I want to build it myself?</summary>
+                <p>
+                  That’s where <a href="https://onlinesourdough.com/">onlinesourdough</a> fits. Use
+                  the resources yourself or work through the decisions with me. The same
+                  business-first thinking and sensible safeguards apply; the difference is who takes
+                  care of the delivery.
+                </p>
+              </details>
+            </div>
+          </div>
+          <form
+            id="inquiry"
+            aria-label="Draft inquiry form"
+            aria-describedby="form-notice privacy-note"
+          >
+            <div class="form-notice" id="form-notice">
+              <strong>Local draft form</strong>Nothing is sent or stored. Use example details only.
+              Fields marked * are required for the preview.
+            </div>
+            <div class="form-grid">
+              <div class="field">
+                <label for="name">Name *</label
+                ><input id="name" name="name" required autocomplete="off" />
+              </div>
+              <div class="field">
+                <label for="email">Work email *</label
+                ><input id="email" name="email" type="email" required autocomplete="off" />
+              </div>
+            </div>
+            <div class="field">
+              <label for="company">Company</label
+              ><input id="company" name="company" autocomplete="off" />
+            </div>
+            <div class="field">
+              <label for="work">What work would you like to improve? *</label
+              ><textarea
+                id="work"
+                name="work"
+                required
+                placeholder="The task, who relies on it, and what’s difficult today."
+                aria-describedby="privacy-note"
+              ></textarea>
+            </div>
+            <div class="field">
+              <label for="setup">What have you already built or tried?</label
+              ><textarea
+                id="setup"
+                name="setup"
+                placeholder="An idea, a prototype, an existing system, or nothing yet."
+                aria-describedby="privacy-note"
+              ></textarea>
+            </div>
+            <p class="privacy-note" id="privacy-note">
+              A high-level description is enough. Please don’t include confidential business or
+              customer data, documents or credentials.
+            </p>
+            <button class="button" type="button" id="form-preview">
+              Preview inquiry <span aria-hidden="true">↗</span>
+            </button>
+            <p class="form-status" id="form-status" role="status"></p>
+            <noscript
+              ><p class="privacy-note">
+                This is a non-sending visual draft. JavaScript is needed for the local validation
+                demonstration.
+              </p></noscript
+            >
+          </form>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <a class="brand" href="#top"><img src="/assets/arcitai-mark-final.svg" alt="" />Arc’IT AI</a>
+      <p>Useful AI, with someone to take care of it.</p>
+      <nav class="footer-links mono" aria-label="Footer navigation">
+        <a href="#offers">The offers</a><a href="#walkthrough">The walkthrough</a
+        ><a href="mailto:hello@arcitai.com">hello@arcitai.com</a
+        ><a href="https://onlinesourdough.com/">onlinesourdough ↗</a>
+      </nav>
+      <p class="footer-rail mono">BUSINESS FIRST / SECURITY BUILT IN</p>
+    </footer>
+    <script>
+      const root = document.documentElement;
+      const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
+      const motionButton = document.querySelector("#motion-toggle");
+      let userPaused = false;
+
+      function syncMotion() {
+        const paused = userPaused || reducedMotion.matches;
+        root.dataset.motion = paused ? "off" : "on";
+        motionButton.setAttribute("aria-pressed", String(paused));
+        const motionLabel = reducedMotion.matches
+          ? "Motion off · system preference"
+          : paused
+            ? "Resume motion"
+            : "Pause motion";
+        motionButton.setAttribute("aria-label", motionLabel);
+        motionButton.title = motionLabel;
+        motionButton.textContent = reducedMotion.matches ? "—" : paused ? "▷" : "Ⅱ";
+        motionButton.disabled = reducedMotion.matches;
+      }
+      motionButton.addEventListener("click", () => {
+        userPaused = !userPaused;
+        syncMotion();
+      });
+      reducedMotion.addEventListener("change", syncMotion);
+      syncMotion();
+      document.addEventListener("visibilitychange", () => {
+        root.dataset.pageHidden = String(document.hidden);
+      });
+      root.dataset.pageHidden = String(document.hidden);
+      const observer = new IntersectionObserver((entries) => {
+        for (const entry of entries) entry.target.dataset.inView = String(entry.isIntersecting);
+      });
+      document.querySelectorAll(".motion-region").forEach((region) => observer.observe(region));
+
+      const markToggle = document.querySelector("#mark-toggle");
+      markToggle.addEventListener("click", () => {
+        const mark = document.querySelector("#hero-mark");
+        mark.hidden = !mark.hidden;
+        markToggle.textContent = mark.hidden ? "Show hero logo" : "Hide hero logo";
+      });
+
+      const themeButton = document.querySelector("#theme-toggle");
+      themeButton.addEventListener("click", () => {
+        const dark = root.dataset.theme !== "dark";
+        root.dataset.theme = dark ? "dark" : "light";
+        themeButton.setAttribute("aria-pressed", String(dark));
+        themeButton.setAttribute(
+          "aria-label",
+          dark ? "Switch to light theme" : "Switch to dark theme",
+        );
+      });
+      const sceneSelector = document.querySelector("#scene");
+      const sceneParameter = new URLSearchParams(location.search).get("scene");
+      if (["morning", "day", "evening", "night"].includes(sceneParameter)) {
+        root.dataset.scene = sceneParameter;
+        sceneSelector.value = sceneParameter;
+      }
+      sceneSelector.addEventListener("change", () => {
+        root.dataset.scene = sceneSelector.value;
+      });
+      const offersMenu = document.querySelector("#offers-menu");
+      document.addEventListener("pointerdown", (event) => {
+        if (!offersMenu.contains(event.target)) offersMenu.open = false;
+      });
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && offersMenu.open) {
+          offersMenu.open = false;
+          offersMenu.querySelector("summary").focus();
+        }
+      });
+      offersMenu.querySelectorAll("a").forEach((link) =>
+        link.addEventListener("click", () => {
+          offersMenu.open = false;
+        }),
+      );
+
+      const defenseStages = [
+        [
+          "Give the review a clear scope.",
+          "Check the relevant code and agent setup against the work it needs to do. Define what it can access, what it can change, and the failures that matter.",
+        ],
+        [
+          "Find out whether the issue is real.",
+          "Investigate a finding before changing the system. Reproduce it where it’s safe and practical, and record what we know, what it affects and where the evidence is incomplete.",
+        ],
+        [
+          "Keep the change focused.",
+          "Make a targeted fix for an accepted finding. Add a regression test where it’s safe and practical, and keep unrelated changes out of the patch.",
+        ],
+        [
+          "Check the fix and the work around it.",
+          "Rerun the original check and test that legitimate work still behaves as expected. If the evidence is inconclusive, keep the finding open and record what still needs checking.",
+        ],
+        [
+          "A person decides what goes live.",
+          "Review the change and its evidence through the agreed release process. Approval, rollback and ongoing responsibility are explicit. Verification doesn’t automatically merge or deploy anything.",
+        ],
+      ];
+      const softwareStages = [
+        [
+          "Start with an authorised task.",
+          "Bring in a task from the agreed backlog. Check that its business purpose, repository and permitted actions are clear before an agent starts changing anything.",
+        ],
+        [
+          "Make the result testable.",
+          "Define the change and what will demonstrate that it works. Resolve missing business decisions before building; keep the first useful step small.",
+        ],
+        [
+          "Work in a bounded environment.",
+          "An agent prepares the focused change in an isolated workspace, runs the agreed tests and retains evidence. Access, cost and run limits belong in the setup.",
+        ],
+        [
+          "Review the actual change.",
+          "Review the diff and its tests. Connect the required Defense checks to this exact revision. A newer commit reopens the checks affected by the change.",
+        ],
+        defenseStages[4],
+      ];
+      const stageLabels = {
+        software: [
+          ["TRIAGE", "Choose the work"],
+          ["SPECIFY", "Agree the result"],
+          ["BUILD", "Make the change"],
+          ["REVIEW", "Check the evidence"],
+          ["HUMAN APPROVAL", "Decide what ships"],
+        ],
+        defense: [
+          ["REVIEW", "Check the change"],
+          ["VALIDATE", "Understand the issue"],
+          ["FIX", "Make a focused fix"],
+          ["VERIFY", "Test it again"],
+          ["HUMAN APPROVAL", "Decide what ships"],
+        ],
+      };
+      let factoryView = "software";
+      const stageButtons = [...document.querySelectorAll("[data-stage]")];
+      function selectStage(index) {
+        const stages = factoryView === "software" ? softwareStages : defenseStages;
+        stageButtons.forEach((button, position) =>
+          button.setAttribute("aria-pressed", String(position === index)),
+        );
+        document.querySelector("#stage-title").textContent = stages[index][0];
+        document.querySelector("#stage-copy").textContent = stages[index][1];
+        document.querySelector("#loop-marker").style.transform = `translateX(${index * 220}px)`;
+      }
+      stageButtons.forEach((button) =>
+        button.addEventListener("click", () => selectStage(Number(button.dataset.stage))),
+      );
+      document.querySelectorAll("[data-factory]").forEach((button) =>
+        button.addEventListener("click", () => {
+          factoryView = button.dataset.factory;
+          document
+            .querySelectorAll("[data-factory]")
+            .forEach((mode) => mode.setAttribute("aria-pressed", String(mode === button)));
+          stageButtons.forEach((stage, index) => {
+            const label = document.createElement("span");
+            label.textContent = `0${index + 1} / ${stageLabels[factoryView][index][0]}`;
+            stage.replaceChildren(
+              label,
+              document.createTextNode(stageLabels[factoryView][index][1]),
+            );
+          });
+          selectStage(0);
+        }),
+      );
+
+      const form = document.querySelector("#inquiry");
+      const formStatus = document.querySelector("#form-status");
+      form.addEventListener("submit", (event) => event.preventDefault());
+      form.addEventListener("input", () => {
+        formStatus.textContent = "";
+      });
+      document.querySelector("#form-preview").addEventListener("click", () => {
+        if (form.reportValidity())
+          formStatus.textContent = "Preview only. Your message hasn’t been sent or stored.";
+      });
+    </script>
+  </body>
+</html>

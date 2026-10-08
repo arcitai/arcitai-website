@@ -1,0 +1,32 @@
+[
+  {
+    "file": "arcitai-day-loop-v6.mp4",
+    "sha256": "2034f8c4cdff6f93a0b8f375a877d6bd0a47364252ad9242c38b59391d7b8986",
+    "bytes": 3798608,
+    "duration": 10.0,
+    "width": 1280,
+    "height": 720,
+    "fps": 24,
+    "frames": 240,
+    "audio": false,
+    "faststart": true,
+    "first_last_MAE_0_255": 4.751,
+    "final_adjacent_frame_MAE_0_255": 0.097,
+    "source": "Google Flow Omni 1.1 Flash; motion and timing preserved; audio removed and H264 web encoding only."
+  },
+  {
+    "file": "arcitai-evening-loop-v6.mp4",
+    "sha256": "995e04dc75fb9f376075e84ddc2cf68c5b4d01a668634a6d0519b9f14cb5272b",
+    "bytes": 2675355,
+    "duration": 10.0,
+    "width": 1280,
+    "height": 720,
+    "fps": 24,
+    "frames": 240,
+    "audio": false,
+    "faststart": true,
+    "first_last_MAE_0_255": 3.272,
+    "final_adjacent_frame_MAE_0_255": 0.098,
+    "source": "Google Flow Omni 1.1 Flash; motion and timing preserved; audio removed and H264 web encoding only."
+  }
+]

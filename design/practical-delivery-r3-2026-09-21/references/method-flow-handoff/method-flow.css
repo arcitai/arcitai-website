@@ -1,0 +1,46 @@
+.da-flow {
+  grid-column: 1 / -1;
+  width: 100%;
+  margin: 0;
+  color: var(--text);
+}
+.da-interactive-flow {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.da-interactive-flow:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 8px;
+  border-radius: 4px;
+}
+.da-pipeline {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 155px;
+  overflow: hidden;
+}
+.da-stage {
+  font: 11px var(--font-mono);
+  letter-spacing: 0.12em;
+}
+.da-mobile-stages { display: none; }
+@media (max-width: 650px) {
+  .da-mobile-stages {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 4px;
+    color: var(--muted);
+    font: 11px/1.4 var(--font-mono);
+  }
+  .da-pipeline { min-height: 125px; }
+  .da-pipeline .da-stage { display: none; }
+}

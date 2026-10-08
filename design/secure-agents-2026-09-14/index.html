@@ -1,0 +1,1345 @@
+<!doctype html>
+<html lang="en" data-theme="light" data-scene="day">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; font-src 'self'; connect-src 'self' ws://127.0.0.1:4175; form-action 'none'; base-uri 'none'"
+    />
+    <meta
+      name="description"
+      content="Local copy and layout draft for Arc’IT AI. Nothing entered here is sent."
+    />
+    <title>Arc’IT AI | Secure Agents — local draft</title>
+    <link rel="icon" href="/assets/arcitai-mark-final.svg" type="image/svg+xml" />
+    <style>
+      @font-face {
+        font-family: "Geist Sans";
+        src: url("/assets/fonts/geist-sans-variable.woff2") format("woff2");
+        font-style: normal;
+        font-weight: 100 900;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: "Geist Mono";
+        src: url("/assets/fonts/geist-mono-variable.woff2") format("woff2");
+        font-style: normal;
+        font-weight: 100 900;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: "Geist Pixel";
+        src: url("/assets/fonts/geist-pixel-square.woff2") format("woff2");
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+      }
+      :root {
+        color-scheme: light;
+        --paper: #f8f2e8;
+        --surface: #fffaf1;
+        --soft: #f1eadf;
+        --ink: #18211d;
+        --muted: #6f6a61;
+        --muted-on-soft: #6b665e;
+        --primary: #14211d;
+        --on-primary: #fffaf1;
+        --accent: #236b59;
+        --line: #d9d2c6;
+        --control-line: #8a877e;
+        --landscape: url("/assets/arcitai-panorama-day-v1.jpg");
+      }
+      :root[data-theme="dark"] {
+        color-scheme: dark;
+        --paper: #171814;
+        --surface: #20231e;
+        --soft: #292d26;
+        --ink: #fff6e7;
+        --muted: #c4beb2;
+        --muted-on-soft: #c4beb2;
+        --primary: #fff6e7;
+        --on-primary: #171814;
+        --accent: #78cbb3;
+        --line: #464a40;
+        --control-line: #8d9586;
+      }
+      :root[data-scene="morning"] {
+        --landscape: url("/assets/arcitai-panorama-morning-v1.jpg");
+      }
+      :root[data-scene="evening"] {
+        --landscape: url("/assets/arcitai-panorama-evening-v1.jpg");
+      }
+      :root[data-scene="night"] {
+        --landscape: url("/assets/arcitai-panorama-night-v1.jpg");
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 94px;
+      }
+      body {
+        margin: 0;
+        color: var(--ink);
+        background: var(--paper);
+        font-family: "Geist Sans", sans-serif;
+        font-size: 17px;
+        line-height: 1.65;
+      }
+      button,
+      input,
+      textarea,
+      select {
+        font: inherit;
+      }
+      button,
+      summary,
+      select {
+        cursor: pointer;
+      }
+      a {
+        color: inherit;
+        text-underline-offset: 4px;
+      }
+      button,
+      a,
+      input,
+      textarea,
+      select,
+      summary {
+        -webkit-tap-highlight-color: transparent;
+      }
+      :focus-visible {
+        outline: 3px solid var(--accent);
+        outline-offset: 5px;
+      }
+      :target {
+        scroll-margin-top: 94px;
+      }
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+      }
+      h1,
+      h2 {
+        font-family: "Geist Pixel", sans-serif;
+        font-weight: 400;
+        line-height: 1.06;
+        letter-spacing: -0.035em;
+        text-wrap: balance;
+      }
+      h1 {
+        font-size: clamp(52px, 7.1vw, 104px);
+      }
+      h2 {
+        font-size: clamp(38px, 4.4vw, 64px);
+      }
+      h3 {
+        font-size: 27px;
+        font-weight: 500;
+        line-height: 1.23;
+        letter-spacing: -0.025em;
+      }
+      p + p {
+        margin-top: 18px;
+      }
+      .shell {
+        width: min(1240px, calc(100% - 48px));
+        margin-inline: auto;
+      }
+      .mono,
+      .eyebrow,
+      .row-note,
+      .review-bar {
+        --muted: var(--muted-on-soft);
+        font-family: "Geist Mono", monospace;
+        font-size: 12px;
+        line-height: 1.6;
+        letter-spacing: 0.025em;
+      }
+      .eyebrow {
+        margin-bottom: 22px;
+        color: var(--muted);
+      }
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+      .skip-link {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        z-index: 100;
+        padding: 12px 18px;
+        background: var(--surface);
+        transform: translateY(-160%);
+      }
+      .skip-link:focus {
+        transform: none;
+      }
+      .review-bar {
+        padding: 8px 0;
+        background: var(--soft);
+        color: var(--muted);
+        border-bottom: 1px solid var(--line);
+      }
+      .review-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+      }
+      .scene-choice {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-shrink: 0;
+      }
+      .scene-choice select {
+        min-height: 30px;
+        padding: 2px 6px;
+        color: var(--ink);
+        background: var(--surface);
+        border: 1px solid var(--control-line);
+        border-radius: 3px;
+        font-size: 12px;
+      }
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: var(--paper);
+        border-bottom: 1px solid var(--line);
+      }
+      .header-inner {
+        position: relative;
+        min-height: 70px;
+        display: flex;
+        align-items: center;
+        gap: 38px;
+      }
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+        white-space: nowrap;
+        font-size: 20px;
+        font-weight: 600;
+        letter-spacing: -0.04em;
+      }
+      .brand img {
+        width: 27px;
+        height: 27px;
+        filter: brightness(0);
+      }
+      [data-theme="dark"] .brand img {
+        filter: brightness(0) invert(0.94);
+      }
+      .header-nav {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 28px;
+      }
+      .header-nav > a {
+        text-decoration: none;
+      }
+      .header-nav > a:hover,
+      footer a:hover {
+        text-decoration: underline;
+      }
+      .offers summary {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        min-height: 44px;
+        list-style: none;
+      }
+      .offers summary::-webkit-details-marker {
+        display: none;
+      }
+      .offers[open] summary .chevron {
+        transform: rotate(180deg);
+      }
+      .offers-panel {
+        position: absolute;
+        top: calc(100% + 8px);
+        right: 0;
+        width: min(560px, 100%);
+        padding: 12px;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 5px;
+        box-shadow: 0 18px 38px #00000018;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .offer-link {
+        padding: 20px;
+        text-decoration: none;
+        border-radius: 3px;
+      }
+      .offer-link:hover {
+        background: var(--soft);
+      }
+      .offer-link strong {
+        display: block;
+        margin: 10px 0 8px;
+        font:
+          500 21px/1.3 "Geist Sans",
+          sans-serif;
+      }
+      .offer-link p {
+        font:
+          15px/1.6 "Geist Sans",
+          sans-serif;
+        color: var(--muted);
+      }
+      .offer-link .offer-action {
+        display: block;
+        margin-top: 16px;
+        text-decoration: underline;
+      }
+      .theme-button {
+        display: grid;
+        place-items: center;
+        flex-shrink: 0;
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        background: transparent;
+        color: var(--ink);
+        border: 1px solid var(--control-line);
+        border-radius: 50%;
+      }
+      .theme-button:hover {
+        background: var(--soft);
+      }
+      .theme-button svg {
+        width: 19px;
+        height: 19px;
+      }
+      .hero {
+        position: relative;
+        min-height: calc(100svh - 119px);
+        padding: 78px 24px 24px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow: hidden;
+        isolation: isolate;
+      }
+      .hero::before,
+      .site-footer::before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        inset: auto 0 0;
+        height: 46%;
+        background-image:
+          linear-gradient(to bottom, var(--paper), transparent 58%), var(--landscape);
+        background-position:
+          center top,
+          center 64%;
+        background-size: cover;
+      }
+      .hero-intro {
+        text-align: center;
+        max-width: 1020px;
+        padding-bottom: 112px;
+      }
+      .hero .eyebrow {
+        color: var(--accent);
+      }
+      .hero h1 span {
+        display: block;
+      }
+      .hero-lead {
+        max-width: 615px;
+        margin: 25px auto 0;
+        font-size: 19px;
+        line-height: 1.65;
+      }
+      .hero-actions {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 30px;
+      }
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 26px;
+        min-height: 51px;
+        padding: 13px 20px;
+        border-radius: 4px;
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 1.5;
+        text-decoration: none;
+        border: 1px solid var(--control-line);
+        background: var(--paper);
+        color: var(--ink);
+      }
+      .button-primary {
+        color: var(--on-primary);
+        background: var(--primary);
+        border-color: var(--primary);
+      }
+      .button:hover {
+        box-shadow: inset 0 0 0 1px currentColor;
+      }
+      .hero-rail {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        margin-top: auto;
+        width: min(1240px, 100%);
+        padding-top: 20px;
+      }
+      .hero-rail span {
+        background: var(--paper);
+        padding: 5px 8px;
+        font-size: 11px;
+      }
+      .section {
+        padding-top: 116px;
+        padding-bottom: 116px;
+      }
+      .section-intro {
+        max-width: 790px;
+        margin-inline: auto;
+        text-align: center;
+      }
+      .section-intro .intro-copy {
+        max-width: 665px;
+        margin: 26px auto 0;
+        color: var(--muted);
+      }
+      .example {
+        max-width: 950px;
+        margin: 52px auto 0;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        overflow: hidden;
+      }
+      .example-bar {
+        --muted: var(--muted-on-soft);
+        display: flex;
+        justify-content: space-between;
+        gap: 15px;
+        padding: 13px 22px;
+        background: var(--soft);
+        border-bottom: 1px solid var(--line);
+        color: var(--muted);
+      }
+      .example-body {
+        padding: 36px 38px 32px;
+      }
+      .example-body > p {
+        margin-top: 14px;
+        max-width: 620px;
+        color: var(--muted);
+      }
+      .workflow {
+        list-style: none;
+        padding: 0;
+        margin: 30px 0;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        border: 1px solid var(--line);
+        border-radius: 3px;
+      }
+      .workflow li {
+        position: relative;
+        display: flex;
+        gap: 11px;
+        align-items: center;
+        padding: 22px 18px;
+        font-size: 15px;
+        line-height: 1.4;
+      }
+      .workflow li + li {
+        border-left: 1px solid var(--line);
+      }
+      .workflow li:last-child {
+        background: var(--soft);
+      }
+      .workflow .step-index {
+        font:
+          12px/1 "Geist Mono",
+          monospace;
+        color: var(--accent);
+      }
+      .constraints {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 26px;
+        margin: 0;
+      }
+      .constraints dt {
+        font-size: 14px;
+        line-height: 1.4;
+        font-weight: 600;
+        margin-bottom: 9px;
+      }
+      .constraints dd {
+        margin: 0;
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.6;
+      }
+      .example-body > .example-note {
+        margin-top: 28px;
+        font-size: 15px;
+      }
+      .example-body > .example-caption {
+        font-size: 13px;
+      }
+      .scope {
+        border-top: 1px solid var(--line);
+      }
+      .ledger {
+        margin-top: 62px;
+      }
+      .scope-row {
+        display: grid;
+        grid-template-columns: 150px minmax(0, 1fr) minmax(0, 1.15fr);
+        column-gap: 45px;
+        row-gap: 18px;
+        padding: 44px 0;
+      }
+      .scope-row + .scope-row {
+        border-top: 1px solid var(--line);
+      }
+      .step-label {
+        color: var(--muted);
+        padding-top: 4px;
+      }
+      .step-label span {
+        display: inline-block;
+        margin-right: 14px;
+        color: var(--accent);
+      }
+      .row-description {
+        color: var(--muted);
+      }
+      .row-note {
+        display: block;
+        margin-top: 20px;
+        font-size: 11px;
+        color: var(--accent);
+      }
+      .start {
+        --muted: var(--muted-on-soft);
+        background: var(--soft);
+        border-top: 1px solid var(--line);
+      }
+      .start-inner {
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
+        gap: 90px;
+        align-items: start;
+      }
+      .start-copy > p:not(.eyebrow) {
+        margin-top: 22px;
+        color: var(--muted);
+      }
+      .questions {
+        margin-top: 36px;
+      }
+      .question {
+        border-top: 1px solid var(--control-line);
+      }
+      .question:last-child {
+        border-bottom: 1px solid var(--control-line);
+      }
+      .question summary {
+        min-height: 55px;
+        padding: 16px 22px 16px 0;
+        font-size: 15px;
+        line-height: 1.5;
+      }
+      .question p {
+        font-size: 15px;
+        color: var(--muted);
+        padding-bottom: 20px;
+      }
+      .inquiry {
+        padding: 32px;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 5px;
+      }
+      .form-notice {
+        padding-bottom: 22px;
+        margin-bottom: 24px;
+        border-bottom: 1px solid var(--line);
+        color: var(--muted);
+      }
+      .form-notice p {
+        font-size: 14px;
+        line-height: 1.5;
+        margin-top: 5px;
+      }
+      .field {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 21px;
+      }
+      .field-pair {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+      }
+      label {
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.5;
+      }
+      label .optional {
+        font-size: 12px;
+        font-weight: 400;
+        color: var(--muted);
+      }
+      input,
+      textarea {
+        width: 100%;
+        min-width: 0;
+        min-height: 49px;
+        padding: 12px;
+        border: 1px solid var(--control-line);
+        border-radius: 3px;
+        background: var(--surface);
+        color: var(--ink);
+        font-size: 16px;
+        line-height: 1.5;
+      }
+      textarea {
+        min-height: 124px;
+        resize: vertical;
+      }
+      input::placeholder,
+      textarea::placeholder {
+        color: var(--muted);
+        opacity: 1;
+      }
+      .privacy-note {
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.65;
+        margin-bottom: 23px;
+      }
+      .inquiry .button {
+        width: 100%;
+      }
+      .form-status {
+        min-height: 24px;
+        margin-top: 15px;
+        font-size: 14px;
+        font-weight: 500;
+      }
+      .site-footer {
+        position: relative;
+        isolation: isolate;
+        overflow: hidden;
+        min-height: 475px;
+        padding: 67px 24px 30px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+      }
+      .site-footer::before {
+        height: 50%;
+      }
+      .footer-line {
+        color: var(--muted);
+      }
+      .footer-links {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px 24px;
+      }
+      .footer-links a {
+        font-size: 13px;
+        text-decoration: none;
+      }
+      .footer-rail {
+        margin-top: auto;
+        background: var(--paper);
+        padding: 5px 8px;
+        font-size: 11px;
+      }
+      @media (min-width: 1600px) {
+        .hero-intro {
+          padding-top: 35px;
+        }
+      }
+      @media (max-width: 980px) {
+        .header-inner {
+          gap: 22px;
+        }
+        .header-nav {
+          gap: 22px;
+        }
+        .header-nav .scope-link {
+          display: none;
+        }
+        .section {
+          padding-top: 88px;
+          padding-bottom: 88px;
+        }
+        .scope-row {
+          grid-template-columns: 130px minmax(0, 1fr);
+          gap: 16px 35px;
+        }
+        .row-description {
+          grid-column: 2;
+        }
+        .start-inner {
+          grid-template-columns: 1fr;
+          gap: 42px;
+          max-width: 740px;
+        }
+        .hero {
+          min-height: 850px;
+        }
+      }
+      @media (max-width: 600px) {
+        html {
+          scroll-padding-top: 82px;
+        }
+        :target {
+          scroll-margin-top: 82px;
+        }
+        .shell {
+          width: calc(100% - 36px);
+        }
+        .review-inner {
+          align-items: flex-start;
+          gap: 12px;
+        }
+        .review-bar {
+          font-size: 10px;
+        }
+        .review-text {
+          max-width: 195px;
+        }
+        .scene-choice {
+          gap: 4px;
+        }
+        .scene-choice label {
+          font-size: 10px;
+        }
+        .scene-choice select {
+          max-width: 89px;
+          font-size: 11px;
+        }
+        .header-inner {
+          min-height: 64px;
+          gap: 16px;
+        }
+        .brand {
+          font-size: 19px;
+          gap: 8px;
+        }
+        .brand img {
+          width: 24px;
+          height: 24px;
+        }
+        .header-nav {
+          gap: 0;
+        }
+        .header-nav > a {
+          display: none;
+        }
+        .theme-button {
+          width: 39px;
+          height: 39px;
+        }
+        .offers-panel {
+          grid-template-columns: 1fr;
+          max-height: calc(100svh - 95px);
+          overflow-y: auto;
+          gap: 0;
+        }
+        .offer-link {
+          padding: 18px;
+        }
+        .offer-link + .offer-link {
+          border-top: 1px solid var(--line);
+        }
+        .hero {
+          padding: 55px 18px 18px;
+          min-height: 810px;
+        }
+        .hero-intro {
+          padding-bottom: 150px;
+        }
+        .hero h1 {
+          font-size: clamp(49px, 12.8vw, 73px);
+          line-height: 1.04;
+        }
+        .hero .eyebrow {
+          font-size: 11px;
+          margin-bottom: 20px;
+        }
+        .hero-lead {
+          margin-top: 23px;
+          font-size: 17px;
+          line-height: 1.6;
+          max-width: 365px;
+        }
+        .hero-actions {
+          margin-top: 26px;
+          flex-direction: column;
+          align-items: center;
+        }
+        .hero-actions .button {
+          width: min(100%, 310px);
+        }
+        .hero::before {
+          height: 32%;
+        }
+        .hero-rail {
+          justify-content: center;
+        }
+        .hero-rail .rail-brand {
+          display: none;
+        }
+        .hero-rail span {
+          font-size: 10px;
+        }
+        .section {
+          padding-top: 70px;
+          padding-bottom: 70px;
+        }
+        .section-intro {
+          text-align: left;
+        }
+        .section-intro .intro-copy {
+          margin-top: 23px;
+        }
+        .eyebrow {
+          font-size: 11px;
+          margin-bottom: 18px;
+        }
+        h2 {
+          font-size: 40px;
+        }
+        h3 {
+          font-size: 25px;
+        }
+        .example {
+          margin-top: 32px;
+        }
+        .example-bar {
+          padding: 12px 19px;
+          font-size: 10px;
+        }
+        .example-bar .example-brand {
+          display: none;
+        }
+        .example-body {
+          padding: 25px 20px;
+        }
+        .workflow {
+          grid-template-columns: 1fr;
+          margin: 25px 0;
+        }
+        .workflow li {
+          padding: 17px;
+        }
+        .workflow li + li {
+          border-left: 0;
+          border-top: 1px solid var(--line);
+        }
+        .constraints {
+          grid-template-columns: 1fr;
+          gap: 19px;
+        }
+        .constraints dt {
+          margin-bottom: 4px;
+        }
+        .ledger {
+          margin-top: 25px;
+        }
+        .scope-row {
+          grid-template-columns: 1fr;
+          gap: 18px;
+          padding: 31px 0;
+        }
+        .row-description {
+          grid-column: 1;
+        }
+        .row-note {
+          margin-top: 18px;
+          font-size: 10px;
+          letter-spacing: 0;
+        }
+        .start-inner {
+          gap: 34px;
+        }
+        .inquiry {
+          padding: 24px 19px 16px;
+        }
+        .field-pair {
+          grid-template-columns: 1fr;
+          gap: 0;
+        }
+        .site-footer {
+          min-height: 490px;
+          padding-top: 55px;
+        }
+        .footer-line {
+          max-width: 235px;
+        }
+        .footer-links {
+          gap: 9px 18px;
+        }
+        .site-footer::before {
+          height: 40%;
+        }
+        .footer-rail {
+          font-size: 10px;
+        }
+      }
+      @media (max-width: 350px) {
+        .header-inner {
+          gap: 11px;
+        }
+        h2 {
+          font-size: 36px;
+        }
+        .hero h1 {
+          font-size: 48px;
+        }
+        .hero {
+          min-height: 850px;
+        }
+        .review-text {
+          max-width: 150px;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <aside class="review-bar" aria-label="Draft review controls">
+      <div class="shell review-inner">
+        <p class="review-text">LOCAL DRAFT · 14 SEP 2026 · FORM DOES NOT SEND</p>
+        <div class="scene-choice">
+          <label for="scene">Scene</label>
+          <select id="scene">
+            <option value="morning">Morning</option>
+            <option value="day" selected>Day</option>
+            <option value="evening">Evening</option>
+            <option value="night">Night</option>
+          </select>
+        </div>
+      </div>
+    </aside>
+    <header class="site-header">
+      <div class="shell header-inner">
+        <a href="#top" class="brand" aria-label="Arc’IT AI, back to top">
+          <img src="/assets/arcitai-mark-final.svg" alt="" width="27" height="27" />
+          <span>Arc’IT AI</span>
+        </a>
+        <nav class="header-nav mono" aria-label="Main navigation">
+          <details class="offers" id="offers">
+            <summary>Offers <span class="chevron" aria-hidden="true">⌄</span></summary>
+            <div class="offers-panel">
+              <a class="offer-link" href="#scope">
+                <span class="mono">DONE FOR YOU</span>
+                <strong>Arc’IT AI</strong>
+                <p>
+                  I set up and maintain the AI tools, agents and workflows your business needs, with
+                  security built into the work.
+                </p>
+                <span class="offer-action mono">Explore Arc’IT AI ↗</span>
+              </a>
+              <a
+                class="offer-link"
+                href="https://onlinesourdough.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span class="mono">DIY + DONE WITH YOU</span>
+                <strong>onlinesourdough</strong>
+                <p>
+                  Understand agents, build your own AI workspace and apply it to your business. Work
+                  independently or with me close to the decisions.
+                </p>
+                <span class="offer-action mono"
+                  >Explore onlinesourdough ↗<span class="sr-only"> (opens in a new tab)</span></span
+                >
+              </a>
+            </div>
+          </details>
+          <a href="#approach">How I work</a>
+          <a href="#scope" class="scope-link">What I take care of</a>
+          <a href="#start">Let’s talk ↘</a>
+        </nav>
+        <button
+          type="button"
+          id="theme-toggle"
+          class="theme-button"
+          aria-label="Switch to dark theme"
+          aria-pressed="false"
+        >
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+          >
+            <circle cx="12" cy="12" r="8" />
+            <path d="M12 4a8 8 0 0 1 0 16Z" fill="currentColor" stroke="none" />
+          </svg>
+        </button>
+      </div>
+    </header>
+    <main id="main" tabindex="-1">
+      <section class="hero" id="top" aria-labelledby="hero-title">
+        <div class="hero-intro">
+          <p class="eyebrow">SECURE AGENTS / DONE FOR YOU</p>
+          <h1 id="hero-title"><span>Put AI to work.</span><span>Keep control.</span></h1>
+          <p class="hero-lead">
+            I help you take time-consuming work off your team’s plate. I set up and maintain the AI
+            tools, agents and workflows behind it, with clear limits on what they can access and do.
+          </p>
+          <div class="hero-actions">
+            <a href="#start" class="button button-primary"
+              >Talk about your setup <span aria-hidden="true">↘</span></a
+            >
+            <a href="#approach" class="button">See how I work <span aria-hidden="true">↓</span></a>
+          </div>
+        </div>
+        <div class="hero-rail mono">
+          <span>BUSINESS FIRST / SECURITY BUILT IN</span><span class="rail-brand">ARC’IT AI</span>
+        </div>
+      </section>
+      <section class="section shell" id="approach" aria-labelledby="approach-title">
+        <div class="section-intro">
+          <p class="eyebrow">HOW I WORK</p>
+          <h2 id="approach-title">Start with the work you want to improve.</h2>
+          <div class="intro-copy">
+            <p>
+              Hey, I’m Gustav. I work across business and software architecture. I’ll help you
+              decide where AI is useful, make the setup work with your team, and take responsibility
+              for the parts we agree I’ll run.
+            </p>
+            <p>
+              Sometimes that means building. Sometimes it means simplifying the process or making
+              better use of what you already have.
+            </p>
+          </div>
+        </div>
+        <article class="example" aria-labelledby="example-title">
+          <div class="example-bar mono">
+            <span>ILLUSTRATIVE WORKFLOW</span
+            ><span class="example-brand" aria-hidden="true">ARC’IT AI</span>
+          </div>
+          <div class="example-body">
+            <h3 id="example-title">An agent that helps prepare quotes.</h3>
+            <p>
+              Give it the approved pricing and a selected client brief. Let it prepare a draft for a
+              colleague to review.
+            </p>
+            <ol class="workflow" aria-label="Quote preparation workflow">
+              <li><span class="step-index" aria-hidden="true">01</span> Approved inputs</li>
+              <li><span class="step-index" aria-hidden="true">02</span> Draft quote</li>
+              <li><span class="step-index" aria-hidden="true">03</span> Human approval</li>
+            </ol>
+            <dl class="constraints">
+              <div>
+                <dt>What it can read</dt>
+                <dd>The selected brief and approved pricing.</dd>
+              </div>
+              <div>
+                <dt>What stays with a person</dt>
+                <dd>Approving and sending the quote. Changing source prices.</dd>
+              </div>
+              <div>
+                <dt>When required pricing is missing</dt>
+                <dd>The workflow returns the draft for clarification.</dd>
+              </div>
+            </dl>
+            <p class="example-note">
+              I’d enforce those limits in the permissions and workflow, then test whether they hold.
+              Instructions alone aren’t enough.
+            </p>
+            <p class="example-caption">An example of the approach, not a customer case.</p>
+          </div>
+        </article>
+      </section>
+      <section class="section scope" id="scope" aria-labelledby="scope-title">
+        <div class="shell">
+          <div class="section-intro">
+            <p class="eyebrow">WHAT I TAKE CARE OF</p>
+            <h2 id="scope-title">From the first decision to the day-to-day work.</h2>
+            <p class="intro-copy">
+              You bring the work you’d like to improve. I handle the technical decisions and
+              delivery, with your team involved where their knowledge or approval is needed.
+            </p>
+          </div>
+          <div class="ledger">
+            <article class="scope-row">
+              <p class="step-label mono"><span>01</span> Understand</p>
+              <h3>Choose one worthwhile change.</h3>
+              <div class="row-description">
+                <p>
+                  We map the work, choose the result worth aiming for, and agree where the agent
+                  should help and where a person stays in charge. We define how we’ll judge whether
+                  the change is worth the effort.
+                </p>
+                <span class="row-note">OUTCOME / SCOPE / RESPONSIBILITY</span>
+              </div>
+            </article>
+            <article class="scope-row">
+              <p class="step-label mono"><span>02</span> Set up</p>
+              <h3>Build around your business.</h3>
+              <div class="row-description">
+                <p>
+                  I configure the tools, context and connections the work needs. That can include
+                  software and integrations, with access limited to the data and actions the task
+                  requires.
+                </p>
+                <span class="row-note">TOOLS / DATA / PERMISSIONS</span>
+              </div>
+            </article>
+            <article class="scope-row">
+              <p class="step-label mono"><span>03</span> Test</p>
+              <h3>Test the work and its boundaries.</h3>
+              <div class="row-description">
+                <p>
+                  I review the setup and relevant code, test the important failure paths, fix what
+                  we find, and check the changes again. That includes misleading input and attempts
+                  to use data or actions outside the agreed scope.
+                </p>
+                <span class="row-note">REVIEW / FIX / RETEST</span>
+              </div>
+            </article>
+            <article class="scope-row">
+              <p class="step-label mono"><span>04</span> Run</p>
+              <h3>Keep it working as things change.</h3>
+              <div class="row-description">
+                <p>
+                  I look after the agreed setup, including maintenance and reviews when the tools,
+                  access or workflows change. We define what I own, what your team owns, and how to
+                  pause or recover the system.
+                </p>
+                <span class="row-note">MAINTENANCE / OWNERSHIP / RECOVERY</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section class="section start" id="start" aria-labelledby="start-title">
+        <div class="shell start-inner">
+          <div class="start-copy">
+            <p class="eyebrow">LET’S TALK</p>
+            <h2 id="start-title">Tell me what you’d like to improve.</h2>
+            <p>
+              You might be exploring a first workflow, connecting AI to company data, or looking for
+              someone to take care of a setup you already have.
+            </p>
+            <p>
+              Tell me a little about the work and what you need. I’ll help you work out whether
+              Arc’IT is a fit and what a sensible first step could be.
+            </p>
+            <div class="questions" aria-label="Practical questions">
+              <details class="question">
+                <summary>Does this fit our business?</summary>
+                <p>
+                  The strongest fit is work where agents connect to company data or processes other
+                  people rely on. That often means mid-size and larger teams. A smaller business can
+                  have the same need, and we can start with one workflow.
+                </p>
+              </details>
+              <details class="question">
+                <summary>Do we need a new platform?</summary>
+                <p>
+                  We start with the tools you have. I’ll recommend changing them when there’s a
+                  clear reason, rather than making a new platform the starting point.
+                </p>
+              </details>
+              <details class="question">
+                <summary>What does “secure” mean here?</summary>
+                <p>
+                  It means designing around the data and actions involved, putting practical limits
+                  in place, testing them, and maintaining the agreed setup. Risk doesn’t disappear.
+                  A certification, independent audit or round-the-clock incident response would need
+                  its own specialist scope.
+                </p>
+              </details>
+            </div>
+          </div>
+          <form
+            class="inquiry"
+            id="inquiry"
+            aria-label="Draft inquiry form"
+            aria-describedby="form-notice privacy-note"
+          >
+            <div class="form-notice" id="form-notice">
+              <span class="mono">PREVIEW ONLY</span>
+              <p>
+                This form doesn’t send or store your message. Fields marked * are required for the
+                demo.
+              </p>
+            </div>
+            <div class="field-pair">
+              <div class="field">
+                <label for="name">Name <span aria-hidden="true">*</span></label
+                ><input id="name" name="name" autocomplete="off" required maxlength="120" />
+              </div>
+              <div class="field">
+                <label for="email">Work email <span aria-hidden="true">*</span></label
+                ><input
+                  id="email"
+                  name="email"
+                  type="email"
+                  autocomplete="off"
+                  required
+                  maxlength="254"
+                />
+              </div>
+            </div>
+            <div class="field">
+              <label for="company">Company <span class="optional">(optional)</span></label
+              ><input id="company" name="company" autocomplete="off" maxlength="200" />
+            </div>
+            <div class="field">
+              <label for="work"
+                >What work would you like to improve? <span aria-hidden="true">*</span></label
+              ><textarea
+                id="work"
+                name="work"
+                required
+                maxlength="3000"
+                placeholder="The task, who relies on it, and what makes it difficult today."
+                aria-describedby="privacy-note"
+              ></textarea>
+            </div>
+            <div class="field">
+              <label for="tools"
+                >Which tools or agents are involved? <span class="optional">(optional)</span></label
+              ><input
+                id="tools"
+                name="tools"
+                maxlength="400"
+                placeholder="If you already have a setup."
+                aria-describedby="privacy-note"
+              />
+            </div>
+            <p id="privacy-note" class="privacy-note">
+              A high-level description is enough. Please don’t include confidential business or
+              customer data, documents or credentials.
+            </p>
+            <button type="button" class="button button-primary" id="preview-submit">
+              Discuss my setup <span aria-hidden="true">↗</span>
+            </button>
+            <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+            <noscript
+              ><p class="privacy-note">
+                The form is a local visual draft. JavaScript is needed for the validation demo;
+                nothing can be submitted.
+              </p></noscript
+            >
+          </form>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <a class="brand" href="#top"
+        ><img src="/assets/arcitai-mark-final.svg" width="27" height="27" alt="" /><span
+          >Arc’IT AI</span
+        ></a
+      >
+      <p class="footer-line">Useful AI, with someone to take care of it.</p>
+      <nav class="footer-links mono" aria-label="Footer navigation">
+        <a href="#scope">Offers</a><a href="#approach">How I work</a><a href="#start">Let’s talk</a>
+      </nav>
+      <div class="footer-links mono">
+        <a href="mailto:hello@arcitai.com">hello@arcitai.com</a
+        ><a href="https://gustavonline.com">Gustav Online</a
+        ><a href="https://onlinesourdough.com">onlinesourdough</a>
+      </div>
+      <p class="footer-rail mono">BUSINESS FIRST / SECURITY BUILT IN</p>
+    </footer>
+    <script>
+      const root = document.documentElement;
+      const themeButton = document.querySelector("#theme-toggle");
+      const offers = document.querySelector("#offers");
+      const sceneChoice = document.querySelector("#scene");
+      const form = document.querySelector("#inquiry");
+      const formStatus = document.querySelector("#form-status");
+
+      themeButton.addEventListener("click", () => {
+        const dark = root.dataset.theme !== "dark";
+        root.dataset.theme = dark ? "dark" : "light";
+        themeButton.setAttribute("aria-pressed", String(dark));
+        themeButton.setAttribute(
+          "aria-label",
+          dark ? "Switch to light theme" : "Switch to dark theme",
+        );
+      });
+
+      sceneChoice.addEventListener("change", () => {
+        const selected = sceneChoice.value;
+        if (["morning", "day", "evening", "night"].includes(selected)) {
+          root.dataset.scene = selected;
+        }
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && offers.open) {
+          offers.open = false;
+          offers.querySelector("summary").focus();
+        }
+      });
+      document.addEventListener("click", (event) => {
+        if (!offers.contains(event.target) || event.target.closest(".offer-link")) {
+          offers.open = false;
+        }
+      });
+
+      // This is a non-sending prototype. Keep entries in the browser only.
+      form.addEventListener("submit", (event) => event.preventDefault());
+      form.addEventListener("input", () => {
+        formStatus.textContent = "";
+      });
+      document.querySelector("#preview-submit").addEventListener("click", () => {
+        if (!form.reportValidity()) return;
+        formStatus.textContent = "Preview only. Your message hasn’t been sent.";
+      });
+    </script>
+  </body>
+</html>

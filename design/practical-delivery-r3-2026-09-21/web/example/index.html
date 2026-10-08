@@ -1,0 +1,1139 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self' ws://127.0.0.1:4175; img-src 'self'; font-src 'self'; form-action 'none'; base-uri 'none'"
+    />
+    <title>Arc’IT AI | Factory overview · Interactive demo</title>
+    <link rel="icon" href="/assets/arcitai-mark-final.svg" type="image/svg+xml" />
+    <style>
+      @font-face {
+        font-family: Geist;
+        src: url("/assets/fonts/geist-sans-variable.woff2") format("woff2");
+        font-weight: 100 900;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: Mono;
+        src: url("/assets/fonts/geist-mono-variable.woff2") format("woff2");
+        font-weight: 100 900;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: Pixel;
+        src: url("/assets/fonts/geist-pixel-square.woff2") format("woff2");
+        font-display: swap;
+      }
+      :root {
+        color-scheme: light;
+        font-family: Geist, sans-serif;
+        color: #18211d;
+        background: #fafbf8;
+        --line: #dce1da;
+        --muted: #606d64;
+        --green: #236b59;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-size: 14px;
+        line-height: 1.5;
+      }
+      button,
+      input,
+      select {
+        font: inherit;
+      }
+      button,
+      select,
+      summary {
+        cursor: pointer;
+      }
+      button {
+        color: inherit;
+        touch-action: manipulation;
+      }
+      a {
+        color: inherit;
+        text-underline-offset: 4px;
+      }
+      :focus-visible {
+        outline: 3px solid #236b59;
+        outline-offset: 4px;
+      }
+      .sidebar :focus-visible {
+        outline-color: #b9d9c8;
+      }
+      [hidden] {
+        display: none !important;
+      }
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+      }
+      .mono {
+        font:
+          11px/1.55 Mono,
+          monospace;
+        letter-spacing: 0.035em;
+      }
+      .muted {
+        color: var(--muted);
+      }
+      .skip {
+        position: fixed;
+        z-index: 100;
+        background: white;
+        padding: 15px;
+        transform: translateY(-200%);
+      }
+      .skip:focus {
+        transform: none;
+      }
+      .app {
+        display: grid;
+        grid-template-columns: 210px minmax(0, 1fr);
+        min-height: 100vh;
+      }
+      .sidebar {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        padding: 28px 18px;
+        background: #14211d;
+        color: #eff3e9;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font:
+          22px/1 Pixel,
+          monospace;
+        text-decoration: none;
+        margin-bottom: 45px;
+      }
+      .brand img {
+        width: 30px;
+        height: 30px;
+      }
+      .sidebar-label {
+        color: #b5c7ba;
+        padding-left: 12px;
+        margin-bottom: 12px;
+      }
+      .view-button {
+        display: flex;
+        width: 100%;
+        gap: 12px;
+        align-items: center;
+        text-align: left;
+        border: 0;
+        background: none;
+        color: #e7ede3;
+        padding: 12px;
+        border-radius: 4px;
+        margin-bottom: 6px;
+      }
+      .view-button[aria-pressed="true"] {
+        background: #b9d9c8;
+        color: #14211d;
+      }
+      .view-button .symbol {
+        font-size: 17px;
+        width: 19px;
+      }
+      .sidebar-bottom {
+        margin-top: auto;
+        color: #b5c7ba;
+      }
+      .sidebar-bottom p {
+        font-size: 12px;
+        padding-block: 18px;
+        border-top: 1px solid #b9d9c840;
+        margin-top: 20px;
+      }
+      main {
+        min-width: 0;
+        padding: 35px 42px;
+      }
+      .demo-banner {
+        background: #e8efe5;
+        color: #305541;
+        border: 1px solid #cbd9c8;
+        padding: 10px 15px;
+        border-radius: 4px;
+        margin-bottom: 30px;
+        font-size: 12px;
+      }
+      .heading {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 24px;
+      }
+      h1 {
+        font-size: 32px;
+        letter-spacing: -0.035em;
+        font-weight: 550;
+      }
+      .heading p {
+        color: var(--muted);
+        margin-top: 9px;
+        max-width: 650px;
+      }
+      .workspace {
+        border: 1px solid var(--line);
+        border-radius: 4px;
+        padding: 8px 12px;
+        white-space: nowrap;
+        font-size: 12px;
+        background: white;
+      }
+      .summary {
+        display: flex;
+        gap: 45px;
+        margin-top: 30px;
+        padding-block: 23px;
+        border-block: 1px solid var(--line);
+        flex-wrap: wrap;
+      }
+      .summary span {
+        display: block;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .summary strong {
+        font-size: 25px;
+        font-weight: 500;
+      }
+      .summary .cost {
+        font-size: 18px;
+        line-height: 1.95;
+      }
+      .private-note {
+        background: #fff6df;
+        border: 1px solid #e7d8b4;
+        color: #685025;
+        border-radius: 4px;
+        font-size: 12px;
+        margin-top: 22px;
+        padding: 13px 15px;
+      }
+      .toolbar {
+        display: flex;
+        align-items: end;
+        gap: 20px;
+        justify-content: space-between;
+        margin-block: 28px 20px;
+      }
+      .search-field {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+        width: min(410px, 100%);
+      }
+      label {
+        font-size: 12px;
+        font-weight: 500;
+      }
+      input,
+      select {
+        background: white;
+        color: #18211d;
+        border: 1px solid #cbd3ca;
+        border-radius: 4px;
+        padding: 10px 12px;
+        min-height: 42px;
+      }
+      input {
+        font-size: 16px;
+      }
+      .reset {
+        border: 1px solid var(--line);
+        padding: 10px 15px;
+        background: white;
+        border-radius: 4px;
+        min-height: 42px;
+      }
+      .board {
+        display: grid;
+        grid-template-columns: 205px minmax(0, 1fr);
+        gap: 28px;
+      }
+      .stage-filter {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        padding: 13px 12px;
+        border: 1px solid var(--line);
+        border-radius: 4px;
+        margin-bottom: 9px;
+        background: white;
+        text-align: left;
+        font-size: 13px;
+      }
+      .stage-filter[aria-pressed="true"] {
+        background: #e8f0e6;
+        color: #245a44;
+        border-color: #99b6a2;
+      }
+      .stage-filter strong {
+        font-family: Mono, monospace;
+        font-size: 12px;
+        font-weight: 500;
+      }
+      .rows-header {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 145px;
+        gap: 15px;
+        padding: 0 13px 11px;
+        color: var(--muted);
+        font-size: 11px;
+        border-bottom: 1px solid var(--line);
+      }
+      .rows {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .work-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 145px;
+        align-items: center;
+        gap: 18px;
+        width: 100%;
+        border: 0;
+        border-bottom: 1px solid var(--line);
+        text-align: left;
+        padding: 20px 13px;
+        background: transparent;
+      }
+      .work-row:hover {
+        background: #edf3e9;
+      }
+      .work-title {
+        display: block;
+        font-size: 15px;
+        font-weight: 500;
+      }
+      .work-meta {
+        display: block;
+        margin-top: 8px;
+        color: var(--muted);
+        font:
+          10px/1.6 Mono,
+          monospace;
+      }
+      .status {
+        display: inline-block;
+        font-size: 11px;
+        border: 1px solid #cbd7c7;
+        color: #305c41;
+        padding: 4px 8px;
+        border-radius: 4px;
+        background: #edf3e9;
+      }
+      .status.attention {
+        color: #755315;
+        background: #fff7e4;
+        border-color: #e0cea4;
+      }
+      .status.neutral {
+        color: #57665b;
+        background: #f3f5f0;
+        border-color: #d9dfd5;
+      }
+      .row-evidence {
+        display: block;
+        color: var(--muted);
+        font-size: 10px;
+        margin-top: 8px;
+      }
+      .empty {
+        padding: 45px 15px;
+        color: var(--muted);
+        text-align: center;
+        border-bottom: 1px solid var(--line);
+      }
+      .result-count {
+        margin-top: 15px;
+        color: var(--muted);
+        font-size: 12px;
+        min-height: 20px;
+      }
+      .sync {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        border-top: 1px solid var(--line);
+        padding-top: 23px;
+        margin-top: 42px;
+      }
+      .sync p {
+        color: var(--muted);
+        font-size: 11px;
+        max-width: 540px;
+      }
+      .state-field {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        min-width: 180px;
+      }
+      .state-field select {
+        font-size: 12px;
+      }
+      .sync-alert {
+        padding: 13px 15px;
+        margin-bottom: 20px;
+        border: 1px solid #e0cea4;
+        background: #fff7e4;
+        color: #755315;
+        font-size: 13px;
+      }
+      .data-note {
+        font-size: 11px;
+        color: var(--muted);
+        margin-top: 22px;
+      }
+      dialog {
+        width: min(650px, calc(100% - 32px));
+        max-height: calc(100dvh - 40px);
+        border: 1px solid #cad4c8;
+        border-radius: 7px;
+        padding: 0;
+        color: #18211d;
+        background: #fafbf8;
+        box-shadow: 0 30px 120px #0c201c50;
+      }
+      dialog::backdrop {
+        background: #10251ed0;
+      }
+      .dialog-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 14px 23px;
+        border-bottom: 1px solid var(--line);
+        background: #eef2e9;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+      }
+      .close {
+        border: 1px solid #b8c7b6;
+        border-radius: 3px;
+        background: white;
+        padding: 6px 12px;
+        font-size: 12px;
+        min-height: 36px;
+      }
+      .dialog-content {
+        padding: 27px;
+      }
+      .dialog-content h2 {
+        font-size: 25px;
+        line-height: 1.25;
+        letter-spacing: -0.025em;
+        margin-bottom: 17px;
+      }
+      .dialog-content h3 {
+        font-size: 15px;
+        margin-block: 25px 12px;
+      }
+      .dialog-content p {
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .dialog-content dl {
+        display: grid;
+        grid-template-columns: 125px 1fr;
+        gap: 10px 15px;
+        font-size: 12px;
+        margin-block: 24px;
+        padding-block: 20px;
+        border-block: 1px solid var(--line);
+      }
+      .dialog-content dt {
+        color: var(--muted);
+      }
+      .dialog-content dd {
+        margin: 0;
+        overflow-wrap: anywhere;
+      }
+      .timeline {
+        padding-left: 22px;
+        margin: 0;
+        font-size: 13px;
+      }
+      .timeline li {
+        padding-left: 5px;
+        margin-bottom: 15px;
+      }
+      .related {
+        margin-top: 24px;
+        padding: 11px 15px;
+        background: #236b59;
+        color: white;
+        border: 0;
+        border-radius: 4px;
+      }
+      .dialog-note {
+        font-size: 11px !important;
+        padding: 13px 15px;
+        background: #edf3e9;
+        margin-top: 25px;
+      }
+      @media (max-width: 1150px) {
+        .app {
+          grid-template-columns: 175px minmax(0, 1fr);
+        }
+        .sidebar {
+          padding-inline: 13px;
+        }
+        main {
+          padding: 30px 25px;
+        }
+        .board {
+          grid-template-columns: 175px minmax(0, 1fr);
+          gap: 18px;
+        }
+        .work-row,
+        .rows-header {
+          grid-template-columns: 1fr 120px;
+          gap: 12px;
+        }
+        .summary {
+          gap: 30px;
+        }
+      }
+      @media (max-width: 850px) {
+        .app {
+          grid-template-columns: 1fr;
+        }
+        .sidebar {
+          position: static;
+          height: auto;
+          padding: 18px 25px;
+          flex-direction: row;
+          flex-wrap: wrap;
+          align-items: center;
+          gap: 15px 30px;
+        }
+        .brand {
+          margin-bottom: 0;
+        }
+        .sidebar-label,
+        .sidebar-bottom {
+          display: none;
+        }
+        .view-nav {
+          display: flex;
+          gap: 8px;
+          margin-left: auto;
+        }
+        .view-button {
+          margin: 0;
+          padding: 10px 14px;
+        }
+        .board {
+          grid-template-columns: 170px 1fr;
+        }
+        .heading {
+          display: block;
+        }
+        .workspace {
+          display: inline-block;
+          margin-top: 18px;
+        }
+      }
+      @media (max-width: 600px) {
+        main {
+          padding: 24px 18px;
+        }
+        .sidebar {
+          padding: 16px 18px;
+        }
+        .brand {
+          font-size: 20px;
+        }
+        .brand img {
+          width: 26px;
+        }
+        .view-button {
+          font-size: 13px;
+          padding: 9px 12px;
+        }
+        .view-button .symbol {
+          display: none;
+        }
+        .board {
+          display: block;
+        }
+        .stage-filters {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 8px;
+          margin-bottom: 25px;
+        }
+        .stage-filter {
+          margin: 0;
+          min-height: 47px;
+          font-size: 12px;
+          gap: 8px;
+        }
+        .stage-filter:first-child {
+          grid-column: 1 / -1;
+        }
+        .summary {
+          gap: 20px 30px;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+        }
+        h1 {
+          font-size: 29px;
+        }
+        .summary strong {
+          font-size: 24px;
+        }
+        .summary .cost {
+          font-size: 17px;
+        }
+        .toolbar {
+          gap: 12px;
+        }
+        .reset {
+          padding-inline: 12px;
+          font-size: 12px;
+        }
+        .work-row {
+          grid-template-columns: 1fr;
+          gap: 12px;
+          padding: 20px 8px;
+        }
+        .rows-header {
+          display: none;
+        }
+        .work-meta {
+          font-size: 10px;
+        }
+        .row-evidence {
+          display: inline;
+          margin-left: 10px;
+        }
+        .sync {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .dialog-content {
+          padding: 22px;
+        }
+        .dialog-content dl {
+          grid-template-columns: 100px 1fr;
+        }
+        .demo-banner {
+          font-size: 11px;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          scroll-behavior: auto !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to overview</a>
+    <div class="app">
+      <aside class="sidebar" aria-label="Factory navigation">
+        <a class="brand" href="../"><img src="/assets/arcitai-mark-final.svg" alt="" />Arc’IT AI</a>
+        <p class="sidebar-label mono">FACTORY OVERVIEW</p>
+        <nav class="view-nav" aria-label="Factory views">
+          <button class="view-button" type="button" data-view="build" aria-pressed="true">
+            <span class="symbol" aria-hidden="true">↗</span>Build</button
+          ><button class="view-button" type="button" data-view="security" aria-pressed="false">
+            <span class="symbol" aria-hidden="true">◎</span>Security
+          </button>
+        </nav>
+        <div class="sidebar-bottom">
+          <a href="../" class="mono">← Back to Arc’IT draft</a>
+          <p>Two systems.<br />One delivery process.</p>
+          <span class="mono">DESIGN PROTOTYPE / 01</span>
+        </div>
+      </aside>
+      <main id="main">
+        <div class="demo-banner">
+          <strong>Interactive concept.</strong> All records are synthetic. No agents, GitHub account
+          or customer systems are connected.
+        </div>
+        <div class="heading">
+          <div>
+            <h1 id="view-title">Software Factory</h1>
+            <p id="view-description">
+              Follow agreed work from the backlog to reviewed changes. See what needs a person
+              before it moves on.
+            </p>
+          </div>
+          <span class="workspace">Example workspace / Customer A</span>
+        </div>
+        <div class="summary" aria-label="Demo dataset summary">
+          <div><span>Example work items</span><strong id="total-count">5</strong></div>
+          <div><span>Need a decision</span><strong id="attention-count">2</strong></div>
+          <div><span>Source mode</span><strong class="cost">Demo snapshot</strong></div>
+          <div><span>Actual usage cost</span><strong class="cost">Not available</strong></div>
+        </div>
+        <p class="private-note" id="private-note" hidden>
+          Production requirement: authenticated, repository-scoped access to findings and evidence.
+          This demo has no authentication and contains no real security data.
+        </p>
+        <div class="toolbar">
+          <div class="search-field">
+            <label for="search">Search example work</label
+            ><input
+              id="search"
+              type="search"
+              placeholder="Title, ID or repository…"
+              autocomplete="off"
+            />
+          </div>
+          <button class="reset" id="reset" type="button">Reset filters</button>
+        </div>
+        <p class="sync-alert" id="sync-alert" role="status" hidden></p>
+        <div class="board">
+          <nav class="stage-filters" id="stage-filters" aria-label="Filter work by stage"></nav>
+          <div>
+            <div class="rows-header">
+              <span>WORK ITEM / SOURCE</span><span>STATE / EVIDENCE</span>
+            </div>
+            <ul class="rows" id="rows"></ul>
+            <p class="empty" id="empty" hidden>No example work matches these filters.</p>
+            <p class="result-count" id="result-count" role="status"></p>
+          </div>
+        </div>
+        <div class="sync">
+          <p id="sync-message">
+            Sample snapshot only. In production this area shows the last successful source sync.
+            Issue labels alone do not establish that an agent is running.
+          </p>
+          <div class="state-field">
+            <label for="data-state">Data-state preview</label
+            ><select id="data-state">
+              <option value="sample">Sample records</option>
+              <option value="stale">Stale snapshot</option>
+              <option value="error">Connection error</option>
+              <option value="empty">Empty workspace</option>
+            </select>
+          </div>
+        </div>
+        <p class="data-note">
+          Read-only concept. Approvals, merge and finding closure remain in the authorised source
+          workflow.
+        </p>
+        <noscript
+          ><p>
+            JavaScript is required to explore these local fixture records. No connection is
+            attempted.
+          </p></noscript
+        >
+      </main>
+    </div>
+    <dialog id="work-dialog" aria-labelledby="detail-title">
+      <div class="dialog-top">
+        <span class="mono" id="detail-id">EXAMPLE WORK ITEM</span
+        ><button class="close" id="close" type="button">Close ×</button>
+      </div>
+      <div class="dialog-content">
+        <h2 id="detail-title"></h2>
+        <p id="detail-purpose"></p>
+        <dl id="detail-facts"></dl>
+        <h3>Evidence and next decision</h3>
+        <p id="detail-evidence"></p>
+        <h3>Example event trail</h3>
+        <ol class="timeline" id="timeline"></ol>
+        <button class="related" id="related" type="button" hidden></button>
+        <p class="dialog-note">
+          Illustrative records, not completed work. No actual PR, test artifact or agent session
+          exists behind this example.
+        </p>
+      </div>
+    </dialog>
+    <script>
+      const records = [
+        {
+          id: "SW-104",
+          view: "build",
+          title: "Prepare a draft quote from an approved brief",
+          repo: "customer-a / operations",
+          stage: "Awaiting approval",
+          tone: "attention",
+          source: "Issue #24 · PR #31 (example)",
+          revision: "example-head-a",
+          purpose:
+            "Let the team review a quote without retyping the client brief. Sending and source-price changes remain human actions.",
+          evidence:
+            "Example acceptance tests and draft-output review are recorded. The release reviewer still needs to approve the exact change. The connected security check is inconclusive.",
+          summary: "Release decision pending",
+          related: "SEC-202",
+          events: [
+            "Task accepted with a draft-only boundary.",
+            "A candidate change and example acceptance evidence were prepared.",
+            "Defense review linked a configuration question to this revision.",
+            "Release remains held for the named reviewer.",
+          ],
+        },
+        {
+          id: "SW-103",
+          view: "build",
+          title: "Add a clear recovery path for failed imports",
+          repo: "customer-a / operations",
+          stage: "Reviewing",
+          tone: "neutral",
+          source: "Issue #22 · PR #29 (example)",
+          revision: "example-head-b",
+          purpose: "Let an operator retry an import without creating duplicate records.",
+          evidence:
+            "The illustrative test list includes duplicate delivery and retry after a timeout. A human still needs to review the diff and evidence.",
+          summary: "Review evidence attached",
+          related: "SEC-201",
+          events: [
+            "Approved task selected from the backlog.",
+            "One implementation attempt prepared a candidate branch.",
+            "The example retry and duplicate checks completed.",
+            "Review requested; no merge or deployment recorded.",
+          ],
+        },
+        {
+          id: "SW-102",
+          view: "build",
+          title: "Connect the approved product catalogue",
+          repo: "customer-a / assistant",
+          stage: "Implementing",
+          tone: "neutral",
+          source: "Issue #21 (example)",
+          revision: "example-base-c",
+          purpose: "Give the assistant access to approved product information only.",
+          evidence:
+            "This example is in an active implementation state. No passing checks or complete change are claimed.",
+          summary: "Evidence not ready",
+          events: [
+            "Catalogue scope and read-only access were accepted.",
+            "An isolated example workspace was assigned.",
+            "Implementation started; result and tests remain outstanding.",
+          ],
+        },
+        {
+          id: "SW-101",
+          view: "build",
+          title: "Decide who can approve an outbound message",
+          repo: "customer-a / assistant",
+          stage: "Needs input",
+          tone: "attention",
+          source: "Issue #20 (example)",
+          revision: "Not selected",
+          purpose: "Keep message approval with the right business owner.",
+          evidence:
+            "The approver and allowed message types are not defined. No agent should implement a guessed policy.",
+          summary: "Business decision needed",
+          events: [
+            "Intake identified an unresolved approval policy.",
+            "No write attempt was dispatched.",
+            "The task is waiting for the business owner.",
+          ],
+        },
+        {
+          id: "SW-100",
+          view: "build",
+          title: "Show the source behind a prepared answer",
+          repo: "customer-a / assistant",
+          stage: "Ready",
+          tone: "neutral",
+          source: "Issue #19 (example)",
+          revision: "example-base-d",
+          purpose: "Help a colleague check where an answer came from.",
+          evidence:
+            "Scope and acceptance criteria are ready. The work has not been started in this example.",
+          summary: "Ready for a bounded run",
+          events: [
+            "Requirement and approved sources were recorded.",
+            "Acceptance criteria were reviewed.",
+            "Waiting for a worker; no usage has been measured.",
+          ],
+        },
+        {
+          id: "SEC-202",
+          view: "security",
+          title: "Confirm the outbound approval boundary",
+          repo: "customer-a / operations",
+          stage: "Inconclusive",
+          tone: "attention",
+          source: "Private finding F-02 (example)",
+          revision: "example-head-a",
+          purpose:
+            "Check that the quote-preparation agent cannot send a message without the agreed approval.",
+          evidence:
+            "Code review alone cannot establish the deployed permission. The scoped configuration/test environment is missing, so this example remains inconclusive and the finding stays open.",
+          summary: "Runtime evidence missing",
+          related: "SW-104",
+          events: [
+            "Review scope was bound to the candidate revision.",
+            "The relevant code path was inspected in the example.",
+            "Required runtime configuration evidence was unavailable.",
+            "Finding remains open; no clean verdict was issued.",
+          ],
+        },
+        {
+          id: "SEC-201",
+          view: "security",
+          title: "Verify duplicate-import protection",
+          repo: "customer-a / operations",
+          stage: "Awaiting closure",
+          tone: "attention",
+          source: "Private finding F-01 (example)",
+          revision: "example-head-b",
+          purpose: "Verify an accepted fix without changing unrelated import behaviour.",
+          evidence:
+            "The illustrative verification record shows a pre-fix failure, post-fix pass and legitimate-import check. Deliberate human closure is still needed; this is not a release approval.",
+          summary: "Verification ready for review",
+          related: "SW-103",
+          events: [
+            "A synthetic duplicate-import finding was accepted.",
+            "A focused fix was prepared on a new candidate revision.",
+            "The example before/after and legitimate-behaviour checks were recorded.",
+            "Closure awaits the responsible reviewer.",
+          ],
+        },
+        {
+          id: "SEC-200",
+          view: "security",
+          title: "Review the catalogue connector’s data access",
+          repo: "customer-a / assistant",
+          stage: "Scoped review",
+          tone: "neutral",
+          source: "Review job R-08 (example)",
+          revision: "example-base-c",
+          purpose: "Check the selected connector's read access against the approved data scope.",
+          evidence:
+            "The review has a defined target and read-only scope. No finding, patch or clean verdict is available yet.",
+          summary: "Review not complete",
+          related: "SW-102",
+          events: [
+            "Target and read-only review scope were selected.",
+            "Source evidence is being collected in this example.",
+          ],
+        },
+        {
+          id: "SEC-199",
+          view: "security",
+          title: "Check whether an old finding still applies",
+          repo: "customer-a / assistant",
+          stage: "Needs validation",
+          tone: "neutral",
+          source: "Private finding F-00 (example)",
+          revision: "example-base-d",
+          purpose: "Avoid patching a report that may no longer describe the current code.",
+          evidence:
+            "The imported report has not been validated on this revision. Its claim is not treated as a confirmed vulnerability.",
+          summary: "Finding unverified",
+          events: [
+            "An example historical finding was imported.",
+            "Current-revision validation is pending.",
+          ],
+        },
+      ];
+      const stages = {
+        build: [
+          "All work",
+          "Needs input",
+          "Ready",
+          "Implementing",
+          "Reviewing",
+          "Awaiting approval",
+          "Released",
+        ],
+        security: [
+          "All work",
+          "Scoped review",
+          "Needs validation",
+          "Inconclusive",
+          "Awaiting closure",
+          "Closed",
+        ],
+      };
+      let view =
+        new URLSearchParams(location.search).get("view") === "security" ? "security" : "build";
+      let selectedStage = "All work";
+      const search = document.querySelector("#search");
+      const dataState = document.querySelector("#data-state");
+      const dialog = document.querySelector("#work-dialog");
+      let selectedRecord;
+      let lastTrigger;
+      function element(tag, className, text) {
+        const node = document.createElement(tag);
+        if (className) node.className = className;
+        if (text !== undefined) node.textContent = text;
+        return node;
+      }
+      function currentRecords() {
+        return dataState.value === "empty" ? [] : records.filter((record) => record.view === view);
+      }
+      function render() {
+        const source = currentRecords();
+        document
+          .querySelectorAll("[data-view]")
+          .forEach((button) =>
+            button.setAttribute("aria-pressed", String(button.dataset.view === view)),
+          );
+        document.querySelector("#view-title").textContent =
+          view === "build" ? "Software Factory" : "Defense Factory";
+        document.querySelector("#view-description").textContent =
+          view === "build"
+            ? "Follow agreed work from the backlog to reviewed changes. See what needs a person before it moves on."
+            : "Follow scoped reviews, findings and verified fixes. See what’s known, what’s missing, and what still needs a decision.";
+        document.querySelector("#private-note").hidden = view !== "security";
+        document.querySelector("#total-count").textContent = String(source.length);
+        document.querySelector("#attention-count").textContent = String(
+          source.filter((record) => record.tone === "attention").length,
+        );
+        const filters = document.querySelector("#stage-filters");
+        filters.replaceChildren();
+        stages[view].forEach((stage) => {
+          const button = element("button", "stage-filter");
+          button.type = "button";
+          button.setAttribute("aria-pressed", String(stage === selectedStage));
+          button.append(
+            element("span", "", stage),
+            element(
+              "strong",
+              "",
+              String(
+                stage === "All work"
+                  ? source.length
+                  : source.filter((record) => record.stage === stage).length,
+              ),
+            ),
+          );
+          button.addEventListener("click", () => {
+            selectedStage = stage;
+            render();
+            const replacement = [...filters.children].find(
+              (item) => item.firstChild.textContent === stage,
+            );
+            replacement?.focus();
+          });
+          filters.append(button);
+        });
+        const query = search.value.trim().toLowerCase();
+        const filtered = source.filter(
+          (record) =>
+            (selectedStage === "All work" || record.stage === selectedStage) &&
+            `${record.id} ${record.title} ${record.repo}`.toLowerCase().includes(query),
+        );
+        const rows = document.querySelector("#rows");
+        rows.replaceChildren();
+        filtered.forEach((record) => {
+          const item = element("li");
+          const button = element("button", "work-row");
+          button.type = "button";
+          button.setAttribute("aria-label", `Open example ${record.id}: ${record.title}`);
+          const info = element("span");
+          info.append(
+            element("span", "work-title", record.title),
+            element("span", "work-meta", `${record.id} / ${record.repo}`),
+          );
+          const status = element("span");
+          status.append(
+            element("span", `status ${record.tone}`, record.stage),
+            element("span", "row-evidence", record.summary),
+          );
+          button.append(info, status);
+          button.addEventListener("click", () => openRecord(record, button));
+          item.append(button);
+          rows.append(item);
+        });
+        document.querySelector("#empty").hidden = filtered.length > 0;
+        document.querySelector("#empty").textContent =
+          dataState.value === "empty"
+            ? "Empty-state example: no work items have been connected yet."
+            : "No example work matches these filters. Try another search or reset the filters.";
+        document.querySelector("#result-count").textContent =
+          `${filtered.length} of ${source.length} example items shown. No live data.`;
+        const alert = document.querySelector("#sync-alert");
+        alert.hidden = !["stale", "error"].includes(dataState.value);
+        alert.textContent =
+          dataState.value === "error"
+            ? "Connection-error example. Keep the last available records visible, but do not claim current agent status. No real connection was attempted."
+            : "Stale-data example. The last snapshot is still visible; current run state is unknown until source sync recovers.";
+      }
+      function selectView(next) {
+        view = next;
+        selectedStage = "All work";
+        search.value = "";
+        render();
+      }
+      document
+        .querySelectorAll("[data-view]")
+        .forEach((button) =>
+          button.addEventListener("click", () => selectView(button.dataset.view)),
+        );
+      search.addEventListener("input", render);
+      dataState.addEventListener("change", render);
+      document.querySelector("#reset").addEventListener("click", () => {
+        selectedStage = "All work";
+        search.value = "";
+        render();
+        search.focus();
+      });
+      function openRecord(record, trigger) {
+        selectedRecord = record;
+        if (trigger) lastTrigger = trigger;
+        document.querySelector("#detail-id").textContent = `${record.id} / SYNTHETIC RECORD`;
+        document.querySelector("#detail-title").textContent = record.title;
+        document.querySelector("#detail-purpose").textContent = record.purpose;
+        document.querySelector("#detail-evidence").textContent = record.evidence;
+        const facts = document.querySelector("#detail-facts");
+        facts.replaceChildren();
+        for (const [name, value] of [
+          ["Repository", record.repo],
+          ["Source record", record.source],
+          ["Revision", record.revision],
+          ["State", record.stage],
+          ["Actual cost", "Not available; no run is connected"],
+        ])
+          facts.append(element("dt", "", name), element("dd", "", value));
+        const timeline = document.querySelector("#timeline");
+        timeline.replaceChildren(...record.events.map((event) => element("li", "", event)));
+        const related = document.querySelector("#related");
+        related.hidden = !record.related;
+        related.textContent = record.related ? `View connected example ${record.related} ↗` : "";
+        if (!dialog.open) dialog.showModal();
+        else document.querySelector("#close").focus();
+      }
+      document.querySelector("#related").addEventListener("click", () => {
+        const related = records.find((record) => record.id === selectedRecord.related);
+        if (related) {
+          selectView(related.view);
+          openRecord(related);
+        }
+      });
+      document.querySelector("#close").addEventListener("click", () => dialog.close());
+      dialog.addEventListener("close", () => {
+        if (lastTrigger?.isConnected) lastTrigger.focus();
+        else document.querySelector(`[data-view="${view}"]`).focus();
+      });
+      render();
+    </script>
+  </body>
+</html>

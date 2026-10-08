@@ -1,0 +1,3 @@
+The documented route was `cua.getApp("app.zen-browser.zen")` through CUA’s native `App` interface. CUA denied access with “Computer Use was not approved to use Zen” before returning a window, accessibility tree, or screenshot. I did not open a tab or reach Flow; existing tabs remain untouched. No sign-in or permission prompt appeared.
+
+For a manual handoff, Gustav must open a fresh Zen tab and navigate to `https://flow.google.com/`, completing sign-in himself if prompted. No generation, credit use, account changes, downloads, or file edits occurred. Resources remains queued.
