@@ -7,7 +7,7 @@ export function FactoryFlow() {
     if (ref.current) return mountFactoryFlow(ref.current);
   }, []);
   return (
-    <figure ref={ref} className="method-figure" aria-describedby="method-caption">
+    <figure ref={ref} className="method-figure">
       <button
         className="method-flow motion-scene"
         type="button"
@@ -19,13 +19,13 @@ export function FactoryFlow() {
           <span>Scope &amp; access</span>
           <span>Code &amp; tests</span>
           <span>Review &amp; defence</span>
-          <span>Approval &amp; handoff</span>
+          <span>Approval &amp; deploy</span>
         </span>
         <svg
           className="method-canvas"
           viewBox="0 0 1000 220"
           role="img"
-          aria-label="Scoped access, code and tests, independent review and scoped defence work, then operator approval and handoff. An illustration, not live results."
+          aria-label="Illustrated workflow: scoped access, code and tests, independent review and scoped defence work, then operator approval and deployment."
         >
           <defs>
             <linearGradient
@@ -63,7 +63,7 @@ export function FactoryFlow() {
           </g>
           <g className="method-stage" data-stage="3">
             <text x="875" y="22" textAnchor="middle">
-              APPROVAL &amp; HANDOFF
+              APPROVAL &amp; DEPLOY
             </text>
             <path className="method-track" d="M810 36H940" />
             <path className="method-bar" d="M810 36H810" />
@@ -73,12 +73,9 @@ export function FactoryFlow() {
           <g className="method-particles"></g>
         </svg>
       </button>
-      <div className="method-controls">
-        <p id="method-hint" className="sr-only">
-          Scroll down to open, up to close. Or move across.
-        </p>
-      </div>
-      <figcaption id="method-caption">Illustrated workflow · not live project data</figcaption>
+      <p id="method-hint" className="sr-only">
+        Scroll down to open, up to close. Or move across.
+      </p>
     </figure>
   );
 }

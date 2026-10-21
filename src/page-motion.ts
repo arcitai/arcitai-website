@@ -17,7 +17,9 @@ export function usePageMotion() {
       },
       { threshold: 0.15 },
     );
-    document.querySelectorAll(".motif, .hero-mark").forEach((el) => observer.observe(el));
+    document
+      .querySelectorAll(".motif, .hero-mark, .stack-construction")
+      .forEach((el) => observer.observe(el));
     sync();
     reduced.addEventListener("change", sync);
     document.addEventListener("visibilitychange", sync);

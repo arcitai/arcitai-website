@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { siteData } from "../site-data";
 import type { Theme } from "../theme";
+import { ArcitBadge } from "./ArcitMark";
 
 export function Header({ theme, onThemeChange }: { theme: Theme; onThemeChange: () => void }) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -34,7 +35,8 @@ export function Header({ theme, onThemeChange }: { theme: Theme; onThemeChange: 
     <header className="site-header">
       <div className="header-inner">
         <a className="wordmark" href="/" aria-label="Arc’IT AI home">
-          Arc’IT AI
+          <ArcitBadge className="wordmark-icon" />
+          <span>Arc’IT AI</span>
         </a>
         <nav aria-label="Primary navigation">
           <button
@@ -55,7 +57,7 @@ export function Header({ theme, onThemeChange }: { theme: Theme; onThemeChange: 
           </button>
         </nav>
         <div className="header-utilities">
-          <a ref={newsletterRef} href="/newsletter">
+          <a ref={newsletterRef} href="/newsletter/">
             Newsletter
           </a>
           <button
@@ -63,7 +65,6 @@ export function Header({ theme, onThemeChange }: { theme: Theme; onThemeChange: 
             type="button"
             aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
             title={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
-            aria-pressed={theme === "dark"}
             onClick={onThemeChange}
           >
             <span className="theme-toggle-icon" aria-hidden="true" />
@@ -87,15 +88,17 @@ export function Header({ theme, onThemeChange }: { theme: Theme; onThemeChange: 
             }
           }}
         >
-          <a href="/#scope" aria-current="page">
-            <span className="eyebrow">Done for you</span>
-            <strong>Arc’IT AI</strong>
-            <span>I handle agreed architecture, software delivery, and ongoing care.</span>
+          <a href="/#scope" aria-current={window.location.pathname === "/" ? "page" : undefined}>
+            <span className="eyebrow">Mid-sized &amp; large organisations</span>
+            <strong className="brand-arcitai">Arc’IT AI</strong>
+            <span>One-off consultation and custom data &amp; AI projects.</span>
           </a>
           <a href={siteData.links.onlinesourdough} target="_blank" rel="noopener noreferrer">
-            <span className="eyebrow">DIY + done with you</span>
-            <strong>onlinesourdough</strong>
-            <span>I share free resources and AIOS, and offer one-to-one pair engineering.</span>
+            <span className="eyebrow">Solo businesses &amp; small teams</span>
+            <strong className="brand-onlinesourdough">onlinesourdough</strong>
+            <span>
+              A hybrid programme combining 1:1 collaboration, practical work and resources.
+            </span>
           </a>
         </div>
       </div>

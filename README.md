@@ -3,15 +3,30 @@
 Production source for the Arc'IT AI landing page and its dedicated Project
 Inquiries Worker at `arcitai.com`.
 
-Arc'IT AI is the done-for-you implementation offer in the same business family
-as [onlinesourdough](https://onlinesourdough.com). The page offers focused
-consultation, software delivery and ongoing care, and agent factory setup
-for teams. Agreed work includes business needs, architecture, integrations,
-development, security checks, and the delivery workflow. It
-sends qualified project inquiries to the Arc'IT-owned `arcitai-api` Worker.
+Arc'IT AI provides data and AI consultancy for mid-sized and large organisations.
+The two offers are a free 15-minute One-off consultation and Custom projects. Work starts with
+the client's business, data and existing systems; scope follows the project.
+Data and business context form the foundation; tools, workflows and reusable
+skills make that information useful to agents working on software, BI, research
+and other project tasks. Architecture, integration and modelling support this
+work. The primary distinction from [onlinesourdough](https://onlinesourdough.com)
+is audience: onlinesourdough serves solo business owners and small teams through
+a hybrid programme with 1:1 collaboration.
+
+Factory is Arc’IT’s open-source project and explains the agentic engineering
+method behind the work. Start with its [adoption guide](https://github.com/arcitai/factory#start). Its common
+foundation brings together business data, context, tools and access; agents,
+routines and checks adapt to the project. It is not presented as a third offer
+or a subscription product. Code, configuration and documentation support
+handover, with further support optional. The page sends project inquiries to
+the Arc'IT-owned `arcitai-api` Worker.
 
 ## Status
 
+- Current design: compact intro without VSL, two service cards above a wide
+  Factory method explainer with the selected Open bridge diagram, a shared team story with rotating examples, and organisation-
+  filtered open-source work.
+  See `docs/design.md` and the October 21 release record.
 - Shape: static browser application
 - Runtime: React 18, TypeScript, Vite
 - Delivery target: Cloudflare Pages from reviewed `main`
@@ -30,7 +45,7 @@ runtime dependency.
 This repository owns:
 
 - page content, layout, responsive behavior, theme, and interactions;
-- Copenhagen time/scene selection and forced visual-review scenes;
+- Factory layers, module selection, unfolding and accessible animation controls;
 - browser-side inquiry payload creation and honest UI states;
 - the static build, quality gates, GitHub Actions, and Cloudflare Pages delivery.
 
@@ -68,23 +83,33 @@ without deploying it.
 
 ## Runtime assets
 
-Only these assets are shipped from `public/assets/`:
+The shipped inventory in `public/assets/` contains:
 
 - `arcitai-mark-final.svg`
 - `arcitai-panorama-{morning,day,evening,night}-v1.jpg`
 - Received `arcitai-{morning,day,evening,night}-{loop,poster}-v6` MP4/JPEG pairs;
   all four scenes are present in `src/media.ts` and checked in the build.
 - Geist Sans, Mono, and Pixel WOFF2 files plus their license
+- Inter WOFF2 plus `Inter-LICENSE.txt` and `Inter-SOURCE.txt`
+- `factory-tools/`: local tool/channel marks and the Codex sprite, with sources,
+  checksums and licences recorded alongside them
+- `project-marks/`: Factory and OpenPaperDesign marks
+- `gustav-linkedin-portrait.jpg` (current) and the retained `gustav-portrait.jpg`
 
-The hero and introduction-video cover share the selected scene. The Play video
+`public/data/` contains the checked-in organisation projects, project profile
+and Factory module-source manifests. It contains public runtime data, not secrets.
+
+The earlier hero and introduction-video cover shared the selected scene. They
+are no longer rendered in the compact October 20 local revision; their modules
+and media remain on disk for recovery. The earlier Play video
 action plays the landscape clip with controls until a recorded founder VSL is
 supplied. Set the public build variable `VITE_VSL_VIDEO_URL` to that MP4 URL
 later; it replaces click playback, never the ambient cover. Reduced motion,
 data saving and media errors retain a usable still image.
 
-The September 2026 release candidate and outstanding media are tracked in
-[the release record](docs/release-2026-09-24.md). Production is unchanged until
-that record confirms an actual deployment.
+The September 2026 release candidate and retained media are tracked in
+[the earlier release record](docs/release-2026-09-24.md). The current release
+scope and verification are recorded in [the October release](docs/release-2026-10-21.md).
 
 The root `assets/`, `backups/`, and older documents preserve pre-release work
 from the baseline commit. Nothing there is imported into the runtime build.

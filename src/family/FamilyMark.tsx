@@ -1,4 +1,5 @@
 import type { FamilyBrand } from "./preview";
+import { ArcitBadge } from "../components/ArcitMark";
 
 // Matches the canonical onlinesourdough large-pixel-v3 mark, using currentColor for each site.
 const boule = [
@@ -16,7 +17,7 @@ export function FamilyMark({ brand }: { brand: FamilyBrand }) {
     return (
       <img
         className="family-portrait"
-        src="/assets/gustav-portrait.jpg"
+        src="/assets/gustav-linkedin-portrait.jpg"
         width="28"
         height="28"
         alt=""
@@ -34,12 +35,5 @@ export function FamilyMark({ brand }: { brand: FamilyBrand }) {
         )}
       </svg>
     );
-  return (
-    <svg className="family-mark family-mark-arcit" viewBox="4 -4 60 60" aria-hidden="true">
-      <path d="M26 2h14l-6 14H20ZM19 18h14l-6 14H13ZM12 34h14l-6 14H6Z" />
-      <rect x="42" y="2" width="14" height="14" />
-      <rect x="36" y="18" width="14" height="14" />
-      <rect x="48" y="34" width="14" height="14" />
-    </svg>
-  );
+  return <ArcitBadge className="family-mark family-mark-arcit" />;
 }

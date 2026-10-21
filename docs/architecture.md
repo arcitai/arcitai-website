@@ -58,11 +58,26 @@ the form on failure and resets only after acknowledgement.
 
 - `src/routes/App.tsx`: page composition only.
 - `src/components/`: cohesive visual/interaction sections.
-- `src/scene.ts`: scene selection and Copenhagen clock formatting.
-- `src/media.ts` and `SceneMedia.tsx`: received scene manifest, matching stills,
-  visibility/reduced-motion-aware playback and shared loop phase.
-- `src/factory-motion.ts`: deterministic reversible pipeline and particle queues.
-- `src/factory-interaction.ts`: scoped DOM/scroll/pointer lifecycle for that illustration.
+- `FactoryPresentation.tsx`, `FactoryStack.tsx`, `FactoryIsland.tsx` and
+  `FactoryChannels.tsx`: the selected Open bridge, five floors and accessible
+  layer/module navigation.
+- `src/factory-stack-data.ts`: layer, module and source descriptions.
+- `src/factory-stack-motion.ts`: reversible scroll unfolding and full-open gate.
+- `src/factory-copy-motion.ts` and `useFactoryDissolve.ts`: sequential outgoing/
+  incoming surface copy, latest-request handling and suspension for static or
+  hidden surfaces. Structural paint and worker routes remain independent.
+- `src/factory-agent-motion.ts`: deterministic independent work routes, occasional handoffs,
+  carried-over jobs, side changes through roof doors, reserved helper routes,
+  lift support and sprite timing; `src/factory-agent-player.ts` owns the shared
+  visible-time story clock, install beats, suspension and cleanup;
+  `FactoryAgents.tsx` renders Codex/Claude instances and their supporting platforms.
+  `FactoryStack.tsx` uses one module state for every visible module surface.
+  Automatic module changes happen at install; manual choices update the selected
+  module and its colour immediately and take priority. Surface copy dissolves to
+  the latest selection. Workers finish their journeys before taking the new brief.
+- `src/scene.ts`, `src/media.ts`, `SceneMedia.tsx`, `src/factory-motion.ts` and
+  `src/factory-interaction.ts`: retained legacy scenes and pipeline illustration,
+  not rendered by the selected candidate.
 - `src/theme.ts`: saved/system theme selection and accessible toggle state.
 - `src/inquiry.ts`: payload and HTTP response contract.
 - `src/site-data.ts`: stable public copy, links, choices, and endpoint.

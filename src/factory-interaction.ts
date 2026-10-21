@@ -128,7 +128,8 @@ export function mountFactoryFlow(figure: HTMLElement) {
     scrollFrame = requestAnimationFrame(() => {
       scrollFrame = 0;
       const bounds = method.getBoundingClientRect();
-      scrollAmount = scrollProgress(bounds.top + bounds.height / 2, innerHeight);
+      const remainingScroll = document.documentElement.scrollHeight - innerHeight - scrollY;
+      scrollAmount = scrollProgress(bounds.top + bounds.height / 2, innerHeight, remainingScroll);
       updateTarget();
     });
   };

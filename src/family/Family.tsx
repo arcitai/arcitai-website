@@ -28,7 +28,10 @@ export function FamilyFooter({ brand }: { brand: FamilyBrand }) {
               <span className="family-site-mark">
                 <FamilyMark brand={key} />
               </span>
-              {labels[key]} <span aria-hidden="true">↗</span>
+              <span className="brand-name-token" data-brand-name={key}>
+                {labels[key]}
+              </span>
+              <span aria-hidden="true">↗</span>
             </a>
           ))}
       </nav>
@@ -45,7 +48,12 @@ export function FamilyFooter({ brand }: { brand: FamilyBrand }) {
             "VAT: DK46128435"
           ) : (
             <>
-              Part of <a href={familyHref("gustavonline")}>Gustav Online</a>
+              Part of{" "}
+              <a href={familyHref("gustavonline")}>
+                <span className="brand-name-token" data-brand-name="gustavonline">
+                  gustavonline
+                </span>
+              </a>
             </>
           )}
         </p>
@@ -88,7 +96,7 @@ export function NewsletterContent({
             ? "You’ll hear from me when the next note is ready."
             : "Sign up to receive my next note."}
         </p>
-        <a className="family-button" href={subscribed ? "/" : "/newsletter"}>
+        <a className="family-button" href={subscribed ? "/" : "/newsletter/"}>
           {subscribed
             ? brand === "onlinesourdough"
               ? "Explore the menu"
@@ -111,8 +119,7 @@ export function NewsletterContent({
         </h1>
         <p className="newsletter-byline">My newsletter. I’m Gustav Anderson.</p>
         <p>
-          I share ideas, experiments, and lessons from business architecture, software, and agentic
-          engineering.
+          I share ideas, experiments and lessons from working with data, AI and agentic engineering.
         </p>
         <form className="family-signup" onSubmit={submit} aria-busy={pending}>
           <label htmlFor="newsletter-email">Email address</label>

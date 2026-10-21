@@ -1,0 +1,15 @@
+{
+  "checkedAt": "2026-10-21T06:56:33.827Z",
+  "sources": {
+    "software": {
+      "repository": "arcitai/factory",
+      "url": "https://github.com/arcitai/factory",
+      "description": "Portable Foundation, Agent Ops and ADLC methods for T3 Code, native coding agents and GitHub."
+    },
+    "powerbi": {
+      "repository": "arcitai/Agentic-PowerBI-System",
+      "url": "https://github.com/arcitai/Agentic-PowerBI-System",
+      "description": "Standalone Agentic Power BI System for turning business questions into validated Power BI models, reports, and decision journeys."
+    }
+  }
+}

@@ -99,12 +99,29 @@ test("reduced motion renders the completed state without advancing time", () => 
 
 test("scroll range reveals the workflow while on screen with bounded inputs", () => {
   assert.equal(scrollProgress(1000, 1000), 0);
-  assert.equal(scrollProgress(550, 1000), 0);
-  assert.equal(scrollProgress(425, 1000), 0.5);
-  assert.equal(scrollProgress(300, 1000), 1);
+  assert.equal(scrollProgress(780, 1000), 0);
+  assert.equal(scrollProgress(565, 1000), 0.5);
+  assert.equal(scrollProgress(350, 1000), 1);
   assert.equal(scrollProgress(-200, 1000), 1);
   assert.equal(scrollProgress(NaN, 1000), 0);
   assert.equal(scrollProgress(100, 0), 0);
+});
+
+test("a tall viewport reaches the final stage at the page bottom and reverses smoothly", () => {
+  // The real preview's shorter copy left the illustration at y=706 when the
+  // 1466px viewport hit the bottom, beyond the old scroll range's endpoint.
+  assert.equal(scrollProgress(706, 1466, 0), 1);
+  let previous = 0;
+  for (let remaining = 600; remaining >= 0; remaining -= 20) {
+    const progress = scrollProgress(706 + remaining, 1466, remaining);
+    assert.ok(progress >= previous);
+    assert.ok(progress - previous < 0.06);
+    previous = progress;
+  }
+  assert.ok(scrollProgress(906, 1466, 200) < 1);
+  assert.equal(scrollProgress(706, 1466, -0.5), 1);
+  assert.equal(scrollProgress(706, 1466, 0.25), 1);
+  assert.equal(scrollProgress(565, 1000, NaN), 0.5);
 });
 
 test("the continuous pipe squeezes closed at every low bar and straightens when full", () => {

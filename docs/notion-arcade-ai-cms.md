@@ -125,6 +125,13 @@ The only Worker secret is a dedicated Cloudflare secret named
 `npm run worker:secret:put` command. It is never committed, printed, sent to
 Pages, or exposed to the browser.
 
+The verified production connection is **Arc’IT Project Inquiries**, scoped to
+this data source with **Insert content only**. Existing-record read/update,
+comments, user-information and agent access are disabled. The live write was
+verified on 19 October 2026; see `inquiry-verification-2026-10-19.md` for the
+secret-change version and archived synthetic test. Keep verification readback
+and owner triage separate from the website token's create-only permission.
+
 ## CORS and abuse boundary
 
 Production CORS allows exactly:

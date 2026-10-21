@@ -51,8 +51,12 @@ npm run worker:build
 ```
 
 Also validate GitHub workflows and exercise the real built page in a browser at
-1440×1000 and 390×844, including all four forced `?scene=` states, theme,
-Offers, VSL, anchors, and mocked form success/error paths.
+1440×1000 and 390×844, including theme, Offers, anchors, Factory layers/modules,
+full unfolding and closing, team handoff/install timing and retargeting, reduced motion, and mocked
+form success/error paths. Check the static-open Factory at 761–1040px too.
+The retained landscape scenes and VSL are not rendered by the current candidate;
+their forced states are only relevant when reviewing a legacy release.
+Record unavailable browser proof explicitly; source checks are not rendered QA.
 
 ## Shipping
 

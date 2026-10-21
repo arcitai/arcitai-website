@@ -81,9 +81,9 @@
   padding: 92px 0 104px;
 }
 .family-newsletter h1 {
-  font-family: "Geist Pixel", Pixel, monospace;
+  font-family: var(--font-sans);
   font-size: clamp(40px, 5vw, 58px);
-  font-weight: 400;
+  font-weight: 500;
   line-height: 1.12;
   letter-spacing: -1px;
   margin: 0 0 28px;
@@ -151,7 +151,7 @@
   cursor: wait;
 }
 .family-signup p {
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.65;
   color: var(--muted);
   margin: 16px 0 0;
@@ -160,7 +160,7 @@
   display: none;
 }
 .family-newsletter .review-notice {
-  font-size: 12px;
+  font-size: 14px;
   margin-top: 22px;
   color: var(--muted);
 }
@@ -206,7 +206,7 @@
   .family-sites {
     gap: 22px;
     flex-wrap: wrap;
-    font-size: 13px;
+    font-size: 14px;
   }
   .family-social {
     align-self: flex-end;
@@ -317,7 +317,7 @@
 /* Shared footer sizing and attribution across the brand family. */
 .family-footer {
   align-items: flex-start;
-  font-family: Geist, sans-serif;
+  font-family: var(--font-sans);
 }
 .family-sites {
   flex-wrap: wrap;
@@ -345,7 +345,7 @@
 }
 .family-footer-meta {
   margin: 0;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.5;
   color: inherit;
   opacity: 0.75;
