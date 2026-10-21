@@ -1,5 +1,24 @@
 # Operative design
 
+## October 21 Living Atelier hero — local proposal only
+
+The owner rejected the quiet marsh image. The replacement takes its visual
+direction from Elaya’s bold illustrated worlds: a blue architectural workshop
+above clouds, with terraces, a bridge, an observatory and small workers.
+Google Flow generated one image and one eight-second video (12 credits total
+at the displayed rates). It is original artwork, not a reused portfolio image.
+
+Only the local review build renders `HeroArtwork`; `?hero=plain` restores the
+approved plain hero for comparison. The headline and paragraph remain unchanged.
+Desktop copy overlays a soft theme-aware scrim. Smaller screens place the image
+below the copy. Playback is silent, pauses offscreen or in a hidden tab, respects
+reduced motion and data saving, and retains the poster on failure. A small icon
+controls this new background video; Factory’s removed controls stay removed.
+
+The generated media has been visually inspected. The assembled local webpage
+has source/build/HTTP proof only: the prior automatic approval rejection still
+blocks localhost browser rendering. This proposal has not been published.
+
 ## October 20 positioning clarification
 
 The owner identifies data engineering as the professional focus: reliable data,

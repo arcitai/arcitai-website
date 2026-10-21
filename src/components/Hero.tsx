@@ -1,6 +1,27 @@
+import { lazy, Suspense } from "react";
+import { localReview } from "../family/preview";
+
+const HeroArtwork =
+  import.meta.env.VITE_REVIEW_PREVIEW === "true"
+    ? lazy(() => import("./HeroArtwork").then(({ HeroArtwork }) => ({ default: HeroArtwork })))
+    : null;
+
 export function Hero() {
+  const artwork =
+    localReview &&
+    HeroArtwork &&
+    new URLSearchParams(window.location.search).get("hero") !== "plain";
   return (
-    <section className="walkthrough-hero" id="top" aria-labelledby="hero-title">
+    <section
+      className={`walkthrough-hero${artwork ? " has-artwork" : ""}`}
+      id="top"
+      aria-labelledby="hero-title"
+    >
+      {artwork && (
+        <Suspense fallback={null}>
+          <HeroArtwork />
+        </Suspense>
+      )}
       <div className="walkthrough-shell">
         <h1 id="hero-title">
           Does AI understand
