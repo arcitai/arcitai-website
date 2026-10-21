@@ -1,0 +1,58 @@
+[
+  {
+    "name": "Agentic-PowerBI-System",
+    "full_name": "arcitai/Agentic-PowerBI-System",
+    "html_url": "https://github.com/arcitai/Agentic-PowerBI-System",
+    "description": "Standalone Agentic Power BI System for turning business questions into validated Power BI models, reports, and decision journeys.",
+    "private": false,
+    "archived": false
+  },
+  {
+    "name": "arcitai-website",
+    "full_name": "arcitai/arcitai-website",
+    "html_url": "https://github.com/arcitai/arcitai-website",
+    "description": "The Arc’ It AI website: practical AI methods, software and support.",
+    "private": false,
+    "archived": false
+  },
+  {
+    "name": "factory-software-defence",
+    "full_name": "arcitai/factory-software-defence",
+    "html_url": "https://github.com/arcitai/factory-software-defence",
+    "description": "Factory: native Codex project Inbox, Foundation and portable ADLC method",
+    "private": false,
+    "archived": true
+  },
+  {
+    "name": "aios-pilot",
+    "full_name": "arcitai/aios-pilot",
+    "html_url": "https://github.com/arcitai/aios-pilot",
+    "description": "Archived experiment: Arcitai AIOS Pilot, a Buzz-derived workspace. Preserved for historical reference; no active development or maintenance.",
+    "private": false,
+    "archived": true
+  },
+  {
+    "name": "factory",
+    "full_name": "arcitai/factory",
+    "html_url": "https://github.com/arcitai/factory",
+    "description": "Portable Foundation, Agent Ops and ADLC methods for T3 Code, native coding agents and GitHub.",
+    "private": false,
+    "archived": false
+  },
+  {
+    "name": ".github",
+    "full_name": "arcitai/.github",
+    "html_url": "https://github.com/arcitai/.github",
+    "description": "Public profile and brand assets for Arc’ It AI.",
+    "private": false,
+    "archived": false
+  },
+  {
+    "name": "openpaperdesign",
+    "full_name": "arcitai/openpaperdesign",
+    "html_url": "https://github.com/arcitai/openpaperdesign",
+    "description": "Native Rust (egui/wgpu) infinite canvas design app, a clean-room reimplementation reverse engineered from Paper",
+    "private": false,
+    "archived": false
+  }
+]

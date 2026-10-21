@@ -26,8 +26,17 @@ npm run worker:build
 ```
 
 The release review also requires workflow validation, an exact build-content
-inventory, and browser QA at both canonical viewports with all forced scenes
-and mocked inquiry outcomes.
+inventory, and browser QA at 1440×1000 and 390×844 with mocked inquiry outcomes.
+For the current candidate, check both themes, Offers keyboard/focus behavior,
+two offer links, all four routes, anchors and the open-source section. Check
+Factory's assembled-to-open swap, bridge connection, each module and layer,
+reload variations, shared jobs, module/layer retargeting, close/reopen, reduced motion, and the static-open layout at
+761–1040px. Phones retain static layer rows. The preserved landscapes, forced
+scenes and VSL are not rendered in this candidate.
+
+The October 21 local iteration has source/test/HTTP evidence only: the earlier
+automatic safety review rejected localhost rendering. Browser QA remains
+unverified; neither geometry checks nor HTTP bytes establish visual acceptance.
 
 ## Automated delivery
 
@@ -93,6 +102,14 @@ Cloudflare Worker secret `NOTION_TOKEN`, set interactively with
 `npm run worker:secret:put`. Never copy the token into a config file, CI log,
 Pages environment, or browser bundle.
 
+As verified on 19 October 2026, the token belongs to the dedicated **Arc’IT
+Project Inquiries** Notion connection. Grant it only **Insert content** and
+access to **Project Inquiries**; the current adapter does not need read, update,
+comment, user-information or agent capabilities. The live form, Notion
+readback and archived synthetic test are documented in
+`inquiry-verification-2026-10-19.md`. The secret change is independent of
+website copy/layout releases.
+
 Production CORS allows only `https://arcitai.com` and
 `https://www.arcitai.com`. `http://127.0.0.1:4173` and `:4174` exist only for
 documented local preview work. `https://arcitai.pages.dev`, Gustav Online
@@ -143,8 +160,8 @@ After every deployment:
 1. Read the Wrangler conclusion, Worker name, deployment URL, custom-domain
    result, and deployed artifact result for each deploy unit.
 2. Load `https://arcitai.com` and `https://www.arcitai.com` in a real browser
-   and confirm status 200, title, canonical URL, mark, fonts, all four
-   landscapes, navigation, theme, and VSL. Keep `arcitai.pages.dev` as a
+   and confirm status 200, title, canonical URL, mark, fonts, navigation, theme,
+   offers and the Factory interactions listed above. Keep `arcitai.pages.dev` as a
    separate static smoke-test origin.
 3. Check console and failed network requests.
 4. Send an OPTIONS preflight and only an intentionally invalid inquiry payload

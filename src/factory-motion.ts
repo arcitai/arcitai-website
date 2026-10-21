@@ -127,10 +127,21 @@ export function sampleFlow(state: FlowState) {
   return { points: state.points, bars: [...state.openness], rails };
 }
 
-export function scrollProgress(center: number, viewportHeight: number) {
+export function scrollProgress(center: number, viewportHeight: number, remainingScroll = Infinity) {
   if (!Number.isFinite(center) || !Number.isFinite(viewportHeight) || viewportHeight <= 0) return 0;
-  // Closed on approach; fully open after the illustration passes the reading line.
-  return clamp((viewportHeight * 0.55 - center) / (viewportHeight * 0.25));
+  // Start on approach and finish near the reading line, or at the page bottom
+  // when there is not enough content below the illustration to reach that line.
+  // center - remainingScroll stays fixed during scrolling, so the endpoint
+  // does not move with the viewport or require extra blank space below the page.
+  // scrollHeight is integer-rounded while scrollY can retain a fractional pixel.
+  const remaining = Number.isNaN(remainingScroll)
+    ? Infinity
+    : remainingScroll <= 1
+      ? 0
+      : remainingScroll;
+  const end = Math.max(viewportHeight * 0.35, center - remaining);
+  const start = Math.max(viewportHeight * 0.78, end + viewportHeight * 0.2);
+  return clamp((start - center) / (start - end));
 }
 
 export function canAnimate({

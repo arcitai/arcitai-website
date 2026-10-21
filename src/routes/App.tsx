@@ -1,24 +1,23 @@
-import { useEffect, useState } from "react";
+import { lazy, Suspense } from "react";
 import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
 import { Hero } from "../components/Hero";
 import { Inquiry } from "../components/Inquiry";
 import { NewsletterContent } from "../family/Family";
 import { Scope } from "../components/Scope";
-import { sceneForTheme } from "../scene";
 import { useTheme } from "../theme";
 import { usePageMotion } from "../page-motion";
+import { OrganizationProjects } from "../projects/OrganizationProjects";
+import { localReview } from "../family/preview";
+
+const BrandReview =
+  import.meta.env.VITE_REVIEW_PREVIEW === "true"
+    ? lazy(() => import("../components/BrandReview"))
+    : null;
 
 export function App() {
   const { theme, toggleTheme } = useTheme();
-  const [now, setNow] = useState(() => new Date());
-  const [epoch] = useState(() => performance.now());
-  const scene = sceneForTheme(now, window.location.search, theme);
   usePageMotion();
-  useEffect(() => {
-    const interval = window.setInterval(() => setNow(new Date()), 30_000);
-    return () => window.clearInterval(interval);
-  }, []);
   const path = window.location.pathname.replace(/\/$/, "") || "/";
   const newsletter = path.startsWith("/newsletter");
   return (
@@ -34,11 +33,26 @@ export function App() {
           <Inquiry />
         ) : (
           <>
-            <Hero scene={scene} epoch={epoch} />
+            <Hero />
             <Scope />
+            <OrganizationProjects
+              owner="arcitai"
+              title="Open-source work"
+              description="Tools and methods you can use and build on."
+              productLinks={
+                import.meta.env.VITE_REVIEW_PREVIEW === "true" && localReview
+                  ? { "arcitai/openpaperdesign": "http://127.0.0.1:4184/" }
+                  : undefined
+              }
+            />
           </>
         )}
       </main>
+      {localReview && BrandReview && new URLSearchParams(window.location.search).has("brand") && (
+        <Suspense fallback={null}>
+          <BrandReview />
+        </Suspense>
+      )}
       <Footer />
     </>
   );

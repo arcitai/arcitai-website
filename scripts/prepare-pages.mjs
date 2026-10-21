@@ -1,6 +1,9 @@
 import { access, mkdir, readFile, writeFile } from "node:fs/promises";
 
-const dist = new URL("../dist/", import.meta.url);
+const dist = new URL(
+  process.argv.includes("--review") ? "../output/family-preview/" : "../dist/",
+  import.meta.url,
+);
 for (const scene of ["morning", "day", "evening", "night"]) {
   await access(new URL(`assets/arcitai-${scene}-loop-v6.mp4`, dist));
   await access(new URL(`assets/arcitai-${scene}-poster-v6.jpg`, dist));
@@ -12,7 +15,8 @@ const routes = [
   {
     path: "newsletter",
     title: `Newsletter | ${brand}`,
-    description: "My notes on business architecture, software, and agentic engineering.",
+    description:
+      "Ideas, experiments and lessons from working with data, AI and agentic engineering.",
   },
   {
     path: "newsletter/thank-you",
@@ -22,9 +26,9 @@ const routes = [
   },
   {
     path: "project",
-    title: "Project inquiry | Arc’IT AI",
+    title: "Discuss your project | Arc’IT AI",
     description:
-      "Tell me about the work you want to improve, your existing systems, and the project I can take care of.",
+      "Share your project ideas, current stage and goals. Data and AI shaped around your business, from an initial direction to practical delivery.",
   },
 ];
 for (const route of routes) {

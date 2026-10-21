@@ -10,7 +10,7 @@
     "node": ">=20.19.0"
   },
   "scripts": {
-    "review:build": "VITE_REVIEW_PREVIEW=true vite build --outDir output/family-preview",
+    "review:build": "VITE_REVIEW_PREVIEW=true vite build --outDir output/family-preview && node scripts/prepare-pages.mjs --review",
     "review:preview": "vite preview --outDir output/family-preview --host 127.0.0.1 --port 4183 --strictPort",
     "dev": "vite --host 127.0.0.1",
     "format": "prettier --check .",
@@ -30,14 +30,15 @@
     "build": "tsc -b --pretty false && vite build && node scripts/prepare-pages.mjs",
     "check": "npm run format && npm run lint && npm run test && npm run build",
     "audit": "npm audit --audit-level=high",
-    "preview": "vite preview --host 127.0.0.1"
+    "preview": "vite preview --host 127.0.0.1",
+    "modules:refresh": "node scripts/refresh-factory-modules.mjs"
   },
   "dependencies": {
     "react": "18.3.1",
     "react-dom": "18.3.1"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "5.20260926.1",
+    "@cloudflare/workers-types": "5.20261016.1",
     "@eslint/js": "10.0.1",
     "@types/react": "18.3.18",
     "@types/react-dom": "18.3.5",
@@ -49,8 +50,8 @@
     "prettier": "3.9.6",
     "typescript": "5.9.3",
     "typescript-eslint": "8.66.0",
-    "vite": "8.0.16",
+    "vite": "8.1.6",
     "vitest": "4.1.11",
-    "wrangler": "4.144.0"
+    "wrangler": "4.151.1"
   }
 }

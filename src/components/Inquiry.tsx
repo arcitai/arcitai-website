@@ -32,7 +32,7 @@ export function Inquiry() {
     const form = event.currentTarget;
     const controller = new AbortController();
     const timeout = window.setTimeout(() => controller.abort(), 12_000);
-    setSubmission({ kind: "pending", message: "Sending your inquiry…" });
+    setSubmission({ kind: "pending", message: "Sending your project details…" });
 
     try {
       if (isLocalReview(true, window.location.hostname) && !localReview) {
@@ -50,7 +50,7 @@ export function Inquiry() {
         kind: "success",
         message: localReview
           ? "Preview complete — no inquiry was sent."
-          : "Inquiry received. I’ll reply at the email you provided.",
+          : "Project details received. I’ll reply at the email you provided to discuss next steps.",
       });
     } catch (error) {
       const failure = error instanceof InquirySubmissionError ? error.kind : "network";
@@ -65,15 +65,18 @@ export function Inquiry() {
       <div className="section-shell inquiry-grid">
         <div className="inquiry-copy">
           <div className="inquiry-intro">
-            <h1 id="project-title">Project inquiry</h1>
+            <h1 id="project-title">Tell me about your project</h1>
             {localReview && (
               <p className="review-notice">Local preview — the form does not send data.</p>
             )}
             <p className="inquiry-description">
-              Tell me about the work you want to improve, your existing systems, and the result
-              you’re aiming for. You can bring a business need, a prototype, or a larger software
-              project. I’ll help you work out a useful starting point and the scope I can take care
-              of.
+              Share your ideas, where things stand and what you want to achieve. Whether you’re
+              starting something new or building on existing work, we can shape the right approach
+              for your business.
+            </p>
+            <p className="inquiry-booking">
+              Prefer to talk it through?{" "}
+              <a href={siteData.links.consultation}>Book a free 15-minute consultation</a>.
             </p>
           </div>
           <div className="faqs">
@@ -87,10 +90,9 @@ export function Inquiry() {
             <details className="faq" open>
               <summary>How do you scope and check the work?</summary>
               <p>
-                I agree the work, access, and acceptance criteria with you. I review the
-                architecture, code, integrations, and security within that scope, then test the
-                changes. I make the checks, remaining risks, and release decision clear before
-                handover.
+                I agree the work, access, and acceptance criteria with you. I review the data,
+                architecture, integrations and security within that scope, then test the changes. I
+                make the checks, remaining risks, and release decision clear before handover.
               </p>
             </details>
             <details className="faq" open>
@@ -102,14 +104,15 @@ export function Inquiry() {
               </p>
             </details>
             <details className="faq" open>
-              <summary>Would you rather build alongside me?</summary>
+              <summary>How is Arc’IT different from onlinesourdough?</summary>
               <p>
-                Through{" "}
                 <a href={siteData.links.onlinesourdough} target="_blank" rel="noopener noreferrer">
                   onlinesourdough
                 </a>{" "}
-                I offer free resources and one-to-one pair engineering, with AIOS as a starter.
-                Through Arc’IT AI, I take responsibility for agreed delivery and ongoing work.
+                is for solo business owners and small teams, typically through a hybrid programme
+                with 1:1 collaboration over an agreed period. Arc’IT is for mid-sized and large
+                organisations, including enterprise teams, often with larger projects. Both start
+                with your business and the work you need to do.
               </p>
             </details>
           </div>
@@ -184,12 +187,16 @@ export function Inquiry() {
           </div>
 
           <label className="field field-wide project-field">
-            <span>What would you like me to build, improve, or maintain?</span>
+            <span>What do you have in mind?</span>
+            <span className="field-help" id="project-help">
+              Tell me about your ideas, the stage you’re at and what you’d like to achieve. Mention
+              any existing systems, work or timing that would help me understand the project.
+            </span>
             <textarea
               name="project"
               rows={4}
               maxLength={2000}
-              aria-describedby="privacy-note"
+              aria-describedby="project-help privacy-note"
               required
             />
           </label>
@@ -203,7 +210,7 @@ export function Inquiry() {
             disabled={submission.kind === "pending"}
           >
             <span>
-              {submission.kind === "pending" ? "Sending inquiry…" : "Send project inquiry"}
+              {submission.kind === "pending" ? "Sending details…" : "Send project details"}
             </span>
             <span aria-hidden="true">↗</span>
           </button>
