@@ -129,3 +129,60 @@
     display: none !important;
   }
 }
+
+/* The mosaic reads as part of the page: copy first, then a low, wide working surface. */
+.walkthrough-hero.has-artwork.hero-mosaic {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding: 64px 0 0;
+}
+.hero-mosaic .walkthrough-shell {
+  order: 0;
+}
+.hero-mosaic .hero-artwork {
+  position: relative;
+  inset: auto;
+  order: 1;
+  width: min(100%, 1180px);
+  aspect-ratio: 1376 / 450;
+  margin: 8px auto 0;
+}
+.hero-mosaic .hero-artwork-picture {
+  inset: 0;
+  height: 100%;
+  overflow: hidden;
+}
+.hero-mosaic .hero-artwork-picture img,
+.hero-mosaic .hero-artwork-picture video {
+  top: auto;
+  bottom: 0;
+  height: auto;
+  object-position: center bottom;
+}
+.hero-mosaic .hero-artwork-picture::after,
+:root[data-theme="dark"] .hero-mosaic .hero-artwork-picture::after {
+  background:
+    linear-gradient(90deg, var(--paper), transparent 8%, transparent 92%, var(--paper)),
+    linear-gradient(180deg, var(--paper), transparent 16%, transparent 82%, var(--paper));
+}
+:root[data-theme="dark"] .hero-mosaic .hero-artwork-picture img,
+:root[data-theme="dark"] .hero-mosaic .hero-artwork-picture video {
+  filter: invert(1) hue-rotate(180deg) saturate(0.65) brightness(1.35);
+}
+.hero-mosaic .hero-artwork-toggle {
+  right: 20px;
+  bottom: 8px;
+}
+@media (max-width: 700px) {
+  .walkthrough-hero.has-artwork.hero-mosaic {
+    padding-top: 44px;
+  }
+  .hero-mosaic .hero-artwork {
+    margin-top: 20px;
+  }
+  .hero-mosaic .hero-artwork-toggle {
+    right: 12px;
+    bottom: 0;
+  }
+}

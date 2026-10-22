@@ -7,21 +7,20 @@ const HeroArtwork =
     : null;
 
 export function Hero() {
+  const artworkVariant =
+    localReview && new URLSearchParams(window.location.search).get("hero") === "atelier"
+      ? "atelier"
+      : "mosaic";
   const artwork =
     localReview &&
     HeroArtwork &&
     new URLSearchParams(window.location.search).get("hero") !== "plain";
   return (
     <section
-      className={`walkthrough-hero${artwork ? " has-artwork" : ""}`}
+      className={`walkthrough-hero${artwork ? ` has-artwork hero-${artworkVariant}` : ""}`}
       id="top"
       aria-labelledby="hero-title"
     >
-      {artwork && (
-        <Suspense fallback={null}>
-          <HeroArtwork />
-        </Suspense>
-      )}
       <div className="walkthrough-shell">
         <h1 id="hero-title">
           Does AI understand
@@ -35,6 +34,24 @@ export function Hero() {
           it.
         </p>
       </div>
+      {artwork && (
+        <Suspense
+          fallback={
+            artworkVariant === "mosaic" ? (
+              <div
+                aria-hidden="true"
+                style={{
+                  width: "min(100%, 1180px)",
+                  aspectRatio: "1376 / 450",
+                  margin: "8px auto 0",
+                }}
+              />
+            ) : null
+          }
+        >
+          <HeroArtwork variant={artworkVariant} />
+        </Suspense>
+      )}
     </section>
   );
 }

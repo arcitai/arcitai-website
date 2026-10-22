@@ -1,11 +1,20 @@
 import { useEffect, useRef, useState } from "react";
 import "./hero-artwork.css";
 
-const poster = "/assets/hero-atelier/living-atelier-poster-v1.jpg";
-const movie = "/assets/hero-atelier/living-atelier-loop-v1.mp4";
+const artwork = {
+  mosaic: {
+    poster: "/assets/hero-mosaic/data-mosaic-poster-v1.jpg",
+    movie: "/assets/hero-mosaic/data-mosaic-loop-v1.mp4",
+  },
+  atelier: {
+    poster: "/assets/hero-atelier/living-atelier-poster-v1.jpg",
+    movie: "/assets/hero-atelier/living-atelier-loop-v1.mp4",
+  },
+};
 
 /** Decorative, local-review artwork. The still remains usable if playback is unavailable. */
-export function HeroArtwork() {
+export function HeroArtwork({ variant = "mosaic" }: { variant?: keyof typeof artwork }) {
+  const { poster, movie } = artwork[variant];
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [paused, setPaused] = useState(false);
@@ -103,7 +112,7 @@ export function HeroArtwork() {
       video.removeEventListener("playing", playing);
       video.removeEventListener("error", error);
     };
-  }, []);
+  }, [movie]);
 
   const toggle = () => {
     pausedRef.current = !pausedRef.current;

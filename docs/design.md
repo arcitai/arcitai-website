@@ -1,6 +1,37 @@
 # Operative design
 
-## October 21 Living Atelier hero — local proposal only
+## October 22 Data Mosaic hero — local proposal only
+
+The owner rejected the floating mountain/workshop as a separate, unrelated theme.
+Keep the supplied references' blue and ivory engraving, but make the subject
+express the relationship between business data, context and useful AI work.
+Gustav Online's contribution tiles supply a family resemblance, not data to reuse
+or a claim that the hero displays measured activity.
+
+The new original illustration is a low, wide work surface of square data tiles.
+Loose pieces become connected rails and work areas, with two small AI helpers
+fitting and checking pieces. Its animation moves the helpers and nearby tiles
+while the camera remains fixed. There is no mountain, floating island, lakehouse
+pipeline or inventory of tool icons. The hero is a metaphor, not a product UI.
+
+The visual references are Databricks' distilled/bold brand approach,
+[Column Five's editorial illustrations](https://www.columnfivemedia.com/case-studies/creative-production-partner-databricks/),
+and [Pixel Point's Databricks case](https://pixelpoint.io/case-studies/databricks/)
+for communicating work through motion. These supply principles; their assets,
+palette and logos are not shipped. The owner's Elaya reference guides blue ink,
+paper texture and fine linework only. Asset provenance and exact prompts are in
+`public/assets/hero-mosaic/SOURCE.md` and `design/hero-mosaic/`.
+
+Local review defaults to the mosaic. `?hero=atelier` retains the rejected prior
+proposal for comparison; `?hero=plain` retains the approved plain hero.
+Copy stays centered above a low artwork strip, without an overlaid scrim obscuring
+the work. The full artwork width remains visible on narrow screens. Dark mode
+uses a dark-paper blue-ink treatment. Playback retains the existing offscreen,
+hidden-tab, reduced-motion, data-saving and error handling. This remains local;
+the approved production site is unchanged. Browser rendering is still blocked by
+the earlier automatic approval rejection, so build/HTTP checks are not visual QA.
+
+## October 21 Living Atelier hero — superseded local proposal
 
 The owner rejected the quiet marsh image. The replacement takes its visual
 direction from Elaya’s bold illustrated worlds: a blue architectural workshop
