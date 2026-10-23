@@ -15,6 +15,7 @@ import { factoryToolsForLayer } from "../factory-tools";
 import { FactoryMobileTools } from "./FactoryToolMarks";
 import { observeStackOpening } from "../factory-stack-motion";
 import { FactoryIslandBase, FactorySlab } from "./FactoryIsland";
+import "./arc-material.css";
 import "./factory-stack.css";
 
 const layerPitch = 96;

@@ -65,6 +65,8 @@ export const factoryPanelIds: FactoryLayerId[] = [...factoryLayers, "foundation"
 const sourceRepositories: Partial<Record<FactoryModuleId, string>> = {
   software: "arcitai/factory",
   powerbi: "arcitai/Agentic-PowerBI-System",
+  defence: "arcitai/factory-defence",
+  research: "arcitai/factory-research",
 };
 export function moduleSource(id: FactoryModuleId, snapshot: unknown = sourceSnapshot) {
   const repository = sourceRepositories[id];

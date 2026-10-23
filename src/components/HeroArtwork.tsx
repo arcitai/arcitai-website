@@ -1,8 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import "./hero-artwork.css";
+import { MosaicHero } from "./MosaicHero";
+import { MosaicComposition } from "./MosaicComposition";
+import { localReview } from "../family/preview";
+import { usesLegacyMosaic } from "../mosaic-story";
 
 const artwork = {
-  mosaic: {
+  engraved: {
     poster: "/assets/hero-mosaic/data-mosaic-poster-v1.jpg",
     movie: "/assets/hero-mosaic/data-mosaic-loop-v1.mp4",
   },
@@ -12,8 +16,20 @@ const artwork = {
   },
 };
 
-/** Decorative, local-review artwork. The still remains usable if playback is unavailable. */
-export function HeroArtwork({ variant = "mosaic" }: { variant?: keyof typeof artwork }) {
+/** Decorative hero artwork. The still remains usable if playback is unavailable. */
+export function HeroArtwork({ variant = "mosaic" }: { variant?: "mosaic" | keyof typeof artwork }) {
+  return variant === "mosaic" ? (
+    localReview && usesLegacyMosaic(window.location.search) ? (
+      <MosaicHero />
+    ) : (
+      <MosaicComposition />
+    )
+  ) : (
+    <VideoHeroArtwork variant={variant} />
+  );
+}
+
+function VideoHeroArtwork({ variant }: { variant: keyof typeof artwork }) {
   const { poster, movie } = artwork[variant];
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);

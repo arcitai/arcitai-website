@@ -114,3 +114,32 @@ Animation research also inspected `KebeliSamet0/clawd` at
 `ba50a8053e2c6e46211fcf4433ba224af0fa95ad`. Its separate `assets/LICENSE-clawd`
 reserves artwork rights and disallows commercial use; none of that repository's
 artwork or animation code is included in this site's source or runtime assets.
+
+## October 22 composition studies: source and platform marks
+
+The following vectors identify illustrative data sources and destinations, not
+installed integrations or partnerships. Product marks remain upright, retain
+their proportions and use unmodified paths. Surrounding tiles borrow a few brand
+colours; the ordered field always becomes Arc’IT blue.
+
+- `slack-vector.svg`: official Slack mark from Salesforce's Slack product page,
+  https://wp.sfdcdigital.com/en-us/wp-content/uploads/sites/4/2024/06/icon-slack.svg?w=1024.
+  This vector replaces the small favicon in the new hero only.
+- `salesforce.svg`: official Salesforce website logo,
+  https://wp.sfdcdigital.com/en-us/wp-content/uploads/sites/4/2024/11/logo-salesforce.svg?w=1024.
+- `hubspot.svg`: Simple Icons CC0 path, with catalogue orange #FF7A59,
+  https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/hubspot.svg.
+  The existing SimpleIcons licence applies to the rendition; trademark rights
+  remain with HubSpot.
+- `notion.svg`: unmodified MIT Lobe Icons rendition,
+  https://raw.githubusercontent.com/lobehub/lobe-icons/master/packages/static-svg/icons/notion.svg.
+  The existing LobeIcons licence is retained.
+- `fabric.svg`: Microsoft's unmodified `fabric_48_color.svg` from
+  `v6.1.0/package/dist/svg/` in the official Fabric icon archive:
+  https://github.com/microsoft/fabric-samples/blob/main/docs-samples/Icons.zip.
+  Brand guidance: https://learn.microsoft.com/en-us/fabric/fundamentals/icons.
+- `delta-lake.svg`: unmodified official Delta Lake favicon, https://delta.io/favicon.svg.
+
+The source clusters use Slack, HubSpot, Teams, Salesforce, Notion and GitHub.
+Databricks, Azure, Microsoft Fabric and Delta Lake sit beside the Arc’IT mark.
+The two familiar Factory workers and all existing Factory marks are retained.

@@ -1,10 +1,11 @@
 import { writeFile, rename } from "node:fs/promises";
 
-// Only these existing public repositories are module sources. Add a reviewed
-// mapping when a separate Research or Defence module actually has a repository.
+// Reviewed public module repositories; the refresh rejects private or archived sources.
 const repositories = {
   software: "arcitai/factory",
   powerbi: "arcitai/Agentic-PowerBI-System",
+  defence: "arcitai/factory-defence",
+  research: "arcitai/factory-research",
 };
 const sources = Object.fromEntries(
   await Promise.all(

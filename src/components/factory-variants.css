@@ -91,6 +91,11 @@
 .factory-channel-routes circle {
   fill: var(--factory-top);
 }
+.factory-route-bed {
+  stroke: var(--factory-ground);
+  stroke-width: 4;
+  stroke-linecap: round;
+}
 .factory-channel-entry {
   position: absolute;
   left: 73.214286%;
@@ -102,7 +107,9 @@
   border: 1px solid var(--factory-edge);
   border-radius: 7px;
   background: var(--factory-top);
-  box-shadow: 0 3px 0 var(--factory-ground);
+  box-shadow:
+    0 1px 0 color-mix(in srgb, var(--factory-edge) 35%, transparent),
+    0 8px 16px -12px var(--arc-mat-contact-core);
   color: var(--ink);
   font: inherit;
   cursor: pointer;
@@ -283,7 +290,7 @@
   stroke-width: 1;
 }
 .factory-lift-car {
-  fill: var(--factory-ground);
+  fill: var(--factory-top);
   stroke: var(--factory-edge);
   stroke-width: 0.8;
 }
@@ -293,8 +300,7 @@
   stroke-width: 1;
 }
 .factory-agent-shadow {
-  fill: var(--factory-side);
-  opacity: 0.16;
+  fill: var(--arc-mat-contact);
 }
 .factory-clawd-tool {
   fill: var(--factory-icon-ink);
@@ -398,8 +404,7 @@
   }
 }
 
-.factory-team-parcel > path:first-child,
-.factory-dispatch-note > path:first-child {
+.factory-note-body {
   fill: var(--factory-top);
   stroke: var(--factory-icon-ink);
   stroke-width: 1;

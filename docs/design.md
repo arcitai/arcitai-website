@@ -1,6 +1,289 @@
 # Operative design
 
-## October 22 Data Mosaic hero — local proposal only
+## October 23 neutral fragments, centred DATA and a broad evolving glow — current local proposal
+
+Gustav approved Blend, the Balanced 8° camera and Factory, and selected All on October 23. The accepted Blend
+screenshot and its source snapshot are saved in `blend-approved-baseline` in
+the local October 22 design evidence. The October 22 round added source brands and three endings. The October 23 correction makes All the default, keeps DATA clearly visible in both themes, centres it on the complete field and makes the broad haze respond throughout assembly and gathering. Opus 5.5 High supplied the ending direction
+and reviewed the source; the lead implements and verifies it. Factory's house,
+control room, materials and motion remain frozen. The latest colour choice replaces ordinary orange fragments with cool, lightly blue-tinted greys. No production publication is included.
+
+`?mosaic=blend` defaults to **All**. The on-page Ending buttons select Quiet,
+Sources or All and update the URL's `ending` parameter without reloading,
+resampling the scene or resetting the assembly clock. Earlier composition
+URLs remain available: Haze, Haze + sources, Contour, Contour + sources, Frame,
+Frame + sources. `?mosaic=wings` opens Frame + sources with current motion;
+`?mosaic=wings-archive` explicitly retains the older renderer. All current
+compositions keep Previous's top-facing proportions and the approved 11.4°
+down-right axis. Arc’IT stays in the lower-right at column 13, row 4, span 3.
+
+**Fragment colour.** Blend uses off-white/cool-grey unsorted tiles with a subtle Arc’IT-blue tint: #f6f7f9, #eceef2, #dfe3e9 and #cfd5de in light theme; #2a2d33, #33373e, #3d424b and #484e58 in dark theme. The source groups’ neutral member and sparse frame fragments use the same second neutral. Existing source-brand colours, platform accent colours and paper logo plates stay intact. Assembly still blends into the stronger organised blue palette. Earlier compositions keep their orange comparison palette.
+
+**Sources and placement.** Blend selects 8–11 distinct brands on desktop and
+6–7 at 1280px or narrower from a pool of 39. The pool includes Slack, Teams,
+HubSpot, Salesforce, Notion, GitHub, Shopify, Klaviyo, Google Drive, Airtable,
+Dropbox and Snowflake, plus Gmail, Google Sheets, Calendar, Analytics, Figma,
+Miro, Box, Asana, ClickUp, Confluence, Jira, Linear, Trello, Intercom, Zendesk,
+Zoho, MailChimp, WooCommerce, Stripe, PayPal, QuickBooks, Xero, SAP, Odoo,
+PostgreSQL, MySQL and MongoDB. Selection uses at most two per category.
+Shopify and Klaviyo remain in the foreground. Desktop uses four foreground
+slots, one or two under-copy slots and one to three on either side. Compact
+uses four or five foreground slots and one or two under-copy slots.
+
+The source count, brands, slots, bounded position jitter, fragment count and
+arrival times vary on ordinary reloads and remain stable during a visit.
+Only explicit `replay=1&mosaicSeed=94` pins a seed; stale `mosaicSeed` alone
+has no effect. Front groups arrive within the first eight seconds, other
+sources within twenty, with a 0.9-second fade and six-unit rise. Each group has
+two or three real data fragments, including one neutral, and two smaller
+brand-coloured context tiles. Four front sources each also own the two tiles
+collected by the agents. All these moving fragments belong to the same 199
+conserved data identities; no donor copies appear during pickup or delivery.
+
+**Platform colour.** Databricks, Azure, Fabric and Delta Lake occupy four
+seeded non-overlapping reservations among six candidates that leave the centred word clear, with no more than
+two at the far-right edge. Each has three unique nearby brand-coloured cells;
+Arc’IT has two paper-coloured cells. These fourteen cells are protected from
+origin reassignment, and all 37 letter cells are excluded from accent placement. They keep their colours in Quiet and Sources, and fade
+to blue as their platforms leave in All. Asset provenance, original URLs,
+modifications, licences and hashes are recorded in `public/assets/hero-sources/`
+and the existing Factory asset records. These are illustrative data sources,
+not partnership badges or a claim that integrations are installed.
+
+**Three endings.** All is now selected and is the default for absent or invalid ending parameters. Quiet and Sources remain explicit comparison options. The October 23 screenshot shows that the former 32% ink was too faint; the new direction calls for clearly visible DATA.
+
+- **Quiet:** source icons, their two context tiles and platform marks stay.
+  DATA appears four seconds after assembly, using the lighter 22% ink mix.
+- **Sources:** each source waits for its own self-assembling fragments and
+  agent deliveries. Its two remaining context tiles gather over three seconds;
+  its logo follows 0.4 seconds later on a six-second curve into Arc’IT. The
+  four platforms and Arc’IT remain. DATA uses 26% ink.
+- **All:** the sources gather as above. The four platforms follow at 2.5-second
+  intervals; their nearby colours blend to blue over three seconds. Arc’IT
+  dissolves after the last platform arrives. Twenty-five ordinary foundation
+  cells fill the vacated platform footprints, leaving a complete 224-cell
+  rectangle. These are foundation structure, not extra data identities. DATA
+  uses 94% ink toward deep navy #0e2442 in light theme and near-white #f3f6ff in dark theme. Quiet and Sources use the same theme-aware ink colours at their lower strengths.
+
+DATA is a 3×5 tile alphabet: 37 existing cells across columns −6…8, rows 1…5. This is the nearest whole-cell centre on the 32-column field (eight empty columns on the left, nine on the right). Platform footprints and brand accents are kept off these cells in all three endings.
+Each letter begins two seconds after the previous one, with a small column
+stagger and 0.8-second colour transition. There is no text overlay or added
+floor polygon. To keep faint lettering legible, glyph cells settle toward
+blue-3 as they acquire ink; the local background settles 70% toward blue-3,
+with a 35% border at columns −7/9 and rows 0/6, and unchanged colours outside. Protected brand accents are
+excluded. Ambient shine is damped within the settled letter area so that the travelling wave and mouse highlight do not wash out the strokes. Colour checks use the actual CSS theme tokens and include full pointer energy. Both agents fade out over 1.5 seconds when the word begins. Once
+DATA has appeared, changing endings preserves the word and keeps agents faded.
+New departures are scheduled after a late switch; returning sources crossfade
+at home rather than flying backward. Transition snapshots cover rapid changes.
+Reduced motion and save-data immediately show the selected final ending,
+including after a late change to an ending with rescheduled departures. The glow derives from those same completed tile and mark frames.
+
+**Motion.** The Gustav Online travelling crest, cross-ripple and tiny tile bob
+remain at the accepted calmer scale. Ambient lift plus pointer energy stays
+between −2.5 and +0.3 units; tile scale is at most 1.035. Mouse movement adds a
+radial push of at most four units and a short decaying trail. A stationary
+cursor does not hold the field up. Brand plates translate rigidly with their
+logos and context at 0.6 strength (Arc’IT at 0.45); gathering groups suppress
+independent pointer motion. Geometry is memoised. Source flights curve down
+beside the copy and then inward, shrinking and fading without a bounce.
+
+Blend takes roughly three minutes to organise. Codex and Claude each collect
+four actual foreground tiles, with 22–32-second rests between jobs. Other
+fragments assemble slowly in staggered waves, preserving exact handoffs and
+avoiding unrelated unsorted fragments after completion. The shared visible-time
+clock updates at 24fps. Offscreen and hidden-tab states stop it and clear pointer
+energy. The pause/start button is removed at the owner's explicit request;
+no replacement pause control is added. Reduced-motion and save-data handling
+remain; this is not an accessibility-compliance claim. Responsive reflow keeps
+the seed, elapsed time, all 199 tile identities and the carrier-job schedule.
+
+**Haze, framing and margins.** Blend has a soft atmosphere over the entire hero, including behind the copy and around the side islands. Three overlapping radial washes fade fully to transparency inside the section, independent of the compact artwork crop. The wash shifts from cool grey toward Arc’IT blue as tiles organise and marks gather; there is no warm/orange pool in Blend, no solid background or glass-like horizon. The broad atmosphere uses #bac3d0 → #80a1d9 in light theme and #444c59 → #456fb3 in dark theme.
+
+Four overlapping blue washes also follow the field, centred at projected columns −10, −2.7, 4.7 and 12, row 4.5, with radii 300×120 and the approved rotation. Their strength follows the actual mean blue fraction of tiles within five columns, plus the displayed disappearance of source/platform marks. The global colour progression uses mean assembly and gathered-mark opacity; newly arriving logos do not count as already gathered. Colour and strength therefore evolve throughout the story, reach full blue in All, and respond smoothly to returning marks on ending switches. The old final-only glow timer is removed. The shared visible-time clock pauses the motion offscreen and when hidden; reduced motion/save-data derive the final glow immediately. No separate animation clock, blur filter or rectangular floor is added. The final wash keeps the same theme-specific blue strengths (0.58/0.28 light, 0.5/0.24 dark). Earlier composition URLs retain their prior washes. The copy veil stays in place.
+
+Blend reassigns at most ten left and six
+right origins to a sparse frame, leaving faint outlines after assembly.
+Desktop reserves at least 64 units inside the 1600×900 scene for complete
+artwork. Compact uses viewBox `100 400 1440 470`, a 24-unit inner margin and
+20px CSS margin per side. Everything uses `meet`, not cropping `slice`.
+Geometry checks cover full prisms, side depth, logo size, pointer/ambient
+motion, brand/context flights and whole agents. The solid-shape exclusion
+ellipse is centred at (800,280), with radii (380,175).
+
+**Verification limit.** Source tests, colour arithmetic, builds and HTTP byte
+readback are available. The earlier automatic approval rejection of assembled
+localhost rendering still applies. These checks do not constitute rendered
+visual QA; the owner needs to judge the centred DATA, neutral fragments, broad evolving glow and motion in both themes. The accepted baseline remains recoverable in the local design evidence.
+
+## October 22 down-right perspective and shared tile construction — superseded angle comparison
+
+The owner approves the six surroundings, field story and Factory overall. The
+remaining correction is the viewing angle: preserve Previous's view from above,
+with a more pronounced slope down toward the lower-right corner. The owner also
+recalls liking an earlier, more strongly sloped version. The recoverable Previous
+basis is the reference; do not claim to have recovered that specific earlier view.
+Opus 5.5 High chose a rigid clockwise rotation of both Previous axes, preserving
+the tile proportions and viewing elevation, plus a small house/control-room polish.
+
+Opus 5.5 High designed six surroundings around the selected Previous field.
+The current local default is `?mosaic=haze`; `quiet`, `contour`, `reflection`,
+`glass` and `swell` compare empty space, soft light, contours, reflected planes,
+translucent trays and slow curves. The palette remains orange, Arc’IT blue,
+grey/white and a few source-brand accents. Colour selection is deferred.
+`?mosaic=wings` preserves Previous; the earlier named palette studies remain
+accessible. No production release is included.
+
+A single straight, low parallelogram replaces the wings around the text.
+Previous's u=(1,.06), v=(-.4,.5) is rotated clockwise by8° by default:
+u≈(.981918,.198589), v≈(-.465694,.439465). Its long axis now falls11.4°
+down-right, compared with3.4° for Previous. The former u.y=-.16 was the rejected
+up-right direction. A fixed field centre at(782,609) and unchanged determinant
+.524 preserve framing and the top-face area. Local angle comparisons are
+`?angle=5` (Gentle,8.4° axis), `?angle=8` (Balanced,11.4°) and `?angle=11`
+(Stronger,14.4°). Angle links preserve the composition and visit seed so only
+the camera changes. A normal visit still varies the scene. Source marks, plates,
+worker foot positions and surroundings derive from the same camera; moving tiles
+and logo plates are drawn in depth order. Palette and timing remain approved.
+Pitch36.4 and tile size28 retain the10:13 spacing. The1600×900 scene reserves space for
+front clusters and the comparison menu. At1280px and below the scene flows
+beneath the text with a70,350,1500,530 viewBox; larger views show the full scene
+without cropping. A paper veil protects the copy's lower edge.
+
+Six upright source marks identify Slack, HubSpot, Teams, Salesforce, Notion
+and GitHub. Small nearby groups echo their colours. Databricks, Azure, Microsoft
+Fabric and Delta Lake sit beside the Arc’IT mark in the aligned blue end.
+Sources and hashes live in public/assets/factory-tools; these are illustrative
+ecosystem examples, not endorsements or installed integrations.
+
+One conserved tile set owns every source and destination. Codex and Claude
+collect four actual fragments each; the picked-up identity leaves its source
+and remains installed after placement. All other fragments organise in staggered
+waves. Every tile ends aligned and blue and stays there; there is no scene reset
+or unrelated orange remainder. A visit seed varies roles, offsets and timing.
+A23-second wave lifts tiles by at most1.4units; pointer proximity adds up to5.
+A visible-time24fps clock pauses offscreen, in hidden tabs and on request.
+Reduced motion and save-data show the completed foundation.
+
+`rounded-prism.ts` now constructs both small tiles and enlarged Factory slabs:
+the same rounded corners, continuous side faces, shallow lip and fine highlight.
+Factory keeps its stage footprint, labels, module colours, selection, folding,
+agent routes and doors. The backward-facing roof glazing was removed and the
+sawtooth roof planes tinted, closing the apparent opening without moving doors.
+The island uses the same geometry. Flat vector paint remains crisp without
+blur, bitmap textures or noise.
+
+The house now has a thin top lip and base shading, and its closed roof uses the
+same edge stroke as the slabs. The control room is made from the same rounded
+prism, with a fine rim, shallow lip, contact shadow and glass glint. Existing
+doorway coordinates, steps, roof silhouette and agent masks remain unchanged.
+The near stepped wall and its finish draw after the rear roof tooth, so the
+rear plane cannot cover the wall and leave an apparent open notch. Opus's source
+acceptance required that draw-order correction; it is implemented. Surrounding
+art is clipped to the scene viewport and the text veil's vertical radius is260,
+protecting the lower-left copy corner as the field turns down-right. These are
+source-level repairs; the final three viewing angles still need the owner's
+visual choice.
+
+Focused tests cover conservation, reserved marks, camera bounds, pickup and
+placement continuity, monotonic organisation, permanent completion, seeded
+variation and scaled prism geometry. The existing automatic approval rejection
+still blocks assembled local browser rendering; source/build/HTTP checks do not
+prove desktop/mobile visual acceptance. No Flow generations were used.
+
+Opus's source review found and the lead repaired cluster assignment, source
+visibility, carrying position, excess brand speckle, blue consistency, the copy
+veil, phone logo sizes, return navigation and lift-to-slab contact. Source groups
+now stay near the fragmented end and fill the nearest unused cells. Each pickup
+has its own visible position outside the logo plate. Phone logos are56units
+(Arc’IT68) while retaining the full compact field to avoid cropped edge tiles.
+The right lift landing and guide meet the rounded slab at stage x433.
+
+## October 22 under-copy palette studies — superseded comparison
+
+The current local headline is “AI should understand your business”. Keep the
+personal wording generic and grounded in the work; use founder when needed,
+without self-appointed architect titles or a career timeline.
+
+The review-only mosaic retains the family's square tile proportions. Its broad,
+low floor sits slightly under the final lines of hero copy, with a soft paper
+veil for legibility. It does not wrap around the headline. Projection u=(1,.06),
+v=(-.4,.5) keeps the 1600×520 composition flat and readable. At up to 1100px a
+compact 1200×430 crop gives the scene its own space below the text.
+
+Six explicit comparisons preserve the same story: `?mosaic=chalk` (default,
+white with occasional grey), `ash` (warm grey), `slate` (cool grey), `graphite`
+(dark grey), `ember` (orange) and `signal` (mostly grey with orange accents).
+All end in ordered Arc’IT-blue fields. The orange variants are comparisons,
+not the default. `?mosaic=wings` retains the previous surrounding layout.
+The local picker keeps other review query parameters and does not ship in the
+production bundle. Existing `?hero=plain`, `atelier` and `engraved` remain.
+
+Exact Codex and Claude assets from Factory collect fragments and install blue
+tiles, which stay installed. A visit seed varies roles, rhythm and loose fields
+once per reload. After the finite build, agents maintain the foundation. Helpers
+enter and leave through the outer edges; they never dissolve into place. Upright
+Slack, Teams, Databricks, Power BI and Azure marks sit on reserved tiles, with
+the approved Arc’IT mark in the organised area. These are ecosystem examples,
+not claims about installed integrations or endorsements.
+
+Opus 5.5 High owns the shared material direction: chalk tops, blue edges, fine
+back-edge highlights, shallow lips and base shading, with two-tone contact
+shadows. `arc-material.css` supplies light/dark tokens to both scenes. Factory's
+slabs, roof, glazing, control room, island, bridge, elevators, tools, parcels and
+pets share this finish. `PrismFinish` adds flat paint without filters, SVG IDs,
+texture noise or another animation loop. More modules keeps its airy dashed
+outline. Software, BI, defence and research retain their separate colours.
+
+Factory geometry, unfolding, doorway masks, agent routes and timing remain
+unchanged. Moving the slab on hover would detach agents and masks from their
+floors, so existing selection/focus paint provides interaction feedback instead.
+Finish overlays never receive pointer events and hide in forced-colour mode.
+Module colour transitions and sequential label dissolves are preserved.
+
+Source review with Opus repaired the text veil, inspection and collection lanes,
+hit testing and note-body selectors. Motion tests cover both layouts, object
+permanence, continuous entrances/exits and variation at reload; geometry tests
+cover reserved brand tiles and neutral palettes. The hero pauses offscreen, in
+hidden tabs or on request; reduced motion and save-data show the completed
+foundation. No Flow credits were spent. These changes remain unpublished.
+The automatic localhost-rendering rejection still prevents assembled visual QA;
+source, build and HTTP checks are not rendered desktop/mobile acceptance.
+
+## October 22 recognisable mosaic — superseded surrounding-layout proposal
+
+After the owner’s full inventory and Opus 5.5 High design review, the mosaic
+retains its isometric form but uses the actual LinkedIn r26/Gustav Online
+visual language: regular square spacing at a 10:13 ratio, the established orange
+palette, an Arc’IT-blue area and the exact white six-piece mark. Clean vector
+faces and shallow edges replace the engraved paper/vintage finish.
+
+Two existing Factory characters, Codex and Claude Code, carry ordinary tiles
+between loose piles and fixed slots. Their 28- and 37-second journeys include
+walking, placing, inspecting and returning. Positions are continuous; the bodies
+and carried tiles never fade or appear out of nowhere. Slack, Databricks and Azure
+appear as ecosystem examples, using existing assets with their provenance.
+The scene represents business data/context becoming a usable foundation, not
+measured contributions, a deployed integration or an endorsement.
+
+Runtime SVG and the original Codex sprite preserve exact familiar identities,
+match both themes and avoid further Flow generations. The scene has an independent
+visible-time clock; it stops offscreen, in hidden tabs, with reduced motion or
+data saving. A small accessible control pauses it and hides when motion is
+disabled by the user's preferences. Pets are larger relative to the grid on
+mobile. Carried tiles sit behind the figures, and working figures face their
+placed tile. Factory behaviour is unchanged.
+
+Local `?hero=mosaic` is the default. `?hero=engraved` retains the prior Flow mosaic;
+`?hero=atelier` and `?hero=plain` remain available. Only the review build includes
+the new scene. No production publication is part of this iteration.
+
+Source and motion tests can verify continuity and visibility logic; they do not
+establish visual acceptance. The prior automatic localhost browser rejection
+continues to block assembled desktop/mobile rendering. Inspect the local preview
+before releasing. Existing third-party asset provenance remains in
+public/assets/factory-tools/SOURCES.md.
+
+## October 22 engraved Data Mosaic — superseded local proposal
 
 The owner rejected the floating mountain/workshop as a separate, unrelated theme.
 Keep the supplied references' blue and ivory engraving, but make the subject
@@ -1439,3 +1722,18 @@ themes. Exercise forced scenes, poster/video failures, actual playback,
 offscreen/reduced-motion behavior, reversible scroll/pointer controls, Offers
 and FAQ keyboard access, anchors, form pending/error/success and safe error
 text. Mock valid form requests; never create a real inquiry for release proof.
+
+## Approved production release · 23 October 2026
+
+The owner approved Blend, Balanced (8°) and All, including the neutral unsorted tiles,
+centred DATA lettering and regional glow. This is now the default production hero.
+Comparison controls require an explicit local review build and `?compare=1`.
+Production ignores old composition, ending and replay query parameters.
+
+Factory is approved. The final release adds 24px of space between its toolbar and
+the bridge label on desktop, retaining 24px total below the toolbar on mobile.
+Defence and Research source links point to their verified public documentation-only
+starting repositories; they do not imply installable or completed modules.
+
+Book a free consultation retains the 15-minute Notion Calendar destination. The
+project inquiry route and Worker integration are unchanged.

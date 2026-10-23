@@ -176,7 +176,7 @@ export function FactoryFloorTools({
         const footOffset = layer === "ops" && mark.asset === "claudecode.svg" ? (4 / 24) * size : 0;
         return (
           <g key={mark.name}>
-            <ellipse className="factory-tool-shadow" cx={x} cy="91" rx="15" ry="3" />
+            <ellipse className="arc-mat factory-tool-shadow" cx={x} cy="91" rx="15" ry="3" />
             <ToolMark mark={mark} x={x - size / 2} y={91 - size + footOffset} size={size} />
           </g>
         );

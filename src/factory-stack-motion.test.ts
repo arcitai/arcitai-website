@@ -37,8 +37,8 @@ describe("Factory stack opening", () => {
   it("only links verified module repositories, with no guessed links for other work areas", () => {
     expect(moduleSource("software")?.url).toBe("https://github.com/arcitai/factory");
     expect(moduleSource("powerbi")?.url).toBe("https://github.com/arcitai/Agentic-PowerBI-System");
-    expect(moduleSource("research")).toBeNull();
-    expect(moduleSource("defence")).toBeNull();
+    expect(moduleSource("research")?.url).toBe("https://github.com/arcitai/factory-research");
+    expect(moduleSource("defence")?.url).toBe("https://github.com/arcitai/factory-defence");
     for (const snapshot of [
       null,
       {},
