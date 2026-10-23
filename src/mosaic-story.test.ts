@@ -36,7 +36,8 @@ const corners = (p: StoryPoint, size: number, basis: StoryBasis, rotation = 0, d
   );
 };
 
-describe("one conserved field across the compositions", () => {
+// These correctness sweeps sample hundreds of scenes, not runtime performance.
+describe("one conserved field across the compositions", { timeout: 30000 }, () => {
   it("reserves four random platform slots, eight pickups and the lower-right Arc’IT mark across 1,000 visits", () => {
     const layouts = new Set<string>();
     for (let seed = 0; seed < 1000; seed++) {
