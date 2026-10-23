@@ -1,10 +1,34 @@
+import { lazy, Suspense } from "react";
+import { localReview } from "../family/preview";
+import { usesLegacyMosaic } from "../mosaic-story";
+
+const HeroArtwork = lazy(() =>
+  import("./HeroArtwork").then(({ HeroArtwork }) => ({ default: HeroArtwork })),
+);
+
 export function Hero() {
+  const requested = localReview ? new URLSearchParams(window.location.search).get("hero") : null;
+  const artworkVariant = requested === "atelier" || requested === "engraved" ? requested : "mosaic";
+  const artwork = requested !== "plain";
   return (
-    <section className="walkthrough-hero" id="top" aria-labelledby="hero-title">
+    <section
+      className={`walkthrough-hero${artwork ? ` has-artwork hero-${artworkVariant === "engraved" ? "mosaic" : artworkVariant}` : ""}`}
+      id="top"
+      aria-labelledby="hero-title"
+      data-mosaic-layout={
+        artwork && artworkVariant === "mosaic"
+          ? !(localReview && usesLegacyMosaic(window.location.search))
+            ? "composition"
+            : new URLSearchParams(window.location.search).get("mosaic") === "wings-archive"
+              ? "wings"
+              : "floor"
+          : undefined
+      }
+    >
       <div className="walkthrough-shell">
         <h1 id="hero-title">
-          Does AI understand
-          <br className="hero-linebreak" /> <span>your business?</span>
+          AI should understand
+          <br className="hero-linebreak" /> <span>your business</span>
         </h1>
         <p className="walkthrough-description">
           Your data and business context are the foundation for AI to do useful work. Connect them
@@ -14,6 +38,11 @@ export function Hero() {
           it.
         </p>
       </div>
+      {artwork && (
+        <Suspense fallback={null}>
+          <HeroArtwork variant={artworkVariant} />
+        </Suspense>
+      )}
     </section>
   );
 }

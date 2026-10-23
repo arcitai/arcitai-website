@@ -1,0 +1,188 @@
+.walkthrough-hero.has-artwork {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: clamp(620px, 48vw, 760px);
+  padding: 76px 0 260px;
+}
+.has-artwork .walkthrough-shell {
+  position: relative;
+  z-index: 1;
+}
+.has-artwork .walkthrough-description {
+  max-width: 59ch;
+}
+.hero-artwork {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.hero-artwork-picture,
+.hero-artwork-picture::after,
+.hero-artwork-picture img,
+.hero-artwork-picture video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.hero-artwork-picture img,
+.hero-artwork-picture video {
+  display: block;
+  object-fit: cover;
+  object-position: center 48%;
+}
+.hero-artwork-picture video {
+  opacity: 0;
+  transition: opacity 900ms ease;
+}
+.hero-artwork.is-ready video {
+  opacity: 1;
+}
+.hero-artwork-picture::after {
+  content: "";
+  background:
+    linear-gradient(180deg, var(--paper), transparent 22%),
+    radial-gradient(ellipse 42% 38% at 50% 27%, #fafafaf5 25%, #fafafacc 62%, transparent 100%),
+    linear-gradient(0deg, var(--paper), transparent 17%);
+}
+:root[data-theme="dark"] .hero-artwork-picture img,
+:root[data-theme="dark"] .hero-artwork-picture video {
+  filter: brightness(0.7) saturate(0.85);
+}
+:root[data-theme="dark"] .hero-artwork-picture::after {
+  background:
+    linear-gradient(180deg, var(--paper), #171717b3 30%, transparent 66%),
+    radial-gradient(ellipse 45% 40% at 50% 28%, #171717f5 30%, #171717cc 65%, transparent 100%),
+    linear-gradient(0deg, var(--paper), transparent 22%);
+}
+.hero-artwork-toggle {
+  position: absolute;
+  right: 28px;
+  bottom: 28px;
+  display: none;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: var(--ink);
+  background: var(--paper);
+  cursor: pointer;
+}
+.hero-artwork.is-ready .hero-artwork-toggle {
+  display: grid;
+}
+.hero-artwork-toggle svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+.hero-artwork-toggle:focus-visible {
+  outline: 2px solid var(--family-accent);
+  outline-offset: 4px;
+}
+@media (max-width: 1040px) {
+  .walkthrough-hero.has-artwork {
+    min-height: 0;
+    padding: 56px 0 280px;
+  }
+  .hero-artwork-picture {
+    top: auto;
+    height: 380px;
+  }
+  .hero-artwork-picture img,
+  .hero-artwork-picture video {
+    object-position: 70% center;
+  }
+  .hero-artwork-picture::after,
+  :root[data-theme="dark"] .hero-artwork-picture::after {
+    background: linear-gradient(
+      180deg,
+      var(--paper),
+      transparent 46%,
+      transparent 80%,
+      var(--paper)
+    );
+  }
+}
+@media (max-width: 700px) {
+  .walkthrough-hero.has-artwork {
+    padding: 44px 0 230px;
+  }
+  .hero-artwork-picture {
+    height: 270px;
+  }
+  .hero-artwork-picture img,
+  .hero-artwork-picture video {
+    object-position: 75% center;
+  }
+  .hero-artwork-toggle {
+    right: 16px;
+    bottom: 12px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-artwork-picture video,
+  .hero-artwork-toggle {
+    display: none !important;
+  }
+}
+
+/* A continuous working landscape around the copy, not a strip appended below it. */
+.walkthrough-hero.has-artwork.hero-mosaic {
+  min-height: clamp(680px, 51.25vw, 1040px);
+  padding: clamp(88px, 10vh, 128px) 0 340px;
+}
+.hero-mosaic .walkthrough-shell {
+  position: relative;
+  z-index: 2;
+}
+.hero-mosaic .hero-artwork {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+.hero-mosaic .hero-artwork::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 30% 30% at 50% 30%,
+    var(--paper) 0%,
+    color-mix(in srgb, var(--paper) 94%, transparent) 55%,
+    transparent 100%
+  );
+}
+.hero-mosaic .mosaic-motion-toggle {
+  z-index: 3;
+}
+.hero-mosaic .hero-artwork-picture {
+  overflow: hidden;
+}
+.hero-mosaic .hero-artwork-picture::after {
+  background: linear-gradient(0deg, var(--paper), transparent 20%);
+}
+@media (max-width: 1100px) {
+  .walkthrough-hero.has-artwork.hero-mosaic {
+    min-height: 0;
+    padding: 44px 0 0;
+  }
+  .hero-mosaic .hero-artwork {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: auto;
+    margin: 24px 0 0;
+  }
+  .hero-mosaic .hero-artwork::after {
+    content: none;
+  }
+  .hero-mosaic .walkthrough-description {
+    font-size: 16px;
+  }
+}

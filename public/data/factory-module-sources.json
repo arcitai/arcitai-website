@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-21T06:56:33.827Z",
+  "checkedAt": "2026-10-23T10:59:42.430Z",
   "sources": {
     "software": {
       "repository": "arcitai/factory",
@@ -10,6 +10,16 @@
       "repository": "arcitai/Agentic-PowerBI-System",
       "url": "https://github.com/arcitai/Agentic-PowerBI-System",
       "description": "Standalone Agentic Power BI System for turning business questions into validated Power BI models, reports, and decision journeys."
+    },
+    "defence": {
+      "repository": "arcitai/factory-defence",
+      "url": "https://github.com/arcitai/factory-defence",
+      "description": "Early documentation for defensive security workflows with Factory."
+    },
+    "research": {
+      "repository": "arcitai/factory-research",
+      "url": "https://github.com/arcitai/factory-research",
+      "description": "Early documentation for research and reverse-engineering workflows with Factory."
     }
   }
 }

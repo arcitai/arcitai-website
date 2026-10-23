@@ -1,0 +1,278 @@
+.hero-mosaic .hero-artwork.mosaic-scene {
+  aspect-ratio: auto;
+  margin: 0 auto;
+  --mosaic-neutral: #ece6dc;
+  --mosaic-orange-1: #f8d3b2;
+  --mosaic-orange-2: #f5aa70;
+  --mosaic-orange-3: #ee7f3c;
+  --mosaic-orange-4: #d4621f;
+  --mosaic-blue-1: #dce2ed;
+  --mosaic-blue-2: #adbcd8;
+  --mosaic-blue-3: #7891c1;
+  --mosaic-blue-4: #4265a0;
+  --mosaic-tile-paper: #fffdf9;
+  --mosaic-eye: #f8f2e8;
+}
+:root[data-theme="dark"] .hero-mosaic .mosaic-scene {
+  --mosaic-neutral: #2a2925;
+  --mosaic-orange-1: #4a3326;
+  --mosaic-orange-2: #7a4524;
+  --mosaic-orange-3: #b85c26;
+  --mosaic-orange-4: #ee7f3c;
+  --mosaic-blue-1: #2b3242;
+  --mosaic-blue-2: #34497a;
+  --mosaic-blue-3: #4265a0;
+  --mosaic-blue-4: #8ea6d4;
+  --mosaic-tile-paper: #f2e9dd;
+}
+.mosaic-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.mosaic-tile {
+  --tile-color: var(--mosaic-neutral);
+}
+.mosaic-tile.tone-orange.level-1 {
+  --tile-color: var(--mosaic-orange-1);
+}
+.mosaic-tile.tone-orange.level-2 {
+  --tile-color: var(--mosaic-orange-2);
+}
+.mosaic-tile.tone-orange.level-3 {
+  --tile-color: var(--mosaic-orange-3);
+}
+.mosaic-tile.tone-orange.level-4 {
+  --tile-color: var(--mosaic-orange-4);
+}
+.mosaic-tile.tone-blue.level-1 {
+  --tile-color: var(--mosaic-blue-1);
+}
+.mosaic-tile.tone-blue.level-2 {
+  --tile-color: var(--mosaic-blue-2);
+}
+.mosaic-tile.tone-blue.level-3 {
+  --tile-color: var(--mosaic-blue-3);
+}
+.mosaic-tile.tone-blue.level-4 {
+  --tile-color: var(--mosaic-blue-4);
+}
+.mosaic-tile.tone-brand {
+  --tile-color: #4265a0;
+}
+.mosaic-tile.tone-paper {
+  --tile-color: var(--mosaic-tile-paper);
+}
+.mosaic-tile-top {
+  fill: var(--tile-color);
+  stroke: color-mix(in srgb, var(--tile-color) 82%, #fff);
+  stroke-width: 0.5;
+}
+.mosaic-tile-side {
+  fill: color-mix(in srgb, var(--tile-color) 75%, #273044);
+}
+.mosaic-tile-rim {
+  fill: none;
+  stroke: var(--arc-mat-rim);
+  stroke-width: 0.7;
+}
+.mosaic-slot {
+  fill: none;
+  stroke: var(--line);
+  stroke-width: 1;
+  stroke-dasharray: 2 4;
+}
+.mosaic-shimmer {
+  animation: mosaic-light 19s linear infinite;
+  animation-play-state: paused;
+}
+.mosaic-shimmer-soft {
+  animation-duration: 31s;
+  animation-delay: -12s;
+  opacity: 0.45;
+}
+.mosaic-scene[data-running="true"] .mosaic-shimmer {
+  animation-play-state: running;
+}
+.mosaic-inspection {
+  fill: none;
+  stroke: var(--mosaic-blue-4);
+  stroke-width: 1.4;
+  stroke-opacity: 0.55;
+}
+@keyframes mosaic-light {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(2200px);
+  }
+}
+.mosaic-worker-shadow {
+  fill: var(--arc-mat-contact);
+}
+.mosaic-worker-figure {
+  transform: scale(var(--mosaic-worker-scale, 1.35));
+  transform-origin: 0 0;
+}
+.mosaic-scene .factory-clawd-tool {
+  fill: #6b7280;
+}
+.mosaic-motion-toggle {
+  position: absolute;
+  bottom: 8px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  padding: 11px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--paper);
+  color: var(--muted);
+  cursor: pointer;
+}
+.mosaic-motion-toggle svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+}
+.mosaic-motion-toggle:hover {
+  color: var(--ink);
+}
+.mosaic-motion-toggle:focus-visible {
+  outline: 2px solid var(--family-accent);
+  outline-offset: 4px;
+}
+.mosaic-scene:not([data-motion-available="true"]) .mosaic-motion-toggle {
+  display: none;
+}
+@media (max-width: 1100px) {
+  .hero-mosaic .hero-artwork.mosaic-scene {
+    aspect-ratio: 1220 / 430;
+    margin-top: 24px;
+  }
+  .mosaic-motion-toggle {
+    right: 4px;
+    bottom: 0;
+    width: 36px;
+    height: 36px;
+    padding: 10px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mosaic-shimmer {
+    display: none;
+  }
+  .mosaic-motion-toggle {
+    display: none;
+  }
+}
+
+/* Selected comparisons: a low floor overlaps the copy's lower edge only. */
+.walkthrough-hero.has-artwork.hero-mosaic[data-mosaic-layout="floor"] {
+  min-height: 0;
+  padding: clamp(72px, 7vw, 112px) 0 20px;
+}
+.hero-mosaic[data-mosaic-layout="floor"] .hero-artwork.mosaic-scene {
+  position: relative;
+  inset: auto;
+  z-index: 1;
+  width: min(100%, 1600px);
+  height: clamp(300px, 34vw, 520px);
+  aspect-ratio: auto;
+  margin: calc(-1 * clamp(56px, 6.5vw, 96px)) auto 0;
+  --mosaic-fragment-1: var(--mosaic-fragment-light-1);
+  --mosaic-fragment-2: var(--mosaic-fragment-light-2);
+  --mosaic-fragment-3: var(--mosaic-fragment-light-3);
+  --mosaic-fragment-4: var(--mosaic-fragment-light-4);
+  --mosaic-accent: #ee7f3c;
+}
+.hero-mosaic[data-mosaic-layout="floor"] .hero-artwork::after {
+  content: none;
+}
+:root[data-theme="dark"] .hero-mosaic[data-mosaic-layout="floor"] .mosaic-scene {
+  --mosaic-fragment-1: var(--mosaic-fragment-dark-1);
+  --mosaic-fragment-2: var(--mosaic-fragment-dark-2);
+  --mosaic-fragment-3: var(--mosaic-fragment-dark-3);
+  --mosaic-fragment-4: var(--mosaic-fragment-dark-4);
+  --mosaic-accent: #b85c26;
+}
+.mosaic-tile.tone-fragment.level-1 {
+  --tile-color: var(--mosaic-fragment-1);
+}
+.mosaic-tile.tone-fragment.level-2 {
+  --tile-color: var(--mosaic-fragment-2);
+}
+.mosaic-tile.tone-fragment.level-3 {
+  --tile-color: var(--mosaic-fragment-3);
+}
+.mosaic-tile.tone-fragment.level-4 {
+  --tile-color: var(--mosaic-fragment-4);
+}
+.mosaic-tile.tone-accent {
+  --tile-color: var(--mosaic-accent);
+}
+.mosaic-variants {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 16px;
+  width: min(calc(100% - 80px), 1120px);
+  margin: 0 auto;
+  padding: 8px 0;
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+.mosaic-variants > span {
+  margin-right: 6px;
+}
+.mosaic-variants a {
+  color: inherit;
+  text-decoration: none;
+  padding: 4px 0;
+  border-bottom: 1px solid transparent;
+}
+.mosaic-variants a:hover,
+.mosaic-variants a[aria-current="page"] {
+  color: var(--family-accent);
+  border-bottom-color: currentColor;
+}
+.mosaic-variants a:focus-visible {
+  outline: 2px solid var(--family-accent);
+  outline-offset: 4px;
+}
+.hero-mosaic[data-mosaic-layout="wings"] .mosaic-variants {
+  position: absolute;
+  bottom: 8px;
+  left: max(40px, calc((100% - 1120px) / 2));
+  width: auto;
+  max-width: calc(100% - 160px);
+}
+@media (max-width: 1100px) {
+  .walkthrough-hero.has-artwork.hero-mosaic[data-mosaic-layout="floor"] {
+    padding-top: 52px;
+  }
+  .hero-mosaic[data-mosaic-layout="floor"] .hero-artwork.mosaic-scene {
+    height: auto;
+    aspect-ratio: 1200 / 430;
+    margin-top: -16px;
+  }
+  .hero-mosaic[data-mosaic-layout="floor"] .mosaic-motion-toggle {
+    bottom: 4px;
+    right: 20px;
+  }
+}
+@media (max-width: 700px) {
+  .walkthrough-hero.has-artwork.hero-mosaic[data-mosaic-layout="floor"] {
+    padding-top: 40px;
+  }
+  .mosaic-variants {
+    width: calc(100% - 40px);
+    gap: 4px 14px;
+  }
+}

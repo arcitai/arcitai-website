@@ -1,12 +1,12 @@
 .factory-stack {
-  --factory-top: #fff;
+  --factory-top: #fffdf9;
   --factory-icon-ink: #315f9f;
-  --factory-icon-tone: #a8c9f4;
+  --factory-icon-tone: #adbcd8;
   --face-ink: #fff;
   --factory-face: #4265a0;
   --factory-side: #304d7c;
-  --factory-ground: #e1e8f2;
-  --factory-edge: #7186a7;
+  --factory-ground: #dce2ed;
+  --factory-edge: #7891c1;
   --software-face: #77559b;
   --powerbi-face: #c9a227;
   --defence-face: #3f7f7a;
@@ -16,9 +16,9 @@
 :root[data-theme="dark"] .factory-stack {
   --factory-top: #252d3a;
   --factory-icon-ink: #c0dcff;
-  --factory-icon-tone: #547cb4;
+  --factory-icon-tone: #7891c1;
   --face-ink: #152239;
-  --factory-face: #93b4e9;
+  --factory-face: #8ea6d4;
   --factory-side: #5476ac;
   --factory-ground: #202b3c;
   --factory-edge: #728bb0;
@@ -53,7 +53,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 12px 24px;
-  margin-bottom: 20px;
+  margin-bottom: 44px;
 }
 .factory-module-picker {
   display: flex;
@@ -143,10 +143,12 @@
   fill: color-mix(in srgb, var(--factory-side) 45%, var(--factory-ground));
 }
 .island-grid {
-  stroke: var(--factory-edge);
-  stroke-width: 0.7;
-  opacity: 0.3;
+  stroke: var(--arc-mat-seam);
+  stroke-width: 1.2;
   fill: none;
+}
+.factory-stack-contact {
+  fill: var(--arc-mat-contact);
 }
 .factory-layer {
   --layer-face: var(--factory-face);
@@ -188,8 +190,8 @@
 }
 .slab-top {
   fill: var(--factory-top);
-  stroke: var(--factory-edge);
-  stroke-width: 1;
+  stroke: color-mix(in srgb, var(--factory-edge) 80%, var(--factory-top));
+  stroke-width: 0.6;
 }
 .slab-face {
   fill: var(--layer-face);
@@ -239,13 +241,12 @@
   opacity: 1;
 }
 .factory-plane-tag {
-  fill: var(--ink);
+  fill: color-mix(in srgb, var(--ink) 86%, var(--factory-face));
   font: 500 17px/1 var(--font-sans);
   letter-spacing: 0.1px;
 }
 .factory-tool-shadow {
-  fill: var(--factory-side);
-  opacity: 0.14;
+  fill: var(--arc-mat-contact);
 }
 .factory-tool-dark {
   display: none;
@@ -284,13 +285,13 @@
 .factory-stack[data-module="research"] .factory-layer[data-layer="work"] {
   --face-ink: #172132;
 }
-.factory-roof-glazing {
-  fill: color-mix(in srgb, var(--factory-face) 28%, var(--factory-top));
-  stroke: var(--factory-edge);
-  stroke-width: 0.7;
+.factory-roof-plane {
+  fill: color-mix(in srgb, var(--layer-face) 22%, var(--factory-top));
+  stroke: color-mix(in srgb, var(--factory-edge) 80%, var(--factory-top));
+  stroke-width: 0.6;
 }
 .factory-control-glass {
-  fill: var(--factory-icon-tone);
+  fill: color-mix(in srgb, var(--factory-face) 30%, var(--factory-top));
   stroke: var(--factory-side);
   stroke-width: 0.8;
 }
@@ -306,6 +307,9 @@
   --layer-face: var(--factory-ground);
   --layer-side: color-mix(in srgb, var(--factory-edge) 25%, var(--factory-ground));
   --face-ink: var(--ink);
+}
+.factory-stack[data-directory="true"] .factory-layer[data-layer="work"] .arc-mat {
+  display: none;
 }
 .factory-stack[data-directory="true"] .factory-layer[data-layer="work"] > .factory-slab > path {
   stroke: var(--factory-edge);
@@ -655,6 +659,9 @@
   }
 }
 @media (max-width: 760px) {
+  .factory-toolbar {
+    margin-bottom: 24px;
+  }
   .factory-stack {
     margin-top: 28px;
   }
@@ -691,6 +698,9 @@
     border: 1px solid var(--factory-edge);
     border-bottom: 5px solid var(--layer-face);
     background: var(--factory-top);
+    box-shadow:
+      inset 0 1px 0 var(--arc-mat-rim),
+      0 1px 0 color-mix(in srgb, var(--factory-edge) 30%, transparent);
     transform: none;
     pointer-events: auto;
     text-align: left;
@@ -794,6 +804,10 @@
   }
 }
 @media (forced-colors: active) {
+  .island-grid {
+    stroke: CanvasText;
+    opacity: 0.3;
+  }
   .factory-stack {
     --face-ink: HighlightText;
     --factory-top: Canvas;

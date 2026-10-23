@@ -28,7 +28,7 @@ export type FactoryAgentProps = {
   onBeat: (event: FactoryAgentEvent) => void;
 };
 
-function CodexWorker({ pose }: { pose: AgentPose }) {
+export function CodexWorker({ pose }: { pose: AgentPose }) {
   const { row, column } = codexFrame(pose);
   return (
     <svg
@@ -49,7 +49,7 @@ function CodexWorker({ pose }: { pose: AgentPose }) {
     </svg>
   );
 }
-function ClaudeWorker({ pose, clock }: { pose: AgentPose; clock: number }) {
+export function ClaudeWorker({ pose, clock }: { pose: AgentPose; clock: number }) {
   const step = pose.action === "walk" ? Math.sin(pose.phase * Math.PI * 4) : 0;
   const blink = clock % 4.8 > 0.7 && clock % 4.8 < 0.84;
   const working = pose.action === "work";
@@ -101,7 +101,7 @@ function Transfer({ pose, serviceRoute = false }: { pose: AgentPose; serviceRout
       {nearFloor && outside && (
         <path
           className="factory-lift-landing"
-          d={left ? `M${liftX} ${floorY}H130` : `M436 ${floorY}H${liftX}`}
+          d={left ? `M${liftX} ${floorY}H130` : `M433 ${floorY}H${liftX}`}
         />
       )}
       {lift && (
@@ -111,10 +111,11 @@ function Transfer({ pose, serviceRoute = false }: { pose: AgentPose; serviceRout
             d={
               left
                 ? `M128 ${upper}H${lift.x}V${upper + 96}H128`
-                : `M438 ${upper}H${lift.x}V${upper + 96}H438`
+                : `M433 ${upper}H${lift.x}V${upper + 96}H433`
             }
           />
           <g transform={`translate(${lift.x} ${lift.y})`}>
+            <path className="arc-mat arc-mat-shade" d="M-11 5H11L10 6.5H-10Z" />
             <path className="factory-lift-car" d="M-15 0H15L11 5H-11Z" />
             <path className="factory-lift-rim" d="M-15-4V0H15V-4" />
           </g>
@@ -126,7 +127,8 @@ function Transfer({ pose, serviceRoute = false }: { pose: AgentPose; serviceRout
 function Worker({ name, pose, clock }: { name: AgentName; pose: AgentPose; clock: number }) {
   return (
     <g transform={`translate(${pose.x} ${pose.y}) scale(${32 / 38})`} opacity={pose.opacity}>
-      <ellipse className="factory-agent-shadow" cy="1" rx="11" ry="2" />
+      <ellipse className="arc-mat factory-agent-shadow" cy="1" rx="11" ry="2" />
+      <ellipse className="arc-mat arc-mat-contact-core" cy="1" rx="6.5" ry="1.3" />
       {name === "codex" ? <CodexWorker pose={pose} /> : <ClaudeWorker pose={pose} clock={clock} />}
     </g>
   );
@@ -216,7 +218,12 @@ export function FactoryAgents({ task, seed, onBeat }: FactoryAgentProps) {
         <g key={`helper-${index}`}>
           {helper.dispatch && helper.source === "control" && (
             <g className="factory-dispatch-note" transform="translate(354 80)">
-              <path d="M0 0H20V14H7L3 18V14H0Z" />
+              <path
+                className="arc-mat arc-mat-shade"
+                transform="translate(1 1.6)"
+                d="M0 0H20V14H7L3 18V14H0Z"
+              />
+              <path className="factory-note-body" d="M0 0H20V14H7L3 18V14H0Z" />
               <path className="factory-parcel-mark" d="M5 5H15M5 9H12" />
             </g>
           )}
@@ -242,7 +249,12 @@ export function FactoryAgents({ task, seed, onBeat }: FactoryAgentProps) {
           opacity={parcel.opacity}
           transform={`translate(${parcel.x} ${parcel.y}) scale(${parcel.scale})`}
         >
-          <path d="M-9-5 0-10 9-5 9 3 0 8-9 3Z" />
+          <path
+            className="arc-mat arc-mat-shade"
+            transform="translate(1 1.6)"
+            d="M-9-5 0-10 9-5 9 3 0 8-9 3Z"
+          />
+          <path className="factory-note-body" d="M-9-5 0-10 9-5 9 3 0 8-9 3Z" />
           <path
             className="factory-parcel-mark"
             d={parcel.reviewed ? "M-4-1-1 2 5-4" : "M-4-3H4M-4 0H2"}

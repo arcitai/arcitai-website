@@ -1,0 +1,56 @@
+/* Shared low-relief finish. Flat paint keeps animated SVGs light and crisp. */
+:root {
+  --arc-mat-rim: rgb(255 255 255 / 62%);
+  --arc-mat-lip: rgb(255 255 255 / 22%);
+  --arc-mat-shade: rgb(16 27 52 / 12%);
+  --arc-mat-side-shade: rgb(16 27 52 / 16%);
+  --arc-mat-contact: rgb(24 33 54 / 12%);
+  --arc-mat-contact-core: rgb(24 33 54 / 24%);
+  --arc-mat-seam: rgb(255 253 249 / 78%);
+  --arc-mat-glint: rgb(255 255 255 / 55%);
+}
+:root[data-theme="dark"] {
+  --arc-mat-rim: rgb(255 255 255 / 10%);
+  --arc-mat-lip: rgb(255 255 255 / 7%);
+  --arc-mat-shade: rgb(0 0 0 / 26%);
+  --arc-mat-side-shade: rgb(0 0 0 / 35%);
+  --arc-mat-contact: rgb(0 0 0 / 28%);
+  --arc-mat-contact-core: rgb(0 0 0 / 42%);
+  --arc-mat-seam: rgb(10 14 22 / 55%);
+  --arc-mat-glint: rgb(255 255 255 / 16%);
+}
+.arc-mat,
+.arc-mat * {
+  /* Roof paths have their own hit-testing rule; finish must never extend it. */
+  pointer-events: none !important;
+}
+.arc-mat-rim {
+  fill: none;
+  stroke: var(--arc-mat-rim);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+  stroke-linecap: round;
+}
+.arc-mat-lip {
+  fill: var(--arc-mat-lip);
+}
+.arc-mat-lip.is-side {
+  opacity: 0.5;
+}
+.arc-mat-shade {
+  fill: var(--arc-mat-shade);
+}
+.arc-mat-shade.is-side {
+  fill: var(--arc-mat-side-shade);
+}
+.arc-mat-glint {
+  fill: var(--arc-mat-glint);
+}
+.arc-mat-contact-core {
+  fill: var(--arc-mat-contact-core);
+}
+@media (forced-colors: active) {
+  .arc-mat {
+    display: none;
+  }
+}

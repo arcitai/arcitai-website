@@ -28,6 +28,7 @@ export function FactoryChannels({ layout, select, controls, selected }: FactoryC
         aria-hidden="true"
         focusable="false"
       >
+        <path className="arc-mat factory-route-bed" d={routes[layout]} />
         <path d={routes[layout]} />
         {layout === "bridge" ? (
           <>
