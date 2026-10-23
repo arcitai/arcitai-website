@@ -12,7 +12,8 @@ import {
 import { factoryModules, factoryPanelIds } from "./factory-stack-data";
 const names = ["codex", "claude"] as const;
 
-describe("Factory team choreography", () => {
+// Exhaustive choreography sweeps must also complete on shared release runners.
+describe("Factory team choreography", { timeout: 30000 }, () => {
   // Exhaustive scene sampling needs more time on shared CI runners.
   it("lets both identities work on both sides, crossing through roof doors without teleporting", () => {
     const helperSides = { codex: new Set<boolean>(), claude: new Set<boolean>() };
