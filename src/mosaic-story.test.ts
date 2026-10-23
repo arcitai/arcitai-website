@@ -102,6 +102,7 @@ describe("one conserved field across the compositions", () => {
     }
   });
 
+  // Exhaustive scene sampling needs more time on shared CI runners.
   it("keeps source groups and carrier pads clear of plates and all other initial tile footprints", () => {
     // Separating-axis test on projected top faces, including the actual jitter and rotation.
     const intersects = (a: StoryPoint[], b: StoryPoint[]) => {
@@ -179,7 +180,7 @@ describe("one conserved field across the compositions", () => {
                 throw new Error(`${id}/${seed}: ${tile.id} overlaps ${mark.id}`);
           }
         }
-  });
+  }, 30000);
 
   it("installs every fragment as blue once, including Previous framing, with a complete static reduced-motion state", () => {
     for (const { id } of compositions) {

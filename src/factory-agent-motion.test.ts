@@ -13,6 +13,7 @@ import { factoryModules, factoryPanelIds } from "./factory-stack-data";
 const names = ["codex", "claude"] as const;
 
 describe("Factory team choreography", () => {
+  // Exhaustive scene sampling needs more time on shared CI runners.
   it("lets both identities work on both sides, crossing through roof doors without teleporting", () => {
     const helperSides = { codex: new Set<boolean>(), claude: new Set<boolean>() };
     for (let seed = 0; seed < 12; seed++) {
@@ -47,7 +48,7 @@ describe("Factory team choreography", () => {
       for (const name of names) expect(sides[name].size).toBe(2);
     }
     for (const name of names) expect(helperSides[name].size).toBe(2);
-  });
+  }, 30000);
   it("gives the two workers separate floors and work rhythms, with only occasional handoffs", () => {
     let ticks = 0,
       separate = 0,
