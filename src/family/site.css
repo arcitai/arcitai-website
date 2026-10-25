@@ -1107,3 +1107,214 @@ body:has(.family-newsletter) main {
   font: 400 13px/1.4 var(--font-sans);
   font-variant-numeric: tabular-nums;
 }
+
+.navigation-overlay {
+  display: contents;
+}
+
+/* Compact header (≤760px): brand, theme and a Menu disclosure. Desktop keeps the Offers popover. */
+.menu-toggle,
+.site-header .site-menu {
+  display: none;
+}
+@media (max-width: 760px) {
+  :root {
+    scroll-padding-top: 80px;
+  }
+  .site-header .header-inner {
+    width: calc(100% - 40px);
+    max-width: none;
+    height: 64px;
+    padding: 0;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 8px;
+  }
+  .site-header .header-nav,
+  .site-header .header-newsletter {
+    display: none;
+  }
+  .site-header .wordmark {
+    min-width: 0;
+    gap: 10px;
+    font-size: 22px;
+  }
+  .site-header .wordmark .wordmark-icon {
+    width: 36px;
+    height: 36px;
+  }
+  .site-header .wordmark > span {
+    display: inline;
+  }
+  .site-header .header-utilities {
+    gap: 4px;
+  }
+  .site-header .menu-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    width: 44px;
+    min-height: 44px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--ink);
+    font: 500 15px/1 var(--font-sans);
+  }
+  .site-header .menu-toggle:hover,
+  .site-header .menu-toggle:focus-visible {
+    color: var(--family-accent);
+  }
+  .site-header .menu-toggle:focus-visible {
+    outline: 2px solid var(--family-accent);
+    outline-offset: 0;
+  }
+  .menu-toggle-icon {
+    position: relative;
+    width: 18px;
+    height: 8px;
+  }
+  /* Borders, not backgrounds, so the two lines survive forced colours. */
+  .menu-toggle-icon::before,
+  .menu-toggle-icon::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    border-top: 1.5px solid currentColor;
+    transition:
+      transform 180ms ease,
+      top 180ms ease;
+  }
+  .menu-toggle-icon::after {
+    top: 6.5px;
+  }
+  .menu-toggle[aria-expanded="true"] .menu-toggle-icon::before {
+    top: 3.25px;
+    transform: rotate(45deg);
+  }
+  .menu-toggle[aria-expanded="true"] .menu-toggle-icon::after {
+    top: 3.25px;
+    transform: rotate(-45deg);
+  }
+  /* A solid panel attached under the header; it scrolls on its own when taller than the screen. */
+  .site-header .site-menu:not([hidden]) {
+    display: block;
+    position: fixed;
+    inset: var(--navigation-top, 64px) 0 0;
+    width: 100%;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 8px 20px max(28px, env(safe-area-inset-bottom));
+    border-top: 1px solid var(--line);
+    background: var(--paper);
+    font: 400 17px/1.4 var(--font-sans);
+  }
+  .site-menu ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .site-menu-links > li {
+    border-bottom: 1px solid var(--line);
+  }
+  .site-menu-label {
+    display: block;
+    padding: 16px 0 4px;
+    color: var(--muted);
+    font-size: 13px;
+  }
+  .site-menu-links > li > a {
+    display: flex;
+    align-items: center;
+    min-height: 52px;
+    padding: 12px 0;
+    color: var(--ink);
+  }
+  .site-menu .site-menu-offers {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0;
+    padding-bottom: 16px;
+  }
+  .site-menu-offers a {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    height: 100%;
+    min-height: 44px;
+    padding: 12px 0;
+    border: 0;
+    border-radius: 0;
+    color: var(--ink);
+  }
+  .site-header .site-menu-offers a[aria-current="page"] {
+    background: transparent;
+  }
+  .site-menu-brand {
+    font-size: 19px;
+    line-height: 1.25;
+  }
+  .site-menu-offers a > span:last-child {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.45;
+  }
+  .site-header .site-menu a:hover,
+  .site-header .site-menu a:focus-visible {
+    color: var(--family-accent);
+    text-decoration: none;
+  }
+  .site-header .site-menu a:focus-visible {
+    outline: 2px solid var(--family-accent);
+    outline-offset: 2px;
+  }
+  .site-menu-links > li > a[aria-current="page"] {
+    text-decoration: underline;
+    text-underline-offset: 5px;
+  }
+}
+/* Content layout follows the same breakpoint: one 20px gutter from header to footer. */
+@media (max-width: 900px) {
+  .inquiry-grid {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto;
+    grid-template-areas: "intro" "form" "faqs";
+    gap: 48px;
+  }
+}
+@media (max-width: 760px) {
+  .walkthrough-shell,
+  .scope-inner,
+  .factory-shell,
+  .inquiry .section-shell,
+  .family-footer {
+    width: calc(100% - 40px);
+  }
+  .scope {
+    padding-top: 48px;
+  }
+  .inquiry {
+    padding-block: 52px 64px;
+  }
+  .inquiry h1 {
+    font-size: clamp(32px, 8.5vw, 44px);
+  }
+}
+@media (max-width: 360px) {
+  .site-header .wordmark {
+    gap: 8px;
+    font-size: 20px;
+  }
+  .site-header .wordmark .wordmark-icon {
+    width: 32px;
+    height: 32px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .menu-toggle-icon::before,
+  .menu-toggle-icon::after {
+    transition: none;
+  }
+}

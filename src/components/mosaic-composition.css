@@ -187,6 +187,16 @@
     width: calc(100% - 40px);
   }
 }
+/* Phone camera: the scene's own ~1.6:1 crop (inline aspect ratio), within the page gutters. */
+@media (max-width: 600px) {
+  .hero-mosaic[data-mosaic-layout="composition"] .hero-artwork.story-scene {
+    max-width: 520px;
+    margin-top: 20px;
+  }
+  .story-scene {
+    --mosaic-worker-scale: 2;
+  }
+}
 @media (prefers-reduced-motion: reduce) {
   .story-swell {
     animation: none;

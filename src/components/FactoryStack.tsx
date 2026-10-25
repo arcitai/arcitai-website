@@ -88,6 +88,7 @@ export function FactoryStack({ design }: { design?: FactoryPreviewDesign }) {
   });
   const track = useRef<HTMLDivElement>(null);
   const panel = useRef<HTMLDivElement>(null);
+  const stage = useRef<HTMLDivElement>(null);
   const more = useRef<HTMLButtonElement>(null);
   const motion = useRef<ReturnType<typeof observeStackOpening>>();
   const active = describeFactoryLayer(selected, moduleId);
@@ -140,12 +141,38 @@ export function FactoryStack({ design }: { design?: FactoryPreviewDesign }) {
     setSelected("work");
     setDirectory(false);
   }
-  function chooseLayer(id: FactoryLayerId) {
+  function chooseLayer(id: FactoryLayerId, pointer = false) {
     // A click on a floor navigates to the same earlier scroll endpoint as Explore layers.
     startTask(id, moduleId);
     setSelected(id);
     setDirectory(false);
     if (!motion.current?.isOpen()) motion.current?.explore(true);
+    revealDetail(pointer);
+  }
+  /** Phones list the layers above their detail, so a tap goes straight to it. Keyboard
+   * activation keeps focus and scroll in place; "Read selected layer" follows the layers. */
+  function revealDetail(pointer: boolean) {
+    if (!pointer || !matchMedia("(max-width: 760px)").matches) return;
+    requestAnimationFrame(() => {
+      const node = panel.current;
+      if (!node) return;
+      const { top } = node.getBoundingClientRect();
+      if (top > 80 && top < window.innerHeight * 0.6) return;
+      node.scrollIntoView({
+        block: "start",
+        behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+      });
+    });
+  }
+  function returnToLayers() {
+    const layers = stage.current;
+    const current = layers?.querySelector<HTMLButtonElement>('button[aria-pressed="true"]');
+    const target = current ?? layers?.querySelector<HTMLButtonElement>("button");
+    target?.focus({ preventScroll: true });
+    target?.scrollIntoView({
+      block: "center",
+      behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+    });
   }
   const detailId = `${instance}-detail`;
   return (
@@ -180,9 +207,10 @@ export function FactoryStack({ design }: { design?: FactoryPreviewDesign }) {
               className="factory-more-modules"
               aria-pressed={directory}
               aria-controls={detailId}
-              onClick={() => {
+              onClick={(event) => {
                 startTask("work", moduleId);
                 setDirectory(true);
+                revealDetail(event.detail > 0);
               }}
             >
               <span className="module-dot module-dot-directory" aria-hidden="true" />
@@ -202,7 +230,7 @@ export function FactoryStack({ design }: { design?: FactoryPreviewDesign }) {
             className="factory-drawing"
             aria-label="Factory: five layers on a shared foundation"
           >
-            <div className="factory-stage" data-module={moduleId}>
+            <div ref={stage} className="factory-stage" data-module={moduleId}>
               <FactoryIslandBase />
               {design?.id !== "bridge" && (
                 <div className="factory-entry">
@@ -210,7 +238,7 @@ export function FactoryStack({ design }: { design?: FactoryPreviewDesign }) {
                     type="button"
                     aria-pressed={!directory && selected === "access"}
                     aria-controls={detailId}
-                    onClick={() => chooseLayer("access")}
+                    onClick={(event) => chooseLayer("access", event.detail > 0)}
                   >
                     <strong>You / your AI agent</strong>
                     <span>Brief · decide · review · get notified</span>
@@ -233,7 +261,7 @@ export function FactoryStack({ design }: { design?: FactoryPreviewDesign }) {
               {design && Channels && (
                 <Channels
                   layout={design.id}
-                  select={() => chooseLayer("access")}
+                  select={(pointer) => chooseLayer("access", pointer)}
                   controls={detailId}
                   selected={!directory && selected === "access"}
                 />
@@ -264,7 +292,10 @@ export function FactoryStack({ design }: { design?: FactoryPreviewDesign }) {
                     aria-label={`${title}: ${description}${facade ? `; ${facade}` : ""}${moduleDirectory && design ? "; Configure your own" : ""}`}
                     aria-pressed={moduleDirectory || (!directory && selected === id)}
                     aria-controls={detailId}
-                    onClick={() => (moduleDirectory ? setDirectory(true) : chooseLayer(id))}
+                    onClick={(event) => {
+                      if (moduleDirectory) setDirectory(true);
+                      else chooseLayer(id, event.detail > 0);
+                    }}
                     style={
                       {
                         top: `${((70 + index * layerPitch) / 560) * 100}cqw`,
@@ -319,7 +350,7 @@ export function FactoryStack({ design }: { design?: FactoryPreviewDesign }) {
                   type="button"
                   aria-pressed={!directory && selected === "foundation"}
                   aria-controls={detailId}
-                  onClick={() => chooseLayer("foundation")}
+                  onClick={(event) => chooseLayer("foundation", event.detail > 0)}
                 >
                   <strong>Foundation</strong>
                   <span className="foundation-summary-desktop">Prepares 3 layers</span>
@@ -479,6 +510,9 @@ export function FactoryStack({ design }: { design?: FactoryPreviewDesign }) {
                 </ul>
               </section>
             </div>
+            <button type="button" className="factory-back-to-layers" onClick={returnToLayers}>
+              Choose another layer <span aria-hidden="true">↑</span>
+            </button>
           </aside>
         </div>
         <FactoryHandover />

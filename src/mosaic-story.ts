@@ -1,4 +1,4 @@
-import { blendSources, platformAccentCells } from "./mosaic-blend";
+import { blendSourceSlots, blendSources, platformAccentCells } from "./mosaic-blend";
 import type { AgentName, AgentPose } from "./factory-agent-motion";
 import { mosaicPitch, mosaicRandom, mosaicU, mosaicV } from "./mosaic-motion";
 
@@ -116,6 +116,51 @@ export function storyPoint(column: number, row: number, basis = storyProjection)
     x: basis.ox + mosaicPitch * (column * basis.ux + row * basis.vx),
     y: basis.oy + mosaicPitch * (column * basis.uy + row * basis.vy),
   };
+}
+/** Phones keep the approved row axis, tile size and field centre, and only steepen the
+ * column axis. The 32-column field then reads as a taller down-right ramp instead of a
+ * thin strip; the rows, letters and plates keep their Balanced viewing direction. */
+export const storyPhoneAxis = 30;
+export function storyPhoneBasis(axis = storyPhoneAxis): StoryBasis {
+  const balanced = storyBasis(8);
+  const length = Math.hypot(balanced.ux, balanced.uy);
+  const radians = (axis * Math.PI) / 180;
+  // The origin depends only on the row axis, so column 0, row 4 stays at (782, 609).
+  return {
+    ...balanced,
+    ux: length * Math.cos(radians),
+    uy: length * Math.sin(radians),
+    axisDeg: axis,
+  };
+}
+// Cells, relative to a compact source slot, that its plate, data fragments, context
+// tiles and agent pickups can occupy, including the seeded slot jitter.
+const compactGroupExtent = {
+  front: { left: -1.3, right: 3.17, top: -2.05, bottom: 3.31 },
+  under: { left: -2.15, right: 3.86, top: 0, bottom: 1.96 },
+} as const;
+/** The phone crop: the complete field and every compact source group, plus room for
+ * scattered origins, flights, ambient lift and agents. Derived from the camera. */
+export function storyPhoneFrame(basis: StoryBasis) {
+  const cell = storySize / mosaicPitch;
+  const points = [
+    storyPoint(-14, 0, basis),
+    storyPoint(17 + cell, 0, basis),
+    storyPoint(17 + cell, 6 + cell, basis),
+    storyPoint(-14, 6 + cell, basis),
+  ];
+  for (const slot of blendSourceSlots) {
+    if (slot.zone !== "front" && slot.zone !== "under") continue;
+    const extent = compactGroupExtent[slot.zone];
+    for (const column of [slot.column + extent.left, slot.column + extent.right])
+      for (const row of [slot.row + extent.top, slot.row + extent.bottom])
+        points.push(storyPoint(column, row, basis));
+  }
+  const x = Math.floor(Math.min(...points.map((p) => p.x)) - 16);
+  const y = Math.floor(Math.min(...points.map((p) => p.y)) - 34);
+  const width = Math.ceil(Math.max(...points.map((p) => p.x)) + 16 - x);
+  const height = Math.ceil(Math.max(...points.map((p) => p.y)) + 24 - y);
+  return { x, y, width, height };
 }
 export const sourceBrands = [
   {
@@ -399,13 +444,14 @@ export function createMosaicStory(
   // Origin reassignment conserves every identity and reserves its destination immediately.
   const available = new Set(tiles.filter((tile) => tile.kind !== "carrier" && !tile.accent));
   const take = (origin: StoryPoint, side?: "left" | "right" | "under") => {
+    // "Under" is a field position under the approved camera, so the phone camera keeps its pool.
     const eligible = [...available].filter((tile) =>
       side === "left"
         ? tile.destination.x <= 470
         : side === "right"
           ? tile.destination.x >= 1080
           : side === "under"
-            ? tile.destination.x >= 880
+            ? storyPoint(tile.column, tile.row).x >= 880
             : tile.kind === "wave",
     );
     const tile = eligible.sort(

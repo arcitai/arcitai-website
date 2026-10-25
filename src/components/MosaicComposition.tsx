@@ -9,6 +9,8 @@ import {
   createMosaicStory,
   compositionFamily,
   storyBasis,
+  storyPhoneBasis,
+  storyPhoneFrame,
   storyPoint,
   storySize,
   storyTileFrame,
@@ -294,6 +296,11 @@ const Surroundings = memo(function Surroundings({
   );
 });
 
+/** Below this width the compact strip would be about 180px tall; phones use their own camera. */
+const phoneCamera = "(max-width: 600px)";
+/** A tap that moves further than this is the start of a scroll, not a tap. */
+const tapSlop = 12;
+
 type EndingSelection = {
   id: EndingId;
   previous?: EndingTimeline;
@@ -314,6 +321,11 @@ export function MosaicComposition() {
   const pointer = useRef<StoryPoint | null>(null);
   const [clock, setClock] = useState(0);
   const pointerRevision = useRef(0);
+  // Touch and pen: only a completed tap nudges nearby tiles, as a fresh impulse even where
+  // the previous tap landed. No handler prevents default handling, so a pan stays an
+  // ordinary scroll; the browser cancels the pointer and the tap is discarded.
+  const tapped = useRef(false);
+  const touchStart = useRef<{ id: number; x: number; y: number } | null>(null);
   const [trails, setTrails] = useState<PointerTrails>({});
   const [selection, setSelection] = useState<EndingSelection>(() => ({
     id: localReview ? endingId(window.location.search) : "all",
@@ -322,7 +334,11 @@ export function MosaicComposition() {
   const [complete, setComplete] = useState(false);
   const [compact, setCompact] = useState(() => matchMedia("(max-width: 1280px)").matches);
   const [phone, setPhone] = useState(() => matchMedia("(max-width: 700px)").matches);
-  const [basis] = useState(() => storyBasis(8));
+  const [steep, setSteep] = useState(() => matchMedia(phoneCamera).matches);
+  const basis = useMemo(() => (steep ? storyPhoneBasis() : storyBasis(8)), [steep]);
+  const phoneFrame = useMemo(() => storyPhoneFrame(basis), [basis]);
+  // Displacement grows with the smaller phone rendering; colour, timing and scale do not.
+  const reach = steep ? 2 : 1;
   const tileShape = useMemo(() => geometry(storySize, 3, basis), [basis]);
   const contextShape = useMemo(() => geometry(storySize * 0.82, 2.5, basis), [basis]);
   const [variant] = useState(() => compositionId(localReview ? window.location.search : ""));
@@ -333,8 +349,8 @@ export function MosaicComposition() {
       crypto.getRandomValues(new Uint32Array(1))[0],
   );
   const story = useMemo(
-    () => createMosaicStory(seed, basis, { variant, compact }),
-    [seed, basis, variant, compact],
+    () => createMosaicStory(seed, basis, { variant, compact: compact || steep }),
+    [seed, basis, variant, compact, steep],
   );
   const timeline = useMemo(
     () =>
@@ -415,7 +431,18 @@ export function MosaicComposition() {
         sinceSwitch,
       )
     : 1;
-  const glow = storyGlow(story, tileFrames, markFrames, clock, complete);
+  const storyLight = storyGlow(story, tileFrames, markFrames, clock, complete);
+  // The phone frame is narrower than the field washes; keep each wash inside it.
+  const glow = steep
+    ? {
+        ...storyLight,
+        regions: storyLight.regions.map((region) => ({
+          ...region,
+          rx: region.rx * 0.72,
+          ry: region.ry * 0.92,
+        })),
+      }
+    : storyLight;
   const foundation = endingFoundation(story, timeline, clock, complete).map((tile) => ({
     ...tile,
     opacity: transitionEndingValue(
@@ -448,6 +475,7 @@ export function MosaicComposition() {
     const reduced = matchMedia("(prefers-reduced-motion: reduce)");
     const small = matchMedia("(max-width: 1280px)");
     const narrow = matchMedia("(max-width: 700px)");
+    const handheld = matchMedia(phoneCamera);
     const connection = (
       navigator as Navigator & { connection?: EventTarget & { saveData?: boolean } }
     ).connection;
@@ -464,9 +492,25 @@ export function MosaicComposition() {
       if (now - painted >= 1000 / 24) {
         setClock(elapsed.current);
         const point = pointer.current;
+        if (tapped.current) lastPointer = null;
+        tapped.current = false;
         const moved = !!point && lastRevision !== pointerRevision.current;
         const speed =
           point && lastPointer ? Math.hypot(point.x - lastPointer.x, point.y - lastPointer.y) : 14;
+        // Without a new impulse or remaining energy there is nothing to decay: skip the
+        // per-tile geometry, which matters on phones rendering the scene at 24fps.
+        const settled = !moved && !Object.values(currentTrails).some((trail) => trail.energy > 0);
+        if (settled) {
+          if (Object.keys(currentTrails).length) {
+            currentTrails = {};
+            setTrails(currentTrails);
+          }
+          if (!point) lastPointer = null;
+          lastRevision = pointerRevision.current;
+          painted = now;
+          request = requestAnimationFrame(frame);
+          return;
+        }
         const centres = [
           ...story.tiles.map((tile) => {
             const p = storyTileFrame(tile, story, elapsed.current);
@@ -513,12 +557,15 @@ export function MosaicComposition() {
       setComplete(staticScene);
       setCompact(small.matches);
       setPhone(narrow.matches);
+      setSteep(handheld.matches);
       const running = visible && !document.hidden && !staticScene;
       node.dataset.running = String(running);
       node.dataset.motionAvailable = String(!staticScene);
       if (running) request = requestAnimationFrame(frame);
       else {
         pointer.current = null;
+        touchStart.current = null;
+        tapped.current = false;
         currentTrails = {};
         lastPointer = null;
         painted = 0;
@@ -537,6 +584,7 @@ export function MosaicComposition() {
     reduced.addEventListener("change", sync);
     small.addEventListener("change", sync);
     narrow.addEventListener("change", sync);
+    handheld.addEventListener("change", sync);
     connection?.addEventListener("change", sync);
     sync();
     return () => {
@@ -546,6 +594,7 @@ export function MosaicComposition() {
       reduced.removeEventListener("change", sync);
       small.removeEventListener("change", sync);
       narrow.removeEventListener("change", sync);
+      handheld.removeEventListener("change", sync);
       connection?.removeEventListener("change", sync);
     };
   }, [story, basis]);
@@ -555,7 +604,7 @@ export function MosaicComposition() {
     const ambient =
       complete || (tile.kind === "carrier" && !frame.installed)
         ? { x: 0, y: 0, shine: 0, scale: 1 }
-        : storyEntityMotion(tile.column, tile.row, clock, trails[tile.id]);
+        : storyEntityMotion(tile.column, tile.row, clock, trails[tile.id], 1, reach);
     const finish = tile.finish
       ? `color-mix(in srgb, ${tile.finish} ${(accents[tile.id] * 100).toFixed(1)}%, var(--mosaic-blue-${tile.level}))`
       : `var(--mosaic-blue-${tile.level})`;
@@ -601,6 +650,7 @@ export function MosaicComposition() {
             clock,
             trails[brand.id],
             brand.id === "arcitai" ? 0.45 : 0.6,
+            reach,
           ),
     ]),
   );
@@ -667,7 +717,7 @@ export function MosaicComposition() {
     const p = storyPoint(tile.column, tile.row, basis);
     const motion = complete
       ? { x: 0, y: 0, scale: 1 }
-      : storyEntityMotion(tile.column, tile.row, clock);
+      : storyEntityMotion(tile.column, tile.row, clock, undefined, 1, reach);
     return {
       depth: p.y + storySize * (basis.uy + basis.vy),
       node: (
@@ -699,13 +749,48 @@ export function MosaicComposition() {
         className="hero-artwork mosaic-scene story-scene"
         data-composition={variant}
         data-ending={selection.id}
+        data-camera={steep ? "phone" : compact ? "compact" : "wide"}
+        style={steep ? { aspectRatio: `${phoneFrame.width} / ${phoneFrame.height}` } : undefined}
       >
         <svg
           ref={svg}
           className="mosaic-canvas"
-          viewBox={compact ? "100 400 1440 470" : "0 0 1600 900"}
-          preserveAspectRatio={compact ? "xMidYMid meet" : "xMidYMin meet"}
+          viewBox={
+            steep
+              ? `${phoneFrame.x} ${phoneFrame.y} ${phoneFrame.width} ${phoneFrame.height}`
+              : compact
+                ? "100 400 1440 470"
+                : "0 0 1600 900"
+          }
+          preserveAspectRatio={compact || steep ? "xMidYMid meet" : "xMidYMin meet"}
           aria-hidden="true"
+          onPointerDown={(event) => {
+            if (event.pointerType === "mouse") return;
+            touchStart.current = { id: event.pointerId, x: event.clientX, y: event.clientY };
+          }}
+          onPointerUp={(event) => {
+            const start = touchStart.current;
+            touchStart.current = null;
+            if (
+              event.pointerType === "mouse" ||
+              !start ||
+              start.id !== event.pointerId ||
+              Math.hypot(event.clientX - start.x, event.clientY - start.y) > tapSlop ||
+              complete ||
+              root.current?.dataset.running !== "true"
+            )
+              return;
+            const matrix = svg.current?.getScreenCTM();
+            if (!matrix) return;
+            pointer.current = new DOMPoint(event.clientX, event.clientY).matrixTransform(
+              matrix.inverse(),
+            );
+            pointerRevision.current += 1;
+            tapped.current = true;
+          }}
+          onPointerCancel={() => {
+            touchStart.current = null;
+          }}
           onPointerMove={(event) => {
             if (
               event.pointerType !== "mouse" ||
@@ -721,8 +806,10 @@ export function MosaicComposition() {
               pointerRevision.current += 1;
             }
           }}
-          onPointerLeave={() => {
-            pointer.current = null;
+          onPointerLeave={(event) => {
+            // Touch fires leave straight after up; keep the tap for the next frame. A resting
+            // touch point never holds tiles up: only a new revision adds energy.
+            if (event.pointerType === "mouse") pointer.current = null;
           }}
         >
           <defs>

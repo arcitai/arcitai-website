@@ -30,18 +30,21 @@ export function advancePointerTrails(
   );
 }
 
+/** `reach` scales displacement only. The phone camera shows the scene at roughly a third
+ * of desktop size, where the approved one-unit crest would fall below a device pixel. */
 export function storyEntityMotion(
   column: number,
   row: number,
   seconds: number,
   trail?: PointerTrail,
   strength = 1,
+  reach = 1,
 ) {
   const energy = trail?.energy ?? 0;
   const ambient = storyAmbient(column, row, seconds, energy, (column * 0.17 + row * 0.31) % 1);
   return {
-    x: (trail?.dx ?? 0) * 4 * energy * strength,
-    y: (ambient.lift + (trail?.dy ?? 0) * 4 * energy) * strength,
+    x: (trail?.dx ?? 0) * 4 * energy * strength * reach,
+    y: (ambient.lift + (trail?.dy ?? 0) * 4 * energy) * strength * reach,
     scale: ambient.scale,
     shine: ambient.shine * strength,
   };

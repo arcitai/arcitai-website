@@ -1,6 +1,69 @@
 # Operative design
 
-## October 23 neutral fragments, centred DATA and a broad evolving glow — current local proposal
+## October 24 phone and tablet adaptation — current local proposal
+
+Desktop (above 1040px) keeps the approved header, Offers popover, Blend + Balanced 8° + All
+hero and Factory. The researched direction is WAI disclosure navigation and web.dev
+content-driven responsive layout. Breakpoints follow content: 1280px compact hero, 1040px
+stacked Factory, 900px stacked inquiry, 760px compact header and phone layouts, 600px phone
+camera.
+
+**Header (≤760px), October25 owner correction.** The64px topbar keeps the brand,
+theme and an icon-only44px menu control. The accessible label changes between
+Open menu and Close menu. The solid paper overlay fills the remaining viewport
+without changing the height or position of page content. A labelled dialog wrapper
+contains the topbar and the ordinary navigation landmark; no ARIA menu roles.
+The page behind is inert and scroll-locked. Tab wraps inside the dialog. Escape
+closes and restores the trigger; links, browser back and breakpoint crossing also
+close it. Existing same-page anchors retain focus after the background is restored.
+Offer routes stay inline on phone. Desktop Offers and its focus hand-offs are unchanged.
+
+**Phone hero camera (≤600px).** The 1440×470 compact strip rendered the field about 114px tall
+at 390px. Phones now use `storyPhoneBasis()`: the approved row axis, tile size, top-face
+size and field centre (column 0, row 4 at 782, 609) stay; only the column axis steepens to
+30°. Rows and letters keep the Balanced viewing direction and meet columns closer to a right
+angle, so DATA reads more upright. `storyPhoneFrame()` derives the crop from the field and every
+compact source group, giving about 1198×747 units (≈1.6:1). That is roughly 175px tall at
+320px, 218px at 390px and 243px at 430px, within the 20px gutters, max 520px wide. This is a different camera,
+not a zoomed or clipped desktop crop. Tile identities, the 8 carrier jobs, compact source
+selection, platform layout, endings, neutral palette and the evolving haze are unchanged. The
+“under” pool is defined in approved-camera field positions, so desktop and compact assignments
+are identical to before. The field washes use 72%/92% radii to stay inside the crop. Agents
+render at scale 2. Logos keep the 56/68-unit phone size. The root reports
+`data-camera="phone" | "compact" | "wide"`.
+
+**Phone motion.** Cause found in code: the approved crest moves at most about 1.6 units. At the
+compact strip's 0.24px per unit that is under 0.4px, and pale light-theme tiles hide the 12%
+shine, so the first 20 seconds read as static on phones. Hover-only pointer input added nothing
+on touch. Phones therefore double displacement only (`reach`), not colour, timing or scale. A
+completed tap or pen press, moving less than 12px, adds one pointer impulse at that point and
+decays like the mouse trail. Handlers never prevent default; a pan cancels the pointer, so
+scrolling is ordinary. Touch `pointerleave` no longer erases the tap. With no impulse or
+remaining energy the frame loop skips per-tile pointer geometry. The visible-time clock
+still stops offscreen and in hidden tabs and listeners are removed on cleanup. Reduced motion
+and save-data show the complete All still. The scene is SVG only, so no canvas DPR cap
+applies.
+
+**Factory.** Tablets (761–1040px) keep the static-open architecture drawing above its detail.
+From 1040px down only the active detail panel takes space, removing the reserved empty
+height; a “Choose another layer ↑” control returns focus to the selected layer. Phones
+(≤760px) use a 2×2 grid of 52px module selectors, readable layer rows (17px titles, 14px
+tags, facade name as a small kicker), and a dashed Foundation row. A tap on a layer, the bridge
+entry or Foundation scrolls directly to its detail (smooth unless reduced motion). Keyboard
+activation keeps focus in place and can use “Read selected layer ↓”. Source links remain in
+the active panel and module directory with 44px targets. Technical terms stack below 420px.
+
+**Forms, tabs and footer.** Inquiry and newsletter inputs are already 16–17px. The inquiry stacks
+intro, form and FAQs from 900px, so tablet form fields are no longer about 150px wide. Its
+heading is fluid. Project tabs use two columns from 760px, avoiding mid-word wrapping. Hero,
+offers, Factory, inquiry and footer share 20px gutters at ≤760px, and the offers section rhythm
+is about 60px.
+
+**Verification limit.** Source and pure-geometry tests were written but not executed by the
+implementer. Lint, format, tests, build and rendered QA at 320/390/430/768/1024/1440, keyboard,
+touch, reduced motion and both themes remain the lead's responsibility.
+
+## October 23 neutral fragments, centred DATA and a broad evolving glow — previous local proposal
 
 Gustav approved Blend, the Balanced 8° camera and Factory, and selected All on October 23. The accepted Blend
 screenshot and its source snapshot are saved in `blend-approved-baseline` in
