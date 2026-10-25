@@ -7,7 +7,8 @@ const channels = [
 
 export type FactoryChannelProps = {
   layout: FactoryChannelLayout;
-  select: () => void;
+  /** `pointer` is false for keyboard activation, which keeps focus and scroll in place. */
+  select: (pointer: boolean) => void;
   controls: string;
   selected: boolean;
 };
@@ -42,7 +43,7 @@ export function FactoryChannels({ layout, select, controls, selected }: FactoryC
       <button
         className="factory-channel-entry"
         type="button"
-        onClick={select}
+        onClick={(event) => select(event.detail > 0)}
         aria-controls={controls}
         aria-pressed={selected}
         aria-label={

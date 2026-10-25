@@ -2,6 +2,7 @@ import { dataCells, isDataCell } from "./mosaic-data";
 import { describe, expect, it } from "vitest";
 import { mosaicU, mosaicV } from "./mosaic-motion";
 import { advancePointerTrails, storyEntityMotion } from "./mosaic-pointer";
+import { endingContextFrame, endingMarkFrame, endingTimeline } from "./mosaic-ending";
 import {
   compositionHref,
   compositionId,
@@ -11,6 +12,9 @@ import {
   storyAmbient,
   storyPointerEnergy,
   storyBasis,
+  storyPhoneAxis,
+  storyPhoneBasis,
+  storyPhoneFrame,
   storyPoint,
   storySize,
   storyTileFrame,
@@ -326,6 +330,162 @@ describe("a complete silhouette inside the side margins", () => {
       expect(compact.ghosts).toHaveLength(0);
     }
   });
+});
+
+describe("the phone camera", () => {
+  const balanced = storyBasis(8);
+  const phone = storyPhoneBasis();
+  const crop = storyPhoneFrame(phone);
+
+  it("keeps the Balanced rows, tile size and field centre, and only steepens the columns", () => {
+    expect(phone.axisDeg).toBe(storyPhoneAxis);
+    expect((Math.atan2(phone.uy, phone.ux) * 180) / Math.PI).toBeCloseTo(storyPhoneAxis, 9);
+    expect(Math.hypot(phone.ux, phone.uy)).toBeCloseTo(Math.hypot(balanced.ux, balanced.uy), 12);
+    expect([phone.vx, phone.vy, phone.ox, phone.oy]).toEqual([
+      balanced.vx,
+      balanced.vy,
+      balanced.ox,
+      balanced.oy,
+    ]);
+    expect(storyPoint(0, 4, phone)).toEqual({ x: 782, y: 609 });
+    // Columns and rows meet closer to a right angle, so the letters read more upright.
+    const opening = (b: StoryBasis) =>
+      Math.acos((b.ux * b.vx + b.uy * b.vy) / (Math.hypot(b.ux, b.uy) * Math.hypot(b.vx, b.vy)));
+    expect(opening(phone)).toBeLessThan(opening(balanced));
+    // A composed scene of about 1.6:1 instead of the 1440×470 strip: over 200px tall at 350px.
+    expect(crop.width / crop.height).toBeGreaterThan(1.45);
+    expect(crop.width / crop.height).toBeLessThan(1.75);
+    expect((350 * crop.height) / crop.width).toBeGreaterThan(200);
+  });
+
+  it("keeps every tile identity, the agent schedule and the compact sources", () => {
+    for (const seed of [1, 94, 7654]) {
+      const strip = createMosaicStory(seed, balanced, { variant: "blend", compact: true });
+      const steep = createMosaicStory(seed, phone, { variant: "blend", compact: true });
+      expect(steep.tiles.map((t) => t.id)).toEqual(strip.tiles.map((t) => t.id));
+      expect(steep.jobs.map((j) => [j.tileId, j.agent, j.starts, j.duration])).toEqual(
+        strip.jobs.map((j) => [j.tileId, j.agent, j.starts, j.duration]),
+      );
+      expect(steep.sources.map((m) => [m.id, m.zone, m.column, m.row])).toEqual(
+        strip.sources.map((m) => [m.id, m.zone, m.column, m.row]),
+      );
+      expect(steep.platforms).toEqual(strip.platforms);
+      expect(steep.compact).toBe(true);
+    }
+  });
+
+  it("fits whole tiles, plates, logos, flights and the larger agents inside the crop", () => {
+    const bounds = {
+      left: crop.x + 4,
+      right: crop.x + crop.width - 4,
+      top: crop.y + 4,
+      bottom: crop.y + crop.height - 4,
+    };
+    const inside = (x: number, y: number, label: string) => {
+      if (x < bounds.left || x > bounds.right || y < bounds.top || y > bounds.bottom)
+        throw new Error(`phone ${label} outside the crop: ${x.toFixed(1)}, ${y.toFixed(1)}`);
+    };
+    for (const seed of [0, 1, 27, 56, 94, 127, 219, 372, 528, 7654]) {
+      const story = createMosaicStory(seed, phone, { variant: "blend", compact: true });
+      const plan = endingTimeline(story, "all");
+      for (let time = 0; time < story.ends + 8; time += 0.5) {
+        for (const tile of story.tiles) {
+          const at = storyTileFrame(tile, story, time);
+          // Includes doubled phone ambient/pointer reach, rotation, depth and arrival rise.
+          const rise = tile.appears === undefined ? 0 : 6;
+          for (const p of corners(at, storySize, phone, at.rotation)) {
+            inside(p.x - 9, p.y - 9, `${seed}/${tile.id}@${time}`);
+            inside(p.x + 9, p.y + 9 + rise, `${seed}/${tile.id}@${time}`);
+          }
+        }
+        // Agents render at scale 2 on phones, including Claude's extended tool.
+        for (const { name, pose } of storyWorkerFrames(story, time))
+          for (const x of [-62, 62])
+            for (const y of [-80, 6]) inside(pose.x + x, pose.y + y, `${seed}/${name}@${time}`);
+      }
+      for (const mark of [...story.sources, ...story.platforms]) {
+        const start = plan.departures[mark.id];
+        for (const time of [
+          mark.appears ?? 0,
+          (mark.appears ?? 0) + 0.3,
+          ...Array.from({ length: 61 }, (_, i) => start + i / 10),
+        ]) {
+          const at = endingMarkFrame(story, mark, plan, time);
+          if (at.opacity < 0.001) continue;
+          const size = (mark.span * 36.4 - 8.4) * at.scale;
+          for (const q of corners(at, size, phone, 0, 6)) {
+            inside(q.x - 5, q.y - 5, `${seed}/${mark.id}@${time}`);
+            inside(q.x + 5, q.y + 11, `${seed}/${mark.id}@${time}`);
+          }
+          const half = (mark.id === "arcitai" ? 34 : 28) * at.scale;
+          const cx = at.x + (size * (phone.ux + phone.vx)) / 2,
+            cy = at.y + (size * (phone.uy + phone.vy)) / 2;
+          for (const x of [-half - 5, half + 5])
+            for (const y of [-half - 5, half + 5])
+              inside(cx + x, cy + y, `${seed}/${mark.id} logo@${time}`);
+        }
+      }
+      for (const tile of story.context)
+        for (const time of [
+          story.sources.find((mark) => mark.id === tile.markId)!.appears! + 0.3,
+          ...Array.from({ length: 61 }, (_, i) => plan.contexts[tile.markId] + i * 0.05),
+        ]) {
+          const at = endingContextFrame(story, tile, plan, time);
+          if (at.opacity < 0.001) continue;
+          for (const q of corners(at, storySize * 0.82 * at.scale, phone, 0, 2.5)) {
+            inside(q.x - 5, q.y - 5, `${seed}/${tile.id}@${time}`);
+            inside(q.x + 5, q.y + 8, `${seed}/${tile.id}@${time}`);
+          }
+        }
+    }
+  }, 30000);
+
+  it("keeps source groups and pickups clear of plates and scattered tiles", () => {
+    const intersects = (a: StoryPoint[], b: StoryPoint[]) => {
+      for (const shape of [a, b])
+        for (let i = 0; i < shape.length; i++) {
+          const next = shape[(i + 1) % shape.length],
+            here = shape[i];
+          const nx = here.y - next.y,
+            ny = next.x - here.x;
+          const pa = a.map((p) => p.x * nx + p.y * ny),
+            pb = b.map((p) => p.x * nx + p.y * ny);
+          if (Math.max(...pa) <= Math.min(...pb) || Math.max(...pb) <= Math.min(...pa))
+            return false;
+        }
+      return true;
+    };
+    const face = (p: StoryPoint, size: number, rotation = 0) =>
+      corners(p, size, phone, rotation, 0).filter((_, i) => i % 2 === 0);
+    for (let seed = 0; seed < 50; seed++) {
+      const story = createMosaicStory(seed, phone, { variant: "blend", compact: true });
+      const tiles = story.tiles.map((tile) => ({
+        tile,
+        shape: face(storyTileFrame(tile, story, 0), storySize, tile.rotation),
+      }));
+      const marks = [...story.sources, ...story.platforms].map((mark) => ({
+        id: mark.id,
+        shape: face(storyPoint(mark.column, mark.row, phone), mark.span * 36.4 - 8.4),
+      }));
+      const context = story.context.map((tile) => {
+        const p = storyPoint(tile.column, tile.row, phone);
+        p.x += storySize * 0.09 * (phone.ux + phone.vx);
+        p.y += storySize * 0.09 * (phone.uy + phone.vy);
+        return { id: tile.id, shape: face(p, storySize * 0.82) };
+      });
+      const stationary = [...marks, ...context];
+      stationary.forEach((a, i) => {
+        for (const b of stationary.slice(i + 1))
+          if (intersects(a.shape, b.shape)) throw new Error(`${seed}: ${a.id} overlaps ${b.id}`);
+        for (const { tile, shape } of tiles)
+          if (intersects(a.shape, shape)) throw new Error(`${seed}: ${a.id} overlaps ${tile.id}`);
+      });
+      for (const a of tiles.filter(({ tile }) => tile.source || tile.kind === "carrier"))
+        for (const b of tiles)
+          if (b.tile.id !== a.tile.id && intersects(a.shape, b.shape))
+            throw new Error(`${seed}: ${a.tile.id} overlaps ${b.tile.id}`);
+    }
+  }, 30000);
 });
 
 describe("one motion and comparison system", () => {

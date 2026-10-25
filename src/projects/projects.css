@@ -147,7 +147,8 @@
   outline: 2px solid var(--family-accent);
   outline-offset: 6px;
 }
-@media (max-width: 700px) {
+/* Two tab columns from the compact-header breakpoint: names wrap at words, not mid-word. */
+@media (max-width: 760px) {
   .organization-projects {
     width: calc(100% - 40px);
     margin-block: 56px;

@@ -887,3 +887,114 @@
     transition: none !important;
   }
 }
+
+/* Stacked layouts: the detail follows the drawing, so only the active panel takes space.
+   Side-by-side desktop keeps reserving the tallest candidate to avoid shifts. */
+.factory-back-to-layers {
+  display: none;
+}
+@media (max-width: 1040px) {
+  .factory-detail-panel:not([data-active="true"]) {
+    display: none;
+  }
+  .factory-back-to-layers {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    align-self: flex-start;
+    min-height: 44px;
+    margin-top: 16px;
+    padding: 8px 0;
+    border: 0;
+    background: transparent;
+    color: var(--family-accent);
+    font: 400 15px/1.5 var(--font-sans);
+    cursor: pointer;
+  }
+}
+/* Phones: large module selectors and readable layer rows instead of a scaled drawing. */
+@media (max-width: 760px) {
+  .factory-module-picker {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .factory-module-picker > button {
+    justify-content: flex-start;
+    min-height: 52px;
+    padding: 10px 14px;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.3;
+    text-align: left;
+  }
+  .factory-module-picker > button[aria-pressed="true"] {
+    border-color: var(--family-accent);
+    background: color-mix(in srgb, var(--family-accent) 8%, var(--paper));
+  }
+  .factory-module-picker .module-dot {
+    width: 10px;
+    height: 10px;
+  }
+  .factory-layer {
+    padding: 14px 18px;
+  }
+  .factory-layer-label {
+    display: flex;
+    flex-direction: column;
+  }
+  .factory-layer-label strong {
+    font-size: 17px;
+  }
+  .factory-layer-label > span {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+  .factory-entry button span {
+    font-size: 14px;
+  }
+  /* The exterior facade name reads as a quiet kicker above the layer title. */
+  .factory-layer-label > .factory-mobile-facade {
+    order: -1;
+    margin: 0 0 4px;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .factory-foundation-group {
+    padding: 0;
+  }
+  .factory-foundation-group button {
+    display: block;
+    width: 100%;
+    min-height: 64px;
+    padding: 14px 18px;
+    border: 1px dashed var(--factory-edge);
+  }
+  .factory-foundation-group button:hover,
+  .factory-foundation-group button[aria-pressed="true"] {
+    border-style: solid;
+    border-color: var(--family-accent);
+    background: color-mix(in srgb, var(--factory-face) 8%, var(--factory-top));
+  }
+  .factory-foundation-group strong {
+    font-size: 17px;
+  }
+  .factory-foundation-group span {
+    font-size: 14px;
+  }
+  .factory-channels .factory-bridge-person > span {
+    font-size: 14px;
+  }
+  .factory-directory li a {
+    min-height: 44px;
+  }
+}
+@media (max-width: 420px) {
+  .factory-technical-terms {
+    grid-template-columns: 1fr;
+  }
+}
