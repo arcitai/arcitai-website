@@ -37,7 +37,8 @@ export function Scope() {
                 <p className="offer-benefit">Data and AI shaped around your business.</p>
                 <p className="offer-summary">
                   From data foundations to agentic engineering. Practical solutions built around
-                  your existing systems, designed for your team to use, adapt and build on.
+                  your existing systems, with guidance and documentation to help your team use,
+                  adapt and build on them.
                 </p>
                 <a className="offer-button" href="/project/">
                   Discuss your project <span aria-hidden="true">→</span>
