@@ -76,7 +76,7 @@ export function Inquiry() {
             </p>
             <p className="inquiry-booking">
               Prefer to talk it through?{" "}
-              <a href={siteData.links.consultation}>Book a free 15-minute consultation</a>.
+              <a href={siteData.links.consultation}>Book a free 20-minute consultation</a>.
             </p>
           </div>
           <div className="faqs">

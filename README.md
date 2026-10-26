@@ -4,7 +4,7 @@ Production source for the Arc'IT AI landing page and its dedicated Project
 Inquiries Worker at `arcitai.com`.
 
 Arc'IT AI provides data and AI consultancy for mid-sized and large organisations.
-The two offers are a free 15-minute One-off consultation and Custom projects. Work starts with
+The two offers are a free 20-minute One-off consultation and Custom projects. Work starts with
 the client's business, data and existing systems; scope follows the project.
 Data and business context form the foundation; tools, workflows and reusable
 skills make that information useful to agents working on software, BI, research

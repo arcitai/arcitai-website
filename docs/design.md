@@ -418,7 +418,7 @@ brand / Content Eco System task.
 
 ### Approved release refinements
 
-One-off consultation is a free 15-minute conversation. Its booking CTA links
+One-off consultation is a free 20-minute conversation. Its booking CTA links
 directly to the owner’s Notion Calendar recurring link, also offered from the
 project page. The project form asks about ideas, current stage, existing work
 and desired outcomes; its data contract is unchanged. Factory’s introductory

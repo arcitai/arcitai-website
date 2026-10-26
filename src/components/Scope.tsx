@@ -17,7 +17,7 @@ export function Scope() {
                 </span>
                 <h3>One-off consultation</h3>
                 <p className="offer-benefit">
-                  A free 15-minute conversation to explore your next step.
+                  A free 20-minute conversation to explore your next step.
                 </p>
                 <p className="offer-summary">
                   Talk through an idea, an existing setup or where data and AI could help your
