@@ -12,7 +12,7 @@ export const siteData = {
     onlinesourdough: familyHref("onlinesourdough"),
     gustavOnline: familyHref("gustavonline"),
     email: "mailto:hello@arcitai.com",
-    consultation: "https://calendar.notion.so/meet/gustavanderson/15min-one-off-consultation",
+    consultation: "https://calendar.notion.so/meet/gustavanderson/20min-one-off-consultation",
   },
   inquiry: {
     endpoint: import.meta.env.VITE_INQUIRY_ENDPOINT ?? "https://api.arcitai.com/project-inquiry",
