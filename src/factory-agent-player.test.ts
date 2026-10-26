@@ -97,7 +97,7 @@ describe("Factory story lifecycle", () => {
     stop();
     expect(env.frames.size).toBe(0);
   });
-  it.each(["reduced", "mobile"] as const)(
+  it.each(["mobile"] as const)(
     "settles without motion for %s and does not restart automatically",
     (preference) => {
       const env = environment(),
@@ -157,24 +157,25 @@ describe("Factory story lifecycle", () => {
     expect(next).not.toHaveBeenCalled();
     stop();
   });
-  it("settles an active story when reduced motion is enabled without starting another job", () => {
+  it("continues the visible story when the OS reduced-motion setting changes", () => {
     const env = environment(),
-      next = vi.fn(),
+      paint = vi.fn(),
       beat = vi.fn();
-    const stop = playAgentScene(
-      {} as SVGSVGElement,
-      createAgentScene("work", "software"),
-      vi.fn(),
-      { beat, next },
-    );
+    env.reduced.matches = true;
+    const stop = playAgentScene({} as SVGSVGElement, createAgentScene("work", "software"), paint, {
+      beat,
+    });
     env.visible(true);
     env.advance(200);
-    env.reduced.matches = true;
+    expect(paint.mock.lastCall?.[2]).toBe(true);
+    expect(beat).not.toHaveBeenCalled();
+    const elapsed = paint.mock.lastCall![1] as number;
+    env.reduced.matches = false;
     env.reduced.dispatchEvent(new Event("change"));
-    expect(beat.mock.calls.map((call) => call[1])).toEqual(["install"]);
-    env.advance(20000);
-    expect(next).not.toHaveBeenCalled();
-    expect(env.frames.size).toBe(0);
+    env.advance(200);
+    expect(paint.mock.lastCall![1]).toBeGreaterThan(elapsed);
+    expect(env.frames.size).toBeGreaterThan(0);
     stop();
+    expect(env.frames.size).toBe(0);
   });
 });

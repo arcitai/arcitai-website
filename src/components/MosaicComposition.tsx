@@ -472,7 +472,7 @@ export function MosaicComposition() {
   useEffect(() => {
     const node = root.current;
     if (!node) return;
-    const reduced = matchMedia("(prefers-reduced-motion: reduce)");
+
     const small = matchMedia("(max-width: 1280px)");
     const narrow = matchMedia("(max-width: 700px)");
     const handheld = matchMedia(phoneCamera);
@@ -553,7 +553,8 @@ export function MosaicComposition() {
     const sync = () => {
       cancelAnimationFrame(request);
       previous = 0;
-      const staticScene = reduced.matches || !!connection?.saveData;
+      // Owner choice: brand animation remains enabled with OS reduced motion.
+      const staticScene = !!connection?.saveData;
       setComplete(staticScene);
       setCompact(small.matches);
       setPhone(narrow.matches);
@@ -581,7 +582,7 @@ export function MosaicComposition() {
     );
     observer.observe(node);
     document.addEventListener("visibilitychange", sync);
-    reduced.addEventListener("change", sync);
+
     small.addEventListener("change", sync);
     narrow.addEventListener("change", sync);
     handheld.addEventListener("change", sync);
@@ -591,7 +592,7 @@ export function MosaicComposition() {
       cancelAnimationFrame(request);
       observer.disconnect();
       document.removeEventListener("visibilitychange", sync);
-      reduced.removeEventListener("change", sync);
+
       small.removeEventListener("change", sync);
       narrow.removeEventListener("change", sync);
       handheld.removeEventListener("change", sync);

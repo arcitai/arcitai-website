@@ -137,7 +137,9 @@ export function Header({ theme, onThemeChange }: { theme: Theme; onThemeChange: 
               ref={toggleRef}
               onClick={() => setPanelOpen((open) => !open)}
             >
-              <span className="menu-toggle-icon" aria-hidden="true" />
+              <span className="menu-toggle-icon" aria-hidden="true">
+                <span />
+              </span>
             </button>
           </div>
           <div

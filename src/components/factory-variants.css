@@ -319,6 +319,8 @@
   .factory-variant-caption {
     min-height: 64px;
   }
+}
+@media (width < 360px) {
   .factory-working-agents {
     display: none;
   }

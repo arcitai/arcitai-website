@@ -20,7 +20,7 @@ export function SceneMedia({
     const container = containerRef.current;
     const video = videoRef.current;
     if (!container || !video) return;
-    const reduced = matchMedia("(prefers-reduced-motion: reduce)");
+
     const connection = (navigator as Navigator & { connection?: { saveData?: boolean } })
       .connection;
     let visible = false,
@@ -31,13 +31,7 @@ export function SceneMedia({
     video.classList.remove("is-ready");
     if (!source) return;
     const wanted = () =>
-      !disposed &&
-      visible &&
-      !document.hidden &&
-      !reduced.matches &&
-      !connection?.saveData &&
-      !suspended &&
-      !failed;
+      !disposed && visible && !document.hidden && !connection?.saveData && !suspended && !failed;
     const sync = () => {
       if (!wanted()) {
         video.pause();
@@ -74,15 +68,6 @@ export function SceneMedia({
       failed = true;
       video.classList.remove("is-ready");
     };
-    const preference = () => {
-      if (reduced.matches) {
-        video.pause();
-        video.removeAttribute("src");
-        video.load();
-        video.classList.remove("is-ready");
-      }
-      sync();
-    };
     const observer = new IntersectionObserver(
       ([entry]) => {
         visible = entry.isIntersecting;
@@ -92,7 +77,7 @@ export function SceneMedia({
     );
     observer.observe(container);
     document.addEventListener("visibilitychange", sync);
-    reduced.addEventListener("change", preference);
+
     video.addEventListener("playing", playing);
     video.addEventListener("loadedmetadata", metadata);
     video.addEventListener("error", error);
@@ -103,7 +88,7 @@ export function SceneMedia({
       video.removeAttribute("src");
       video.load();
       document.removeEventListener("visibilitychange", sync);
-      reduced.removeEventListener("change", preference);
+
       video.removeEventListener("playing", playing);
       video.removeEventListener("loadedmetadata", metadata);
       video.removeEventListener("error", error);

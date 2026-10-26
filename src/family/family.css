@@ -224,11 +224,7 @@
     min-height: 60vh;
   }
 }
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto !important;
-  }
-}
+
 /* Family shell: equal outer gutters, distinct brand accents and icon-only theme feedback. */
 :root {
   --family-shell: 1120px;

@@ -18,15 +18,14 @@ export function stackOpenProgress(top: number, viewportHeight: number) {
   return opening * opening * (3 - 2 * opening);
 }
 
-export function canUnfoldFactory(width: number, reduced: boolean) {
-  return !reduced && width > 1040;
+export function canUnfoldFactory(width: number) {
+  return width >= 360;
 }
 
 export function observeStackOpening(
   track: HTMLElement,
   onProgress: (progress: number) => void = () => {},
 ) {
-  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
   let animationFrame = 0;
   let visible = false;
   let enabled = false;
@@ -50,7 +49,7 @@ export function observeStackOpening(
       animationFrame = requestAnimationFrame(update);
   };
   const sync = () => {
-    enabled = canUnfoldFactory(window.innerWidth, reduced.matches);
+    enabled = canUnfoldFactory(window.innerWidth);
     track.dataset.scroll = enabled ? "entry" : "static";
     window.removeEventListener("scroll", queue);
     if (animationFrame) cancelAnimationFrame(animationFrame);
@@ -67,7 +66,7 @@ export function observeStackOpening(
     { rootMargin: "25% 0px" },
   );
   observer.observe(track);
-  reduced.addEventListener("change", sync);
+
   window.addEventListener("resize", sync, { passive: true });
   document.addEventListener("visibilitychange", sync);
   sync();
@@ -89,7 +88,7 @@ export function observeStackOpening(
       window.removeEventListener("scroll", queue);
       window.removeEventListener("resize", sync);
       document.removeEventListener("visibilitychange", sync);
-      reduced.removeEventListener("change", sync);
+
       if (animationFrame) cancelAnimationFrame(animationFrame);
       track.style.removeProperty("--stack-open");
       delete track.dataset.scroll;

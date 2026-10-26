@@ -161,14 +161,6 @@
     padding: 10px;
   }
 }
-@media (prefers-reduced-motion: reduce) {
-  .mosaic-shimmer {
-    display: none;
-  }
-  .mosaic-motion-toggle {
-    display: none;
-  }
-}
 
 /* Selected comparisons: a low floor overlaps the copy's lower edge only. */
 .walkthrough-hero.has-artwork.hero-mosaic[data-mosaic-layout="floor"] {

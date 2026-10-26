@@ -160,7 +160,7 @@ export function FactoryStack({ design }: { design?: FactoryPreviewDesign }) {
       if (top > 80 && top < window.innerHeight * 0.6) return;
       node.scrollIntoView({
         block: "start",
-        behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+        behavior: "smooth",
       });
     });
   }
@@ -171,7 +171,7 @@ export function FactoryStack({ design }: { design?: FactoryPreviewDesign }) {
     target?.focus({ preventScroll: true });
     target?.scrollIntoView({
       block: "center",
-      behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+      behavior: "smooth",
     });
   }
   const detailId = `${instance}-detail`;

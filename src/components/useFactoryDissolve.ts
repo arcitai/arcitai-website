@@ -20,7 +20,7 @@ export function useFactoryDissolve<T>(
       latest.current.key,
       (value, phase) => setFrame({ value, phase }),
     );
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+
     const narrow = window.matchMedia("(max-width: 1040px)");
     let visible = true;
     const update = () => {
@@ -28,7 +28,7 @@ export function useFactoryDissolve<T>(
       controller.update(
         next.value,
         next.key,
-        next.enabled && visible && !document.hidden && !reduced.matches && !narrow.matches,
+        next.enabled && visible && !document.hidden && !narrow.matches,
       );
     };
     sync.current = update;
@@ -37,7 +37,7 @@ export function useFactoryDissolve<T>(
       update();
     });
     if (element.current) observer.observe(element.current);
-    reduced.addEventListener("change", update);
+
     narrow.addEventListener("change", update);
     document.addEventListener("visibilitychange", update);
     update();
@@ -45,7 +45,7 @@ export function useFactoryDissolve<T>(
       controller.stop();
       observer.disconnect();
       sync.current = undefined;
-      reduced.removeEventListener("change", update);
+
       narrow.removeEventListener("change", update);
       document.removeEventListener("visibilitychange", update);
     };

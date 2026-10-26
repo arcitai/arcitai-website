@@ -42,7 +42,6 @@ function VideoHeroArtwork({ variant }: { variant: keyof typeof artwork }) {
     const video = videoRef.current;
     if (!container || !video) return;
 
-    const reduced = matchMedia("(prefers-reduced-motion: reduce)");
     const connection = (
       navigator as Navigator & { connection?: EventTarget & { saveData?: boolean } }
     ).connection;
@@ -56,7 +55,6 @@ function VideoHeroArtwork({ variant }: { variant: keyof typeof artwork }) {
       visible &&
       !document.hidden &&
       !pausedRef.current &&
-      !reduced.matches &&
       !connection?.saveData &&
       !failed;
 
@@ -93,7 +91,7 @@ function VideoHeroArtwork({ variant }: { variant: keyof typeof artwork }) {
       container.classList.remove("is-ready");
     };
     const preference = () => {
-      if (reduced.matches || connection?.saveData) {
+      if (connection?.saveData) {
         video.pause();
         video.removeAttribute("src");
         video.load();
@@ -111,7 +109,7 @@ function VideoHeroArtwork({ variant }: { variant: keyof typeof artwork }) {
     syncRef.current = sync;
     observer.observe(container);
     document.addEventListener("visibilitychange", sync);
-    reduced.addEventListener("change", preference);
+
     connection?.addEventListener("change", preference);
     video.addEventListener("playing", playing);
     video.addEventListener("error", error);
@@ -123,7 +121,7 @@ function VideoHeroArtwork({ variant }: { variant: keyof typeof artwork }) {
       video.removeAttribute("src");
       video.load();
       document.removeEventListener("visibilitychange", sync);
-      reduced.removeEventListener("change", preference);
+
       connection?.removeEventListener("change", preference);
       video.removeEventListener("playing", playing);
       video.removeEventListener("error", error);

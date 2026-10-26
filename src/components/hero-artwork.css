@@ -123,12 +123,6 @@
     bottom: 12px;
   }
 }
-@media (prefers-reduced-motion: reduce) {
-  .hero-artwork-picture video,
-  .hero-artwork-toggle {
-    display: none !important;
-  }
-}
 
 /* A continuous working landscape around the copy, not a strip appended below it. */
 .walkthrough-hero.has-artwork.hero-mosaic {
