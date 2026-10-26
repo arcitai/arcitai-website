@@ -109,10 +109,10 @@ export function Inquiry() {
                 <a href={siteData.links.onlinesourdough} target="_blank" rel="noopener noreferrer">
                   onlinesourdough
                 </a>{" "}
-                is for solo business owners and small teams, typically through a hybrid programme
-                with 1:1 collaboration over an agreed period. Arc’IT is for mid-sized and large
-                organisations, including enterprise teams, often with larger projects. Both start
-                with your business and the work you need to do.
+                is for solo founders and small teams, with Resources to use yourself and ongoing 1:1
+                collaboration in The Fermentary. Arc’IT delivers projects for mid-sized and large
+                organisations, including enterprise teams, with an agreed scope and a practical
+                handover to your team. Both start with your business and the work you need to do.
               </p>
             </details>
           </div>
