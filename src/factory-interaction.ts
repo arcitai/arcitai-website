@@ -17,13 +17,13 @@ export function mountFactoryFlow(figure: HTMLElement) {
   const channel = figure.querySelector<SVGPathElement>(".method-wall")!;
   const group = figure.querySelector<SVGGElement>(".method-particles")!;
   const hint = figure.querySelector<HTMLElement>("#method-hint")!;
-  const reduced = matchMedia("(prefers-reduced-motion: reduce)");
+
   const particles = Array.from({ length: PARTICLE_COUNT }, () => {
     const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
     group.append(rect);
     return rect;
   });
-  const simulation = createFlow(reduced.matches ? 1 : 0);
+  const simulation = createFlow(0);
   let frame = 0,
     scrollFrame = 0,
     previousTime = 0,
@@ -32,7 +32,7 @@ export function mountFactoryFlow(figure: HTMLElement) {
     manualPreview = false,
     visible = false;
   const running = () =>
-    canAnimate({ reduced: reduced.matches, paused: false, hidden: document.hidden, visible });
+    canAnimate({ reduced: false, paused: false, hidden: document.hidden, visible });
   const draw = () => {
     const state = sampleFlow(simulation);
     const phases = state.bars.map((value) =>
@@ -56,9 +56,8 @@ export function mountFactoryFlow(figure: HTMLElement) {
     });
     channel.setAttribute("d", state.rails);
     method.classList.toggle("is-open", simulation.progress === 1);
-    hint.textContent = reduced.matches
-      ? "Static workflow. Reduced motion."
-      : "Scroll down to open, up to close. Move across or press Enter to preview. Escape returns to the scroll position.";
+    hint.textContent =
+      "Scroll down to open, up to close. Move across or press Enter to preview. Escape returns to the scroll position.";
   };
   const tick = (now: number) => {
     frame = 0;
@@ -82,8 +81,8 @@ export function mountFactoryFlow(figure: HTMLElement) {
   const updateTarget = () => {
     setFlowProgress(
       simulation,
-      reduced.matches ? 1 : Math.max(scrollAmount, pointerAmount, manualPreview ? 1 : 0),
-      reduced.matches,
+      Math.max(scrollAmount, pointerAmount, manualPreview ? 1 : 0),
+      false,
     );
     method.setAttribute("aria-pressed", String(manualPreview));
     draw();
@@ -149,7 +148,7 @@ export function mountFactoryFlow(figure: HTMLElement) {
   window.addEventListener("scroll", syncScroll, { passive: true });
   window.addEventListener("resize", syncScroll);
   document.addEventListener("visibilitychange", syncMotion);
-  reduced.addEventListener("change", updateTarget);
+
   draw();
   syncScroll();
   return () => {
@@ -164,7 +163,7 @@ export function mountFactoryFlow(figure: HTMLElement) {
     window.removeEventListener("scroll", syncScroll);
     window.removeEventListener("resize", syncScroll);
     document.removeEventListener("visibilitychange", syncMotion);
-    reduced.removeEventListener("change", updateTarget);
+
     particles.forEach((point) => point.remove());
   };
 }

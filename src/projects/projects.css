@@ -165,8 +165,3 @@
     min-height: 220px;
   }
 }
-@media (prefers-reduced-motion: reduce) {
-  .org-project-tabs button::after {
-    transition: none;
-  }
-}

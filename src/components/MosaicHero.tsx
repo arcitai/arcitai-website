@@ -299,7 +299,7 @@ export function MosaicHero() {
   useEffect(() => {
     const node = root.current;
     if (!node) return;
-    const reduced = matchMedia("(prefers-reduced-motion: reduce)");
+
     const compact = matchMedia(`(max-width: ${mosaicCompactWidth}px)`);
     const small = matchMedia("(max-width: 700px)");
     const connection = (
@@ -309,8 +309,7 @@ export function MosaicHero() {
       frame = 0,
       last: number | null = null,
       lastPaint = 0;
-    const wanted = () =>
-      visible && !document.hidden && !paused && !reduced.matches && !connection?.saveData;
+    const wanted = () => visible && !document.hidden && !paused && !connection?.saveData;
     const tick = (now: number) => {
       if (!wanted()) {
         frame = 0;
@@ -326,7 +325,7 @@ export function MosaicHero() {
       frame = requestAnimationFrame(tick);
     };
     const sync = () => {
-      const available = !reduced.matches && !connection?.saveData;
+      const available = !connection?.saveData;
       node.dataset.motionAvailable = String(available);
       node.dataset.running = String(wanted());
       setComplete(!available);
@@ -347,7 +346,7 @@ export function MosaicHero() {
     );
     observer.observe(node);
     document.addEventListener("visibilitychange", sync);
-    reduced.addEventListener("change", sync);
+
     compact.addEventListener("change", sync);
     small.addEventListener("change", sync);
     connection?.addEventListener("change", sync);
@@ -356,7 +355,7 @@ export function MosaicHero() {
       node.dataset.running = "false";
       observer.disconnect();
       document.removeEventListener("visibilitychange", sync);
-      reduced.removeEventListener("change", sync);
+
       compact.removeEventListener("change", sync);
       small.removeEventListener("change", sync);
       connection?.removeEventListener("change", sync);

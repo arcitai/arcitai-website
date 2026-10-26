@@ -28,10 +28,12 @@ describe("Factory stack opening", () => {
     expect(stackOpenProgress(0, Infinity)).toBe(1);
   });
 
-  it("uses static layers for narrow viewports and reduced motion", () => {
-    expect(canUnfoldFactory(1440, false)).toBe(true);
-    expect(canUnfoldFactory(1040, false)).toBe(false);
-    expect(canUnfoldFactory(1440, true)).toBe(false);
+  it("animates a usable phone drawing while keeping tiny viewports static", () => {
+    expect(canUnfoldFactory(1440)).toBe(true);
+    expect(canUnfoldFactory(1040)).toBe(true);
+    expect(canUnfoldFactory(393)).toBe(true);
+    expect(canUnfoldFactory(360)).toBe(true);
+    expect(canUnfoldFactory(359)).toBe(false);
   });
 
   it("only links verified module repositories, with no guessed links for other work areas", () => {
@@ -160,24 +162,25 @@ describe("Factory motion lifecycle", () => {
     expect(env.frames.size).toBe(0);
   });
 
-  it("stays open on small screens or reduced motion and responds to preference changes", () => {
+  it("ignores the OS motion preference and only keeps tiny screens statically open", () => {
     const env = motionEnvironment();
     env.setTop(900);
     env.reduced.matches = true;
     const controller = observeStackOpening(env.element);
     env.visible(true);
     env.flush();
-    expect(env.setProperty).toHaveBeenLastCalledWith("--stack-open", "1.0000");
-    env.win.dispatchEvent(new Event("scroll"));
-    expect(env.frames.size).toBe(0);
+    expect(env.setProperty).toHaveBeenLastCalledWith("--stack-open", "0.0000");
     env.reduced.matches = false;
     env.reduced.dispatchEvent(new Event("change"));
-    env.flush();
-    expect(env.setProperty).toHaveBeenLastCalledWith("--stack-open", "0.0000");
-    env.win.innerWidth = 900;
+    expect(env.frames.size).toBe(0);
+    env.win.innerWidth = 320;
     env.win.dispatchEvent(new Event("resize"));
     env.flush();
     expect(env.setProperty).toHaveBeenLastCalledWith("--stack-open", "1.0000");
+    env.win.innerWidth = 393;
+    env.win.dispatchEvent(new Event("resize"));
+    env.flush();
+    expect(env.setProperty).toHaveBeenLastCalledWith("--stack-open", "0.0000");
     controller.stop();
   });
 });
@@ -245,7 +248,8 @@ describe("Factory entry and click navigation", () => {
     env.reduced.dispatchEvent(new Event("change"));
     env.flush();
     controller.explore(false);
-    expect(env.win.scrollTo).toHaveBeenCalledTimes(2);
+    expect(env.win.scrollTo).toHaveBeenCalledTimes(3);
+    expect(env.win.scrollTo).toHaveBeenLastCalledWith({ top: 1550, behavior: "smooth" });
     controller.stop();
   });
 });

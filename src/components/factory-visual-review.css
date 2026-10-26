@@ -338,17 +338,16 @@
     transform: translate(0, 0);
   }
 }
-@media (prefers-reduced-motion: no-preference) {
-  .factory-stack-scene:not(.has-entered)
-    :is(.factory-layer, .factory-domain-module, .factory-domain-slot) {
-    transform: translate(12px, -5px);
-  }
-  .factory-stack-scene.has-entered
-    :is(.factory-layer, .factory-domain-module, .factory-domain-slot) {
-    animation: factory-assemble 600ms cubic-bezier(0.22, 1, 0.36, 1) both;
-    animation-delay: var(--assembly-delay);
-  }
+
+.factory-stack-scene:not(.has-entered)
+  :is(.factory-layer, .factory-domain-module, .factory-domain-slot) {
+  transform: translate(12px, -5px);
 }
+.factory-stack-scene.has-entered :is(.factory-layer, .factory-domain-module, .factory-domain-slot) {
+  animation: factory-assemble 600ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--assembly-delay);
+}
+
 .page-hidden .factory-stack-scene * {
   animation-play-state: paused;
 }
@@ -446,14 +445,5 @@
     grid-template-columns: 1fr;
     gap: 16px;
     min-height: 150px;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .factory-layer::before,
-  .factory-domain-module,
-  .factory-handover-package,
-  .factory-handover-board::before,
-  .factory-handover-board::after {
-    transition: none;
   }
 }

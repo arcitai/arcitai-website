@@ -12,8 +12,7 @@ export function playAgentScene(
   paint: (poses: AgentPositions, seconds: number, running: boolean, scene: AgentScene) => void,
   story: Story = {},
 ) {
-  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
-  const mobile = window.matchMedia("(max-width: 760px)");
+  const mobile = window.matchMedia("(width < 360px)");
   let scene = initialScene,
     visible = false,
     stopped = false,
@@ -61,7 +60,7 @@ export function playAgentScene(
     if (frame) cancelAnimationFrame(frame);
     frame = 0;
     if (stopped) return;
-    if (reduced.matches || mobile.matches) {
+    if (mobile.matches) {
       complete = true;
       install();
       paint(agentSceneFrame(scene, scene.duration), scene.duration, false, scene);
@@ -77,14 +76,14 @@ export function playAgentScene(
     sync();
   });
   observer.observe(element);
-  reduced.addEventListener("change", sync);
+
   mobile.addEventListener("change", sync);
   document.addEventListener("visibilitychange", sync);
   return () => {
     stopped = true;
     if (frame) cancelAnimationFrame(frame);
     observer.disconnect();
-    reduced.removeEventListener("change", sync);
+
     mobile.removeEventListener("change", sync);
     document.removeEventListener("visibilitychange", sync);
   };

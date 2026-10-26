@@ -3,9 +3,9 @@ import { useEffect } from "react";
 export function usePageMotion() {
   useEffect(() => {
     const root = document.documentElement;
-    const reduced = matchMedia("(prefers-reduced-motion: reduce)");
+
     const sync = () => {
-      root.classList.toggle("motion-enabled", !reduced.matches);
+      root.classList.add("motion-enabled");
       root.classList.toggle("page-hidden", document.hidden);
     };
     const observer = new IntersectionObserver(
@@ -21,11 +21,11 @@ export function usePageMotion() {
       .querySelectorAll(".motif, .hero-mark, .stack-construction")
       .forEach((el) => observer.observe(el));
     sync();
-    reduced.addEventListener("change", sync);
+
     document.addEventListener("visibilitychange", sync);
     return () => {
       observer.disconnect();
-      reduced.removeEventListener("change", sync);
+
       document.removeEventListener("visibilitychange", sync);
     };
   }, []);

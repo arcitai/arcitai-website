@@ -1237,14 +1237,6 @@ textarea {
     font-size: 24px;
   }
 }
-@media (prefers-reduced-motion: reduce) {
-  :root {
-    scroll-behavior: auto;
-  }
-  .motion-scene * {
-    animation: none !important;
-  }
-}
 
 /* Production media and controls: one scene shared by the hero and video cover. */
 .theme-toggle {
@@ -1486,12 +1478,6 @@ textarea {
   }
   .field-grid {
     grid-template-columns: 1fr;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .scene-player > .scene-media,
-  .scene-play-badge {
-    transition: none;
   }
 }
 

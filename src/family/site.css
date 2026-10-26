@@ -247,12 +247,7 @@ main a:not(.button):not(.family-button):not(.offer-button):is(:hover, :focus-vis
     padding-top: 48px;
   }
 }
-@media (prefers-reduced-motion: reduce) {
-  .wordmark-icon,
-  .walkthrough-mark {
-    transition: none;
-  }
-}
+
 .scope.section-shell {
   max-width: 960px;
   padding: 80px 0 104px;
@@ -1055,11 +1050,6 @@ body:has(.family-newsletter) main {
     grid-column: 2;
   }
 }
-@media (prefers-reduced-motion: reduce) {
-  .offer-button {
-    transition: none;
-  }
-}
 
 .wordmark {
   font-family: Inter, Arial, sans-serif;
@@ -1091,11 +1081,6 @@ body:has(.family-newsletter) main {
   }
   to {
     transform: translateY(0);
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .motion-enabled .motif.has-entered .badge-pieces > * {
-    animation: none;
   }
 }
 
@@ -1172,9 +1157,19 @@ body:has(.family-newsletter) main {
   .menu-toggle-icon {
     position: relative;
     width: 18px;
-    height: 8px;
+    height: 14px;
   }
-  /* Borders, not backgrounds, so the two lines survive forced colours. */
+  .menu-toggle-icon > span {
+    position: absolute;
+    top: 6px;
+    left: 0;
+    right: 0;
+    border-top: 1.5px solid currentColor;
+  }
+  .menu-toggle[aria-expanded="true"] .menu-toggle-icon > span {
+    opacity: 0;
+  }
+  /* Three strokes remain visible in forced colours. */
   .menu-toggle-icon::before,
   .menu-toggle-icon::after {
     content: "";
@@ -1188,14 +1183,14 @@ body:has(.family-newsletter) main {
       top 180ms ease;
   }
   .menu-toggle-icon::after {
-    top: 6.5px;
+    top: 12px;
   }
   .menu-toggle[aria-expanded="true"] .menu-toggle-icon::before {
-    top: 3.25px;
+    top: 6px;
     transform: rotate(45deg);
   }
   .menu-toggle[aria-expanded="true"] .menu-toggle-icon::after {
-    top: 3.25px;
+    top: 6px;
     transform: rotate(-45deg);
   }
   /* A solid panel attached under the header; it scrolls on its own when taller than the screen. */
@@ -1207,7 +1202,6 @@ body:has(.family-newsletter) main {
     overflow-y: auto;
     overscroll-behavior: contain;
     padding: 8px 20px max(28px, env(safe-area-inset-bottom));
-    border-top: 1px solid var(--line);
     background: var(--paper);
     font: 400 17px/1.4 var(--font-sans);
   }
@@ -1310,11 +1304,5 @@ body:has(.family-newsletter) main {
   .site-header .wordmark .wordmark-icon {
     width: 32px;
     height: 32px;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .menu-toggle-icon::before,
-  .menu-toggle-icon::after {
-    transition: none;
   }
 }

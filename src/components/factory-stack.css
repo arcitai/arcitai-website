@@ -645,7 +645,6 @@
     margin-inline: auto;
   }
   .factory-stage {
-    --effective-open: 1;
     max-width: none;
   }
   .factory-read-detail {
@@ -674,6 +673,8 @@
   .factory-composition {
     gap: 24px;
   }
+}
+@media (width < 360px) {
   .factory-stage {
     display: flex;
     flex-direction: column;
@@ -798,11 +799,7 @@
     display: block;
   }
 }
-@media (prefers-reduced-motion: reduce) {
-  .factory-stage {
-    --effective-open: 1;
-  }
-}
+
 @media (forced-colors: active) {
   .island-grid {
     stroke: CanvasText;
@@ -852,17 +849,11 @@
 .factory-intro .factory-source-link {
   color: var(--family-accent);
 }
-@media (max-width: 760px) {
+@media (width < 360px) {
   .factory-mobile-tools[data-single="true"] {
     flex-basis: 34px;
     width: 34px;
   }
-  .factory-live-surface,
-  .factory-layer[data-layer="work"] > .factory-slab > :is(.slab-face, .slab-side) {
-    transition: none;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
   .factory-live-surface,
   .factory-layer[data-layer="work"] > .factory-slab > :is(.slab-face, .slab-side) {
     transition: none;
@@ -881,7 +872,7 @@
 .factory-copy-dissolve[data-phase="steady"] {
   transition: none;
 }
-@media (max-width: 1040px), (prefers-reduced-motion: reduce) {
+@media (max-width: 1040px) {
   .factory-copy-dissolve {
     opacity: 1 !important;
     transition: none !important;
@@ -912,7 +903,7 @@
     cursor: pointer;
   }
 }
-/* Phones: large module selectors and readable layer rows instead of a scaled drawing. */
+/* Phone controls remain large; the tiniest screens use readable layer rows. */
 @media (max-width: 760px) {
   .factory-module-picker {
     display: grid;
@@ -939,6 +930,8 @@
     width: 10px;
     height: 10px;
   }
+}
+@media (width < 360px) {
   .factory-layer {
     padding: 14px 18px;
   }
@@ -996,5 +989,19 @@
 @media (max-width: 420px) {
   .factory-technical-terms {
     grid-template-columns: 1fr;
+  }
+}
+
+/* Keep the complete illustration on ordinary phones, with readable detail below. */
+@media (min-width: 360px) and (max-width: 760px) {
+  .factory-foundation-group button {
+    right: 8px;
+    width: 56px;
+  }
+  .factory-foundation-group strong {
+    font-size: 11px;
+  }
+  .factory-foundation-group .foundation-summary-desktop {
+    display: none;
   }
 }

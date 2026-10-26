@@ -197,15 +197,7 @@
     --mosaic-worker-scale: 2;
   }
 }
-@media (prefers-reduced-motion: reduce) {
-  .story-swell {
-    animation: none;
-  }
-  .story-pointer-tile,
-  .story-pointer-mark {
-    transition: none;
-  }
-}
+
 @media (forced-colors: active) {
   .story-surroundings,
   .story-atmosphere {

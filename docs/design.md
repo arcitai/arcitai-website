@@ -1800,3 +1800,13 @@ starting repositories; they do not imply installable or completed modules.
 
 Book a free consultation retains the 15-minute Notion Calendar destination. The
 project inquiry route and Worker integration are unchanged.
+
+## Current animation policy · 26 October 2026
+
+The owner explicitly chose to keep the public brand animations running even when
+`prefers-reduced-motion: reduce` is enabled. This supersedes earlier reduced-motion
+fallback descriptions for the current public UI. Offscreen and hidden-tab suspension,
+explicit player controls, playback-error fallbacks and data-saving behaviour remain.
+OS settings are not changed. Verify the running animation with the media preference
+set to `reduce`, as well as with the default preference.
+Factory uses the complete illustrated stack from 360px viewport width, with readable layer rows below that width.
