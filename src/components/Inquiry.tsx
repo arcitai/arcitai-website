@@ -83,8 +83,8 @@ export function Inquiry() {
             <details className="faq" open>
               <summary>Can you work with my existing setup?</summary>
               <p>
-                I start with your existing workflows, software, tools, and team. I add a new tool or
-                service only when the agreed work calls for it.
+                I start with how your business runs and the tools, environment and team you already
+                have. I add a new tool or service only when the agreed work calls for it.
               </p>
             </details>
             <details className="faq" open>
@@ -98,9 +98,10 @@ export function Inquiry() {
             <details className="faq" open>
               <summary>Can you keep looking after it?</summary>
               <p>
-                I can handle agreed maintenance, fixes, and ongoing development. I agree
-                responsibilities, review points, and response times with you separately. You keep
-                control of business decisions and release approvals.
+                I can handle agreed maintenance, fixes and ongoing development. The handover
+                includes documentation of the agreed work so your team or another partner can
+                continue it. Further support, responsibilities and response times are agreed
+                separately. You keep control of business decisions and release approvals.
               </p>
             </details>
             <details className="faq" open>

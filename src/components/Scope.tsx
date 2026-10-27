@@ -46,6 +46,28 @@ export function Scope() {
               </div>
             </article>
           </div>
+          <section className="business-context" aria-labelledby="business-context-title">
+            <div>
+              <h3 id="business-context-title">Data and context</h3>
+              <p>
+                Data is the information in your documents and systems. Context explains what it
+                means in your organisation: how the business runs, the rules you follow and why
+                decisions are made.
+              </p>
+            </div>
+            <div>
+              <p>
+                Making that data and context clear and available to AI gives your team a foundation
+                to build on across the organisation. The same foundation can support your own
+                software, analysis and automation.
+              </p>
+              <p>
+                Clear data and context, with documentation of the agreed work, support a handover
+                your team can use. Replacing a system still needs adaptation and testing; the data
+                and context can be reused where they still apply. Further support is optional.
+              </p>
+            </div>
+          </section>
         </div>
       </section>
       <section className="factory-method" id="factory" aria-labelledby="factory-title">
