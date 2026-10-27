@@ -61,9 +61,9 @@ export function Scope() {
                 reporting, planning and customer service.
               </p>
               <p>
-                Documented definitions, connections and checks support a handover your team can use.
-                Replacing a system still needs new mappings, access and testing; clear business
-                definitions can be reused where they still apply. Further support is optional.
+                Clear data and context, with documentation of the agreed work, support a handover
+                your team can use. Replacing a system still needs adaptation and testing; the data
+                and context can be reused where they still apply. Further support is optional.
               </p>
             </div>
           </section>
