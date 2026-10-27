@@ -46,6 +46,27 @@ export function Scope() {
               </div>
             </article>
           </div>
+          <section className="business-context" aria-labelledby="business-context-title">
+            <div>
+              <h3 id="business-context-title">Data and context</h3>
+              <p>
+                Data is your customer records, agreements and operational figures. Context explains
+                how your business runs, what those records mean and which rules apply.
+              </p>
+            </div>
+            <div>
+              <p>
+                Sales and operations might count “active customers” differently. Making the
+                definition and source clear gives your team business knowledge to reuse in
+                reporting, planning and customer service.
+              </p>
+              <p>
+                Documented definitions, connections and checks support a handover your team can use.
+                Replacing a system still needs new mappings, access and testing; clear business
+                definitions can be reused where they still apply. Further support is optional.
+              </p>
+            </div>
+          </section>
         </div>
       </section>
       <section className="factory-method" id="factory" aria-labelledby="factory-title">
