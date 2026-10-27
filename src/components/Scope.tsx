@@ -50,15 +50,16 @@ export function Scope() {
             <div>
               <h3 id="business-context-title">Data and context</h3>
               <p>
-                Data is your customer records, agreements and operational figures. Context explains
-                how your business runs, what those records mean and which rules apply.
+                Data is the information in your documents and systems. Context explains what it
+                means in your organisation: how the business runs, the rules you follow and why
+                decisions are made.
               </p>
             </div>
             <div>
               <p>
-                Sales and operations might count “active customers” differently. Making the
-                definition and source clear gives your team business knowledge to reuse in
-                reporting, planning and customer service.
+                Making that data and context clear and available to AI gives your team a foundation
+                to build on across the organisation. The same foundation can support your own
+                software, analysis and automation.
               </p>
               <p>
                 Clear data and context, with documentation of the agreed work, support a handover
