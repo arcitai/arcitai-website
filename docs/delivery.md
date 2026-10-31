@@ -10,8 +10,8 @@
   the `arcitai.pages.dev` deployment origin).
 - Worker environments: intended custom domain `api.arcitai.com` and the
   Wrangler-provided `workers.dev` recovery hostname.
-- Operator: repository owner through the credential-gated manual workflow or
-  the equivalent pinned Wrangler command.
+- Operator: GitHub Actions after a reviewed merge to `main`, or the repository
+  owner through the manual recovery workflow.
 - Runtime configuration: the browser endpoint defaults to
   `https://api.arcitai.com/project-inquiry` and can be overridden with
   `VITE_INQUIRY_ENDPOINT`; there are no browser secrets.
@@ -51,11 +51,30 @@ restoring a compatible older form.
 `.github/workflows/ci.yml` runs lockfile install, formatting, linting,
 typechecking, tests, build, and audit on pull requests and `main`.
 
-`.github/workflows/deploy-pages.yml` is a manual Cloudflare Pages release path.
-It repeats the release gates, builds from the selected immutable ref, verifies
-that `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` exist without printing
-them, and uploads only `dist/` with the lockfile-pinned Wrangler. It accepts a `ref` for
-recovery and does not deploy every push automatically.
+`.github/workflows/deploy-pages.yml` runs automatically on pushes to `main`.
+Pull requests run CI without production credentials or a deployment. The release
+workflow checks credentials, repeats the Pages and Worker release gates, and
+uploads only the checked `dist/` with the lockfile-pinned Wrangler. The actual
+checked-out commit SHA is attached to the Pages deployment. Releases are
+serialized so uploads cannot overlap.
+
+After upload, `npm run verify:pages` checks all four direct routes and their
+entry JavaScript/CSS against the exact built bytes on `arcitai.com`,
+`www.arcitai.com` and `arcitai.pages.dev`, with bounded retries for propagation.
+A failed upload or mismatched live artifact fails the workflow. This HTTP check
+complements the browser journey; it does not exercise the inquiry form.
+
+The repository needs Actions secrets `CLOUDFLARE_API_TOKEN` and
+`CLOUDFLARE_ACCOUNT_ID`. For Pages delivery, use a token with Account → Cloudflare
+Pages → Edit restricted to the owning account; no DNS, Notion or Worker edit
+permission is required. Credentials are exposed only to the credential check
+and upload steps. See [Cloudflare's CI guide](https://developers.cloudflare.com/pages/how-to/use-direct-upload-with-continuous-integration/).
+
+Manual recovery remains available: start the workflow on `main` and supply a
+known-good commit SHA as `ref`. The workflow builds that selected commit; it
+does not reset `main` or rewrite deployment history. It keeps the verifier from
+the workflow revision outside the release checkout so recovery also works for
+older commits that predate the verification script.
 
 The equivalent local release command, after the exact artifact has been built,
 is:
@@ -71,6 +90,8 @@ credentials, and deploys only the Worker with the lockfile-pinned Wrangler
 dependency.
 The Worker workflow requires the `NOTION_TOKEN` secret to already exist on the
 `arcitai-api` Worker; it never places that secret in Pages or the repository.
+Its separate release requires a Cloudflare credential with the appropriate
+Worker permissions; a Pages-only delivery token cannot deploy the Worker.
 
 The local Worker commands are:
 

@@ -129,8 +129,9 @@ shared Gustav Online Worker with a valid inquiry.
 
 ## Delivery and recovery
 
-Pull requests and `main` run the same lockfile-based quality checks. Reviewed
-`main` deploys an immutable Cloudflare Pages artifact to `arcitai.pages.dev`.
+Pull requests and `main` run the same lockfile-based quality checks. Each push to
+reviewed `main` automatically builds and deploys an immutable Cloudflare Pages
+artifact, then checks its pages and entry assets on all three site domains.
 The manual deployment workflow accepts a known-good ref for recovery, and
 `git revert` remains the normal forward-recovery path. The active custom
 domains are `arcitai.com` and `www.arcitai.com`; DNS is maintained in the
