@@ -1,3 +1,4 @@
+import { ArrowIcon } from "../family/ArrowIcon";
 import { useEffect, useRef, useState } from "react";
 import { siteData } from "../site-data";
 import type { Theme } from "../theme";
@@ -221,7 +222,9 @@ export function Header({ theme, onThemeChange }: { theme: Theme; onThemeChange: 
                       <span className="brand-name-token" data-brand-name="onlinesourdough">
                         onlinesourdough
                       </span>{" "}
-                      <span aria-hidden="true">↗</span>
+                      <span aria-hidden="true">
+                        <ArrowIcon />
+                      </span>
                     </span>
                     <span>Solo businesses &amp; small teams</span>
                   </a>

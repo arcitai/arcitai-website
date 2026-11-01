@@ -1,3 +1,4 @@
+import { ArrowIcon } from "../family/ArrowIcon";
 import { useEffect, useRef, useState, type KeyboardEvent } from "react";
 import snapshot from "../../public/data/project-profile.json";
 import organizationSnapshot from "../../public/data/organization-projects.json";
@@ -149,7 +150,10 @@ export function OrganizationProjects({ owner, title, description, productLinks =
               className="org-project-explore"
               href={productLinks[project.repo.toLowerCase()] ?? project.url}
             >
-              Explore {project.name} <span aria-hidden="true">↗</span>
+              Explore {project.name}{" "}
+              <span aria-hidden="true">
+                <ArrowIcon />
+              </span>
             </a>
           </div>
         ))}
@@ -166,14 +170,19 @@ export function OrganizationProjects({ owner, title, description, productLinks =
               <li key={project.repo}>
                 <a href={project.url}>
                   <span>{project.name}</span>
-                  <span aria-hidden="true">↗</span>
+                  <span aria-hidden="true">
+                    <ArrowIcon />
+                  </span>
                 </a>
                 {project.description && <p>{project.description}</p>}
               </li>
             ))}
           </ul>
           <a className="org-project-explore" href={`https://github.com/${owner}`}>
-            All projects on GitHub <span aria-hidden="true">↗</span>
+            All projects on GitHub{" "}
+            <span aria-hidden="true">
+              <ArrowIcon />
+            </span>
           </a>
         </div>
       </div>

@@ -1,3 +1,4 @@
+import { ArrowIcon } from "../family/ArrowIcon";
 import { useEffect, useId, useRef, useState, type CSSProperties, type ComponentType } from "react";
 import type { FactoryChannelLayout, FactoryChannelProps } from "./FactoryChannels";
 import type { FactoryAgentTask, FactoryAgentProps, FactoryAgentEvent } from "./FactoryAgents";
@@ -368,7 +369,10 @@ export function FactoryStack({ design }: { design?: FactoryPreviewDesign }) {
                 panel.current?.scrollIntoView({ block: "nearest", behavior: "instant" });
               }}
             >
-              Read selected layer <span aria-hidden="true">↓</span>
+              Read selected layer{" "}
+              <span aria-hidden="true">
+                <ArrowIcon direction="down" />
+              </span>
             </button>
           </figure>
           <aside
@@ -430,7 +434,10 @@ export function FactoryStack({ design }: { design?: FactoryPreviewDesign }) {
                           rel="noopener noreferrer"
                           tabIndex={isActive ? 0 : -1}
                         >
-                          View {module.title} source <span aria-hidden="true">↗</span>
+                          View {module.title} source{" "}
+                          <span aria-hidden="true">
+                            <ArrowIcon />
+                          </span>
                         </a>
                       )}
                       {toolExamples.length > 0 && (
@@ -491,7 +498,9 @@ export function FactoryStack({ design }: { design?: FactoryPreviewDesign }) {
                         >
                           <span className="module-dot" aria-hidden="true" />
                           <strong>{module.title}</strong>
-                          <span aria-hidden="true">→</span>
+                          <span aria-hidden="true">
+                            <ArrowIcon direction="right" />
+                          </span>
                         </button>
                         {source && (
                           <a
@@ -500,7 +509,10 @@ export function FactoryStack({ design }: { design?: FactoryPreviewDesign }) {
                             rel="noopener noreferrer"
                             tabIndex={directory ? 0 : -1}
                           >
-                            Source on GitHub <span aria-hidden="true">↗</span>
+                            Source on GitHub{" "}
+                            <span aria-hidden="true">
+                              <ArrowIcon />
+                            </span>
                             <span className="sr-only"> for {module.title}</span>
                           </a>
                         )}
@@ -511,7 +523,10 @@ export function FactoryStack({ design }: { design?: FactoryPreviewDesign }) {
               </section>
             </div>
             <button type="button" className="factory-back-to-layers" onClick={returnToLayers}>
-              Choose another layer <span aria-hidden="true">↑</span>
+              Choose another layer{" "}
+              <span aria-hidden="true">
+                <ArrowIcon direction="up" />
+              </span>
             </button>
           </aside>
         </div>

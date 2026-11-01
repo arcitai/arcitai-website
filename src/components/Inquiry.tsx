@@ -1,3 +1,4 @@
+import { ArrowIcon } from "../family/ArrowIcon";
 import { useState, type FormEvent } from "react";
 
 import {
@@ -213,7 +214,9 @@ export function Inquiry() {
             <span>
               {submission.kind === "pending" ? "Sending details…" : "Send project details"}
             </span>
-            <span aria-hidden="true">↗</span>
+            <span aria-hidden="true">
+              <ArrowIcon />
+            </span>
           </button>
           <p
             className={`form-status${submission.kind !== "idle" ? ` is-${submission.kind}` : ""}`}
