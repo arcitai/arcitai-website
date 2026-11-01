@@ -1052,8 +1052,8 @@ body:has(.family-newsletter) main {
 }
 
 .wordmark {
-  font-family: Inter, Arial, sans-serif;
-  font-weight: 400;
+  font-family: var(--font-brand);
+  font-weight: 500;
   font-synthesis: none;
   letter-spacing: -0.035em;
 }
