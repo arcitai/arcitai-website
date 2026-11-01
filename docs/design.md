@@ -1,5 +1,31 @@
 # Operative design
 
+## Typography and identity · approved 1 November 2026
+
+This is the current font mapping and supersedes the older dated typography notes.
+
+| Brand           | Wordmark                        | Website text       |
+| --------------- | ------------------------------- | ------------------ |
+| Gustav Online   | Figtree 600                     | Figtree 400–500    |
+| onlinesourdough | Original Geist Pixel Square 400 | Geist Sans 400–600 |
+| Arc’IT AI       | Switzer 500                     | Switzer 400–600    |
+
+Named brands retain their own font across headers, Offers, mobile menus,
+portfolio links, footers and Part of. Pixel labels use weight 400 and no synthetic
+bold. src/family/typography.css owns the font roles; site.css owns optical sizing.
+Font sources and licences are documented in public/assets/fonts/.
+
+The Gustav mark is an outlined Figtree 800 G with the original orange and
+olive-green glow. Its two theme assets share geometry and colours, with a light
+G on dark backgrounds. Cross-site brand links use this mark; personal portraits
+remain photographs. Arc’IT’s symbol and the sourdough bread mark are unchanged.
+SVG wordmarks and marks require no installed fonts. Switzer is fetched unchanged
+from Fontshare at build time with a pinned checksum; its binary is not published
+in Git. Runtime fonts are same-origin.
+
+Keep existing content, artwork, routes and interactions. Verify direct pages,
+mobile navigation, both themes and shared brand labels before each release.
+
 ## October 24 phone and tablet adaptation — current local proposal
 
 Desktop (above 1040px) keeps the approved header, Offers popover, Blend + Balanced 8° + All
