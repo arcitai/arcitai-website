@@ -1,3 +1,4 @@
+import { ArrowIcon } from "../family/ArrowIcon";
 import { useEffect, useRef, useState } from "react";
 import { ArcitMark } from "./ArcitMark";
 import { FactoryFlow } from "./FactoryFlow";
@@ -167,7 +168,9 @@ function Handover() {
           onClick={() => setHandedOver((value) => !value)}
         >
           {handedOver ? "Reset preview" : "Preview handover"}
-          <span aria-hidden="true">{handedOver ? "↶" : "→"}</span>
+          <span aria-hidden="true">
+            <ArrowIcon direction={handedOver ? "return" : "right"} />
+          </span>
         </button>
         <p aria-live="polite">
           {handedOver

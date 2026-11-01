@@ -1,3 +1,4 @@
+import { ArrowIcon } from "./ArrowIcon";
 import { useState, type FormEvent, type ReactNode } from "react";
 import { BrandIcon } from "./BrandIcon";
 import { FamilyMark } from "./FamilyMark";
@@ -31,7 +32,9 @@ export function FamilyFooter({ brand }: { brand: FamilyBrand }) {
               <span className="brand-name-token" data-brand-name={key}>
                 {labels[key]}
               </span>
-              <span aria-hidden="true">↗</span>
+              <span aria-hidden="true">
+                <ArrowIcon />
+              </span>
             </a>
           ))}
       </nav>
@@ -102,7 +105,9 @@ export function NewsletterContent({
               ? "Explore the menu"
               : `Back to ${labels[brand]}`
             : "Subscribe"}{" "}
-          <span aria-hidden="true">↗</span>
+          <span aria-hidden="true">
+            <ArrowIcon />
+          </span>
         </a>
         {localReview && (
           <p className="review-notice">Local preview — no email has been subscribed.</p>

@@ -1,3 +1,4 @@
+import { ArrowIcon } from "../family/ArrowIcon";
 import { FactoryVisual } from "./FactoryVisual";
 import { siteData } from "../site-data";
 
@@ -24,7 +25,10 @@ export function Scope() {
                   business. Leave with a clearer direction and a practical next step.
                 </p>
                 <a className="offer-button" href={siteData.links.consultation}>
-                  Book a free consultation <span aria-hidden="true">↗</span>
+                  Book a free consultation{" "}
+                  <span aria-hidden="true">
+                    <ArrowIcon />
+                  </span>
                 </a>
               </div>
             </article>
@@ -41,7 +45,10 @@ export function Scope() {
                   adapt and build on them.
                 </p>
                 <a className="offer-button" href="/project/">
-                  Discuss your project <span aria-hidden="true">→</span>
+                  Discuss your project{" "}
+                  <span aria-hidden="true">
+                    <ArrowIcon direction="right" />
+                  </span>
                 </a>
               </div>
             </article>
@@ -91,7 +98,10 @@ export function Scope() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Start with Factory <span aria-hidden="true">↗</span>
+                Start with Factory{" "}
+                <span aria-hidden="true">
+                  <ArrowIcon />
+                </span>
               </a>
             </div>
           </div>
