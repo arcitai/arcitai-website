@@ -13,7 +13,7 @@ const labels = {
 };
 const social = [
   ["YouTube", "https://www.youtube.com/@gustavonline", "youtube"],
-  ["Instagram", "https://www.instagram.com/gustavonline/", "instagram"],
+  ["X", "https://x.com/_gustavonline", "x"],
   ["LinkedIn", "https://www.linkedin.com/in/gustavandersonn/", "linkedin"],
   ["GitHub", "https://github.com/gustavonline", "github"],
 ];

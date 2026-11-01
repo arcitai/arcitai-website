@@ -1840,3 +1840,9 @@ explicit player controls, playback-error fallbacks and data-saving behaviour rem
 OS settings are not changed. Verify the running animation with the media preference
 set to `reduce`, as well as with the default preference.
 Factory uses the complete illustrated stack from 360px viewport width, with readable layer rows below that width.
+
+## Brand touchpoints · 1 November 2026
+
+Public sharing uses the 1200×630 same-origin social-preview.png, with outlined
+brand fonts and the approved marks. Social links use YouTube, LinkedIn, X
+(@_gustavonline) and GitHub; Instagram is removed by the owner’s instruction.
