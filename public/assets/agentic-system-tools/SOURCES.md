@@ -1,4 +1,4 @@
-# Factory illustration: third-party assets
+# Agentic Systems illustration: third-party assets
 
 Retrieved 21 October 2026 for the local Arc’IT website design preview.
 These identify example tools in an architecture illustration. They are not
@@ -13,7 +13,7 @@ relicense product trademarks, mascots or logo artwork.
   https://a.slack-edge.com/9cc0056/img/icons/favicon-32.png.
   Shown as one communication-channel example beside the human entry point,
   equally alongside Teams and Google Chat in the five local candidates,
-  not as the control room or an implemented Factory integration. Slack's brand
+  not as the control room or an implemented Agentic Systems integration. Slack's brand
   terms apply: https://slack.com/terms-of-service/slack-brand.
 - `teams.svg`: unmodified Microsoft Teams product icon from Microsoft's
   Fabric brand-icon CDN (48 × 48 original viewBox):
@@ -44,14 +44,14 @@ relicense product trademarks, mascots or logo artwork.
   its licence. These are third-party vectors of product marks, not claimed to
   be vendor-provided brand downloads. Claude Code’s role is verified at
   https://code.claude.com/docs/en/overview.
-  `FactoryAgents.tsx` segments the same Lobe Icons Claude silhouette into body,
+  `AgenticSystemAgents.tsx` segments the same Lobe Icons Claude silhouette into body,
   eyes, arms and legs for original blink/walk/tool-use motion. This motion is
   an Arc’IT illustration, not an official Anthropic animation asset.
 - `cursor-light.svg`, `cursor-dark.svg`: unmodified 2D cube SVGs from
   https://cursor.com/brand, `cursor-brand-assets.zip`,
   `General Logos/Cube/SVG/CUBE_2D_LIGHT.svg` and `CUBE_2D_DARK.svg`.
   Source: https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/brand/cursor-brand-assets.zip.
-  Cursor is an illustrative tool choice, not a qualified Factory adapter claim.
+  Cursor is an illustrative tool choice, not a qualified Agentic Systems adapter claim.
 - `github.svg`: GitHub’s official Primer Octicons `mark-github-16.svg`,
   https://github.com/primer/octicons/blob/main/icons/mark-github-16.svg.
   `Octicons-LICENSE.txt` preserves its MIT licence. Dark mode displays the same
@@ -76,7 +76,7 @@ relicense product trademarks, mascots or logo artwork.
 
 ## Generic symbols
 
-The seven generic symbols in `src/components/FactoryToolMarks.tsx` adapt the
+The seven generic symbols in `src/components/AgenticSystemToolMarks.tsx` adapt the
 Phosphor duotone family: `cube`, `cpu`, `tree-structure`, `hard-drives`,
 `magnifying-glass`, `files` and `shield-check`. Source files follow
 `https://raw.githubusercontent.com/phosphor-icons/core/main/assets/duotone/{name}-duotone.svg`.
@@ -142,4 +142,4 @@ colours; the ordered field always becomes Arc’IT blue.
 
 The source clusters use Slack, HubSpot, Teams, Salesforce, Notion and GitHub.
 Databricks, Azure, Microsoft Fabric and Delta Lake sit beside the Arc’IT mark.
-The two familiar Factory workers and all existing Factory marks are retained.
+The two familiar Agentic Systems workers and all existing Agentic Systems marks are retained.

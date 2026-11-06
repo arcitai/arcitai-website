@@ -29,7 +29,7 @@ The release review also requires workflow validation, an exact build-content
 inventory, and browser QA at 1440×1000 and 390×844 with mocked inquiry outcomes.
 For the current candidate, check both themes, Offers keyboard/focus behavior,
 two offer links, all four routes, anchors and the open-source section. Check
-Factory's assembled-to-open swap, bridge connection, each module and layer,
+Agentic Systems' assembled-to-open swap, bridge connection, each module and layer,
 reload variations, shared jobs, module/layer retargeting, close/reopen, reduced motion, and the static-open layout at
 761–1040px. Phones retain static layer rows. The preserved landscapes, forced
 scenes and VSL are not rendered in this candidate.
@@ -182,7 +182,7 @@ After every deployment:
    result, and deployed artifact result for each deploy unit.
 2. Load `https://arcitai.com` and `https://www.arcitai.com` in a real browser
    and confirm status 200, title, canonical URL, mark, fonts, navigation, theme,
-   offers and the Factory interactions listed above. Keep `arcitai.pages.dev` as a
+   offers and the Agentic Systems interactions listed above. Keep `arcitai.pages.dev` as a
    separate static smoke-test origin.
 3. Check console and failed network requests.
 4. Send an OPTIONS preflight and only an intentionally invalid inquiry payload

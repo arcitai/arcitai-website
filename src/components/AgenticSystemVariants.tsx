@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { FactoryPresentation } from "./FactoryPresentation";
-import type { FactoryChannelLayout } from "./FactoryChannels";
-import "./factory-variants.css";
+import { AgenticSystemPresentation } from "./AgenticSystemPresentation";
+import type { AgenticSystemChannelLayout } from "./AgenticSystemChannels";
+import "./agentic-system-variants.css";
 
-const variations: { id: FactoryChannelLayout; name: string; note: string }[] = [
+const variations: { id: AgenticSystemChannelLayout; name: string; note: string }[] = [
   {
     id: "dock",
     name: "Control-room dock",
@@ -31,9 +31,9 @@ const variations: { id: FactoryChannelLayout; name: string; note: string }[] = [
   },
 ];
 
-export default function FactoryVariants() {
+export default function AgenticSystemVariants() {
   const [choice, setChoice] = useState(() => {
-    const value = new URLSearchParams(window.location.search).get("factoryView");
+    const value = new URLSearchParams(window.location.search).get("agenticSystemView");
     return variations.findIndex((item, index) => item.id === value || String(index + 1) === value) <
       0
       ? 1
@@ -43,14 +43,18 @@ export default function FactoryVariants() {
   function choose(index: number) {
     setChoice(index);
     const url = new URL(window.location.href);
-    url.searchParams.set("factoryView", String(index + 1));
+    url.searchParams.set("agenticSystemView", String(index + 1));
     window.history.replaceState(null, "", url);
   }
   return (
     <>
-      <div className="factory-variant-picker">
+      <div className="agentic-system-variant-picker">
         <p>Fem lokale designvariationer</p>
-        <div className="factory-variant-options" role="group" aria-label="Vælg Factory-design">
+        <div
+          className="agentic-system-variant-options"
+          role="group"
+          aria-label="Vælg Agentic Systems-design"
+        >
           {variations.map((item, index) => (
             <button
               key={item.id}
@@ -63,11 +67,11 @@ export default function FactoryVariants() {
             </button>
           ))}
         </div>
-        <div className="factory-variant-caption">
+        <div className="agentic-system-variant-caption">
           <p aria-live="polite">{current.note}</p>
         </div>
       </div>
-      <FactoryPresentation layout={current.id} />
+      <AgenticSystemPresentation layout={current.id} />
     </>
   );
 }

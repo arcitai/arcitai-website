@@ -30,13 +30,13 @@ are recorded in `SHA256SUMS.json`.
   [Snowflake](https://www.snowflake.com/brand-guidelines/).
 
 Existing Slack, Teams, HubSpot, Salesforce, Notion, GitHub, Azure, Fabric,
-Databricks and Delta Lake artwork and provenance remain in `../factory-tools/`.
-No existing Factory artwork or animation file is changed by this addition.
+Databricks and Delta Lake artwork and provenance remain in `../agentic-system-tools/`.
+No existing Agentic Systems artwork or animation file is changed by this addition.
 
 ## Expanded business-source catalogue
 
 Twenty-seven additional marks join the six local source assets above and six
-existing Factory source marks, giving Blend a pool of 39 distinct sources.
+existing Agentic Systems source marks, giving Blend a pool of 39 distinct sources.
 Only 8–11 appear on desktop (6–7 on compact screens) at once. Selection spans
 communication, documents, design, development, CRM, marketing, commerce,
 finance, operations, work management and data stores, with at most two marks

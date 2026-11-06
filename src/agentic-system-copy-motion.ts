@@ -4,7 +4,7 @@ export const copyFadeInMs = 1600;
 
 /** A replacement can only become visible after the old copy has reached zero.
  * Rapid changes replace the pending target, not the text currently fading out. */
-export function createFactoryDissolve<T>(
+export function createAgenticSystemDissolve<T>(
   value: T,
   key: string,
   paint: (value: T, phase: CopyPhase) => void,

@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { roundedPrism } from "./rounded-prism";
 
-describe("shared tile and Factory geometry", () => {
+describe("shared tile and Agentic Systems geometry", () => {
   it("scales every face and seam with the same proportions", () => {
     const tile = roundedPrism([0, 0], [28, -4.48], [15.68, 8.96], [-12.32, 13.44], 3);
     const large = roundedPrism([0, 0], [280, -44.8], [156.8, 89.6], [-123.2, 134.4], 30);

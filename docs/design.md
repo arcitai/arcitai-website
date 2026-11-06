@@ -33,9 +33,9 @@ mobile navigation, both themes and shared brand labels before each release.
 ## October 24 phone and tablet adaptation — current local proposal
 
 Desktop (above 1040px) keeps the approved header, Offers popover, Blend + Balanced 8° + All
-hero and Factory. The researched direction is WAI disclosure navigation and web.dev
+hero and Agentic Systems. The researched direction is WAI disclosure navigation and web.dev
 content-driven responsive layout. Breakpoints follow content: 1280px compact hero, 1040px
-stacked Factory, 900px stacked inquiry, 760px compact header and phone layouts, 600px phone
+stacked Agentic Systems, 900px stacked inquiry, 760px compact header and phone layouts, 600px phone
 camera.
 
 **Header (≤760px), October25 owner correction.** The64px topbar keeps the brand,
@@ -74,7 +74,7 @@ still stops offscreen and in hidden tabs and listeners are removed on cleanup. R
 and save-data show the complete All still. The scene is SVG only, so no canvas DPR cap
 applies.
 
-**Factory.** Tablets (761–1040px) keep the static-open architecture drawing above its detail.
+**Agentic Systems.** Tablets (761–1040px) keep the static-open architecture drawing above its detail.
 From 1040px down only the active detail panel takes space, removing the reserved empty
 height; a “Choose another layer ↑” control returns focus to the selected layer. Phones
 (≤760px) use a 2×2 grid of 52px module selectors, readable layer rows (17px titles, 14px
@@ -86,7 +86,7 @@ the active panel and module directory with 44px targets. Technical terms stack b
 **Forms, tabs and footer.** Inquiry and newsletter inputs are already 16–17px. The inquiry stacks
 intro, form and FAQs from 900px, so tablet form fields are no longer about 150px wide. Its
 heading is fluid. Project tabs use two columns from 760px, avoiding mid-word wrapping. Hero,
-offers, Factory, inquiry and footer share 20px gutters at ≤760px, and the offers section rhythm
+offers, Agentic Systems, inquiry and footer share 20px gutters at ≤760px, and the offers section rhythm
 is about 60px.
 
 **Verification limit.** Source and pure-geometry tests were written but not executed by the
@@ -95,10 +95,10 @@ touch, reduced motion and both themes remain the lead's responsibility.
 
 ## October 23 neutral fragments, centred DATA and a broad evolving glow — previous local proposal
 
-Gustav approved Blend, the Balanced 8° camera and Factory, and selected All on October 23. The accepted Blend
+Gustav approved Blend, the Balanced 8° camera and Agentic Systems, and selected All on October 23. The accepted Blend
 screenshot and its source snapshot are saved in `blend-approved-baseline` in
 the local October 22 design evidence. The October 22 round added source brands and three endings. The October 23 correction makes All the default, keeps DATA clearly visible in both themes, centres it on the complete field and makes the broad haze respond throughout assembly and gathering. Opus 5.5 High supplied the ending direction
-and reviewed the source; the lead implements and verifies it. Factory's house,
+and reviewed the source; the lead implements and verifies it. Agentic Systems' house,
 control room, materials and motion remain frozen. The latest colour choice replaces ordinary orange fragments with cool, lightly blue-tinted greys. No production publication is included.
 
 `?mosaic=blend` defaults to **All**. The on-page Ending buttons select Quiet,
@@ -140,7 +140,7 @@ Arc’IT has two paper-coloured cells. These fourteen cells are protected from
 origin reassignment, and all 37 letter cells are excluded from accent placement. They keep their colours in Quiet and Sources, and fade
 to blue as their platforms leave in All. Asset provenance, original URLs,
 modifications, licences and hashes are recorded in `public/assets/hero-sources/`
-and the existing Factory asset records. These are illustrative data sources,
+and the existing Agentic Systems asset records. These are illustrative data sources,
 not partnership badges or a claim that integrations are installed.
 
 **Three endings.** All is now selected and is the default for absent or invalid ending parameters. Quiet and Sources remain explicit comparison options. The October 23 screenshot shows that the former 32% ink was too faint; the new direction calls for clearly visible DATA.
@@ -210,7 +210,7 @@ visual QA; the owner needs to judge the centred DATA, neutral fragments, broad e
 
 ## October 22 down-right perspective and shared tile construction — superseded angle comparison
 
-The owner approves the six surroundings, field story and Factory overall. The
+The owner approves the six surroundings, field story and Agentic Systems overall. The
 remaining correction is the viewing angle: preserve Previous's view from above,
 with a more pronounced slope down toward the lower-right corner. The owner also
 recalls liking an earlier, more strongly sloped version. The recoverable Previous
@@ -245,7 +245,7 @@ without cropping. A paper veil protects the copy's lower edge.
 Six upright source marks identify Slack, HubSpot, Teams, Salesforce, Notion
 and GitHub. Small nearby groups echo their colours. Databricks, Azure, Microsoft
 Fabric and Delta Lake sit beside the Arc’IT mark in the aligned blue end.
-Sources and hashes live in public/assets/factory-tools; these are illustrative
+Sources and hashes live in public/assets/agentic-system-tools; these are illustrative
 ecosystem examples, not endorsements or installed integrations.
 
 One conserved tile set owns every source and destination. Codex and Claude
@@ -257,9 +257,9 @@ A23-second wave lifts tiles by at most1.4units; pointer proximity adds up to5.
 A visible-time24fps clock pauses offscreen, in hidden tabs and on request.
 Reduced motion and save-data show the completed foundation.
 
-`rounded-prism.ts` now constructs both small tiles and enlarged Factory slabs:
+`rounded-prism.ts` now constructs both small tiles and enlarged Agentic Systems slabs:
 the same rounded corners, continuous side faces, shallow lip and fine highlight.
-Factory keeps its stage footprint, labels, module colours, selection, folding,
+Agentic Systems keeps its stage footprint, labels, module colours, selection, folding,
 agent routes and doors. The backward-facing roof glazing was removed and the
 sawtooth roof planes tinted, closing the apparent opening without moving doors.
 The island uses the same geometry. Flat vector paint remains crisp without
@@ -311,7 +311,7 @@ not the default. `?mosaic=wings` retains the previous surrounding layout.
 The local picker keeps other review query parameters and does not ship in the
 production bundle. Existing `?hero=plain`, `atelier` and `engraved` remain.
 
-Exact Codex and Claude assets from Factory collect fragments and install blue
+Exact Codex and Claude assets from Agentic Systems collect fragments and install blue
 tiles, which stay installed. A visit seed varies roles, rhythm and loose fields
 once per reload. After the finite build, agents maintain the foundation. Helpers
 enter and leave through the outer edges; they never dissolve into place. Upright
@@ -321,13 +321,13 @@ not claims about installed integrations or endorsements.
 
 Opus 5.5 High owns the shared material direction: chalk tops, blue edges, fine
 back-edge highlights, shallow lips and base shading, with two-tone contact
-shadows. `arc-material.css` supplies light/dark tokens to both scenes. Factory's
+shadows. `arc-material.css` supplies light/dark tokens to both scenes. Agentic Systems'
 slabs, roof, glazing, control room, island, bridge, elevators, tools, parcels and
 pets share this finish. `PrismFinish` adds flat paint without filters, SVG IDs,
 texture noise or another animation loop. More modules keeps its airy dashed
 outline. Software, BI, defence and research retain their separate colours.
 
-Factory geometry, unfolding, doorway masks, agent routes and timing remain
+Agentic Systems geometry, unfolding, doorway masks, agent routes and timing remain
 unchanged. Moving the slab on hover would detach agents and masks from their
 floors, so existing selection/focus paint provides interaction feedback instead.
 Finish overlays never receive pointer events and hide in forced-colour mode.
@@ -350,7 +350,7 @@ visual language: regular square spacing at a 10:13 ratio, the established orange
 palette, an Arc’IT-blue area and the exact white six-piece mark. Clean vector
 faces and shallow edges replace the engraved paper/vintage finish.
 
-Two existing Factory characters, Codex and Claude Code, carry ordinary tiles
+Two existing Agentic Systems characters, Codex and Claude Code, carry ordinary tiles
 between loose piles and fixed slots. Their 28- and 37-second journeys include
 walking, placing, inspecting and returning. Positions are continuous; the bodies
 and carried tiles never fade or appear out of nowhere. Slack, Databricks and Azure
@@ -364,7 +364,7 @@ visible-time clock; it stops offscreen, in hidden tabs, with reduced motion or
 data saving. A small accessible control pauses it and hides when motion is
 disabled by the user's preferences. Pets are larger relative to the grid on
 mobile. Carried tiles sit behind the figures, and working figures face their
-placed tile. Factory behaviour is unchanged.
+placed tile. Agentic Systems behaviour is unchanged.
 
 Local `?hero=mosaic` is the default. `?hero=engraved` retains the prior Flow mosaic;
 `?hero=atelier` and `?hero=plain` remain available. Only the review build includes
@@ -374,7 +374,7 @@ Source and motion tests can verify continuity and visibility logic; they do not
 establish visual acceptance. The prior automatic localhost browser rejection
 continues to block assembled desktop/mobile rendering. Inspect the local preview
 before releasing. Existing third-party asset provenance remains in
-public/assets/factory-tools/SOURCES.md.
+public/assets/agentic-system-tools/SOURCES.md.
 
 ## October 22 engraved Data Mosaic — superseded local proposal
 
@@ -420,7 +420,7 @@ approved plain hero for comparison. The headline and paragraph remain unchanged.
 Desktop copy overlays a soft theme-aware scrim. Smaller screens place the image
 below the copy. Playback is silent, pauses offscreen or in a hidden tab, respects
 reduced motion and data saving, and retains the poster on failure. A small icon
-controls this new background video; Factory’s removed controls stay removed.
+controls this new background video; Agentic Systems’s removed controls stay removed.
 
 The generated media has been visually inspected. The assembled local webpage
 has source/build/HTTP proof only: the prior automatic approval rejection still
@@ -438,7 +438,7 @@ certifications or specialist delivery experience. Do not claim those credentials
 on this site. Gustav's further clarification keeps Arc’IT as an IT consultancy
 and Data & AI bureau for larger organisations (Twoday/Netcompany as category
 references, Meiseki for the data/AI angle). Gustav Online is the personal brand;
-onlinesourdough is the solo/small-business hybrid programme with AIOS. Factory
+onlinesourdough is the solo/small-business hybrid programme with AIOS. Agentic Systems
 is the software-development setup being developed; do not describe it as an
 already complete enterprise data platform. The direction and Oddergaard tone
 reference are recorded in Perspective and audience and the existing Personal
@@ -451,8 +451,8 @@ brand / Content Eco System task.
 One-off consultation is a free 20-minute conversation. Its booking CTA links
 directly to the owner’s Notion Calendar recurring link, also offered from the
 project page. The project form asks about ideas, current stage, existing work
-and desired outcomes; its data contract is unchanged. Factory’s introductory
-sentence omits “by Arc’IT”. Keep “Power BI for Factory” as the repository/project
+and desired outcomes; its data contract is unchanged. Agentic Systems’s introductory
+sentence omits “by Arc’IT”. Keep “Agentic BI System” as the repository/project
 title and “Business Intelligence” as the diagram module title.
 
 Only Microsoft Teams and Slack appear as communication examples. Small sidebar
@@ -465,7 +465,7 @@ animation timing are preserved.
 The consultation is open to ideas, reviews and practical work, with focused time
 and the outcome agreed up front. Custom projects use “Data and AI shaped around
 your business” and describe data foundations, agentic engineering and solutions
-the team can use, adapt and build on. Factory uses “framework”, “established
+the team can use, adapt and build on. Agentic Systems uses “framework”, “established
 methods” and “open standards”; its introduction avoids skills/tool inventories
 and uses a comma before its project examples. “AI models” distinguishes inference
 from data/semantic models. The communication entry includes Brief, decide,
@@ -478,7 +478,7 @@ includes software, research, system investigation and BI, not only lakehouses
 or pipelines. The hero uses “context”, connects it to tools and workflows, and
 keeps “Does AI understand your business?” as the headline. The two offers remain.
 
-Factory is an open-source framework built on established methods and open
+Agentic Systems is an open-source framework built on established methods and open
 standards across projects. Keep its introduction at that level; tools and skills
 belong in the detailed layer descriptions. The introduction stays concise;
 local machine, VPS and cloud are deployment choices. Business Intelligence is
@@ -496,7 +496,7 @@ symbol, unchanged between themes. Header and family/footer marks share the same
 component. Outline and tonal review variants remain available. Gustav Online's
 own name, portrait and typography are unchanged.
 
-The scroll window still ends at 40% of viewport height. Hold the factory closed
+The scroll window still ends at 40% of viewport height. Hold the agentic system closed
 through its first half, then unfold over the final half with smoothstep easing.
 Keep reverse-scroll hysteresis. Each affected floor fades its content out over
 650ms, commits the latest replacement at zero, then fades in over 1600ms. Floor
@@ -525,7 +525,7 @@ jobs includes a shared handoff; the parcel is shown only during that transfer.
 The core pair stays fully opaque and uses the existing32px stations. The earlier
 85→40%viewport scroll window and full-open hysteresis are unchanged.
 
-Extra Codex/Claude workers emerge through openings in the actual top-floor factory
+Extra Codex/Claude workers emerge through openings in the actual top-floor agentic system
 and control room, use supporting service platforms to reach their work floor, and
 return through the same roof entrance. A brief stationary notification precedes
 control-room departures. Routes reserve room against the core pair and other
@@ -545,7 +545,7 @@ no structure-wide dissolve and no repeating label blink.
 This is a local candidate. Source/timing/geometry checks are not rendered browser
 QA; the prior automatic localhost rendering denial remains in force.
 
-## October 21 calm Factory rhythm and earlier entry — previous candidate
+## October 21 calm Agentic Systems rhythm and earlier entry — previous candidate
 
 The owner found the previous fast team story stressful, too synchronous and
 prone to odd fades, and had to scroll too far before work started. This correction
@@ -580,10 +580,10 @@ behaviour and clearances; they are not rendered browser QA. The earlier automati
 URL-safety rejection of localhost rendering has not been bypassed. No publishing
 or changes to the other websites.
 
-## October 21 living Factory team — previous candidate
+## October 21 living Agentic Systems team — previous candidate
 
 The owner's latest correction supersedes the finite/manual animation decision
-below. The Factory now tells a faster repeating story once fully unfolded:
+below. The Agentic Systems now tells a faster repeating story once fully unfolded:
 Codex and Claude approach the same station, one builds, passes a small work tile
 to the other, the other reviews, and the pair installs the change. Roles alternate.
 Jobs take roughly 3–5 seconds, with a short rest between actions. Visible elapsed
@@ -607,7 +607,7 @@ include business data, metadata, permissions, model routing, cost, isolation,
 Linux and review. Full explanations remain available in the side panel.
 
 Only the Codex and Claude identities are used. The core pair emerge from the
-factory and control room, return there during the Ops beat and come out again.
+agentic system and control room, return there during the Ops beat and come out again.
 Some jobs briefly add 1, 3 or 4 helpers on other floors, producing 2, 3, 5 or 6
 workers before returning to the core pair. Helpers share the story's timing,
 not independent loops. Native Codex frames are intact with quicker playback;
@@ -617,7 +617,7 @@ the build/review handoff visible.
 
 Reduced motion and phones remain static; hidden/offscreen time is suspended.
 Closing the stack unmounts the story and cancels its clock. The removed Pause
-animation and Assemble factory buttons stay removed. This is an illustrative
+animation and Assemble agentic system buttons stay removed. This is an illustrative
 workflow, not a live agent execution or integration status display.
 
 Opus 5.5 Max was requested, but returned a session-limit error and no verdict.
@@ -626,11 +626,11 @@ an Opus review. Source, timing, geometry and HTTP checks do not establish
 rendered appearance. The earlier localhost URL-safety rejection remains in
 force. Local preview only; no commit, push, deployment or other website edits.
 
-## October 21 quieter two-agent Factory — previous candidate
+## October 21 quieter two-agent Agentic Systems — previous candidate
 
 The owner approved the bridge and working-pet direction, then asked to remove
 the neutral mechanic, reduce the labels/logos, improve transfer motion, remove
-Pause animation and Assemble factory, and explain Factory as Arc’IT's open-source
+Pause animation and Assemble agentic system, and explain Agentic Systems as Arc’IT's open-source
 project that a business can start using. The selected bridge, exterior titles,
 five layers, colours, hero and two-offer hierarchy are unchanged.
 
@@ -656,10 +656,10 @@ phones settle immediately; hidden/offscreen time is not counted. Tests exercise
 lift support, continuous retargeting, native sprite cells, finite completion,
 visibility suspension and cleanup. CSS transitions also respect reduced motion.
 
-Factory's introduction now identifies the open-source project and adoption.
-One “Start with Factory” link goes to the actual README Start section. The
+Agentic Systems' introduction now identifies the open-source project and adoption.
+One “Start with Agentic Systems” link goes to the actual README Start section. The
 repeated GitHub link is removed from the layer footers; handover wording stays.
-Source reference: the Factory README describes a practical engineering method,
+Source reference: the Agentic Systems README describes a practical engineering method,
 Foundation, AgentOps and ADLC, not a preinstalled enterprise data platform.
 
 This remains a local visual candidate. Source/geometry checks do not establish
@@ -670,17 +670,17 @@ No commit, push, merge, deployment or other website changes.
 
 The owner selected Open bridge (02). The normal page uses it in both builds;
 the other four layouts remain available only through the local comparison URL
-`?factoryCompare=1&factoryView=2`. The comparison selector no longer appears in
-the ordinary page, including existing `?factoryView=2` links.
+`?agenticSystemCompare=1&agenticSystemView=2`. The comparison selector no longer appears in
+the ordinary page, including existing `?agenticSystemView=2` links.
 
 The page flows from the accepted “Does AI understand your business?” hero
 straight into 01 One-off consultation and 02 Custom projects, as on
-onlinesourdough. Remove the “Explore the three offers” action. Factory is now
+onlinesourdough. Remove the “Explore the three offers” action. Agentic Systems is now
 a sibling section with an h2, describing a practical agentic engineering method
 for business data, context, AI tools and routines across projects. It has no
 number or separate “Discuss your setup” sales CTA. The two commercial offers
 retain their accepted concise copy and contact buttons. Navigation, inquiry
-copy, README and metadata follow this distinction. Factory layer copy and the
+copy, README and metadata follow this distinction. Agentic Systems layer copy and the
 open-source section preserve their established scope and provenance.
 
 Open bridge combines “You / your AI agent”, its decision subtitle and the three
@@ -695,7 +695,7 @@ with a narrow torso, visor, separate boots and wrench. Codex uses native idle,
 blink, left/right walking and laptop-work sprite frames. Claude uses the existing
 MIT Lobe Icons silhouette, segmented for original leg, arm and eye motion;
 no artwork from the researched noncommercial Clawd fan repository is reused.
-Source and licence details remain in `public/assets/factory-tools/SOURCES.md`.
+Source and licence details remain in `public/assets/agentic-system-tools/SOURCES.md`.
 
 Workers walk along supported landings and use two narrow service lifts for
 vertical travel. Codex's short lift joins Ops and Work; Claude and the neutral
@@ -725,14 +725,14 @@ Final source repairs are applied. Format/lint, all 90 tests, TypeScript and
 both builds pass. Four route documents and 22 JS/CSS/tool/font files byte-match
 the running preview. Dependency/Worker proof is unchanged: audit 0, 21 Worker
 tests and dry-run pass. Evidence is under `output/consultancy-review/selected-bridge-*`.
-The exact local snapshot is `outputs/arcitai-factory-open-bridge-2026-10-21/`
+The exact local snapshot is `outputs/arcitai-agentic-system-open-bridge-2026-10-21/`
 in the chat workspace. No commit, push, merge or deploy.
 
 ## October 21 five communication variations — previous comparison
 
-The local review build now presents five candidates through `?factoryView=1`–`5`:
+The local review build now presents five candidates through `?agenticSystemView=1`–`5`:
 Control-room dock, Open bridge, Channel constellation, Access rail and Quiet
-connection. The factory, offers, module picker, flat edge labels and control room
+connection. The agentic system, offers, module picker, flat edge labels and control room
 stay the same. Only the communication layout varies. Microsoft Teams, Slack and
 Google Chat are equal examples outside the cabin; the quiet variant uses a
 neutral communication symbol and names examples in the access panel. None of
@@ -767,7 +767,7 @@ is at least 4.60:1 across both themes and all modules, including the directory.
 Only localhost review mode imports the selector, channel layouts and animation
 chunk. Production retains the previous candidate until the owner selects a
 variation. New channel asset sources and hashes live in
-`public/assets/factory-tools/`. Evidence uses the `five-variants-*` prefix in
+`public/assets/agentic-system-tools/`. Evidence uses the `five-variants-*` prefix in
 `output/consultancy-review/`; Opus 5.5 High provided direction and source review.
 The prior browser safety rejection still prevents rendered QA. Source/HTTP
 verification is not visual approval. No commit, push, merge or deploy.
@@ -777,7 +777,7 @@ clearance proof now passes, and the mobile selected border and strict click
 threshold are repaired. Format/lint, 87 tests, TypeScript and production/review
 builds pass. All 23 served entry/bundle/tool/font files match the current review
 build; all five query routes respond. Exact candidate snapshot in the chat
-workspace: `outputs/arcitai-factory-five-variants-2026-10-21/`.
+workspace: `outputs/arcitai-agentic-system-five-variants-2026-10-21/`.
 
 ## October 21 control room and clearer boundaries — previous local candidate
 
@@ -796,7 +796,7 @@ A separate “Your workspace” badge with Slack's official icon illustrates a
 communication channel beside that entry, not inside the control room. The
 access panel states that channels depend on support in the selected tools.
 Below a 460-unit stage width, the badge keeps its icon and accessible name
-while hiding the extra visible caption. Factory #66 is a platform backlog item, not proof of a built-in Slack adapter.
+while hiding the extra visible caption. Agentic Systems #66 is a platform backlog item, not proof of a built-in Slack adapter.
 No connector, account or external message is configured by this illustration.
 
 Data & Context's sidebar now includes business definitions, metadata, lineage,
@@ -806,7 +806,7 @@ names alone do not establish separation. Inference includes usage and cost
 review, without a guaranteed saving or automatic budget-enforcement claim.
 Sources: https://www.warp.dev/blog/the-factory-stack,
 https://docs.databricks.com/aws/en/data-governance/unity-catalog/,
-Factory's architecture and open issues #60, #66 and #79. These inform the
+Agentic Systems' architecture and open issues #60, #66 and #79. These inform the
 consultancy setup rather than implying a completed platform feature set.
 
 Scroll still starts at 72%vh and completes at 18%vh, but visual opening follows
@@ -832,7 +832,7 @@ keeps the cabin side darker in both themes. Evidence: `control-room-checks.json`
 `control-room-label-proof.json` and `control-room-http-proof.json`.
 Opus’s final source review required a visible mobile bottom border; that repair
 is applied, along with directory hover feedback and duplicate-token cleanup.
-Exact candidate: chat workspace `outputs/arcitai-factory-control-room-2026-10-21/`.
+Exact candidate: chat workspace `outputs/arcitai-agentic-system-control-room-2026-10-21/`.
 
 ## October 21 edge labels and coherent icons — previous candidate
 
@@ -850,7 +850,7 @@ such as “Orchestration”, “Build & test”, “Business data”, “Model c
 stay in the sidebar. FontTools measurements of the shipped font fit the 112-unit
 left and 105-unit right budgets. This is source/font evidence, not rendered QA.
 The final label list and measurements are in
-`output/consultancy-review/factory-edge-final-label-metrics.json`.
+`output/consultancy-review/agentic-system-edge-final-label-metrics.json`.
 
 Remove Sentinel from the illustration and runtime assets. Defence pairs Codex
 Security with a generic shield. Data & Context pairs Databricks with MCP;
@@ -859,9 +859,9 @@ MIT duotone family with shared light/dark blue tokens, preserving one visual
 language for model, inference, host, research and security. Existing product
 marks keep their native proportions and colours. Tool examples remain illustrative
 choices for a project, not an inventory or claim of experience. Exact sources,
-licences and hashes are in `public/assets/factory-tools/`.
+licences and hashes are in `public/assets/agentic-system-tools/`.
 
-Opus 5.5 High reviewed the source and geometry in `factory-edge-review.json`.
+Opus 5.5 High reviewed the source and geometry in `agentic-system-edge-review.json`.
 Its small text corrections are applied: neutral “Inference”, “Model choice” and
 “Execution host” tooltips, and “Review” instead of “Peer review”. Keep the
 approved roof, early unfolding, five floors, fixed stage/sidebar dimensions,
@@ -872,13 +872,13 @@ rendered verification; font measurements and HTTP checks are not visual approval
 
 Format/lint, all 85 tests, TypeScript and both builds pass. All 22 served entry,
 bundle and tool-asset/source files match the preview build. Sentinel is absent
-from the runtime bundle and asset directory. Evidence: `factory-edge-checks.json`
-and `factory-edge-http-proof.json` in `output/consultancy-review/`.
-Exact candidate: chat workspace `outputs/arcitai-factory-edge-candidate-2026-10-21/`.
+from the runtime bundle and asset directory. Evidence: `agentic-system-edge-checks.json`
+and `agentic-system-edge-http-proof.json` in `output/consultancy-review/`.
+Exact candidate: chat workspace `outputs/arcitai-agentic-system-edge-candidate-2026-10-21/`.
 
 ## October 21 flat labels and tool marks — previous candidate
 
-The owner approves the factory composition and asks for labels lying flat and
+The owner approves the agentic system composition and asks for labels lying flat and
 recognisable product icons distributed through its floors. Preserve the roof,
 early scroll opening, stage dimensions, spacing, brand type and accepted copy.
 Opus 5.5 High advised on the perspective and reviews the implementation source.
@@ -910,12 +910,12 @@ other marketing copy is rewritten. The maximum intrinsic panel-height
 reservation still includes all candidates, so selecting a module does not
 change the section height.
 
-Source and rights records: `public/assets/factory-tools/SOURCES.md` and
+Source and rights records: `public/assets/agentic-system-tools/SOURCES.md` and
 `SHA256SUMS.json`. The source image of the Codex pet is retained unmodified; a
 nested SVG viewport shows its first idle frame, without animation. It is about
 888 kB, unlike the small vectors. Mascot and installed-plugin logo reuse remains
 an eventual public-release review item, not production permission here.
-Consultation, research and source review: `output/consultancy-review/factory-icons-*`.
+Consultation, research and source review: `output/consultancy-review/agentic-system-icons-*`.
 Rendered local inspection remains blocked by the earlier browser safety review;
 source checks and HTTP byte checks must not be presented as visual acceptance.
 
@@ -926,11 +926,11 @@ small repairs are applied: the floor descriptor moves from y=140 to y=136,
 and the Codex sheet ignores pointer events while a frame-sized transparent
 rectangle handles clicks. Sprite alignment is still visually unverified.
 The exact candidate is saved at the chat’s
-`outputs/arcitai-factory-tools-candidate-2026-10-21/`.
+`outputs/arcitai-agentic-system-tools-candidate-2026-10-21/`.
 
-## October 21 factory labels and entry motion — previous candidate
+## October 21 agentic system labels and entry motion — previous candidate
 
-The owner's rendered feedback requests a stronger factory silhouette, earlier
+The owner's rendered feedback requests a stronger agentic system silhouette, earlier
 opening, less space around the section and above handover, larger labels aligned
 to the planes and symbols that change with the module. Keep the accepted hero
 “Does AI understand your business?”, the other offers and the existing copy.
@@ -965,31 +965,31 @@ Context uses a database and warehouse, Inference a chip and routes, Compute a
 server and cloud. These are original explanatory symbols, not official vendor
 logos or claims that Databricks or another product is installed.
 
-Every detail candidate now includes handover and Factory on GitHub immediately
+Every detail candidate now includes handover and Agentic Systems on GitHub immediately
 after its content, separated by 20px. Invisible candidates still reserve the
 maximum total height, preventing module/layer changes from shifting the page.
 Their links are excluded from keyboard navigation. The side column no longer
-stretches its active content apart to fill the drawing's height. The Factory band
+stretches its active content apart to fill the drawing's height. The Agentic Systems band
 uses a 56px lead-in with 44/36px vertical padding; Open-source work follows with
 44px top spacing. The 360px scroll reservation is removed completely.
 
 The preceding candidate and headline correction remain recoverable in the chat's
-`outputs/arcitai-factory-island-candidate-2026-10-21/` and
+`outputs/arcitai-agentic-system-island-candidate-2026-10-21/` and
 `outputs/arcitai-headline-update-2026-10-21.patch`. Current consultation, source
-review and checks are `output/consultancy-review/factory-labels-*`. No other site,
+review and checks are `output/consultancy-review/agentic-system-labels-*`. No other site,
 production service, commit, push or deployment is part of this change.
 
-Final source review (`factory-labels-repair.json`): Opus 5.5 High accepts the
+Final source review (`agentic-system-labels-repair.json`): Opus 5.5 High accepts the
 repaired source for local owner review with no residual material issues. Roof
 and symbol hit areas were restored, right symbols moved clear of tags, and long
 tags shortened. Format/lint, 85 tests, typecheck and both builds pass. Eight served
-files match the preview build (`factory-labels-http-proof.json`). Face-title
+files match the preview build (`agentic-system-labels-http-proof.json`). Face-title
 contrast calculated from the source tokens is at least 4.64:1 in light mode and
-7.12:1 in dark mode (`factory-labels-contrast.json`). These are source/byte checks,
+7.12:1 in dark mode (`agentic-system-labels-contrast.json`). These are source/byte checks,
 not rendered acceptance. Existing audit/Worker proof remains applicable because
 dependencies and Worker code did not change in this refinement.
 
-## October 21 factory island — previous candidate
+## October 21 agentic system island — previous candidate
 
 Latest owner copy correction: the hero now reads **“Does AI understand your
 business?”**. Keep the centred two-line composition and blue emphasis on
@@ -997,11 +997,11 @@ business?”**. Keep the centred two-line composition and blue emphasis on
 changes the opening to a question; the supporting paragraph and positioning
 remain unchanged.
 
-The owner asked for a recognisable cubic factory, clearer scroll unfolding,
+The owner asked for a recognisable cubic agentic system, clearer scroll unfolding,
 pixel agents, text on the planes, an entry above AgentOps and a stable, fuller
 right column. The five supplied image references inform the square diorama,
 simple building volume and small blue/coral characters. The actual artwork is
-original native SVG in `src/components/FactoryIsland.tsx`; no reference bitmap
+original native SVG in `src/components/AgenticSystemIsland.tsx`; no reference bitmap
 or official mascot asset is redistributed. This preserves Arc’IT's blue identity,
 neutral surfaces and current type roles. It does not introduce OpenAI branding
 or imply a partnership. Opus 5.5 High advised on the direction and reviews the
@@ -1018,7 +1018,7 @@ neutral. No idle motion or simulated activity is added.
 
 On wide viewports with sufficient height, the complete two-column scene stays
 in view for 360px of normal scrolling. It arrives assembled at the sticky line
-and unfolds reversibly over that distance. The Explore layers / Assemble factory
+and unfolds reversibly over that distance. The Explore layers / Assemble agentic system
 control scrolls to the corresponding endpoint, using the same progress rather
 than maintaining a competing open/closed state. The full frame is measured,
 including all sidebar candidates, and pinning only applies if it fits below
@@ -1033,19 +1033,19 @@ GitHub links only for Software and Power BI. There is no dropdown, plus sign or
 invented Research/Defence repository. Selecting a directory item returns focus
 to the visible More modules control. All detail panels and the directory reserve
 the same intrinsic maximum height. Shared handover/optional-support copy and
-Factory on GitHub sit at the foot of the right column. The former scroll caption,
+Agentic Systems on GitHub sit at the foot of the right column. The former scroll caption,
 intro repository link and paragraph below the figure are removed. The hero,
 first two offers, accepted intro, CTA and product truth remain unchanged.
 
 Baseline: the exact preceding source/build/proof is preserved in the chat's
 `outputs/arcitai-consolidated-candidate-2026-10-21/`. Consultation and source-review
-records are `output/consultancy-review/factory-island-*`. Source/tests/HTTP checks
+records are `output/consultancy-review/agentic-system-island-*`. Source/tests/HTTP checks
 are evidence about code and served bytes, not a rendered design verdict. No
 commit, push, deployment, host change or edit to another website is included.
 
 Final source review: Opus 5.5 High accepts the repaired candidate for local
 owner review with no remaining material source findings
-(`factory-island-repair.json`). Hidden motifs were removed, Research selection
+(`agentic-system-island-repair.json`). Hidden motifs were removed, Research selection
 and the mobile Foundation explanation restored, and the shortest descriptor
 simplified. The viewport cap remains independent of scroll mode to avoid a fit
 lock-out. Real rendering, both themes and pointer/keyboard journeys remain open.
@@ -1056,9 +1056,9 @@ Worker checks and dry-run pass. The required audit identified the existing Vite
 8.1.6, with its lockfile resolution; the rerun reports zero vulnerabilities.
 The preview server was restarted on the same local-only port. Eight served
 HTML/JS/CSS/catalogue/font/portrait files match the current build byte for byte.
-Proof: `factory-island-checks.log`, `factory-island-audit-fixed.log`,
-`factory-island-worker.log` and `factory-island-http-proof.json`. The initial
-failed audit is retained as `factory-island-audit.log`.
+Proof: `agentic-system-island-checks.log`, `agentic-system-island-audit-fixed.log`,
+`agentic-system-island-worker.log` and `agentic-system-island-http-proof.json`. The initial
+failed audit is retained as `agentic-system-island-audit.log`.
 
 ## October 21 consolidated stack — previous candidate
 
@@ -1071,10 +1071,10 @@ chat's `outputs/arcitai-interactive-candidate-2026-10-21/`; the new page present
 one coherent version without the design-comparison controls.
 
 Keep the centred hero, first two offers, tonal mark and established font roles.
-Factory is a practical method for agentic engineering across projects. Its intro
+Agentic Systems is a practical method for agentic engineering across projects. Its intro
 connects data/context/goals to less manual coordination, the customer's tools and
 handover. The primary CTA is below the introduction, as with the other offers.
-A quiet Factory repository link sits beside it. Remove the scattered source link
+A quiet Agentic Systems repository link sits beside it. Remove the scattered source link
 and sentence beneath the figure; keep the existing optional-support/handover line.
 
 Five equal-footprint planes now represent:
@@ -1089,8 +1089,8 @@ Five equal-footprint planes now represent:
 
 Foundation is a clickable bracket around the three supporting tiers, explaining
 repo config, agent definitions, launch config and access/checks. These are native
-settings and maintained project files, not a Factory runtime or invented
-`factory.yaml` format. AgentOps remains per project. The own-agent entry describes
+settings and maintained project files, not an Agentic Systems runtime or invented
+`system.yaml` format. AgentOps remains per project. The own-agent entry describes
 access through the chosen workspace and supported integrations, without a status
 badge or a promise that every agent can connect today. Model routing remains
 choices in supported harnesses; evaluation uses available run metrics and proposes
@@ -1126,14 +1126,14 @@ It is deliberately excluded from module sources.
 
 ### Module source catalogue
 
-`public/data/factory-module-sources.json` is a bundled GitHub metadata snapshot.
+`public/data/agentic-system-module-sources.json` is a bundled GitHub metadata snapshot.
 `npm run modules:refresh` reads only the two reviewed public repositories:
-`arcitai/factory` and `arcitai/Agentic-PowerBI-System`. It verifies the exact repo,
+`arcitai/agentic-systems` and `arcitai/Agentic-PowerBI-System`. It verifies the exact repo,
 public/non-archived state and canonical URL, then atomically replaces the snapshot
 only after all reads succeed. No credentials, calls or usage are needed in the
 browser. The client accepts source links only for these mappings; missing or
 invalid metadata produces no link. Custom service copy and colours stay in
-`src/factory-stack-data.ts`, rather than inheriting arbitrary README prose.
+`src/agentic-system-stack-data.ts`, rather than inheriting arbitrary README prose.
 Adding a module repository requires a reviewed source mapping and suitable
 module copy. The directory does not invent repos from a module name or enumerate
 all organisation projects as modules.
@@ -1143,16 +1143,16 @@ The prior browser URL-security refusal still prevents rendered local QA; supplie
 screenshots establish the previous defects, not acceptance of this revision.
 No commit, push, deployment or host change is authorised by this iteration.
 
-Final source review: `factory-consolidated-repair-result.json` accepts the
+Final source review: `agentic-system-consolidated-repair-result.json` accepts the
 repaired candidate for local owner review with no remaining material source
 findings. Format, lint, 82 tests, typecheck and production/review builds pass.
 Eight entry/JS/CSS/catalogue/font/portrait files match served preview bytes.
 The source refresh ran successfully against both live public repositories;
 three isolated fixtures (private repo, archived repo, partial request failure)
 prove the previous snapshot remains intact on failure. Proof lives in
-`output/consultancy-review/factory-consolidated-checks.log`,
-`factory-consolidated-http-proof.json` and
-`factory-module-refresh-failure-proof.json`. None substitutes for rendered QA.
+`output/consultancy-review/agentic-system-consolidated-checks.log`,
+`agentic-system-consolidated-http-proof.json` and
+`agentic-system-module-refresh-failure-proof.json`. None substitutes for rendered QA.
 
 ## October 21 interactive revision — previous candidate
 
@@ -1164,13 +1164,13 @@ The first two offers, accepted hero copy, tonal badge and font roles stay intact
 
 Three local-only variations share one model and interaction:
 
-- `?factory=plates#factory-visual`: AgentOps, work module and Foundation on a
+- `?agentic system=plates#agentic-system-visual`: AgentOps, work module and Foundation on a
   wider execution-host base. Recommended starting point.
-- `?factory=frame#factory-visual`: the same stack grouped by a host outline, with
+- `?agentic system=frame#agentic-system-visual`: the same stack grouped by a host outline, with
   a separate control for connected tools and services outside that grouping.
-- `?factory=unfolded#factory-visual`: AgentOps, work, context/checks, tools/models
+- `?agentic system=unfolded#agentic-system-visual`: AgentOps, work, context/checks, tools/models
   and host. A bracket explains that Foundation prepares the latter three. These
-  are responsibilities, not five separate Factory services.
+  are responsibilities, not five separate Agentic Systems services.
 
 Production builds select plates only. The variant chooser is a local review aid.
 It is not part of the public service offer. Source variants from earlier reviews
@@ -1200,36 +1200,36 @@ Foundation prepares their context, tools, access and checks. A static loop glyph
 appears only on work and host. Software is the current workflow, Power BI is in
 development, Research and Defence are planned. Status always appears in words.
 
-Fresh read-only inspection of the existing Z13 setup and Factory issues #83,
+Fresh read-only inspection of the existing Z13 setup and Agentic Systems issues #83,
 #34 and #66 informed the distinction. A running native harness and one observed
 scheduled coordinator wake do not establish automatic updates, backups, recovery
 or continuous defence. Host coordination is distinct from each project's AgentOps.
-GitHub, model providers and connected systems can run outside the host. Factory
+GitHub, model providers and connected systems can run outside the host. Agentic Systems
 currently supplies methods and configuration around native tools, not its own
 scheduler/runtime. Public copy keeps these boundaries concise; it does not name
 private host/account details or claim the planned integrations are shipped.
 
 The footer beneath the drawing now reads “You and your lead can adapt the
-routines as the work changes”, alongside the Factory source link. The previous
+routines as the work changes”, alongside the Agentic Systems source link. The previous
 “Built on established tools” disclosure is removed. Existing tools still appear
 naturally in the offer intro and Tools & models detail, with handover and optional
 support retained.
 
 The exact pre-change source/build baseline is saved in the chat's
 `outputs/arcitai-before-interactive-2026-10-21/`. Opus 5.5 High supplied the design
-consultation and source review in `output/consultancy-review/factory-interactive-*`.
+consultation and source review in `output/consultancy-review/agentic-system-interactive-*`.
 Source/test/build/HTTP proof is separate from visual acceptance: localhost
 rendering remains blocked by browser URL security. Desktop/mobile, both themes,
 zoom and real pointer/keyboard journeys still require rendered review. Nothing in
 this revision authorises a commit, push, deployment or host reconfiguration.
 
 Final source review: Opus 5.5 High accepted the repaired candidate for local
-owner review (`factory-interactive-repair-result.json`), with no remaining
+owner review (`agentic-system-interactive-repair-result.json`), with no remaining
 material source findings. Format, lint, 82 tests, typecheck, production build and
 review build pass. New tests exercise reversible progress, visibility/hidden
 lifecycle, reduced motion and local-only variation selection. Seven current
 entry/JS/CSS/font/portrait files match the served preview byte-for-byte; see
-`factory-interactive-checks.log` and `factory-interactive-http-proof.json`.
+`agentic-system-interactive-checks.log` and `agentic-system-interactive-http-proof.json`.
 Earlier audit and Worker checks remain applicable to unchanged dependencies and
 Worker code. Rendered acceptance remains open.
 
@@ -1239,12 +1239,12 @@ The owner asked for a substantial design pass after accepting the modular
 structure as an improvement. The lead inspected Warp Factories and Meiseki;
 Opus 5.5 High advised from those observations. The operative idea is an architectural
 detail drawing: neutral reading surface, a common left alignment, and a restrained
-blue field around the full-width Factory offer. This supersedes the three rounded
+blue field around the full-width Agentic Systems offer. This supersedes the three rounded
 UI panels and centred hero from the previous candidate.
 
 Preserve the accepted text, selected tonal badge and font roles. The hero is now
 left-aligned with only “your business” in the existing accent. Consultation and
-Custom projects stay side by side, using type and their own clear CTA. Factory
+Custom projects stay side by side, using type and their own clear CTA. Agentic Systems
 is the third offer, separated by space and a pale blue full-width surface rather
 than rules. Its CTA remains beside the introduction on desktop and below it on
 mobile. Handover and optional further support stay explicit.
@@ -1281,16 +1281,16 @@ by the earlier localhost URL-security denial; this candidate can be checked by
 source, build and HTTP readback but has no rendered desktop/mobile acceptance.
 
 Opus 5.5 High accepted the repaired source in
-`output/consultancy-review/factory-architectural-repair-result.json`. Its routing,
+`output/consultancy-review/agentic-system-architectural-repair-result.json`. Its routing,
 host-caption and screen-reader findings were repaired; its recommended right
 alignment for desktop participant labels is applied. Format, lint, 77 tests,
 typecheck and both builds pass. The served preview files match the built bytes;
 contrast calculations cover both themes. These are source/build/HTTP checks,
 not rendered visual or interaction proof. The owner review remains open.
 
-The live Factory issues were reviewed as well as README, VISION and architecture:
-[#75](https://github.com/arcitai/factory/issues/75) and
-[#51](https://github.com/arcitai/factory/issues/51) distinguish today's portable
+The live Agentic Systems issues were reviewed as well as README, VISION and architecture:
+[#75](https://github.com/arcitai/agentic-systems/issues/75) and
+[#51](https://github.com/arcitai/agentic-systems/issues/51) distinguish today's portable
 method from the future shared platform. Hosting (#57), context (#60), orchestration
 (#62), external access (#65/#66), Operations & Defence (#30/#5) and host continuity
 (#83) inform the visual. These open deliverables do not establish a shipped SaaS,
@@ -1307,13 +1307,13 @@ The original drawing uses Arc’IT’s steel blue, three shallow planes and hori
 annotations. Its wide Foundation ground marks the host without adding another
 product tier. No new runtime or animation dependency is introduced.
 
-Two offers occupy the first row; Agentic Factory is the wide third offer below.
+Two offers occupy the first row; Agentic Agentic Systems is the wide third offer below.
 The owner rejected consultation/project illustrations, so they remain led by
 clear typography, concise benefit, supporting copy and one outlined CTA each.
-Remove the rules above the scope section, both offers and Factory; spacing gives
+Remove the rules above the scope section, both offers and Agentic Systems; spacing gives
 structure. Retain functional navigation, focus, project selection and footer
 boundaries. Preserve the accepted hero and consultation/project wording. Only
-Factory's opening broadens from software-only to a modular setup.
+Agentic Systems' opening broadens from software-only to a modular setup.
 
 The selected tonal badge stays in the header and cross-brand footer links. The
 Gustav Online family link now uses the current `gustav-linkedin-portrait.jpg`,
@@ -1400,13 +1400,13 @@ The hero shows a compact construction mark beside the accepted AI-understands-
 the-business perspective. The three offers are parallel choices, not a required
 funnel. Consultation agrees time and intended outcome, can review existing work,
 and may lead into a custom project. Projects can also begin with an existing brief.
-Factory gets its own equally sized card and motif, followed by concise setup
+Agentic Systems gets its own equally sized card and motif, followed by concise setup
 details and the preserved bottom-position visual alternatives. Retain Inter
 except in visual brand wordmarks, blue hover and accessible reduced motion.
 
 Close the page with an organisation-specific “Open-source work” section. It
 reuses Gustav Online's public README projection for names, icons and stories,
-filtered strictly to Arc’IT. Factory, OpenPaperDesign and Power BI currently
+filtered strictly to Arc’IT. Agentic Systems, OpenPaperDesign and Power BI currently
 fill the focus tabs. “More projects” reads active public organisation metadata;
 website/profile scaffolding and archived/private repositories are excluded.
 External data stays escaped React text with only the existing narrow GitHub
@@ -1424,12 +1424,12 @@ No DNS, hosting or deployment changes.
 Opus 5.5 High advised in the existing session; copy keeps the owner's accepted
 perspective where suggested wording would revive previously rejected openings.
 
-## October 20 Factory visual alternatives — awaiting owner selection
+## October 20 Agentic Systems visual alternatives — awaiting owner selection
 
 The owner wants to compare alternatives inspired by
 [Warp's Factory Stack](https://www.warp.dev/blog/the-factory-stack), with an
 Arc’IT identity informed by its GitHub branding. Move the illustration to the
-bottom of the Agentic Factory offer for this review. This supersedes the
+bottom of the Agentic Agentic Systems offer for this review. This supersedes the
 animation-first placement below; no final variant has been accepted.
 
 Use the existing Cut Six geometry, the same steel blue (`#4265a0` light,
@@ -1437,25 +1437,25 @@ Use the existing Cut Six geometry, the same steel blue (`#4265a0` light,
 palette or claimed architecture. The consulting offer remains a configured and
 handed-over environment on established tools, not a hosted proprietary platform.
 
-The local review build offers three query-linked alternatives at `#factory-visual`:
+The local review build offers three query-linked alternatives at `#agentic-system-visual`:
 
-- `?factory=stack`: Cut stack, recommended for review. Slanted rails echo the
+- `?agentic system=stack`: Cut stack, recommended for review. Slanted rails echo the
   logo's left side; square domain modules echo its right. Tools support
   Foundation, the ADLC lifecycle and an AgentOps direction band. These are
   method responsibilities, not four deployed services. Customer approvals and
   ownership frame the illustration. Buttons expose an explanation for each
   layer or the Power BI example. A six-part entry animation runs once.
-- `?factory=handover`: a user-controlled illustration moves code, configuration,
+- `?agentic system=handover`: a user-controlled illustration moves code, configuration,
   deployment setup and operating documentation to the customer's team. This
   emphasizes independence and optional further support.
-- `?factory=flow`: the current reversible scroll/pointer/keyboard workflow,
+- `?agentic system=flow`: the current reversible scroll/pointer/keyboard workflow,
   placed at the bottom and recoloured in neutral/blue. It illustrates delivery
   rather than live operational or security status.
 
 Keep “Discuss your setup” at the end of the offer narrative. Put the supporting
-“Explore Factory on GitHub” link below the illustration. Add “Extend it for your
+“Explore Agentic Systems on GitHub” link below the illustration. Add “Extend it for your
 domain” to the offer, using Power BI preparation, specialist skills and checks as
-the concrete example. The Factory and Power BI README files support this model;
+the concrete example. The Agentic Systems and Power BI README files support this model;
 do not call it an automatically installed plugin or imply production adoption.
 Research and reverse-engineering modules are not shown as available.
 
@@ -1512,7 +1512,7 @@ for the agreed work. These are disciplines applied to a client's situation.
 Avoid portraying Arc’IT itself as a product that transforms knowledge through a
 fixed input/output sequence. Keep the AI-understands-the-business perspective
 as the approach to consulting, and make advice plus actual technical delivery
-clear. Factory provides a technical foundation; Agentic Factory is also a
+clear. Agentic Systems provides a technical foundation; Agentic Agentic Systems is also a
 consulting offer to configure and deliver that environment for the customer.
 Use Arc’IT for the service and I for Gustav's real responsibility; invent no
 team, clients or outcomes.
@@ -1520,16 +1520,16 @@ The audience distinction remains in Offers and the comparison FAQ, not as a
 demographic/competency biography in the hero. Do not label the offer “done for you”.
 
 Present three offers: **One-off consultation**, **Custom projects** and
-**Agentic Factory**. The third replaces the “How I build and deliver” section:
+**Agentic Agentic Systems**. The third replaces the “How I build and deliver” section:
 it is a tailored engineering/defence environment configured, deployed and handed
 over for the customer's team. The earlier animation-first composition is now
 being compared with the bottom-position alternatives described above. Match their title size
-and give the third offer a project-inquiry CTA, with Explore Factory as a
+and give the third offer a project-inquiry CTA, with Explore Agentic Systems as a
 supporting source link. Retain the established-tools/handover lead below its
 title. The four components are **Agentic engineering**, **Agentic defence &
 security**, **Local & cloud AI** and **Data access & retention**. The latest
 owner correction broadens the language from the codebase to the whole solution
-and replaces the two factory labels with areas of work. Describe agent-assisted
+and replaces the two agentic system labels with areas of work. Describe agent-assisted
 engineering and security, model choices, data controls and technical ownership
 in direct language, with delivery and ongoing care shaped around the project.
 Security copy covers secure-by-design architecture, access and integrations,
@@ -1545,15 +1545,15 @@ Write the four descriptions as concrete service capabilities without repetitive
 “I coordinate”, “I choose” and “I configure” openings.
 The owner's latest delivery correction replaces “I take care of your project”
 with “Work with Arc’IT” and replaces repeated responsibility statements with
-concrete handover and customer independence. Factory structures implementation,
+concrete handover and customer independence. Agentic Systems structures implementation,
 testing, security review and deployment. Project code, configuration, deployment
 instructions and operating documentation are handed over so the customer's team
 or another partner can run and extend the solution. Further collaboration and
 support are optional. Do not imply that the customer must keep hiring Gustav or
 that a handed-over solution requires no maintenance or provider services.
-These are scoped components of Agentic Factory, not four separate products or a
+These are scoped components of Agentic Agentic Systems, not four separate products or a
 mandatory package.
-Keep the Factory repo link, established tools/open standards, modest custom-code
+Keep the Agentic Systems repo link, established tools/open standards, modest custom-code
 needs, separate review, provider limits and customer control of access/approvals.
 No security certification, external audit or autonomous-learning claims.
 
@@ -1587,7 +1587,7 @@ knowledge as its context where AI is relevant. Projects do not have to involve
 AI. Explain consultation and project involvement without implying that every
 engagement includes a platform build, deployment or ongoing maintenance.
 Do not invent enterprise clients, delivered scale or guaranteed outcomes.
-Keep the approved simple Factory introduction, links, visual system and motion.
+Keep the approved simple Agentic Systems introduction, links, visual system and motion.
 This remains a local copy draft awaiting owner review, with no push or deployment.
 
 ## October 19 local positioning draft
@@ -1599,7 +1599,7 @@ software and agreed ongoing care. Arc’IT takes responsibility for delivery;
 onlinesourdough offers independent resources and guided 1:1 collaboration.
 The shared Perspective and audience page and Work with me brochure inform this
 draft. Data is the material; context includes its meaning, goals and decisions.
-Keep Factory as a supporting engineering method built on existing tools and
+Keep Agentic Systems as a supporting engineering method built on existing tools and
 standards. No model-training, autonomous-learning or customer-outcome claims.
 The owner's follow-up makes done-for-you responsibility explicit: Gustav
 assesses the need, chooses the technical approach and delivers the solution.
@@ -1607,13 +1607,13 @@ A consultation delivers an assessment and plan; implementation and maintenance
 belong to the agreed delivery. The customer retains business goals, access and
 release approvals. The latest owner correction restores the simpler introduction
 under “How I build and deliver”: “I build on the tools and systems you already
-use.” Follow with established tools, open standards and Factory structuring the
-work from clear scope to tested, reviewed changes. Keep the direct Factory link
-and “Explore Factory”. Remove “my agentic engineering workflow” and the visible
+use.” Follow with established tools, open standards and Agentic Systems structuring the
+work from clear scope to tested, reviewed changes. Keep the direct Agentic Systems link
+and “Explore Agentic Systems”. Remove “my agentic engineering workflow” and the visible
 illustration disclaimer. Label the final stage “Approval & deploy” on desktop
-and mobile. Do not invent a separate Defence Factory product.
+and mobile. Do not invent a separate Defence Agentic Systems product.
 
-The Factory illustration begins opening as it approaches the reading area and
+The Agentic Systems illustration begins opening as it approaches the reading area and
 finishes at the reading line or the available page bottom. The scroll endpoint
 must remain reachable on tall viewports and shorter copy, without adding empty
 space. Keep reverse scrolling, pointer/keyboard preview and reduced motion.
@@ -1638,7 +1638,7 @@ navigation usable. The founder VSL still awaits real footage.
 
 Lead with IT consulting, architecture and custom software, including one-off
 technical consultation. onlinesourdough owns methods, resources and guided
-learning for digital business. Factory explains the engineering behind a
+learning for digital business. Agentic Systems explains the engineering behind a
 delivery; it is not a separate headline offer. Keep the existing visual system,
 scene media and inquiry contract. The founder VSL still awaits real footage.
 
@@ -1651,11 +1651,11 @@ media, interactions, and inquiry contract.
 - Hero: “From business need to working software”, with the audience simplified
   to teams. Describe design, build, and maintenance together with architecture,
   integrations, delivery workflow, and security checks under agreed responsibility.
-  Agentic engineering is explained through the factory's practical workflow.
+  Agentic engineering is explained through the agentic system's practical workflow.
 - Section: “I take care of your project”. Use I/me/my and you/your throughout
   the public copy; make Gustav's contribution and the customer's control clear.
 - Offers: One-off consultation, Software delivery & ongoing care, and the existing
-  AI Agent Factory with software and separately scoped defence work.
+  AI Agent Agentic Systems with software and separately scoped defence work.
 - Project inquiry accepts a business need, an existing system, or a new project.
   Its copy follows the offer; form fields, validation, payload, and backend stay
   unchanged. Keep scope, access controls, review limits, and release approvals
@@ -1701,7 +1701,7 @@ implementation/readback: `docs/local-review-2026-09-25.md`.
   The scene clip is honestly labelled as a landscape video, not a recorded walkthrough.
 - Primary action “Discuss your project” leads to `/project`, retaining the existing
   form, FAQs and validation. The homepage keeps two offers plus the full-width
-  **AI Agent Factory**, with the established reversible pipe animation.
+  **AI Agent Agentic Systems**, with the established reversible pipe animation.
 - Footer: other two sites left, four personal social profiles right, small Gustav
   portrait only on sibling sites. No copyright, large scene or repeated slogan.
   “Part of Gustav Online” sits below the social profiles and links to Gustav Online.
@@ -1727,12 +1727,12 @@ composition text is retained as historical context, not current preview guidance
 Arc’IT AI is the done-for-you sibling of onlinesourdough. Keep the Danish
 landscapes, original monochrome Cut Six mark, Geist Sans/Mono/Pixel, warm paper,
 charcoal and restrained green. Start with a working demo, MVP or prototype and
-the work needed for production use. The factories are methods configured around
+the work needed for production use. The agentic systems are methods configured around
 a client's software, not a claimed proprietary platform.
 
 The September 2026 candidate replaces the old Spec/Build/Review/Ship ledger:
 plain header → landscape hero → introduction and scene video → two compact
-offers → full-width factory setup → inquiry and FAQs → landscape footer.
+offers → full-width agentic system setup → inquiry and FAQs → landscape footer.
 
 ## Composition and copy
 
@@ -1745,9 +1745,9 @@ offers → full-width factory setup → inquiry and FAQs → landscape footer.
   focus and is always visible on touch. Activation plays the real scene clip
   with native controls. No fabricated founder film, timeline or recorded-VSL claim.
 - Offers: One-off AI consultation and Software review & delivery side-by-side;
-  AI agent factory setup spans the full width below them. Keep their distinct,
+  AI agent agentic system setup spans the full width below them. Keep their distinct,
   abstract animations.
-- Factory scope: Agent Software Factory, Agent Defense Factory, Local AI where
+- Agentic Systems scope: Agent Software Agentic Systems, Agent Defense Agentic Systems, Local AI where
   it fits, Data access & retention. Keep access, review, provider limits and
   human release approvals explicit, without blanket security/compliance claims.
 - Inquiry keeps honest pending/error/success states and the remaining required
@@ -1798,7 +1798,7 @@ and stay as stills for reduced motion or data-saving mode. Visible ambient loops
 use a shared clock. Explicit user video playback has native controls. The
 owner requested removal of the separate global Pause motion controls.
 
-The factory uses a continuous pipe squeezed at four stages: Scope & access,
+The agentic system uses a continuous pipe squeezed at four stages: Scope & access,
 Code & tests, Review & defence, Approval & handoff. Squares enter gradually
 from outside the left edge. Closed stages hold them. Red-orange marks waiting,
 amber opening and green readiness. Scroll position controls progress in both
@@ -1823,7 +1823,7 @@ centred DATA lettering and regional glow. This is now the default production her
 Comparison controls require an explicit local review build and `?compare=1`.
 Production ignores old composition, ending and replay query parameters.
 
-Factory is approved. The final release adds 24px of space between its toolbar and
+Agentic Systems is approved. The final release adds 24px of space between its toolbar and
 the bridge label on desktop, retaining 24px total below the toolbar on mobile.
 Defence and Research source links point to their verified public documentation-only
 starting repositories; they do not imply installable or completed modules.
@@ -1839,7 +1839,7 @@ fallback descriptions for the current public UI. Offscreen and hidden-tab suspen
 explicit player controls, playback-error fallbacks and data-saving behaviour remain.
 OS settings are not changed. Verify the running animation with the media preference
 set to `reduce`, as well as with the default preference.
-Factory uses the complete illustrated stack from 360px viewport width, with readable layer rows below that width.
+Agentic Systems uses the complete illustrated stack from 360px viewport width, with readable layer rows below that width.
 
 ## Brand touchpoints · 1 November 2026
 

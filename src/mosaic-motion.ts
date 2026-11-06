@@ -1,4 +1,4 @@
-import type { AgentAction, AgentName, AgentPose } from "./factory-agent-motion";
+import type { AgentAction, AgentName, AgentPose } from "./agentic-system-agent-motion";
 
 export const mosaicPitch = 36.4;
 export const mosaicSize = 28;

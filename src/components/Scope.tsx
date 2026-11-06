@@ -1,5 +1,5 @@
 import { ArrowIcon } from "../family/ArrowIcon";
-import { FactoryVisual } from "./FactoryVisual";
+import { AgenticSystemVisual } from "./AgenticSystemVisual";
 import { siteData } from "../site-data";
 
 export function Scope() {
@@ -77,15 +77,19 @@ export function Scope() {
           </section>
         </div>
       </section>
-      <section className="factory-method" id="factory" aria-labelledby="factory-title">
-        <div className="factory-shell section-shell">
-          <div className="factory-intro">
+      <section
+        className="agentic-system-method"
+        id="agentic-system"
+        aria-labelledby="agentic-system-title"
+      >
+        <div className="agentic-system-shell section-shell">
+          <div className="agentic-system-intro">
             <div>
-              <h2 id="factory-title">Factory</h2>
+              <h2 id="agentic-system-title">Agentic Systems</h2>
               <p>
-                An open-source framework for agentic engineering. Factory brings established methods
-                and open standards together in an approach you can adapt across projects, from
-                software and business intelligence to security and research.
+                An open-source framework for building and operating agentic systems. Bring agents,
+                data, context, tools and review together in a setup you can adapt to software
+                development, business intelligence, security and research.
               </p>
               <p>
                 Run it on your own machine, a VPS or in the cloud. Choose AI models and ways of
@@ -93,19 +97,19 @@ export function Scope() {
                 systems.
               </p>
               <a
-                className="factory-source-link"
-                href="https://github.com/arcitai/factory#start"
+                className="agentic-system-source-link"
+                href="https://github.com/arcitai/agentic-systems#start"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Start with Factory{" "}
+                Start with Agentic Systems{" "}
                 <span aria-hidden="true">
                   <ArrowIcon />
                 </span>
               </a>
             </div>
           </div>
-          <FactoryVisual />
+          <AgenticSystemVisual />
         </div>
       </section>
     </>

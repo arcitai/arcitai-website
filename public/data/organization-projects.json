@@ -11,7 +11,7 @@
     "name": "arcitai-website",
     "full_name": "arcitai/arcitai-website",
     "html_url": "https://github.com/arcitai/arcitai-website",
-    "description": "The Arc’ It AI website: practical AI methods, software and support.",
+    "description": "The Arc\u2019 It AI website: practical AI methods, software and support.",
     "private": false,
     "archived": false
   },
@@ -32,10 +32,10 @@
     "archived": true
   },
   {
-    "name": "factory",
-    "full_name": "arcitai/factory",
-    "html_url": "https://github.com/arcitai/factory",
-    "description": "Portable Foundation, Agent Ops and ADLC methods for T3 Code, native coding agents and GitHub.",
+    "name": "agentic-systems",
+    "full_name": "arcitai/agentic-systems",
+    "html_url": "https://github.com/arcitai/agentic-systems",
+    "description": "An open-source framework for building and operating agentic systems.",
     "private": false,
     "archived": false
   },
@@ -43,7 +43,7 @@
     "name": ".github",
     "full_name": "arcitai/.github",
     "html_url": "https://github.com/arcitai/.github",
-    "description": "Public profile and brand assets for Arc’ It AI.",
+    "description": "Public profile and brand assets for Arc\u2019 It AI.",
     "private": false,
     "archived": false
   },
@@ -51,7 +51,23 @@
     "name": "openpaperdesign",
     "full_name": "arcitai/openpaperdesign",
     "html_url": "https://github.com/arcitai/openpaperdesign",
-    "description": "Native Rust (egui/wgpu) infinite canvas design app, a clean-room reimplementation reverse engineered from Paper",
+    "description": "Free, open-source canvas for your work. Sketch, diagram and design, on your own or with an AI coding agent. Built on paper-rs.",
+    "private": false,
+    "archived": false
+  },
+  {
+    "name": "agentic-defence-system",
+    "full_name": "arcitai/agentic-defence-system",
+    "html_url": "https://github.com/arcitai/agentic-defence-system",
+    "description": "Agentic Defence System: a documentation-only domain module for Agentic Systems.",
+    "private": false,
+    "archived": false
+  },
+  {
+    "name": "agentic-research-system",
+    "full_name": "arcitai/agentic-research-system",
+    "html_url": "https://github.com/arcitai/agentic-research-system",
+    "description": "Agentic Research System: a documentation-only domain module for Agentic Systems.",
     "private": false,
     "archived": false
   }

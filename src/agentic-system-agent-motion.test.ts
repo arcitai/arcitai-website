@@ -8,12 +8,12 @@ import {
   codexFrame,
   createAgentScene,
   nextAgentScene,
-} from "./factory-agent-motion";
-import { factoryModules, factoryPanelIds } from "./factory-stack-data";
+} from "./agentic-system-agent-motion";
+import { agenticSystemModules, agenticSystemPanelIds } from "./agentic-system-stack-data";
 const names = ["codex", "claude"] as const;
 
 // Exhaustive choreography sweeps must also complete on shared release runners.
-describe("Factory team choreography", { timeout: 30000 }, () => {
+describe("Agentic Systems team choreography", { timeout: 30000 }, () => {
   // Exhaustive scene sampling needs more time on shared CI runners.
   it("lets both identities work on both sides, crossing through roof doors without teleporting", () => {
     const helperSides = { codex: new Set<boolean>(), claude: new Set<boolean>() };
@@ -92,8 +92,8 @@ describe("Factory team choreography", { timeout: 30000 }, () => {
     let poses = agentHomes();
     for (let i = 0; i < 50; i++) {
       const scene = createAgentScene(
-        factoryPanelIds[i % factoryPanelIds.length],
-        factoryModules[i % 4].id,
+        agenticSystemPanelIds[i % agenticSystemPanelIds.length],
+        agenticSystemModules[i % 4].id,
         poses,
       );
       const first = agentSceneFrame(scene, 0);
@@ -126,7 +126,7 @@ describe("Factory team choreography", { timeout: 30000 }, () => {
     for (let seed = 0; seed < 12; seed++) {
       let scene = createAgentScene(
         "work",
-        factoryModules[seed % 3].id,
+        agenticSystemModules[seed % 3].id,
         agentHomes(seed),
         true,
         0,
@@ -193,7 +193,7 @@ describe("Factory team choreography", { timeout: 30000 }, () => {
           expect(p.floor).toBe(0);
           expect(p.y).toBeLessThan(161);
           expect(scene.helpers[i].dispatchAt).toBeLessThan(t);
-          expect(helper.source).toBe(helper.left ? "factory" : "control");
+          expect(helper.source).toBe(helper.left ? "agentic-system" : "control");
         }
         if (Math.abs(p.floor - Math.round(p.floor)) > 0.001) {
           expect(p.action).toBe("ride");
@@ -219,7 +219,7 @@ describe("Factory team choreography", { timeout: 30000 }, () => {
       expect(appearances.get(i)! - appearances.get(i - 1)!).toBeGreaterThan(2);
   });
   it("keeps a manually selected module throughout the tour, including Research", () => {
-    for (const module of factoryModules) {
+    for (const module of agenticSystemModules) {
       let scene = createAgentScene("work", module.id);
       for (let i = 0; i < 20; i++) {
         scene = nextAgentScene(scene, agentSceneFrame(scene, scene.duration), true);
@@ -229,7 +229,7 @@ describe("Factory team choreography", { timeout: 30000 }, () => {
   });
   it("uses only valid native Codex sprite cells for walking, blinking and work", () => {
     const seen = new Set<string>();
-    for (const layer of factoryPanelIds) {
+    for (const layer of agenticSystemPanelIds) {
       const start = createAgentScene(layer, "software");
       const scene = nextAgentScene(start, agentSceneFrame(start, start.duration), false);
       for (let t = 0; t < scene.duration; t += 0.025) {

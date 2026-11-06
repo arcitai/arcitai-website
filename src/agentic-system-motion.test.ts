@@ -8,7 +8,7 @@ import {
   setFlowProgress,
   scrollProgress,
   canAnimate,
-} from "./factory-motion";
+} from "./agentic-system-motion";
 
 test("all squares start at the left, all stages closed, with no work leaking past the first gate", () => {
   const state = createFlow();

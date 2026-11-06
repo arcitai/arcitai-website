@@ -1,0 +1,25 @@
+{
+  "checkedAt": "2026-11-06T11:30:34.684Z",
+  "sources": {
+    "software": {
+      "repository": "arcitai/agentic-systems",
+      "url": "https://github.com/arcitai/agentic-systems",
+      "description": "An open-source framework for building and operating agentic systems."
+    },
+    "powerbi": {
+      "repository": "arcitai/Agentic-PowerBI-System",
+      "url": "https://github.com/arcitai/Agentic-PowerBI-System",
+      "description": "Standalone Agentic Power BI System for turning business questions into validated Power BI models, reports, and decision journeys."
+    },
+    "defence": {
+      "repository": "arcitai/agentic-defence-system",
+      "url": "https://github.com/arcitai/agentic-defence-system",
+      "description": "Agentic Defence System: a documentation-only domain module for Agentic Systems."
+    },
+    "research": {
+      "repository": "arcitai/agentic-research-system",
+      "url": "https://github.com/arcitai/agentic-research-system",
+      "description": "Agentic Research System: a documentation-only domain module for Agentic Systems."
+    }
+  }
+}

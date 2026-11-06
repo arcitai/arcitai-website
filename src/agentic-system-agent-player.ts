@@ -1,4 +1,8 @@
-import { agentSceneFrame, type AgentPositions, type AgentScene } from "./factory-agent-motion";
+import {
+  agentSceneFrame,
+  type AgentPositions,
+  type AgentScene,
+} from "./agentic-system-agent-motion";
 
 export type AgentBeat = "arrive" | "install";
 type Story = {

@@ -19,13 +19,13 @@ const profile = (projects: unknown[]) => ({
 describe("organisation project boundary", () => {
   it("keeps only the requested organisation, public entries and the first occurrence", () => {
     const input = profile([
-      project("arcitai", "factory"),
+      project("arcitai", "agentic-systems"),
       project("onlinesourdough", "AIOS"),
       project("arcitai", "secret", { isPublic: false }),
-      project("arcitai", "factory"),
+      project("arcitai", "agentic-systems"),
     ]);
     expect(parseCatalogue(input, "arcitai")?.projects.map((p) => p.repo)).toEqual([
-      "arcitai/factory",
+      "arcitai/agentic-systems",
     ]);
     expect(parseCatalogue(input, "onlinesourdough")?.projects.map((p) => p.repo)).toEqual([
       "onlinesourdough/AIOS",

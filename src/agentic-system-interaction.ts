@@ -7,9 +7,9 @@ import {
   sampleFlow,
   scrollProgress,
   setFlowProgress,
-} from "./factory-motion";
+} from "./agentic-system-motion";
 
-export function mountFactoryFlow(figure: HTMLElement) {
+export function mountAgenticSystemFlow(figure: HTMLElement) {
   const method = figure.querySelector<HTMLButtonElement>(".method-flow")!;
   const stages = [...figure.querySelectorAll<SVGGElement>(".method-stage")];
   const stops = [...figure.querySelectorAll<SVGStopElement>(".method-stop")];

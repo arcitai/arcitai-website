@@ -111,17 +111,23 @@ export function mosaicVariantHref(id: MosaicVariantId, search: string) {
 export const mosaicCompactWidth = 1100;
 
 export const mosaicFloorMarks = [
-  { column: -11, row: 4, span: 2, name: "Slack", asset: "/assets/factory-tools/slack.png" },
-  { column: -6, row: 6, span: 2, name: "Teams", asset: "/assets/factory-tools/teams.svg" },
+  { column: -11, row: 4, span: 2, name: "Slack", asset: "/assets/agentic-system-tools/slack.png" },
+  { column: -6, row: 6, span: 2, name: "Teams", asset: "/assets/agentic-system-tools/teams.svg" },
   {
     column: 0,
     row: -2,
     span: 2,
     name: "Databricks",
-    asset: "/assets/factory-tools/databricks.svg",
+    asset: "/assets/agentic-system-tools/databricks.svg",
   },
-  { column: 5, row: 7, span: 2, name: "Power BI", asset: "/assets/factory-tools/powerbi.svg" },
-  { column: 7, row: 1, span: 2, name: "Azure", asset: "/assets/factory-tools/azure.svg" },
+  {
+    column: 5,
+    row: 7,
+    span: 2,
+    name: "Power BI",
+    asset: "/assets/agentic-system-tools/powerbi.svg",
+  },
+  { column: 7, row: 1, span: 2, name: "Azure", asset: "/assets/agentic-system-tools/azure.svg" },
   { column: 9, row: 1, span: 3, name: "Arc’IT", asset: "/assets/arcitai-mark-final.svg" },
 ] as const;
 

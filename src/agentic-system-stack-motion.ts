@@ -1,24 +1,24 @@
-export const factoryUnfoldStart = 0.85;
-export const factoryUnfoldEnd = 0.4;
+export const agenticSystemUnfoldStart = 0.85;
+export const agenticSystemUnfoldEnd = 0.4;
 
-/** Unfold on entry; begin work while the Factory is still near the middle of the viewport. */
+/** Unfold on entry; begin work while the Agentic Systems is still near the middle of the viewport. */
 export function stackOpenProgress(top: number, viewportHeight: number) {
   if (!Number.isFinite(top) || !Number.isFinite(viewportHeight) || viewportHeight <= 0) return 1;
   const progress = Math.max(
     0,
     Math.min(
       1,
-      (viewportHeight * factoryUnfoldStart - top) /
-        (viewportHeight * (factoryUnfoldStart - factoryUnfoldEnd)),
+      (viewportHeight * agenticSystemUnfoldStart - top) /
+        (viewportHeight * (agenticSystemUnfoldStart - agenticSystemUnfoldEnd)),
     ),
   );
-  // Hold the assembled factory through the first half, then spend the remaining
+  // Hold the assembled agentic-system through the first half, then spend the remaining
   // scroll distance opening it fully. The endpoint stays early in the viewport.
   const opening = Math.max(0, (progress - 0.5) * 2);
   return opening * opening * (3 - 2 * opening);
 }
 
-export function canUnfoldFactory(width: number) {
+export function canUnfoldAgenticSystem(width: number) {
   return width >= 360;
 }
 
@@ -37,7 +37,7 @@ export function observeStackOpening(
     const top = track.getBoundingClientRect().top;
     // A small reverse-scroll margin prevents trackpad jitter from removing/restarting the team.
     progress =
-      !enabled || (settledOpen && top <= window.innerHeight * (factoryUnfoldEnd + 0.025))
+      !enabled || (settledOpen && top <= window.innerHeight * (agenticSystemUnfoldEnd + 0.025))
         ? 1
         : stackOpenProgress(top, window.innerHeight);
     settledOpen = progress === 1;
@@ -49,7 +49,7 @@ export function observeStackOpening(
       animationFrame = requestAnimationFrame(update);
   };
   const sync = () => {
-    enabled = canUnfoldFactory(window.innerWidth);
+    enabled = canUnfoldAgenticSystem(window.innerWidth);
     track.dataset.scroll = enabled ? "entry" : "static";
     window.removeEventListener("scroll", queue);
     if (animationFrame) cancelAnimationFrame(animationFrame);
@@ -76,7 +76,7 @@ export function observeStackOpening(
       const top =
         window.scrollY +
         track.getBoundingClientRect().top -
-        window.innerHeight * (open ? factoryUnfoldEnd : factoryUnfoldStart) +
+        window.innerHeight * (open ? agenticSystemUnfoldEnd : agenticSystemUnfoldStart) +
         // Land beyond the boundary even when scroll coordinates are rounded.
         (open ? 2 : 0);
       window.scrollTo({ top, behavior: "smooth" });

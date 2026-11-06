@@ -7,7 +7,7 @@ import {
   type CSSProperties,
   type ReactNode,
 } from "react";
-import { CodexWorker, ClaudeWorker } from "./FactoryAgents";
+import { CodexWorker, ClaudeWorker } from "./AgenticSystemAgents";
 import {
   createMosaicVisit,
   mosaicBuildCells,
@@ -36,15 +36,15 @@ import "./arc-material.css";
 import "./mosaic-hero.css";
 
 const marks = [
-  { column: -9, row: 6, span: 1, name: "Slack", asset: "/assets/factory-tools/slack.png" },
+  { column: -9, row: 6, span: 1, name: "Slack", asset: "/assets/agentic-system-tools/slack.png" },
   {
     column: -1,
     row: 2,
     span: 1,
     name: "Databricks",
-    asset: "/assets/factory-tools/databricks.svg",
+    asset: "/assets/agentic-system-tools/databricks.svg",
   },
-  { column: 9, row: -2, span: 1, name: "Azure", asset: "/assets/factory-tools/azure.svg" },
+  { column: 9, row: -2, span: 1, name: "Azure", asset: "/assets/agentic-system-tools/azure.svg" },
   { column: 12, row: -3, span: 3, name: "Arc’IT", asset: "/assets/arcitai-mark-final.svg" },
 ];
 
@@ -280,7 +280,7 @@ const MosaicFloorGrid = memo(function MosaicFloorGrid({
   );
 });
 
-/** Exact family assets, with a visible-time clock independent of Factory's work cycle. */
+/** Exact family assets, with a visible-time clock independent of Agentic Systems' work cycle. */
 export function MosaicHero() {
   const root = useRef<HTMLDivElement>(null);
   const elapsed = useRef(0);
@@ -472,7 +472,7 @@ export function MosaicHero() {
                 <g
                   key={workerId}
                   transform={`translate(${pose.x} ${pose.y})`}
-                  style={{ "--factory-top": "var(--mosaic-eye)" } as CSSProperties}
+                  style={{ "--agentic-system-top": "var(--mosaic-eye)" } as CSSProperties}
                 >
                   <g className="mosaic-worker-figure">
                     <ellipse className="arc-mat mosaic-worker-shadow" cy="1" rx="11" ry="2" />

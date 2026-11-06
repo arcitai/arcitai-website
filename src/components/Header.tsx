@@ -232,7 +232,7 @@ export function Header({ theme, onThemeChange }: { theme: Theme; onThemeChange: 
               </ul>
             </li>
             <li>
-              <a href="/#factory">Factory</a>
+              <a href="/#agentic-system">Agentic Systems</a>
             </li>
             <li>
               <a href="/#current-work">Open-source work</a>

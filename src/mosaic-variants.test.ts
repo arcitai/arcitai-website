@@ -14,9 +14,9 @@ describe("mosaic comparisons", () => {
     expect(mosaicVariantId("")).toBe("chalk");
     expect(mosaicVariantId("?mosaic=unknown")).toBe("chalk");
     for (const id of [...mosaicVariants.map((variant) => variant.id), "wings"] as const) {
-      const href = mosaicVariantHref(id, "?factoryView=2&hero=plain&copy=2");
+      const href = mosaicVariantHref(id, "?agenticSystemView=2&hero=plain&copy=2");
       expect(mosaicVariantId(href.split("#")[0])).toBe(id);
-      expect(href).toContain("factoryView=2");
+      expect(href).toContain("agenticSystemView=2");
       expect(href).toContain("hero=mosaic");
     }
   });
