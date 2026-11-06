@@ -1,5 +1,18 @@
 # Operative design
 
+## Brand references — 6 November 2026
+
+Use each brand’s own typeface at **weight 400** for ordinary mentions and links:
+Offers, mobile menus, portfolio cards, footers and “Part of”. Figtree represents
+Gustav Online, Geist Pixel Square represents onlinesourdough, and Switzer
+represents Arc’IT AI. Keep the surrounding text size and disable synthetic bold.
+
+An actual site wordmark keeps its own identity: Gustav Online’s header remains
+Figtree 600, onlinesourdough’s wordmark remains Pixel Square 400, and Arc’IT AI’s
+logo remains its approved Switzer treatment. Brand symbols and SVG logo assets
+are unchanged. A reference to a brand is not a request to reuse its heavier logo
+weight. The reference selectors live in the site’s brand-typography stylesheet.
+
 ## Typography and identity · approved 1 November 2026
 
 This is the current font mapping and supersedes the older dated typography notes.
@@ -10,9 +23,9 @@ This is the current font mapping and supersedes the older dated typography notes
 | onlinesourdough | Original Geist Pixel Square 400 | Geist Sans 400–600 |
 | Arc’IT AI       | Switzer 500                     | Switzer 400–600    |
 
-Named brands retain their own font across headers, Offers, mobile menus,
-portfolio links, footers and Part of. Pixel labels use weight 400 and no synthetic
-bold. src/family/typography.css owns the font roles; site.css owns optical sizing.
+Site wordmarks keep the logo weights above. Other named-brand references keep
+their own font at weight 400 across Offers, mobile menus, portfolio links,
+footers and Part of, with no synthetic bold. src/family/typography.css owns the font roles; site.css owns optical sizing.
 Font sources and licences are documented in public/assets/fonts/.
 
 The Gustav mark is an outlined Figtree 800 G with the original orange and
