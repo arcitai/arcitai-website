@@ -511,9 +511,9 @@ describe("one motion and comparison system", () => {
     expect(usesLegacyMosaic("?mosaic=wings")).toBe(false);
     expect(usesLegacyMosaic("?mosaic=wings-archive")).toBe(true);
     expect(usesLegacyMosaic("?mosaic=chalk")).toBe(true);
-    expect(compositionHref("contour", "?factory=example&mosaic=wings&angle=11&mosaicSeed=94")).toBe(
-      "/?factory=example&mosaic=contour&angle=8&hero=mosaic#top",
-    );
+    expect(
+      compositionHref("contour", "?agentic-system=example&mosaic=wings&angle=11&mosaicSeed=94"),
+    ).toBe("/?agentic-system=example&mosaic=contour&angle=8&hero=mosaic#top");
   });
 
   it("randomises normal reloads even from old pinned URLs, while explicit replay is deterministic", () => {

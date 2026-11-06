@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, type RefObject } from "react";
-import { createFactoryDissolve, type CopyPhase } from "../factory-copy-motion";
+import { createAgenticSystemDissolve, type CopyPhase } from "../agentic-system-copy-motion";
 
-export function useFactoryDissolve<T>(
+export function useAgenticSystemDissolve<T>(
   element: RefObject<SVGSVGElement>,
   value: T,
   key: string,
@@ -15,7 +15,7 @@ export function useFactoryDissolve<T>(
     sync.current?.();
   }, [value, key, enabled]);
   useEffect(() => {
-    const controller = createFactoryDissolve(
+    const controller = createAgenticSystemDissolve(
       latest.current.value,
       latest.current.key,
       (value, phase) => setFrame({ value, phase }),

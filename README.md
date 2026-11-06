@@ -13,8 +13,8 @@ work. The primary distinction from [onlinesourdough](https://onlinesourdough.com
 is audience: onlinesourdough serves solo business owners and small teams through
 a hybrid programme with 1:1 collaboration.
 
-Factory is Arc’IT’s open-source project and explains the agentic engineering
-method behind the work. Start with its [adoption guide](https://github.com/arcitai/factory#start). Its common
+Agentic Systems is Arc’IT’s open-source project and explains the agentic engineering
+method behind the work. Start with its [adoption guide](https://github.com/arcitai/agentic-systems#start). Its common
 foundation brings together business data, context, tools and access; agents,
 routines and checks adapt to the project. It is not presented as a third offer
 or a subscription product. Code, configuration and documentation support
@@ -24,7 +24,7 @@ the Arc'IT-owned `arcitai-api` Worker.
 ## Status
 
 - Current design: compact intro without VSL, two service cards above a wide
-  Factory method explainer with the selected Open bridge diagram, a shared team story with rotating examples, and organisation-
+  Agentic Systems method explainer with the selected Open bridge diagram, a shared team story with rotating examples, and organisation-
   filtered open-source work.
   See `docs/design.md` and the October 21 release record.
 - Shape: static browser application
@@ -45,7 +45,7 @@ runtime dependency.
 This repository owns:
 
 - page content, layout, responsive behavior, theme, and interactions;
-- Factory layers, module selection, unfolding and accessible animation controls;
+- Agentic Systems layers, module selection, unfolding and accessible animation controls;
 - browser-side inquiry payload creation and honest UI states;
 - the static build, quality gates, GitHub Actions, and Cloudflare Pages delivery.
 
@@ -91,13 +91,13 @@ The shipped inventory in `public/assets/` contains:
   all four scenes are present in `src/media.ts` and checked in the build.
 - Geist Sans, Mono, and Pixel WOFF2 files plus their license
 - Inter WOFF2 plus `Inter-LICENSE.txt` and `Inter-SOURCE.txt`
-- `factory-tools/`: local tool/channel marks and the Codex sprite, with sources,
+- `agentic-system-tools/`: local tool/channel marks and the Codex sprite, with sources,
   checksums and licences recorded alongside them
-- `project-marks/`: Factory and OpenPaperDesign marks
+- `project-marks/`: Agentic Systems and OpenPaperDesign marks
 - `gustav-linkedin-portrait.jpg` (current) and the retained `gustav-portrait.jpg`
 
 `public/data/` contains the checked-in organisation projects, project profile
-and Factory module-source manifests. It contains public runtime data, not secrets.
+and Agentic Systems module-source manifests. It contains public runtime data, not secrets.
 
 The earlier hero and introduction-video cover shared the selected scene. They
 are no longer rendered in the compact October 20 local revision; their modules

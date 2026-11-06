@@ -1,17 +1,17 @@
 import { useEffect, useRef } from "react";
-import { mountFactoryFlow } from "../factory-interaction";
+import { mountAgenticSystemFlow } from "../agentic-system-interaction";
 
-export function FactoryFlow() {
+export function AgenticSystemFlow() {
   const ref = useRef<HTMLElement>(null);
   useEffect(() => {
-    if (ref.current) return mountFactoryFlow(ref.current);
+    if (ref.current) return mountAgenticSystemFlow(ref.current);
   }, []);
   return (
     <figure ref={ref} className="method-figure">
       <button
         className="method-flow motion-scene"
         type="button"
-        aria-label="Preview the open factory workflow"
+        aria-label="Preview the open agentic-system workflow"
         aria-pressed="false"
         aria-describedby="method-hint"
       >

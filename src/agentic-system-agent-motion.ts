@@ -1,4 +1,4 @@
-import type { FactoryLayerId, FactoryModuleId } from "./factory-stack-data";
+import type { AgenticSystemLayerId, AgenticSystemModuleId } from "./agentic-system-stack-data";
 
 export type AgentName = "codex" | "claude";
 export type AgentAction = "idle" | "walk" | "ride" | "work";
@@ -14,8 +14,8 @@ export type AgentPose = {
 export type AgentPositions = Record<AgentName, AgentPose>;
 type Stop = { at: number; pose: AgentPose };
 export type AgentScene = {
-  layer: FactoryLayerId;
-  module: FactoryModuleId;
+  layer: AgenticSystemLayerId;
+  module: AgenticSystemModuleId;
   turn: number;
   seed: number;
   leader: AgentName;
@@ -23,10 +23,10 @@ export type AgentScene = {
   tracks: Record<AgentName, Stop[]>;
   helpers: {
     name: AgentName;
-    layer: FactoryLayerId;
+    layer: AgenticSystemLayerId;
     left: boolean;
     floor: number;
-    source: "control" | "factory";
+    source: "control" | "agentic-system";
     dispatchAt: number;
     stops: Stop[];
   }[];
@@ -36,7 +36,7 @@ export type AgentScene = {
   installAt: number;
   duration: number;
 };
-const floorIndex: Record<FactoryLayerId, number> = {
+const floorIndex: Record<AgenticSystemLayerId, number> = {
   ops: 0,
   work: 1,
   context: 2,
@@ -45,7 +45,7 @@ const floorIndex: Record<FactoryLayerId, number> = {
   foundation: 2,
   access: 0,
 };
-const floorNames: FactoryLayerId[] = ["ops", "work", "context", "inference", "compute"];
+const floorNames: AgenticSystemLayerId[] = ["ops", "work", "context", "inference", "compute"];
 const pose = (
   x: number,
   y: number,
@@ -142,8 +142,8 @@ function remainingStops(stops: Stop[], seconds: number): Stop[] {
 }
 
 export function createAgentScene(
-  layer: FactoryLayerId,
-  module: FactoryModuleId,
+  layer: AgenticSystemLayerId,
+  module: AgenticSystemModuleId,
   residents = agentHomes(),
   entrance = false,
   turn = 0,
@@ -222,7 +222,7 @@ export function createAgentScene(
   // Reserve space against both core routes and earlier helpers before dispatching.
   for (let i = 0; i < helperCount; i++) {
     const left = i % 2 === 0;
-    const source = left ? "factory" : "control";
+    const source = left ? "agentic-system" : "control";
     const facing = left ? 1 : -1;
     const door = left ? pose(232, 143, 0, -1) : pose(340, 110, 0, 1);
     const edge = left ? pose(192, 155, 0, -1, "walk") : pose(374, 140, 0, 1, "walk");
@@ -331,9 +331,17 @@ export function agentHelperFrames(scene: AgentScene, seconds: number) {
 }
 export function nextAgentScene(scene: AgentScene, residents: AgentPositions, manual: boolean) {
   const turn = scene.turn + 1;
-  const tour: FactoryLayerId[] = ["context", "work", "compute", "work", "inference", "ops", "work"];
+  const tour: AgenticSystemLayerId[] = [
+    "context",
+    "work",
+    "compute",
+    "work",
+    "inference",
+    "ops",
+    "work",
+  ];
   const layer = tour[(turn - 1 + (scene.seed % 3) * 2) % tour.length];
-  const modules: FactoryModuleId[] = ["software", "powerbi", "defence"];
+  const modules: AgenticSystemModuleId[] = ["software", "powerbi", "defence"];
   const module =
     !manual && layer === "work" ? modules[(modules.indexOf(scene.module) + 1) % 3] : scene.module;
   return createAgentScene(layer, module, residents, false, turn, scene.seed, {

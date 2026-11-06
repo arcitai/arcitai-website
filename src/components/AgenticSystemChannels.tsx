@@ -1,20 +1,25 @@
-export type FactoryChannelLayout = "dock" | "bridge" | "nodes" | "rail" | "quiet";
+export type AgenticSystemChannelLayout = "dock" | "bridge" | "nodes" | "rail" | "quiet";
 
 const channels = [
   { name: "Microsoft Teams", file: "teams.svg" },
   { name: "Slack", file: "slack.png" },
 ];
 
-export type FactoryChannelProps = {
-  layout: FactoryChannelLayout;
+export type AgenticSystemChannelProps = {
+  layout: AgenticSystemChannelLayout;
   /** `pointer` is false for keyboard activation, which keeps focus and scroll in place. */
   select: (pointer: boolean) => void;
   controls: string;
   selected: boolean;
 };
 
-export function FactoryChannels({ layout, select, controls, selected }: FactoryChannelProps) {
-  const routes: Record<FactoryChannelLayout, string> = {
+export function AgenticSystemChannels({
+  layout,
+  select,
+  controls,
+  selected,
+}: AgenticSystemChannelProps) {
+  const routes: Record<AgenticSystemChannelLayout, string> = {
     dock: "M480 66V86H390L346 108",
     bridge: "M470 38V48M428 60L346 101",
     nodes: "M442 30V86H390M486 52V86H390M530 30V86H390L346 108",
@@ -22,18 +27,25 @@ export function FactoryChannels({ layout, select, controls, selected }: FactoryC
     quiet: "M480 78V86H390L346 108",
   };
   return (
-    <div className="factory-channels" data-layout={layout}>
+    <div className="agentic-system-channels" data-layout={layout}>
       <svg
-        className="factory-channel-routes"
+        className="agentic-system-channel-routes"
         viewBox="0 0 560 700"
         aria-hidden="true"
         focusable="false"
       >
-        <path className="arc-mat factory-route-bed" d={routes[layout]} />
+        <path className="arc-mat agentic-system-route-bed" d={routes[layout]} />
         <path d={routes[layout]} />
         {layout === "bridge" ? (
           <>
-            <rect className="factory-channel-hub" x="428" y="48" width="84" height="24" rx="12" />
+            <rect
+              className="agentic-system-channel-hub"
+              x="428"
+              y="48"
+              width="84"
+              height="24"
+              rx="12"
+            />
             <circle cx="346" cy="101" r="2.5" />
           </>
         ) : (
@@ -41,7 +53,7 @@ export function FactoryChannels({ layout, select, controls, selected }: FactoryC
         )}
       </svg>
       <button
-        className="factory-channel-entry"
+        className="agentic-system-channel-entry"
         type="button"
         onClick={(event) => select(event.detail > 0)}
         aria-controls={controls}
@@ -53,7 +65,7 @@ export function FactoryChannels({ layout, select, controls, selected }: FactoryC
         }
       >
         {layout === "bridge" ? (
-          <span className="factory-bridge-person">
+          <span className="agentic-system-bridge-person">
             <strong>You / your AI agent</strong>
             <span>
               Brief · decide · review
@@ -62,11 +74,11 @@ export function FactoryChannels({ layout, select, controls, selected }: FactoryC
             </span>
           </span>
         ) : (
-          <span className="factory-channel-heading">Your channels</span>
+          <span className="agentic-system-channel-heading">Your channels</span>
         )}
-        <span className="factory-channel-marks" aria-hidden="true">
+        <span className="agentic-system-channel-marks" aria-hidden="true">
           {layout === "quiet" ? (
-            <svg className="factory-chat-mark" viewBox="0 0 24 24">
+            <svg className="agentic-system-chat-mark" viewBox="0 0 24 24">
               <path d="M4 4H20V16H11L6 20V16H4Z" />
               <path d="M8 8H16M8 12H13" />
             </svg>
@@ -74,7 +86,7 @@ export function FactoryChannels({ layout, select, controls, selected }: FactoryC
             channels.map((channel) => (
               <img
                 key={channel.name}
-                src={`/assets/factory-tools/${channel.file}`}
+                src={`/assets/agentic-system-tools/${channel.file}`}
                 alt=""
                 title={channel.name}
                 width="22"

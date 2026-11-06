@@ -1,6 +1,6 @@
-import sourceSnapshot from "../public/data/factory-module-sources.json";
+import sourceSnapshot from "../public/data/agentic-system-module-sources.json";
 
-export const factoryModules = [
+export const agenticSystemModules = [
   {
     id: "software",
     title: "Software",
@@ -50,25 +50,35 @@ export const factoryModules = [
   },
 ] as const;
 
-export type FactoryModuleId = (typeof factoryModules)[number]["id"];
-export type FactoryLayerId =
+export type AgenticSystemModuleId = (typeof agenticSystemModules)[number]["id"];
+export type AgenticSystemLayerId =
   "ops" | "work" | "context" | "inference" | "compute" | "foundation" | "access";
-export const workTags: Record<FactoryModuleId, readonly [string, string]> = {
+export const workTags: Record<AgenticSystemModuleId, readonly [string, string]> = {
   software: ["Build & test", "Review"],
   powerbi: ["Data model", "Validation"],
   defence: ["Signals", "Response"],
   research: ["Sources", "Evidence"],
 };
-export const factoryLayers: FactoryLayerId[] = ["ops", "work", "context", "inference", "compute"];
-export const factoryPanelIds: FactoryLayerId[] = [...factoryLayers, "foundation", "access"];
+export const agenticSystemLayers: AgenticSystemLayerId[] = [
+  "ops",
+  "work",
+  "context",
+  "inference",
+  "compute",
+];
+export const agenticSystemPanelIds: AgenticSystemLayerId[] = [
+  ...agenticSystemLayers,
+  "foundation",
+  "access",
+];
 
-const sourceRepositories: Partial<Record<FactoryModuleId, string>> = {
-  software: "arcitai/factory",
+const sourceRepositories: Partial<Record<AgenticSystemModuleId, string>> = {
+  software: "arcitai/agentic-systems",
   powerbi: "arcitai/Agentic-PowerBI-System",
-  defence: "arcitai/factory-defence",
-  research: "arcitai/factory-research",
+  defence: "arcitai/agentic-defence-system",
+  research: "arcitai/agentic-research-system",
 };
-export function moduleSource(id: FactoryModuleId, snapshot: unknown = sourceSnapshot) {
+export function moduleSource(id: AgenticSystemModuleId, snapshot: unknown = sourceSnapshot) {
   const repository = sourceRepositories[id];
   if (!repository || !snapshot || typeof snapshot !== "object" || !("sources" in snapshot))
     return null;
@@ -82,8 +92,11 @@ export function moduleSource(id: FactoryModuleId, snapshot: unknown = sourceSnap
   return { repository, url: source.url };
 }
 
-export function describeFactoryLayer(id: FactoryLayerId, moduleId: FactoryModuleId) {
-  const module = factoryModules.find((item) => item.id === moduleId)!;
+export function describeAgenticSystemLayer(
+  id: AgenticSystemLayerId,
+  moduleId: AgenticSystemModuleId,
+) {
+  const module = agenticSystemModules.find((item) => item.id === moduleId)!;
   const shared = {
     steps: [] as readonly string[],
     source: null as ReturnType<typeof moduleSource>,
@@ -190,8 +203,12 @@ export function describeFactoryLayer(id: FactoryLayerId, moduleId: FactoryModule
 }
 
 /** Short rotating examples. Full terminology remains in the permanent detail panels. */
-export function factorySurfaceCue(layer: FactoryLayerId, module: FactoryModuleId, index: number) {
-  const cues: Record<FactoryLayerId, readonly string[]> = {
+export function agenticSystemSurfaceCue(
+  layer: AgenticSystemLayerId,
+  module: AgenticSystemModuleId,
+  index: number,
+) {
+  const cues: Record<AgenticSystemLayerId, readonly string[]> = {
     ops: ["Orchestration", "Communication", "Routines", "Human input", "Review gates"],
     work: [
       ...workTags[module],

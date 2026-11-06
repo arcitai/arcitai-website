@@ -567,26 +567,26 @@ textarea {
   font-weight: 500;
   color: var(--ink);
 }
-.factory-offer {
+.agentic-system-offer {
   margin-top: 88px;
   padding-top: 56px;
   border-top: 1px solid var(--line);
 }
-.factory-intro {
+.agentic-system-intro {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 64px;
 }
-.factory-intro h3 {
+.agentic-system-intro h3 {
   font: 500 46px/1.08 var(--font-sans);
   letter-spacing: -0.035em;
 }
-.factory-lead {
+.agentic-system-lead {
   font-size: 22px;
   line-height: 1.35;
   margin-bottom: 18px;
 }
-.factory-intro p:not(.factory-lead) {
+.agentic-system-intro p:not(.agentic-system-lead) {
   color: var(--muted);
   font-size: 17px;
 }
@@ -679,26 +679,26 @@ textarea {
 .method-mobile-stages {
   display: none;
 }
-.factory-details {
+.agentic-system-details {
   margin: 0;
 }
-.factory-details > div {
+.agentic-system-details > div {
   display: grid;
   grid-template-columns: 280px 1fr;
   gap: 40px;
   padding: 24px 0;
   border-top: 1px solid var(--line);
 }
-.factory-details dt {
+.agentic-system-details dt {
   font-size: 17px;
 }
-.factory-details dd {
+.agentic-system-details dd {
   margin: 0;
   color: var(--muted);
   font-size: 16px;
   max-width: 760px;
 }
-.factory-bottom {
+.agentic-system-bottom {
   display: flex;
   align-items: start;
   justify-content: space-between;
@@ -706,12 +706,12 @@ textarea {
   border-top: 1px solid var(--line);
   padding-top: 28px;
 }
-.factory-bottom p {
+.agentic-system-bottom p {
   max-width: 700px;
   color: var(--muted);
   font-size: 16px;
 }
-.factory-bottom .offer-action {
+.agentic-system-bottom .offer-action {
   padding: 0;
   margin: 0;
   white-space: nowrap;
@@ -1168,19 +1168,19 @@ textarea {
     padding-top: 28px;
     font-size: 16px;
   }
-  .factory-offer {
+  .agentic-system-offer {
     margin-top: 64px;
     padding-top: 40px;
   }
-  .factory-intro {
+  .agentic-system-intro {
     grid-template-columns: 1fr;
     gap: 24px;
   }
-  .factory-intro h3 {
+  .agentic-system-intro h3 {
     font-size: 36px;
     max-width: 340px;
   }
-  .factory-lead {
+  .agentic-system-lead {
     font-size: 21px;
   }
   .method-figure {
@@ -1200,15 +1200,15 @@ textarea {
   .method-stage text {
     display: none;
   }
-  .factory-details > div {
+  .agentic-system-details > div {
     grid-template-columns: 1fr;
     gap: 10px;
     padding-block: 20px;
   }
-  .factory-details dd {
+  .agentic-system-details dd {
     font-size: 16px;
   }
-  .factory-bottom {
+  .agentic-system-bottom {
     flex-direction: column;
     gap: 24px;
   }

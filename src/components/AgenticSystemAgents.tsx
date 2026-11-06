@@ -11,21 +11,21 @@ import {
   codexFrame,
   type AgentPose,
   type AgentName,
-} from "../factory-agent-motion";
-import { playAgentScene, type AgentBeat } from "../factory-agent-player";
-import type { FactoryLayerId, FactoryModuleId } from "../factory-stack-data";
+} from "../agentic-system-agent-motion";
+import { playAgentScene, type AgentBeat } from "../agentic-system-agent-player";
+import type { AgenticSystemLayerId, AgenticSystemModuleId } from "../agentic-system-stack-data";
 
-export type FactoryAgentTask = {
+export type AgenticSystemAgentTask = {
   id: number;
-  layer: FactoryLayerId;
-  module: FactoryModuleId;
+  layer: AgenticSystemLayerId;
+  module: AgenticSystemModuleId;
   manual: boolean;
 };
-export type FactoryAgentEvent = { taskId: number; scene: AgentScene; beat: AgentBeat };
-export type FactoryAgentProps = {
-  task: FactoryAgentTask;
+export type AgenticSystemAgentEvent = { taskId: number; scene: AgentScene; beat: AgentBeat };
+export type AgenticSystemAgentProps = {
+  task: AgenticSystemAgentTask;
   seed: number;
-  onBeat: (event: FactoryAgentEvent) => void;
+  onBeat: (event: AgenticSystemAgentEvent) => void;
 };
 
 export function CodexWorker({ pose }: { pose: AgentPose }) {
@@ -40,7 +40,7 @@ export function CodexWorker({ pose }: { pose: AgentPose }) {
       overflow="hidden"
     >
       <image
-        href="/assets/factory-tools/codex-spritesheet-v4.webp"
+        href="/assets/agentic-system-tools/codex-spritesheet-v4.webp"
         width="1536"
         height="1872"
         x={-column * 192}
@@ -65,7 +65,10 @@ export function ClaudeWorker({ pose, clock }: { pose: AgentPose; clock: number }
           >
             <path d="M20.998 10.949H24V14.051H20.998Z" />
             {working && (
-              <path className="factory-clawd-tool" d="M23 11L27 8M26 5L26 8L29 9L31 7L29 7L28 5Z" />
+              <path
+                className="agentic-system-clawd-tool"
+                d="M23 11L27 8M26 5L26 8L29 9L31 7L29 7L28 5Z"
+              />
             )}
           </g>
           {[4.487, 7.488, 15, 18].map((x, i) => (
@@ -78,7 +81,7 @@ export function ClaudeWorker({ pose, clock }: { pose: AgentPose; clock: number }
             />
           ))}
         </g>
-        <g fill="var(--factory-top)">
+        <g fill="var(--agentic-system-top)">
           <rect x="6" y={blink ? 9.4 : 8.102} width="1.488" height={blink ? 0.4 : 2.847} />
           <rect x="16.51" y={blink ? 9.4 : 8.102} width="1.49" height={blink ? 0.4 : 2.847} />
         </g>
@@ -97,17 +100,17 @@ function Transfer({ pose, serviceRoute = false }: { pose: AgentPose; serviceRout
   const upper = 161 + between * 96;
   const outside = left ? pose.x < 128 : pose.x > 438;
   return (
-    <g className="factory-service-lift">
+    <g className="agentic-system-service-lift">
       {nearFloor && outside && (
         <path
-          className="factory-lift-landing"
+          className="agentic-system-lift-landing"
           d={left ? `M${liftX} ${floorY}H130` : `M433 ${floorY}H${liftX}`}
         />
       )}
       {lift && (
         <>
           <path
-            className="factory-lift-guide"
+            className="agentic-system-lift-guide"
             d={
               left
                 ? `M128 ${upper}H${lift.x}V${upper + 96}H128`
@@ -116,8 +119,8 @@ function Transfer({ pose, serviceRoute = false }: { pose: AgentPose; serviceRout
           />
           <g transform={`translate(${lift.x} ${lift.y})`}>
             <path className="arc-mat arc-mat-shade" d="M-11 5H11L10 6.5H-10Z" />
-            <path className="factory-lift-car" d="M-15 0H15L11 5H-11Z" />
-            <path className="factory-lift-rim" d="M-15-4V0H15V-4" />
+            <path className="agentic-system-lift-car" d="M-15 0H15L11 5H-11Z" />
+            <path className="agentic-system-lift-rim" d="M-15-4V0H15V-4" />
           </g>
         </>
       )}
@@ -127,13 +130,13 @@ function Transfer({ pose, serviceRoute = false }: { pose: AgentPose; serviceRout
 function Worker({ name, pose, clock }: { name: AgentName; pose: AgentPose; clock: number }) {
   return (
     <g transform={`translate(${pose.x} ${pose.y}) scale(${32 / 38})`} opacity={pose.opacity}>
-      <ellipse className="arc-mat factory-agent-shadow" cy="1" rx="11" ry="2" />
+      <ellipse className="arc-mat agentic-system-agent-shadow" cy="1" rx="11" ry="2" />
       <ellipse className="arc-mat arc-mat-contact-core" cy="1" rx="6.5" ry="1.3" />
       {name === "codex" ? <CodexWorker pose={pose} /> : <ClaudeWorker pose={pose} clock={clock} />}
     </g>
   );
 }
-export function FactoryAgents({ task, seed, onBeat }: FactoryAgentProps) {
+export function AgenticSystemAgents({ task, seed, onBeat }: AgenticSystemAgentProps) {
   const instance = useId();
   const element = useRef<SVGSVGElement>(null);
   const positions = useRef(agentHomes(seed));
@@ -195,7 +198,7 @@ export function FactoryAgents({ task, seed, onBeat }: FactoryAgentProps) {
   return (
     <svg
       ref={element}
-      className="factory-working-agents"
+      className="agentic-system-working-agents"
       viewBox="0 0 560 700"
       aria-hidden="true"
       focusable="false"
@@ -203,7 +206,7 @@ export function FactoryAgents({ task, seed, onBeat }: FactoryAgentProps) {
     >
       <defs>
         {/* The roof hides each worker until it walks through an actual doorway.
-            Both apertures are cut into the same roof silhouette as FactorySlab. */}
+            Both apertures are cut into the same roof silhouette as AgenticSystemSlab. */}
         <clipPath id={`${instance}-roof-doors`} clipPathUnits="userSpaceOnUse">
           <path
             clipRule="evenodd"
@@ -217,14 +220,14 @@ export function FactoryAgents({ task, seed, onBeat }: FactoryAgentProps) {
       {agentHelperFrames(frame.scene, frame.clock).map((helper, index) => (
         <g key={`helper-${index}`}>
           {helper.dispatch && helper.source === "control" && (
-            <g className="factory-dispatch-note" transform="translate(354 80)">
+            <g className="agentic-system-dispatch-note" transform="translate(354 80)">
               <path
                 className="arc-mat arc-mat-shade"
                 transform="translate(1 1.6)"
                 d="M0 0H20V14H7L3 18V14H0Z"
               />
-              <path className="factory-note-body" d="M0 0H20V14H7L3 18V14H0Z" />
-              <path className="factory-parcel-mark" d="M5 5H15M5 9H12" />
+              <path className="agentic-system-note-body" d="M0 0H20V14H7L3 18V14H0Z" />
+              <path className="agentic-system-parcel-mark" d="M5 5H15M5 9H12" />
             </g>
           )}
           <g clipPath={`url(#${instance}-roof-doors)`}>
@@ -245,7 +248,7 @@ export function FactoryAgents({ task, seed, onBeat }: FactoryAgentProps) {
       ))}
       {parcel && (
         <g
-          className="factory-team-parcel"
+          className="agentic-system-team-parcel"
           opacity={parcel.opacity}
           transform={`translate(${parcel.x} ${parcel.y}) scale(${parcel.scale})`}
         >
@@ -254,9 +257,9 @@ export function FactoryAgents({ task, seed, onBeat }: FactoryAgentProps) {
             transform="translate(1 1.6)"
             d="M-9-5 0-10 9-5 9 3 0 8-9 3Z"
           />
-          <path className="factory-note-body" d="M-9-5 0-10 9-5 9 3 0 8-9 3Z" />
+          <path className="agentic-system-note-body" d="M-9-5 0-10 9-5 9 3 0 8-9 3Z" />
           <path
-            className="factory-parcel-mark"
+            className="agentic-system-parcel-mark"
             d={parcel.reviewed ? "M-4-1-1 2 5-4" : "M-4-3H4M-4 0H2"}
           />
         </g>

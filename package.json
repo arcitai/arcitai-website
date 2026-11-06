@@ -33,7 +33,7 @@
     "audit": "npm audit --audit-level=high",
     "preview": "vite preview --host 127.0.0.1",
     "verify:pages": "node scripts/verify-pages.mjs",
-    "modules:refresh": "node scripts/refresh-factory-modules.mjs",
+    "modules:refresh": "node scripts/refresh-agentic-system-modules.mjs",
     "predev": "node scripts/prepare-brand-fonts.mjs",
     "prebuild": "node scripts/prepare-brand-fonts.mjs",
     "prereview:build": "node scripts/prepare-brand-fonts.mjs"

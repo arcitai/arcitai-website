@@ -1,8 +1,12 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { canUnfoldFactory, observeStackOpening, stackOpenProgress } from "./factory-stack-motion";
-import { moduleSource } from "./factory-stack-data";
+import {
+  canUnfoldAgenticSystem,
+  observeStackOpening,
+  stackOpenProgress,
+} from "./agentic-system-stack-motion";
+import { moduleSource } from "./agentic-system-stack-data";
 
-describe("Factory stack opening", () => {
+describe("Agentic Systems stack opening", () => {
   it("opens on entry and is fully open before the section reaches the header", () => {
     const positions = [1000, 850, 625, 400, 100, 400, 625, 850, 1000];
     const expected = [0, 0, 0, 1, 1, 1, 0, 0, 0];
@@ -29,23 +33,29 @@ describe("Factory stack opening", () => {
   });
 
   it("animates a usable phone drawing while keeping tiny viewports static", () => {
-    expect(canUnfoldFactory(1440)).toBe(true);
-    expect(canUnfoldFactory(1040)).toBe(true);
-    expect(canUnfoldFactory(393)).toBe(true);
-    expect(canUnfoldFactory(360)).toBe(true);
-    expect(canUnfoldFactory(359)).toBe(false);
+    expect(canUnfoldAgenticSystem(1440)).toBe(true);
+    expect(canUnfoldAgenticSystem(1040)).toBe(true);
+    expect(canUnfoldAgenticSystem(393)).toBe(true);
+    expect(canUnfoldAgenticSystem(360)).toBe(true);
+    expect(canUnfoldAgenticSystem(359)).toBe(false);
   });
 
   it("only links verified module repositories, with no guessed links for other work areas", () => {
-    expect(moduleSource("software")?.url).toBe("https://github.com/arcitai/factory");
+    expect(moduleSource("software")?.url).toBe("https://github.com/arcitai/agentic-systems");
     expect(moduleSource("powerbi")?.url).toBe("https://github.com/arcitai/Agentic-PowerBI-System");
-    expect(moduleSource("research")?.url).toBe("https://github.com/arcitai/factory-research");
-    expect(moduleSource("defence")?.url).toBe("https://github.com/arcitai/factory-defence");
+    expect(moduleSource("research")?.url).toBe(
+      "https://github.com/arcitai/agentic-research-system",
+    );
+    expect(moduleSource("defence")?.url).toBe("https://github.com/arcitai/agentic-defence-system");
     for (const snapshot of [
       null,
       {},
       { sources: null },
-      { sources: { software: { repository: "arcitai/factory", url: "javascript:alert(1)" } } },
+      {
+        sources: {
+          software: { repository: "arcitai/agentic-systems", url: "javascript:alert(1)" },
+        },
+      },
       {
         sources: {
           defence: {
@@ -126,7 +136,7 @@ function motionEnvironment() {
 
 afterEach(() => vi.unstubAllGlobals());
 
-describe("Factory motion lifecycle", () => {
+describe("Agentic Systems motion lifecycle", () => {
   it("coalesces scrolling, suspends offscreen/hidden work and cleans up on unmount", () => {
     const env = motionEnvironment();
     const controller = observeStackOpening(env.element);
@@ -185,7 +195,7 @@ describe("Factory motion lifecycle", () => {
   });
 });
 
-describe("Factory entry and click navigation", () => {
+describe("Agentic Systems entry and click navigation", () => {
   it("reaches opening after rounded navigation and ignores small scroll jitter before closing", () => {
     const env = motionEnvironment();
     env.win.innerHeight = 913;

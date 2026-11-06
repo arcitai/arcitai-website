@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { playAgentScene } from "./factory-agent-player";
-import { createAgentScene, nextAgentScene } from "./factory-agent-motion";
+import { playAgentScene } from "./agentic-system-agent-player";
+import { createAgentScene, nextAgentScene } from "./agentic-system-agent-motion";
 
 function environment() {
   let now = 0,
@@ -52,7 +52,7 @@ function environment() {
   };
 }
 afterEach(() => vi.unstubAllGlobals());
-describe("Factory story lifecycle", () => {
+describe("Agentic Systems story lifecycle", () => {
   it("plays once, finishes and leaves no animation frame running", () => {
     const env = environment(),
       paint = vi.fn();

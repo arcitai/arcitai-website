@@ -1,8 +1,8 @@
 import { ArrowIcon } from "../family/ArrowIcon";
 import { useEffect, useRef, useState } from "react";
 import { ArcitMark } from "./ArcitMark";
-import { FactoryFlow } from "./FactoryFlow";
-import "./factory-visual-review.css";
+import { AgenticSystemFlow } from "./AgenticSystemFlow";
+import "./agentic-system-visual-review.css";
 
 const variations = [
   { id: "stack", name: "01 · Cut stack", note: "The method, with room for your domain." },
@@ -40,7 +40,7 @@ const layers = [
     title: "Your tools & infrastructure",
     method: "Existing systems",
     detail:
-      "Build on the tools you choose, such as Codex, Claude Code, T3 Code and GitHub, with hosting and model choices that fit your infrastructure. Factory adds a method around them.",
+      "Build on the tools you choose, such as Codex, Claude Code, T3 Code and GitHub, with hosting and model choices that fit your infrastructure. Agentic Systems adds a method around them.",
     tags: "Codex · Claude Code · GitHub",
   },
 ] as const;
@@ -74,40 +74,44 @@ function CutStack() {
   }, []);
 
   return (
-    <div ref={ref} className="factory-stack-scene">
-      <div className="factory-ownership-frame">
-        <p className="factory-ownership-label">Your approvals &amp; ownership</p>
-        <div className="factory-cut-stack">
-          <div className="factory-layers" role="group" aria-label="Explore the Factory method">
+    <div ref={ref} className="agentic-system-stack-scene">
+      <div className="agentic-system-ownership-frame">
+        <p className="agentic-system-ownership-label">Your approvals &amp; ownership</p>
+        <div className="agentic-system-cut-stack">
+          <div
+            className="agentic-system-layers"
+            role="group"
+            aria-label="Explore the Agentic Systems method"
+          >
             {layers.map((layer, index) => (
               <button
                 key={layer.id}
-                className={`factory-layer factory-layer-${index}`}
+                className={`agentic-system-layer agentic-system-layer-${index}`}
                 type="button"
                 aria-pressed={selectedId === layer.id}
-                aria-controls="factory-layer-detail"
+                aria-controls="agentic-system-layer-detail"
                 onClick={() => setSelectedId(layer.id)}
               >
-                <span className="factory-layer-number" aria-hidden="true">
+                <span className="agentic-system-layer-number" aria-hidden="true">
                   0{layers.length - index}
                 </span>
-                <span className="factory-layer-copy">
+                <span className="agentic-system-layer-copy">
                   <strong>{layer.title}</strong>
                   <span>{layer.method}</span>
                 </span>
-                <span className="factory-layer-square" aria-hidden="true" />
+                <span className="agentic-system-layer-square" aria-hidden="true" />
               </button>
             ))}
           </div>
-          <div className="factory-domain-slots">
+          <div className="agentic-system-domain-slots">
             <button
-              className="factory-domain-module"
+              className="agentic-system-domain-module"
               type="button"
               aria-pressed={selectedId === powerBI.id}
-              aria-controls="factory-layer-detail"
+              aria-controls="agentic-system-layer-detail"
               onClick={() => setSelectedId(powerBI.id)}
             >
-              <span className="factory-module-glyph" aria-hidden="true">
+              <span className="agentic-system-module-glyph" aria-hidden="true">
                 <i />
                 <i />
                 <i />
@@ -115,7 +119,7 @@ function CutStack() {
               <strong>Power BI</strong>
               <span>Example module</span>
             </button>
-            <div className="factory-domain-slot">
+            <div className="agentic-system-domain-slot">
               <span aria-hidden="true">+</span>
               <span>Your domain</span>
             </div>
@@ -123,18 +127,18 @@ function CutStack() {
         </div>
       </div>
       <div
-        className="factory-layer-detail"
-        id="factory-layer-detail"
+        className="agentic-system-layer-detail"
+        id="agentic-system-layer-detail"
         aria-live="polite"
         aria-atomic="true"
       >
         <div>
           <h4>{selected.title}</h4>
-          <p className="factory-detail-tags">{selected.tags}</p>
+          <p className="agentic-system-detail-tags">{selected.tags}</p>
         </div>
         <p>{selected.detail}</p>
       </div>
-      <p className="factory-interaction-hint">Select a layer or module to explore.</p>
+      <p className="agentic-system-interaction-hint">Select a layer or module to explore.</p>
     </div>
   );
 }
@@ -144,27 +148,27 @@ const handoverItems = ["Project code", "Configuration", "Deployment setup", "Ope
 function Handover() {
   const [handedOver, setHandedOver] = useState(false);
   return (
-    <div className="factory-handover" data-handed-over={handedOver}>
-      <div className="factory-handover-board">
-        <div className="factory-handover-lane">
+    <div className="agentic-system-handover" data-handed-over={handedOver}>
+      <div className="agentic-system-handover-board">
+        <div className="agentic-system-handover-lane">
           <span>Configured with Arc’IT</span>
         </div>
-        <div className="factory-handover-lane">
+        <div className="agentic-system-handover-lane">
           <span>Operated by your team</span>
         </div>
-        <div className="factory-handover-package">
+        <div className="agentic-system-handover-package">
           {handoverItems.map((item) => (
-            <div className="factory-handover-item" key={item}>
-              <ArcitMark className="factory-handover-mark" />
+            <div className="agentic-system-handover-item" key={item}>
+              <ArcitMark className="agentic-system-handover-mark" />
               <span>{item}</span>
             </div>
           ))}
         </div>
       </div>
-      <div className="factory-handover-controls">
+      <div className="agentic-system-handover-controls">
         <button
           type="button"
-          className="factory-preview-action"
+          className="agentic-system-preview-action"
           onClick={() => setHandedOver((value) => !value)}
         >
           {handedOver ? "Reset preview" : "Preview handover"}
@@ -178,29 +182,29 @@ function Handover() {
             : "Code, configuration and documentation are prepared alongside the work."}
         </p>
       </div>
-      <p className="factory-handover-extension">
+      <p className="agentic-system-handover-extension">
         The same foundation can support domain modules, such as Power BI.
       </p>
     </div>
   );
 }
 
-export default function FactoryVisualReview() {
+export default function AgenticSystemVisualReview() {
   const params = new URLSearchParams(window.location.search);
   const selected =
-    variations.find((variant) => variant.id === params.get("factory")) ?? variations[0];
+    variations.find((variant) => variant.id === params.get("agentic-system")) ?? variations[0];
   return (
     <>
-      <div className="factory-comparison">
+      <div className="agentic-system-comparison">
         <span>Local design preview</span>
-        <nav aria-label="Factory design variations">
+        <nav aria-label="Agentic Systems design variations">
           {variations.map((variant) => {
             const next = new URLSearchParams(params);
-            next.set("factory", variant.id);
+            next.set("agentic-system", variant.id);
             return (
               <a
                 key={variant.id}
-                href={`?${next.toString()}#factory-visual`}
+                href={`?${next.toString()}#agentic-system-visual`}
                 aria-current={selected.id === variant.id ? "page" : undefined}
               >
                 {variant.name}
@@ -209,8 +213,8 @@ export default function FactoryVisualReview() {
           })}
         </nav>
       </div>
-      <div className="factory-visual-heading">
-        <ArcitMark className="factory-visual-mark" />
+      <div className="agentic-system-visual-heading">
+        <ArcitMark className="agentic-system-visual-mark" />
         <p>{selected.note}</p>
       </div>
       {selected.id === "stack" ? (
@@ -218,7 +222,7 @@ export default function FactoryVisualReview() {
       ) : selected.id === "handover" ? (
         <Handover />
       ) : (
-        <FactoryFlow />
+        <AgenticSystemFlow />
       )}
     </>
   );

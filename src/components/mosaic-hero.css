@@ -116,7 +116,7 @@
   transform: scale(var(--mosaic-worker-scale, 1.35));
   transform-origin: 0 0;
 }
-.mosaic-scene .factory-clawd-tool {
+.mosaic-scene .agentic-system-clawd-tool {
   fill: #6b7280;
 }
 .mosaic-motion-toggle {

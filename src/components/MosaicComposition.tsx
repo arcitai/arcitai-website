@@ -1,6 +1,6 @@
 import { localReview } from "../family/preview";
 import { memo, useEffect, useId, useMemo, useRef, useState, type CSSProperties } from "react";
-import { CodexWorker, ClaudeWorker } from "./FactoryAgents";
+import { CodexWorker, ClaudeWorker } from "./AgenticSystemAgents";
 import { roundedPrism } from "../rounded-prism";
 import {
   compositionHref,
@@ -680,7 +680,7 @@ export function MosaicComposition() {
                   ? "/assets/arcitai-mark-final.svg"
                   : brand.file.startsWith("/")
                     ? brand.file
-                    : `/assets/factory-tools/${brand.file}`
+                    : `/assets/agentic-system-tools/${brand.file}`
               }
             />
           </g>
@@ -838,7 +838,7 @@ export function MosaicComposition() {
                   ).opacity
                 }
                 transform={`translate(${pose.x} ${pose.y})`}
-                style={{ "--factory-top": "var(--mosaic-eye)" } as CSSProperties}
+                style={{ "--agentic-system-top": "var(--mosaic-eye)" } as CSSProperties}
               >
                 <g className="mosaic-worker-figure">
                   <ellipse className="mosaic-worker-shadow" cy="1" rx="11" ry="2" />

@@ -1,5 +1,5 @@
 import { blendSourceSlots, blendSources, platformAccentCells } from "./mosaic-blend";
-import type { AgentName, AgentPose } from "./factory-agent-motion";
+import type { AgentName, AgentPose } from "./agentic-system-agent-motion";
 import { mosaicPitch, mosaicRandom, mosaicU, mosaicV } from "./mosaic-motion";
 
 export const compositions = [

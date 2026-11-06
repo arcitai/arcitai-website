@@ -1,6 +1,6 @@
-import type { FactoryLayerId, FactoryModuleId } from "./factory-stack-data";
+import type { AgenticSystemLayerId, AgenticSystemModuleId } from "./agentic-system-stack-data";
 
-export type FactoryToolMark = {
+export type AgenticSystemToolMark = {
   name: string;
   asset?: string;
   darkAsset?: string;
@@ -36,20 +36,20 @@ const marks = {
   server: { name: "Execution host", glyph: "server" },
   search: { name: "Research", glyph: "search" },
   sources: { name: "Sources", glyph: "sources" },
-} satisfies Record<string, FactoryToolMark>;
+} satisfies Record<string, AgenticSystemToolMark>;
 
 const workMarks = {
   software: [marks.cursor, marks.github],
   powerbi: [marks.powerbi, marks.model],
   defence: [marks.security, marks.shield],
   research: [marks.search, marks.sources],
-} satisfies Record<FactoryModuleId, readonly [FactoryToolMark, FactoryToolMark]>;
+} satisfies Record<AgenticSystemModuleId, readonly [AgenticSystemToolMark, AgenticSystemToolMark]>;
 
 // Illustrative choices, not an inventory of installed or qualified integrations.
-export function factoryToolsForLayer(
-  layer: FactoryLayerId,
-  module: FactoryModuleId,
-): readonly FactoryToolMark[] {
+export function agenticSystemToolsForLayer(
+  layer: AgenticSystemLayerId,
+  module: AgenticSystemModuleId,
+): readonly AgenticSystemToolMark[] {
   switch (layer) {
     case "ops":
       return [marks.codex, marks.claude];

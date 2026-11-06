@@ -2,10 +2,10 @@ import { writeFile, rename } from "node:fs/promises";
 
 // Reviewed public module repositories; the refresh rejects private or archived sources.
 const repositories = {
-  software: "arcitai/factory",
+  software: "arcitai/agentic-systems",
   powerbi: "arcitai/Agentic-PowerBI-System",
-  defence: "arcitai/factory-defence",
-  research: "arcitai/factory-research",
+  defence: "arcitai/agentic-defence-system",
+  research: "arcitai/agentic-research-system",
 };
 const sources = Object.fromEntries(
   await Promise.all(
@@ -36,8 +36,8 @@ const sources = Object.fromEntries(
     }),
   ),
 );
-const path = new URL("../public/data/factory-module-sources.json", import.meta.url);
-const temporary = new URL("../public/data/factory-module-sources.json.tmp", import.meta.url);
+const path = new URL("../public/data/agentic-system-module-sources.json", import.meta.url);
+const temporary = new URL("../public/data/agentic-system-module-sources.json.tmp", import.meta.url);
 await writeFile(
   temporary,
   JSON.stringify({ checkedAt: new Date().toISOString(), sources }, null, 2) + "\n",

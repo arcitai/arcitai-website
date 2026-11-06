@@ -1,27 +1,34 @@
 import { ArrowIcon } from "../family/ArrowIcon";
 import { useEffect, useId, useRef, useState, type CSSProperties, type ComponentType } from "react";
-import type { FactoryChannelLayout, FactoryChannelProps } from "./FactoryChannels";
-import type { FactoryAgentTask, FactoryAgentProps, FactoryAgentEvent } from "./FactoryAgents";
+import type {
+  AgenticSystemChannelLayout,
+  AgenticSystemChannelProps,
+} from "./AgenticSystemChannels";
+import type {
+  AgenticSystemAgentTask,
+  AgenticSystemAgentProps,
+  AgenticSystemAgentEvent,
+} from "./AgenticSystemAgents";
 import {
-  describeFactoryLayer,
-  factoryLayers,
-  factoryModules,
+  describeAgenticSystemLayer,
+  agenticSystemLayers,
+  agenticSystemModules,
   workTags,
-  factoryPanelIds,
+  agenticSystemPanelIds,
   moduleSource,
-  type FactoryLayerId,
-  type FactoryModuleId,
-} from "../factory-stack-data";
-import { factoryToolsForLayer } from "../factory-tools";
-import { FactoryMobileTools } from "./FactoryToolMarks";
-import { observeStackOpening } from "../factory-stack-motion";
-import { FactoryIslandBase, FactorySlab } from "./FactoryIsland";
+  type AgenticSystemLayerId,
+  type AgenticSystemModuleId,
+} from "../agentic-system-stack-data";
+import { agenticSystemToolsForLayer } from "../agentic-system-tools";
+import { AgenticSystemMobileTools } from "./AgenticSystemToolMarks";
+import { observeStackOpening } from "../agentic-system-stack-motion";
+import { AgenticSystemIslandBase, AgenticSystemSlab } from "./AgenticSystemIsland";
 import "./arc-material.css";
-import "./factory-stack.css";
+import "./agentic-system-stack.css";
 
 const layerPitch = 96;
 const closedPitch = 28;
-const planeTags: Record<FactoryLayerId, readonly [string, string]> = {
+const planeTags: Record<AgenticSystemLayerId, readonly [string, string]> = {
   ops: ["Orchestration", "Human input"],
   work: ["Build & test", "Review"],
   context: ["Business data", "MCP · tools"],
@@ -31,57 +38,57 @@ const planeTags: Record<FactoryLayerId, readonly [string, string]> = {
   access: ["Brief · decide", "Review · get notified"],
 };
 // Complete terminology remains in the accessible label and detail panel.
-const planeNotes: Partial<Record<FactoryLayerId, readonly [string, string]>> = {
+const planeNotes: Partial<Record<AgenticSystemLayerId, readonly [string, string]>> = {
   ops: ["Routines", ""],
   context: ["Metadata", "Permissions"],
   inference: ["", "Cost"],
   compute: ["", "Isolation"],
 };
 
-function FactoryHandover() {
+function AgenticSystemHandover() {
   return (
-    <div className="factory-handover">
+    <div className="agentic-system-handover">
       <p>Your team or another partner can take it forward. Further support is optional.</p>
     </div>
   );
 }
 
-export type FactoryPreviewDesign = {
-  id: FactoryChannelLayout;
-  facades: Partial<Record<FactoryLayerId, string>>;
-  Channels: ComponentType<FactoryChannelProps>;
-  Agents: ComponentType<FactoryAgentProps>;
+export type AgenticSystemPreviewDesign = {
+  id: AgenticSystemChannelLayout;
+  facades: Partial<Record<AgenticSystemLayerId, string>>;
+  Channels: ComponentType<AgenticSystemChannelProps>;
+  Agents: ComponentType<AgenticSystemAgentProps>;
 };
 
-export function FactoryStack({ design }: { design?: FactoryPreviewDesign }) {
+export function AgenticSystemStack({ design }: { design?: AgenticSystemPreviewDesign }) {
   const Channels = design?.Channels;
   const Agents = design?.Agents;
   const instance = useId();
   const [seed] = useState(() => {
     const random = Math.random();
     try {
-      const saved = sessionStorage.getItem("arcit-factory-story");
+      const saved = sessionStorage.getItem("arcit-agentic-system-story");
       const previous = saved === null ? -1 : Number(saved);
       const next =
         Number.isInteger(previous) && previous >= 0 && previous < 24
           ? (previous + 1 + Math.floor(random * 23)) % 24
           : Math.floor(random * 24);
-      sessionStorage.setItem("arcit-factory-story", String(next));
+      sessionStorage.setItem("arcit-agentic-system-story", String(next));
       return next;
     } catch {
       return Math.floor(random * 24);
     }
   });
   const initialModule = (["software", "powerbi", "defence"] as const)[seed % 3];
-  const [moduleId, setModuleId] = useState<FactoryModuleId>(initialModule);
+  const [moduleId, setModuleId] = useState<AgenticSystemModuleId>(initialModule);
   const [surfaceCues, setSurfaceCues] = useState<Record<string, number>>(() =>
-    Object.fromEntries(factoryLayers.map((layer, index) => [layer, (seed + index) % 4])),
+    Object.fromEntries(agenticSystemLayers.map((layer, index) => [layer, (seed + index) % 4])),
   );
   const taskVersion = useRef(0);
-  const [selected, setSelected] = useState<FactoryLayerId>("work");
+  const [selected, setSelected] = useState<AgenticSystemLayerId>("work");
   const [directory, setDirectory] = useState(false);
   const [fullyOpen, setFullyOpen] = useState(false);
-  const [agentTask, setAgentTask] = useState<FactoryAgentTask>({
+  const [agentTask, setAgentTask] = useState<AgenticSystemAgentTask>({
     id: 0,
     layer: "work",
     module: initialModule,
@@ -92,8 +99,8 @@ export function FactoryStack({ design }: { design?: FactoryPreviewDesign }) {
   const stage = useRef<HTMLDivElement>(null);
   const more = useRef<HTMLButtonElement>(null);
   const motion = useRef<ReturnType<typeof observeStackOpening>>();
-  const active = describeFactoryLayer(selected, moduleId);
-  const currentModule = factoryModules.find((module) => module.id === moduleId)!;
+  const active = describeAgenticSystemLayer(selected, moduleId);
+  const currentModule = agenticSystemModules.find((module) => module.id === moduleId)!;
   useEffect(() => {
     if (!track.current) return;
     const controller = observeStackOpening(track.current, (progress) => {
@@ -106,12 +113,12 @@ export function FactoryStack({ design }: { design?: FactoryPreviewDesign }) {
     };
   }, []);
 
-  function storyBeat({ taskId, scene, beat }: FactoryAgentEvent) {
+  function storyBeat({ taskId, scene, beat }: AgenticSystemAgentEvent) {
     // A click invalidates queued callbacks before React commits the new task.
     if (taskId !== taskVersion.current) return;
     const floor =
       beat === "arrive"
-        ? factoryLayers[(scene.turn + scene.seed) % factoryLayers.length]
+        ? agenticSystemLayers[(scene.turn + scene.seed) % agenticSystemLayers.length]
         : scene.layer === "foundation"
           ? "context"
           : scene.layer === "access"
@@ -127,14 +134,14 @@ export function FactoryStack({ design }: { design?: FactoryPreviewDesign }) {
       setSelected(scene.layer);
     }
   }
-  function startTask(layer: FactoryLayerId, module: FactoryModuleId) {
+  function startTask(layer: AgenticSystemLayerId, module: AgenticSystemModuleId) {
     taskVersion.current += 1;
     setAgentTask({ id: taskVersion.current, layer, module, manual: true });
   }
   function keepReading() {
     if (!agentTask.manual) startTask(selected, moduleId);
   }
-  function chooseModule(id: FactoryModuleId, fromDirectory = false) {
+  function chooseModule(id: AgenticSystemModuleId, fromDirectory = false) {
     // The activated directory button will be hidden. Keep focus in a visible control.
     if (fromDirectory) more.current?.focus({ preventScroll: true });
     startTask("work", id);
@@ -142,7 +149,7 @@ export function FactoryStack({ design }: { design?: FactoryPreviewDesign }) {
     setSelected("work");
     setDirectory(false);
   }
-  function chooseLayer(id: FactoryLayerId, pointer = false) {
+  function chooseLayer(id: AgenticSystemLayerId, pointer = false) {
     // A click on a floor navigates to the same earlier scroll endpoint as Explore layers.
     startTask(id, moduleId);
     setSelected(id);
@@ -179,15 +186,15 @@ export function FactoryStack({ design }: { design?: FactoryPreviewDesign }) {
   return (
     <div
       ref={track}
-      className="factory-stack"
+      className="agentic-system-stack"
       data-module={moduleId}
       data-directory={directory}
       data-design={design?.id}
     >
-      <div className="factory-frame">
-        <div className="factory-toolbar">
-          <div className="factory-module-picker" role="group" aria-label="Work module">
-            {factoryModules
+      <div className="agentic-system-frame">
+        <div className="agentic-system-toolbar">
+          <div className="agentic-system-module-picker" role="group" aria-label="Work module">
+            {agenticSystemModules
               .filter((module) => module.featured)
               .map((module) => (
                 <button
@@ -205,7 +212,7 @@ export function FactoryStack({ design }: { design?: FactoryPreviewDesign }) {
             <button
               ref={more}
               type="button"
-              className="factory-more-modules"
+              className="agentic-system-more-modules"
               aria-pressed={directory}
               aria-controls={detailId}
               onClick={(event) => {
@@ -217,7 +224,7 @@ export function FactoryStack({ design }: { design?: FactoryPreviewDesign }) {
               <span className="module-dot module-dot-directory" aria-hidden="true" />
               More modules
               {!currentModule.featured && !directory && (
-                <span className="factory-more-selection">
+                <span className="agentic-system-more-selection">
                   {" "}
                   · {currentModule.title}
                   <span className="sr-only">, selected</span>
@@ -226,15 +233,15 @@ export function FactoryStack({ design }: { design?: FactoryPreviewDesign }) {
             </button>
           </div>
         </div>
-        <div className="factory-composition">
+        <div className="agentic-system-composition">
           <figure
-            className="factory-drawing"
-            aria-label="Factory: five layers on a shared foundation"
+            className="agentic-system-drawing"
+            aria-label="Agentic Systems: five layers on a shared foundation"
           >
-            <div ref={stage} className="factory-stage" data-module={moduleId}>
-              <FactoryIslandBase />
+            <div ref={stage} className="agentic-system-stage" data-module={moduleId}>
+              <AgenticSystemIslandBase />
               {design?.id !== "bridge" && (
-                <div className="factory-entry">
+                <div className="agentic-entry">
                   <button
                     type="button"
                     aria-pressed={!directory && selected === "access"}
@@ -245,18 +252,23 @@ export function FactoryStack({ design }: { design?: FactoryPreviewDesign }) {
                     <span>Brief · decide · review · get notified</span>
                     {!design && (
                       <span
-                        className="factory-communication"
+                        className="agentic-system-communication"
                         title="Communication channel example: Slack"
                       >
-                        <img src="/assets/factory-tools/slack.png" width="16" height="16" alt="" />
-                        <span className="factory-communication-name" aria-hidden="true">
+                        <img
+                          src="/assets/agentic-system-tools/slack.png"
+                          width="16"
+                          height="16"
+                          alt=""
+                        />
+                        <span className="agentic-system-communication-name" aria-hidden="true">
                           Your workspace
                         </span>
                         <span className="sr-only">Your workspace, for example Slack</span>
                       </span>
                     )}
                   </button>
-                  <span className="factory-entry-route" aria-hidden="true" />
+                  <span className="agentic-entry-route" aria-hidden="true" />
                 </div>
               )}
               {design && Channels && (
@@ -267,8 +279,8 @@ export function FactoryStack({ design }: { design?: FactoryPreviewDesign }) {
                   selected={!directory && selected === "access"}
                 />
               )}
-              {factoryLayers.map((id, index) => {
-                const detail = describeFactoryLayer(id, moduleId);
+              {agenticSystemLayers.map((id, index) => {
+                const detail = describeAgenticSystemLayer(id, moduleId);
                 const moduleDirectory = directory && id === "work";
                 const title = moduleDirectory ? "Modules" : detail.title;
                 const tags: readonly [string, string] = moduleDirectory
@@ -288,7 +300,7 @@ export function FactoryStack({ design }: { design?: FactoryPreviewDesign }) {
                   <button
                     type="button"
                     key={id}
-                    className="factory-layer"
+                    className="agentic-system-layer"
                     data-layer={id}
                     aria-label={`${title}: ${description}${facade ? `; ${facade}` : ""}${moduleDirectory && design ? "; Configure your own" : ""}`}
                     aria-pressed={moduleDirectory || (!directory && selected === id)}
@@ -305,7 +317,7 @@ export function FactoryStack({ design }: { design?: FactoryPreviewDesign }) {
                       } as CSSProperties
                     }
                   >
-                    <FactorySlab
+                    <AgenticSystemSlab
                       layer={id}
                       module={moduleId}
                       title={title}
@@ -319,7 +331,7 @@ export function FactoryStack({ design }: { design?: FactoryPreviewDesign }) {
                     />
                     {moduleDirectory ? (
                       <svg
-                        className="factory-mobile-tools factory-module-placeholder"
+                        className="agentic-system-mobile-tools agentic-system-module-placeholder"
                         viewBox="0 0 76 40"
                         aria-hidden="true"
                         focusable="false"
@@ -329,13 +341,13 @@ export function FactoryStack({ design }: { design?: FactoryPreviewDesign }) {
                         <rect x="56" y="12" width="16" height="16" rx="2" />
                       </svg>
                     ) : (
-                      <FactoryMobileTools layer={id} module={moduleId} />
+                      <AgenticSystemMobileTools layer={id} module={moduleId} />
                     )}
-                    <span className="factory-layer-label">
+                    <span className="agentic-system-layer-label">
                       <strong>{title}</strong>
                       <span>{tags.join(" · ")}</span>
                       {facade && (
-                        <span className="factory-mobile-facade">
+                        <span className="agentic-system-mobile-facade">
                           {moduleDirectory ? "Configure your own" : facade}
                         </span>
                       )}
@@ -346,7 +358,7 @@ export function FactoryStack({ design }: { design?: FactoryPreviewDesign }) {
               {design && Agents && fullyOpen && !directory && (
                 <Agents task={agentTask} seed={seed} onBeat={storyBeat} />
               )}
-              <div className="factory-foundation-group">
+              <div className="agentic-foundation-group">
                 <button
                   type="button"
                   aria-pressed={!directory && selected === "foundation"}
@@ -363,7 +375,7 @@ export function FactoryStack({ design }: { design?: FactoryPreviewDesign }) {
             </div>
             <button
               type="button"
-              className="factory-read-detail"
+              className="agentic-system-read-detail"
               onClick={() => {
                 panel.current?.focus({ preventScroll: true });
                 panel.current?.scrollIntoView({ block: "nearest", behavior: "instant" });
@@ -376,23 +388,23 @@ export function FactoryStack({ design }: { design?: FactoryPreviewDesign }) {
             </button>
           </figure>
           <aside
-            className="factory-sidebar"
-            aria-label="Inside the Factory"
+            className="agentic-system-sidebar"
+            aria-label="Inside an agentic system"
             onFocusCapture={keepReading}
           >
             <div
               ref={panel}
               id={detailId}
-              className="factory-detail-panels"
+              className="agentic-system-detail-panels"
               role="region"
               tabIndex={-1}
-              aria-label="Factory details"
+              aria-label="Agentic Systems details"
             >
               {/* Each candidate reserves space, including the directory, to prevent module/layer shifts. */}
-              {factoryModules.flatMap((module) =>
-                factoryPanelIds.map((id) => {
-                  const detail = describeFactoryLayer(id, module.id);
-                  const toolExamples = factoryToolsForLayer(id, module.id).flatMap((mark) =>
+              {agenticSystemModules.flatMap((module) =>
+                agenticSystemPanelIds.map((id) => {
+                  const detail = describeAgenticSystemLayer(id, module.id);
+                  const toolExamples = agenticSystemToolsForLayer(id, module.id).flatMap((mark) =>
                     mark.example ? [mark.example] : [],
                   );
                   if (id === "ops") toolExamples.push("T3 Code (optional workspace)");
@@ -400,35 +412,35 @@ export function FactoryStack({ design }: { design?: FactoryPreviewDesign }) {
                   return (
                     <section
                       key={`${module.id}-${id}`}
-                      className="factory-detail-panel"
+                      className="agentic-system-detail-panel"
                       data-active={isActive}
                       aria-hidden={!isActive}
                       aria-labelledby={`${instance}-${module.id}-${id}-heading`}
                     >
-                      <p className="factory-panel-kicker">{detail.subtitle}</p>
+                      <p className="agentic-system-panel-kicker">{detail.subtitle}</p>
                       <h3 id={`${instance}-${module.id}-${id}-heading`}>{detail.title}</h3>
                       <p>{detail.description}</p>
                       {detail.terms.length > 0 && (
-                        <ul className="factory-technical-terms">
+                        <ul className="agentic-system-technical-terms">
                           {detail.terms.map((term) => (
                             <li key={term}>{term}</li>
                           ))}
                         </ul>
                       )}
                       {detail.steps.length > 0 && (
-                        <ol className="factory-workflow" aria-label="Work stages">
+                        <ol className="agentic-system-workflow" aria-label="Work stages">
                           {detail.steps.map((step) => (
                             <li key={step}>{step}</li>
                           ))}
                         </ol>
                       )}
-                      <div className="factory-routines">
+                      <div className="agentic-system-routines">
                         <h4>{detail.routineLabel}</h4>
                         <p>{detail.routine}</p>
                       </div>
                       {detail.source && module.id !== "software" && (
                         <a
-                          className="factory-module-source"
+                          className="agentic-system-module-source"
                           href={detail.source.url}
                           target="_blank"
                           rel="noopener noreferrer"
@@ -441,7 +453,7 @@ export function FactoryStack({ design }: { design?: FactoryPreviewDesign }) {
                         </a>
                       )}
                       {toolExamples.length > 0 && (
-                        <p className="factory-tool-examples">
+                        <p className="agentic-system-tool-examples">
                           <span>Tool examples</span>
                           {toolExamples.join(" · ")}
                           <br />
@@ -449,7 +461,7 @@ export function FactoryStack({ design }: { design?: FactoryPreviewDesign }) {
                         </p>
                       )}
                       {id === "compute" && (
-                        <p className="factory-tool-examples">
+                        <p className="agentic-system-tool-examples">
                           <span>Host example</span>
                           Linux, optionally with{" "}
                           <a
@@ -464,7 +476,7 @@ export function FactoryStack({ design }: { design?: FactoryPreviewDesign }) {
                         </p>
                       )}
                       {design && id === "access" && (
-                        <p className="factory-tool-examples">
+                        <p className="agentic-system-tool-examples">
                           <span>Channel examples</span>Microsoft Teams · Slack.
                           <br />
                           Connections follow the tools and access selected for your project.
@@ -475,18 +487,18 @@ export function FactoryStack({ design }: { design?: FactoryPreviewDesign }) {
                 }),
               )}
               <section
-                className="factory-detail-panel factory-directory"
+                className="agentic-system-detail-panel agentic-system-directory"
                 data-active={directory}
                 aria-hidden={!directory}
                 aria-labelledby={`${instance}-directory-heading`}
               >
-                <p className="factory-panel-kicker">Specialist workflows</p>
+                <p className="agentic-system-panel-kicker">Specialist workflows</p>
                 <h3 id={`${instance}-directory-heading`}>Modules</h3>
                 <p>
                   Different work, the same foundation. Choose a workflow or browse the repositories.
                 </p>
                 <ul>
-                  {factoryModules.map((module) => {
+                  {agenticSystemModules.map((module) => {
                     const source = moduleSource(module.id);
                     return (
                       <li key={module.id} data-module={module.id}>
@@ -522,7 +534,11 @@ export function FactoryStack({ design }: { design?: FactoryPreviewDesign }) {
                 </ul>
               </section>
             </div>
-            <button type="button" className="factory-back-to-layers" onClick={returnToLayers}>
+            <button
+              type="button"
+              className="agentic-system-back-to-layers"
+              onClick={returnToLayers}
+            >
               Choose another layer{" "}
               <span aria-hidden="true">
                 <ArrowIcon direction="up" />
@@ -530,7 +546,7 @@ export function FactoryStack({ design }: { design?: FactoryPreviewDesign }) {
             </button>
           </aside>
         </div>
-        <FactoryHandover />
+        <AgenticSystemHandover />
       </div>
       <p className="sr-only" aria-live="polite" aria-atomic="true">
         {directory
