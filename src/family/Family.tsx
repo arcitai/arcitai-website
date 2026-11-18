@@ -124,7 +124,8 @@ export function NewsletterContent({
         </h1>
         <p className="newsletter-byline">My newsletter. I’m Gustav Anderson.</p>
         <p>
-          I share ideas, experiments and lessons from working with data, AI and agentic engineering.
+          Get ideas and lessons from my projects with data, AI and software. Take what fits the work
+          you’re doing.
         </p>
         <form className="family-signup" onSubmit={submit} aria-busy={pending}>
           <label htmlFor="newsletter-email">Email address</label>

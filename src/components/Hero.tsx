@@ -27,15 +27,13 @@ export function Hero() {
     >
       <div className="walkthrough-shell">
         <h1 id="hero-title">
-          AI should understand
-          <br className="hero-linebreak" /> <span>your business</span>
+          Put AI to work
+          <br className="hero-linebreak" /> <span>across your teams</span>
         </h1>
         <p className="walkthrough-description">
-          Your data and business context are the foundation for AI to do useful work. Connect them
-          with the right tools and workflows, and agents can help develop software, investigate
-          systems and turn information into decisions. Practical data and AI consultancy that brings
-          these pieces together around your goals, with clear ways to review the work and build on
-          it.
+          Use AI agents to investigate issues, analyse information and develop software with the
+          business data and context your teams share. Arc’IT AI builds around your systems, with
+          agreed access and human review.
         </p>
       </div>
       {artwork && (
