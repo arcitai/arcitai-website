@@ -38,11 +38,11 @@ export function Scope() {
                   02
                 </span>
                 <h3>Custom projects</h3>
-                <p className="offer-benefit">Data and AI shaped around your business.</p>
+                <p className="offer-benefit">Get a workflow your team can put into use.</p>
                 <p className="offer-summary">
-                  From data foundations to agentic engineering. Practical solutions built around
-                  your existing systems, with guidance and documentation to help your team use,
-                  adapt and build on them.
+                  Start with work your team wants help with. We agree what the project should
+                  deliver, which systems and data it can access and how your team will review the
+                  results. We build and document the agreed solution.
                 </p>
                 <a className="offer-button" href="/project/">
                   Discuss your project{" "}
@@ -55,7 +55,7 @@ export function Scope() {
           </div>
           <section className="business-context" aria-labelledby="business-context-title">
             <div>
-              <h3 id="business-context-title">Data and context</h3>
+              <h3 id="business-context-title">Give your teams a shared foundation</h3>
               <p>
                 Data is the information in your documents and systems. Context explains what it
                 means in your organisation: how the business runs, the rules you follow and why
@@ -64,9 +64,9 @@ export function Scope() {
             </div>
             <div>
               <p>
-                Making that data and context clear and available to AI gives your team a foundation
-                to build on across the organisation. The same foundation can support your own
-                software, analysis and automation.
+                Say your team needs to explain a change in revenue. An agent can prepare a first
+                draft from the approved figures and your reporting definitions. Your team can check
+                the sources, refine the explanation and decide what to act on.
               </p>
               <p>
                 Clear data and context, with documentation of the agreed work, support a handover

@@ -25,6 +25,11 @@ npm run audit
 npm run worker:build
 ```
 
+The lockfile temporarily pins the build tools’ transitive `picomatch` to
+`@ryotsu/picomatch@4.0.7-a` for [CVE-2026-112366](https://github.com/advisories/GHSA-fc5q-39xc-vjpf).
+Return to the upstream package once a fixed npm release is available. Regenerate
+the lockfile and repeat the full release checks before removing the override.
+
 The release review also requires workflow validation, an exact build-content
 inventory, and browser QA at 1440×1000 and 390×844 with mocked inquiry outcomes.
 For the current candidate, check both themes, Offers keyboard/focus behavior,
