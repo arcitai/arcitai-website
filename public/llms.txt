@@ -1,0 +1,15 @@
+# Arc'IT AI
+
+> Data and AI consultancy shaped around the business, systems and teams doing the work.
+
+Arc'IT AI delivers custom data and AI projects and publishes the Agentic Systems method for building useful agent workflows.
+
+- Home: https://arcitai.com/
+- Project inquiries: https://arcitai.com/project/
+- Agentic Systems: https://github.com/arcitai/agentic-systems
+- onlinesourdough: https://onlinesourdough.com/
+- Gustav Anderson: https://gustavonline.com/
+- YouTube: https://www.youtube.com/@gustavonline
+- LinkedIn: https://www.linkedin.com/in/gustavandersonn/
+- X: https://x.com/_gustavonline
+- GitHub: https://github.com/arcitai
