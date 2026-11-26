@@ -51,7 +51,7 @@ export function Inquiry() {
         kind: "success",
         message: localReview
           ? "Preview complete — no inquiry was sent."
-          : "Project details received. I’ll reply at the email you provided to discuss next steps.",
+          : "Project details received. I will reply at the email you provided to discuss next steps.",
       });
     } catch (error) {
       const failure = error instanceof InquirySubmissionError ? error.kind : "network";
@@ -71,7 +71,7 @@ export function Inquiry() {
               <p className="review-notice">Local preview — the form does not send data.</p>
             )}
             <p className="inquiry-description">
-              Share your ideas, where things stand and what you want to achieve. Whether you’re
+              Share your ideas, where things stand and what you want to achieve. Whether you are
               starting something new or building on existing work, we can shape the right approach
               for your business.
             </p>
@@ -111,7 +111,7 @@ export function Inquiry() {
                 <a href={siteData.links.onlinesourdough} target="_blank" rel="noopener noreferrer">
                   onlinesourdough
                 </a>{" "}
-                is for solo founders and small teams, with Resources to use yourself and ongoing 1:1
+                is for founders and small teams, with Resources to use yourself and ongoing 1:1
                 collaboration in The Fermentary. Arc’IT delivers projects for mid-sized and large
                 organisations, including enterprise teams, with an agreed scope and a practical
                 handover to your team. Both start with your business and the work you need to do.
@@ -191,8 +191,9 @@ export function Inquiry() {
           <label className="field field-wide project-field">
             <span>What do you have in mind?</span>
             <span className="field-help" id="project-help">
-              Tell me about your ideas, the stage you’re at and what you’d like to achieve. Mention
-              any existing systems, work or timing that would help me understand the project.
+              Tell me about your ideas, the stage you are at and what you would like to achieve.
+              Mention any existing systems, work or timing that would help me understand the
+              project.
             </span>
             <textarea
               name="project"
@@ -204,7 +205,7 @@ export function Inquiry() {
           </label>
 
           <p className="privacy-note" id="privacy-note">
-            Please don’t include passwords or confidential business or customer data.
+            Please do not include passwords or confidential business or customer data.
           </p>
           <button
             className="button submit-action"

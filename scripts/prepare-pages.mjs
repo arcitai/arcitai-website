@@ -18,7 +18,7 @@ const pages = [
     description:
       "Data and AI consultancy shaped around your business. Free one-off consultations and custom projects, built around your data, context and ways of working.",
     lastmod: "2026-11-22",
-    body: `<section><h1>Put AI to work across your teams</h1><p>Use AI agents to investigate issues, analyse information and develop software with the business data and context your teams share. Arc’IT AI builds around your systems, with agreed access and human review.</p><h2>Custom data and AI projects</h2><p>Start with your business, data and existing systems. Agree the project scope, the access, and how we will check the result.</p><p><a href="/project/">Tell me about your project</a> · <a href="https://github.com/arcitai/agentic-systems">Explore Agentic Systems</a></p><p>For solo founders and small teams, visit <a href="https://onlinesourdough.com/">onlinesourdough</a>. Learn about <a href="https://gustavonline.com/">Gustav Anderson</a>.</p></section>`,
+    body: `<section><h1>Put AI to work across your teams</h1><p>Use AI agents to investigate issues, analyse information and develop software with the business data and context your teams share. Arc’IT AI builds around your systems, with agreed access and human review.</p><h2>Custom data and AI projects</h2><p>Start with your business, data and existing systems. Agree the project scope, the access, and how we will check the result.</p><p><a href="/project/">Tell me about your project</a> · <a href="https://github.com/arcitai/agentic-systems">Explore Agentic Systems</a></p><p>For founders and small teams, visit <a href="https://onlinesourdough.com/">onlinesourdough</a>. Learn about <a href="https://gustavonline.com/">Gustav Anderson</a>.</p></section>`,
   },
   {
     path: "project",
@@ -26,7 +26,7 @@ const pages = [
     description:
       "Share your project ideas, current stage and goals. Data and AI shaped around your business, from an initial direction to practical delivery.",
     lastmod: "2026-11-22",
-    body: `<section><h1>Tell me about your project</h1><p>Share your ideas, where things stand and what you want to achieve. Whether you’re starting something new or building on existing work, we can shape the right approach for your business.</p><p>Prefer to talk it through? <a href="https://calendar.notion.so/meet/gustavanderson/20min-one-off-consultation">Book a free 20-minute consultation</a>.</p><h2>How I work</h2><p>I start with how your business runs and the tools, environment and team you already have. I agree scope and acceptance criteria with you, then test the work and make remaining risks clear before handover.</p><p><a href="/">Back to Arc’IT AI</a></p></section>`,
+    body: `<section><h1>Tell me about your project</h1><p>Share your ideas, where things stand and what you want to achieve. Whether you are starting something new or building on existing work, we can shape the right approach for your business.</p><p>Prefer to talk it through? <a href="https://calendar.notion.so/meet/gustavanderson/20min-one-off-consultation">Book a free 20-minute consultation</a>.</p><h2>How I work</h2><p>I start with how your business runs and the tools, environment and team you already have. I agree scope and acceptance criteria with you, then test the work and make remaining risks clear before handover.</p><p><a href="/">Back to Arc’IT AI</a></p></section>`,
   },
   {
     path: "newsletter",
@@ -34,7 +34,7 @@ const pages = [
     description:
       "Ideas, experiments and lessons from working with data, AI and agentic engineering.",
     lastmod: "2026-11-22",
-    body: `<section><h1>Notes from the work</h1><p>My newsletter. I’m Gustav Anderson. Get ideas and lessons from my projects with data, AI and software. Take what fits the work you’re doing.</p><p><a href="/">Back to Arc’IT AI</a> · <a href="/project/">Discuss your project</a></p></section>`,
+    body: `<section><h1>Notes from the work</h1><p>My newsletter. I am Gustav Anderson. Get ideas and lessons from my projects with data, AI and software. Take what fits the work you are doing.</p><p><a href="/">Back to Arc’IT AI</a> · <a href="/project/">Discuss your project</a></p></section>`,
   },
   {
     path: "newsletter/thank-you",
@@ -162,7 +162,7 @@ function jsonLd(url, page) {
       sameAs: [
         "https://www.youtube.com/@gustavonline",
         "https://www.linkedin.com/in/gustavandersonn/",
-        "https://x.com/_gustavonline",
+        "https://x.com/gustavonline",
         "https://github.com/gustavonline",
       ],
       worksFor: [{ "@id": organizationId }, { "@id": onlineId }],
