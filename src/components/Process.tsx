@@ -100,7 +100,7 @@ export function ScenePlayer({ scene, epoch }: { scene: Scene; epoch: number }) {
           </span>
         </button>
       )}
-      {failed && <figcaption role="status">The video couldn’t load. Please try again.</figcaption>}
+      {failed && <figcaption role="status">The video could not load. Please try again.</figcaption>}
     </figure>
   );
 }
@@ -109,11 +109,11 @@ export function Process({ scene, epoch }: { scene: Scene; epoch: number }) {
   return (
     <section className="process section-shell" id="process" aria-labelledby="process-title">
       <div className="process-intro">
-        <h2 id="process-title">Start with what you’ve built.</h2>
+        <h2 id="process-title">Start with what you have built.</h2>
         <p>
-          Maybe you’ve vibe-coded a promising demo. Maybe a developer built your MVP. I’m Gustav. I
-          look at what it needs to do for your business, work through the gaps, and take care of the
-          implementation — from the first review to the way it’s maintained.
+          Maybe you have vibe-coded a promising demo. Maybe a developer built your MVP. I am Gustav.
+          I look at what it needs to do for your business, work through the gaps, and take care of
+          the implementation, from the first review to the way it is maintained.
         </p>
       </div>
       <ScenePlayer key={scene} scene={scene} epoch={epoch} />
